@@ -79,7 +79,13 @@ const index = require("./routes/index");
 app.use("/", index);
 
 const authRoutes = require("./routes/auth");
-app.use("/api/users", authRoutes);
+app.use("/api/auth", authRoutes);
+
+const userRoutes = require("./routes/user");
+app.use("/api/users", userRoutes);
+
+const alertRoutes = require("./routes/alert");
+app.use("/api/alerts", alertRoutes);
 
 const eventRoutes = require('./routes/event');
 app.use('/api/events', eventRoutes)

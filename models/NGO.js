@@ -6,7 +6,7 @@ const ngoSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     location: { type: String, required: true },
-    imageURL: { type: String, required: true },
+    imageURL: { type: String, default: "", required: true },
     websiteLink: String,
     contactLink: String,
     categories: [

@@ -11,7 +11,7 @@ const alertSchema = new Schema(
       enum: ["People in need", "Places", "Other"],
       required: true
     },
-    imageURL: String,
+    imageURL: { type: String, default: "" },
     creator: {
       type: Schema.Types.ObjectId,
       ref: "User"
