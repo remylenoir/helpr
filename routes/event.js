@@ -3,7 +3,7 @@ const passport = require("passport");
 const router = express.Router();
 const Event = require('../models/Event');
 
-//@route GET api/add
+//@route POST api/events/add
 //@desc  create an event
 //@access User
 
@@ -29,13 +29,11 @@ router.post('/add', (req, res) => {
     })
 })
 
-
-
-//@route GET api/getallevents
+//@route GET api/events/all
 //@desc  get all events
 //@access all events
 
-router.get('/getall', (req, res) => {
+router.get('/all', (req, res) => {
   Event.find({})
     .then(events => {
       res.status(200).json(events)
@@ -44,6 +42,33 @@ router.get('/getall', (req, res) => {
       res.json(err)
     })
 })
+
+
+//@route GET api/events/:id
+//@desc  get an event
+//@access get one event
+
+router.get('/:id', (req, res) => {
+  Event.findById(req.params.id)
+    .then(event => {
+      res.status(200).json(event)
+    })
+    .catch(err => {
+      res.json(err)
+    })
+})
+
+
+//@route Put api/events/:id
+//@desc  edit an event
+//@access edit an event
+
+// router.put('/:id',(req,res)=> {
+//   Event.findOneAndUpdate(req.params.id, {
+
+//   })
+// })
+
 
 
 
