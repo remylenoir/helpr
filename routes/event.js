@@ -63,11 +63,15 @@ router.get('/:id', (req, res) => {
 //@desc  edit an event
 //@access edit an event
 
-// router.put('/:id',(req,res)=> {
-//   Event.findOneAndUpdate(req.params.id, {
-
-//   })
-// })
+router.put('/:id', (req, res) => {
+  Event.findOneAndUpdate(req.params.id, req.body)
+    .then(() => {
+      res.status(200).json({ message: 'Updated!' })
+    })
+    .catch(err => {
+      res.json(err)
+    })
+})
 
 
 
