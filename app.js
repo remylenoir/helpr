@@ -87,8 +87,11 @@ app.use("/api/users", userRoutes);
 const alertRoutes = require("./routes/alert");
 app.use("/api/alerts", alertRoutes);
 
-const eventRoutes = require('./routes/event');
-app.use('/api/events', eventRoutes)
+const eventRoutes = require("./routes/event");
+app.use("/api/events", eventRoutes);
+
+const ngoRoutes = require("./routes/ngo");
+app.use("/api/ngo", ngoRoutes);
 
 const categoryRoutes = require('./routes/category');
 app.use('/api/categories', categoryRoutes)
