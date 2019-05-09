@@ -7,8 +7,8 @@ const ngoSchema = new Schema(
     description: { type: String, required: true },
     location: { type: String, required: true },
     imageURL: { type: String, default: "", required: true },
-    websiteLink: String,
-    contactLink: String,
+    websiteURL: { type: String, default: "" },
+    contactURL: { type: String, default: "" },
     categories: [
       {
         type: Schema.Types.ObjectId,
