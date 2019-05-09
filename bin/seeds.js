@@ -4,7 +4,7 @@
 // $ node bin/seeds.js
 
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = process.platform === 'win32' ? require('bcryptjs') : require('bcrypt');
 const User = require("../models/User");
 
 const bcryptSalt = 10;

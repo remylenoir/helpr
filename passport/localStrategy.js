@@ -1,7 +1,7 @@
 const passport      = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User          = require('../models/User');
-const bcrypt        = require('bcrypt');
+const bcrypt        = process.platform === 'win32' ? require('bcryptjs') : require('bcrypt');
 
 passport.use(new LocalStrategy({
     usernameField: 'username',
