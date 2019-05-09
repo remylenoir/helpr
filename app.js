@@ -90,4 +90,8 @@ app.use("/api/alerts", alertRoutes);
 const eventRoutes = require('./routes/event');
 app.use('/api/events', eventRoutes)
 
+const categoryRoutes = require('./routes/category');
+app.use('/api/categories', categoryRoutes)
+
+
 module.exports = app;
