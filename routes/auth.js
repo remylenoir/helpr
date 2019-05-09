@@ -3,12 +3,12 @@ const passport = require("passport");
 const router = express.Router();
 
 // Bcrypt to encrypt passwords
-const bcrypt = process.platform === 'win32' ? require('bcryptjs') : require('bcrypt');
+const bcrypt = process.platform === "win32" ? require("bcryptjs") : require("bcrypt");
 
 // Import the model
 const User = require("../models/User");
 
-// @route   POST api/users/signup
+// @route   POST api/auth/signup
 // @desc    User sign up
 // @access  Private
 router.post("/signup", (req, res) => {
@@ -45,7 +45,7 @@ router.post("/signup", (req, res) => {
     });
 });
 
-// @route   POST api/users/login
+// @route   POST api/auth/login
 // @desc    Log in the user
 // @access  Private
 router.post("/login", passport.authenticate("local"), (req, res) => {
@@ -63,7 +63,7 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
     };
 });
 
-// @route   POST api/users/logout
+// @route   POST api/auth/logout
 // @desc    Log out the user
 // @access  Private
 router.post("/logout", (req, res) => {
@@ -72,26 +72,12 @@ router.post("/logout", (req, res) => {
   res.status(200).json({ message: "User successfully logged out" });
 });
 
-// @route   GET api/users/loggedin
+// @route   GET api/auth/loggedin
 // @desc    Check if the user is logged in
 // @access  Private
 router.get("/loggedin", (req, res) => {
   if (req.isAuthenticated()) return res.json(req.user);
   return res.json(null);
-});
-
-// @route   DELETE api/users/delete
-// @desc    Delete the user
-// @access  Private
-router.delete("/delete", (req, res) => {
-  const { _id } = req.user;
-  User.findOneAndDelete({ _id })
-    .then(() => {
-      return res.status(200).json({ message: "User deleted" });
-    })
-    .catch(error => {
-      res.status(401).json(error);
-    });
 });
 
 module.exports = router;
