@@ -1,63 +1,44 @@
 const express = require("express");
-const passport = require('passport');
+const passport = require("passport");
 const router = express.Router();
-const User = require("../models/User");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
-const bcryptSalt = 10;
 
+// Import the model
+const User = require("../models/User");
 
-router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
-});
+router.post("/signup", (req, res) => {
+  const { username, password } = req.body;
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
-
-router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
-
-router.post("/signup", (req, res, next) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
-    return;
+  if (!username || !password) {
+    return res.status(422).json({ message: "Please provide a username and a password" });
   }
 
-  User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
-      return;
-    }
+  if (password.length < 8) {
+    return res.status(422).json({ message: "The password needs to have 8 characters minimum" });
+  }
 
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+  User.findOne({ username })
+    .then(user => {
+      if (user) return res.status(409).json({ message: "Username already taken" });
 
-    const newUser = new User({
-      username,
-      password: hashPass
+      const salt = bcrypt.genSaltSync();
+      const hash = bcrypt.hashSync(password, salt);
+
+      return User.create({
+        username: username,
+        password: hash
+      });
+    })
+    .then(newUser => {
+      req.login(newUser, () => {
+        return res.status(200).json(newUser);
+      });
+    })
+    .catch(error => {
+      res.status(500).json(error);
     });
-
-    newUser.save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
-  });
-});
-
-router.get("/logout", (req, res) => {
-  req.logout();
-  res.redirect("/");
 });
 
 module.exports = router;
