@@ -10,9 +10,9 @@ const userSchema = new Schema(
       default: "user",
       enum: ["user", "creator", "organizer", "admin"]
     },
-    firstName: String,
-    lastName: String,
-    profilePicture: String,
+    firstName: { type: String, default: "" },
+    lastName: { type: String, default: "" },
+    profilePicture: { type: String, default: "" },
     createdEvents: [
       {
         type: Schema.Types.ObjectId,
