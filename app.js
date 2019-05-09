@@ -81,4 +81,7 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes);
 
+const eventRoutes = require('./routes/event');
+app.use('/api/events', eventRoutes)
+
 module.exports = app;
