@@ -1,14 +1,14 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 // Import the model
-const Alert = require("../models/Alert");
-const User = require("../models/User");
+const Alert = require('../models/Alert');
+const User = require('../models/User');
 
 // @route   POST api/alerts/add
 // @desc    Add an alert
 // @access  Public
-router.post("/add", (req, res) => {
+router.post('/add', (req, res) => {
   const { title, description, location, imageURL, type } = req.body;
 
   Alert.create({
@@ -38,7 +38,7 @@ router.post("/add", (req, res) => {
 // @route   GET api/alerts/all
 // @desc    Get all the alerts
 // @access  Public
-router.get("/all", (req, res) => {
+router.get('/all', (req, res) => {
   Alert.find({})
     // .populate("creator")
     .then(alerts => {
@@ -52,9 +52,9 @@ router.get("/all", (req, res) => {
 // @route   GET api/alerts/:id
 // @desc    Get the alert by ID
 // @access  Private
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   Alert.findById(req.params.id)
-    .populate("creator")
+    .populate('creator')
     .then(alert => {
       res.json(alert);
     })
@@ -66,10 +66,10 @@ router.get("/:id", (req, res) => {
 // @route   PUT api/alerts/:id
 // @desc    Update the alert by ID
 // @access  Private
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   Alert.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      res.json({ message: "Alert update successful" });
+      res.json({ message: 'Alert update successful' });
     })
     .catch(error => {
       res.json(error);
@@ -79,10 +79,10 @@ router.put("/:id", (req, res) => {
 // @route   DELETE api/alerts/:id
 // @desc    Delete the alert by ID
 // @access  Private
-router.delete("/:id", (req, res) => {
+router.delete('/:id', (req, res) => {
   Alert.findOneAndDelete(req.params.id)
     .then(() => {
-      return res.status(200).json({ message: "Alert deleted" });
+      return res.status(200).json({ message: 'Alert deleted' });
     })
     .catch(error => {
       res.status(401).json(error);

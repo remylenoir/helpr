@@ -1,14 +1,14 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 // Import the model
-const User = require("../models/User");
-const Alert = require("../models/Alert");
+const User = require('../models/User');
+const Alert = require('../models/Alert');
 
 // @route   GET api/users/all
 // @desc    Get all users
 // @access  Private
-router.get("/all", (req, res) => {
+router.get('/all', (req, res) => {
   User.find({})
     .then(users => {
       res.json(users);
@@ -21,9 +21,9 @@ router.get("/all", (req, res) => {
 // @route   GET api/users/:id
 // @desc    Get a user by ID
 // @access  Private
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   User.findById(req.params.id)
-    .populate("createdAlerts")
+    .populate('createdAlerts')
     .then(user => {
       res.json(user);
     })
@@ -35,10 +35,10 @@ router.get("/:id", (req, res) => {
 // @route   PUT api/users/:id
 // @desc    Update the user by ID
 // @access  Private
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   User.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      res.json({ message: "User update successful" });
+      res.json({ message: 'User update successful' });
     })
     .catch(error => {
       res.json(error);
@@ -48,11 +48,11 @@ router.put("/:id", (req, res) => {
 // @route   DELETE api/users/:id
 // @desc    Delete the user by ID
 // @access  Private
-router.delete("/:id", (req, res) => {
+router.delete('/:id', (req, res) => {
   const { _id } = req.user;
   User.findOneAndDelete({ _id })
     .then(() => {
-      return res.status(200).json({ message: "User deleted" });
+      return res.status(200).json({ message: 'User deleted' });
     })
     .catch(error => {
       res.status(401).json(error);
