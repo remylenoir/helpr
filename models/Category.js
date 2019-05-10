@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const categorySchema = new Schema(
@@ -9,17 +9,17 @@ const categorySchema = new Schema(
     events: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Event"
+        ref: 'Event'
       }
     ]
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at"
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
     }
   }
 );
 
-const Category = mongoose.model("Category", categorySchema);
+const Category = mongoose.model('Category', categorySchema);
 module.exports = Category;

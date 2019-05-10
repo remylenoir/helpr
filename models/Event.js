@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema(
@@ -16,24 +16,24 @@ const eventSchema = new Schema(
     categories: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Category",
+        ref: 'Category',
         required: true
       }
     ],
     organizer: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: 'User'
       }
     ],
     creator: {
       type: Schema.Types.ObjectId,
-      ref: "User"
+      ref: 'User'
     },
     attendees: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: 'User'
       }
     ],
     comments: [
@@ -42,18 +42,18 @@ const eventSchema = new Schema(
         date: Date,
         author: {
           type: Schema.Types.ObjectId,
-          ref: "User"
+          ref: 'User'
         }
       }
     ]
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at"
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
     }
   }
 );
 
-const Event = mongoose.model("Event", eventSchema);
+const Event = mongoose.model('Event', eventSchema);
 module.exports = Event;

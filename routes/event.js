@@ -1,13 +1,13 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const Event = require("../models/Event");
-const User = require("../models/User");
+const Event = require('../models/Event');
+const User = require('../models/User');
 
 //@route POST api/events/add
 //@desc  create an event
 //@access User
 
-router.post("/add", (req, res) => {
+router.post('/add', (req, res) => {
   const {
     title,
     location,
@@ -53,7 +53,7 @@ router.post("/add", (req, res) => {
 //@desc  get all events
 //@access all events
 
-router.get("/all", (req, res) => {
+router.get('/all', (req, res) => {
   Event.find({})
     .then(events => {
       res.status(200).json(events);
@@ -67,8 +67,24 @@ router.get("/all", (req, res) => {
 //@desc  get an event
 //@access get one event
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   Event.findById(req.params.id)
+    .populate({
+      path: 'creator',
+      select: ['username', 'profilePicture']
+    })
+    .populate({
+      path: 'attendees',
+      select: ['username', 'profilePicture']
+    })
+    .populate({
+      path: 'organizer',
+      select: ['username', 'profilePicture']
+    })
+    .populate({
+      path: 'categories',
+      select: ['title']
+    })
     .then(event => {
       res.status(200).json(event);
     })
@@ -81,10 +97,10 @@ router.get("/:id", (req, res) => {
 //@desc  edit an event
 //@access creator, organizer
 
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   Event.findOneAndUpdate(req.params.id, req.body)
     .then(() => {
-      res.status(200).json({ message: "Updated!" });
+      res.status(200).json({ message: 'Updated!' });
     })
     .catch(err => {
       res.json(err);
@@ -95,10 +111,10 @@ router.put("/:id", (req, res) => {
 //@desc  delete an event
 //@access creator
 
-router.delete("/:id", (req, res) => {
+router.delete('/:id', (req, res) => {
   Event.findOneAndDelete(req.params.id)
     .then(() => {
-      res.status(200).res.json({ message: "Event deleted" });
+      res.status(200).res.json({ message: 'Event deleted' });
     })
     .catch(err => {
       res.json(err);
