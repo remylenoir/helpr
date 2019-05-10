@@ -3,12 +3,8 @@ const passport = require('passport');
 const router = express.Router();
 
 // Bcrypt to encrypt passwords
-<<<<<<< HEAD
 const bcrypt =
   process.platform === 'win32' ? require('bcryptjs') : require('bcrypt');
-=======
-const bcrypt = process.platform === 'win32' ? require('bcryptjs') : require('bcrypt');
->>>>>>> 28f4c279d8f94211d8f5d3107c6e98ae12aa5218
 
 // Import the model
 const User = require('../models/User');

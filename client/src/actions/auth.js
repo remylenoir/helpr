@@ -50,8 +50,6 @@ export const login_ACTION = ({ username, password }) => async dispatch => {
       payload: response.data
     });
   } catch (error) {
-    const err = error.response.data.message;
-    console.log(error);
     dispatch(setAlert_ACTION('Invalid credentials'));
     dispatch({
       type: LOGIN_FAIL

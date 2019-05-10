@@ -83,7 +83,9 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
 };
 
 Register.propTypes = {
-  setAlert_ACTION: PropTypes.func.isRequired
+  setAlert_ACTION: PropTypes.func.isRequired,
+  register_ACTION: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

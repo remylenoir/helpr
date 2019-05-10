@@ -1,14 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login_ACTION } from '../../actions/auth';
-
-const service = axios.create({
-  baseURL: 'http://localhost:5000/api',
-  withCredentials: true
-});
 
 const Login = ({ login_ACTION, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -29,10 +23,7 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
 
   const onSubmit = async e => {
     e.preventDefault();
-
-    // const response = await service.post('/auth/login', { username, password });
-    // const login = await service.get('/auth/loggedin');
-    // login ? console.log(login.data) : console.log('unauthorized');
+    
     login_ACTION({ username, password });
   };
 
