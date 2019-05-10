@@ -37,20 +37,22 @@ const userSchema = new Schema(
         ref: 'Alert'
       }
     ],
-    favorites: [
+    favEvents: [
       {
-        events: {
-          type: Schema.Types.ObjectId,
-          ref: 'Event'
-        },
-        alerts: {
-          type: Schema.Types.ObjectId,
-          ref: 'Alert'
-        },
-        ngos: {
-          type: Schema.Types.ObjectId,
-          ref: 'NGO'
-        }
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
+      }
+    ],
+    favAlerts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
+      }
+    ],
+    favNGOs: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
       }
     ]
   },

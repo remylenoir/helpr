@@ -40,9 +40,13 @@ router.post('/add', (req, res) => {
     attendees: _id
   })
     .then(event => {
-      User.findOneAndUpdate(_id, {
-        $push: { createdEvents: event._id, joinedEvents: event._id }
-      })
+      User.findOneAndUpdate(
+        { _id },
+        {
+          $push: { createdEvents: event._id, joinedEvents: event._id }
+        },
+        { new: true }
+      )
         .then(user => {
           res.json(user);
         })
@@ -72,7 +76,9 @@ router.get('/all', (req, res) => {
 // @desc    Get an event
 // @access  Public
 router.get('/:id', (req, res) => {
-  Event.findById(req.params.id)
+  const eventID = req.params.id;
+
+  Event.findById(eventID)
     .populate({
       path: 'creator',
       select: ['username', 'profilePicture']
@@ -103,18 +109,20 @@ router.get('/:id', (req, res) => {
 router.put('/join/:id', (req, res) => {
   // User and Event IDs
   const { _id } = req.user;
-  const joinedEvent = req.params.id;
+  const joinedEvents = req.params.id;
 
-  Event.findById(joinedEvent)
-    .populate({
-      path: 'attendees',
-      select: ['username', 'profilePicture']
-    })
-    .then(event => {
+  Event.findOneAndUpdate(
+    joinedEvents,
+    {
+      $addToSet: { attendees: _id }
+    },
+    { new: true }
+  )
+    .then(() => {
       User.findOneAndUpdate(
         { _id },
         {
-          $addToSet: { joinedEvents: event._id }
+          $addToSet: { joinedEvents }
           // addToSet: add a value to an array unless the value is already present
         },
         { new: true }
@@ -137,18 +145,20 @@ router.put('/join/:id', (req, res) => {
 router.put('/leave/:id', (req, res) => {
   // User and Event IDs
   const { _id } = req.user;
-  const joinedEvent = req.params.id;
+  const eventID = req.params.id;
 
-  Event.findById(joinedEvent)
-    .populate({
-      path: 'attendees',
-      select: ['username', 'profilePicture']
-    })
-    .then(event => {
+  Event.findOneAndUpdate(
+    eventID,
+    {
+      $pull: { attendees: _id }
+    },
+    { new: true }
+  )
+    .then(() => {
       User.findOneAndUpdate(
         { _id },
         {
-          $pull: { joinedEvents: event._id }
+          $pull: { joinedEvents: eventID }
         },
         { new: true }
       )
@@ -164,13 +174,58 @@ router.put('/leave/:id', (req, res) => {
     });
 });
 
+// @route   PUT api/events/bookmark/:id
+// @desc    Bookmark/unbookmark an event
+// @access  Public
+router.put('/bookmark/:id', (req, res) => {
+  // User and Event IDs
+  const { _id } = req.user;
+  const favEvents = req.params.id;
+
+  User.findById({ _id })
+    .then(user => {
+      if (!user.favEvents.includes(favEvents)) {
+        User.findOneAndUpdate(
+          { _id },
+          {
+            $push: { favEvents }
+          },
+          { new: true }
+        )
+          .then(user => {
+            res.json(user);
+          })
+          .catch(err => {
+            res.json(err);
+          });
+      } else {
+        User.findOneAndUpdate(
+          { _id },
+          {
+            $pull: { favEvents }
+          },
+          { new: true }
+        )
+          .then(user => {
+            res.json(user);
+          })
+          .catch(err => {
+            res.json(err);
+          });
+      }
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
 // @route   PUT api/events/:id
 // @desc    Edit an event
 // @access  Private
 router.put('/:id', (req, res) => {
   Event.findOneAndUpdate(req.params.id, req.body)
-    .then(() => {
-      res.status(200).json({ message: 'Updated!' });
+    .then(event => {
+      res.status(200).json(event);
     })
     .catch(err => {
       res.json(err);
@@ -181,7 +236,8 @@ router.put('/:id', (req, res) => {
 // @desc    Delete an event
 // @access  Private
 router.delete('/:id', (req, res) => {
-  Event.findOneAndDelete(req.params.id)
+  const eventID = req.params.id;
+  Event.findOneAndDelete(eventID)
     .then(() => {
       res.status(200).res.json({ message: 'Event deleted' });
     })
