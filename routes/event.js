@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
+
+// Import the models
 const Event = require('../models/Event');
 const User = require('../models/User');
 
-//@route POST api/events/add
-//@desc  create an event
-//@access User
-
+// @route   POST api/events/add
+// @desc    Create an event
+// @access  Public
 router.post('/add', (req, res) => {
   const {
     title,
@@ -20,6 +21,10 @@ router.post('/add', (req, res) => {
     attendees,
     comments
   } = req.body;
+
+  // User ID (event's creator)
+  const { _id } = req.user;
+
   Event.create({
     title,
     shortDesc,
@@ -31,11 +36,12 @@ router.post('/add', (req, res) => {
     organizer,
     attendees,
     comments,
-    creator: req.user._id
+    creator: _id,
+    attendees: _id
   })
     .then(event => {
-      User.findOneAndUpdate(req.user._id, {
-        $push: { createdEvents: event._id }
+      User.findOneAndUpdate(_id, {
+        $push: { createdEvents: event._id, joinedEvents: event._id }
       })
         .then(user => {
           res.json(user);
@@ -49,10 +55,9 @@ router.post('/add', (req, res) => {
     });
 });
 
-//@route GET api/events/all
-//@desc  get all events
-//@access all events
-
+// @route   GET api/events/all
+// @desc    Get all events
+// @access  Public
 router.get('/all', (req, res) => {
   Event.find({})
     .then(events => {
@@ -63,10 +68,9 @@ router.get('/all', (req, res) => {
     });
 });
 
-//@route GET api/events/:id
-//@desc  get an event
-//@access get one event
-
+// @route   GET api/events/:id
+// @desc    Get an event
+// @access  Public
 router.get('/:id', (req, res) => {
   Event.findById(req.params.id)
     .populate({
@@ -93,10 +97,76 @@ router.get('/:id', (req, res) => {
     });
 });
 
-//@route PUT api/events/:id
-//@desc  edit an event
-//@access creator, organizer
+// @route   PUT api/events/join/:id
+// @desc    Join an event
+// @access  Public
+router.put('/join/:id', (req, res) => {
+  // User and Event IDs
+  const { _id } = req.user;
+  const joinedEvent = req.params.id;
 
+  Event.findById(joinedEvent)
+    .populate({
+      path: 'attendees',
+      select: ['username', 'profilePicture']
+    })
+    .then(event => {
+      User.findOneAndUpdate(
+        { _id },
+        {
+          $addToSet: { joinedEvents: event._id }
+          // addToSet: add a value to an array unless the value is already present
+        },
+        { new: true }
+      )
+        .then(user => {
+          res.json(user);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// @route   PUT api/events/leave/:id
+// @desc    Leave an event
+// @access  Public
+router.put('/leave/:id', (req, res) => {
+  // User and Event IDs
+  const { _id } = req.user;
+  const joinedEvent = req.params.id;
+
+  Event.findById(joinedEvent)
+    .populate({
+      path: 'attendees',
+      select: ['username', 'profilePicture']
+    })
+    .then(event => {
+      User.findOneAndUpdate(
+        { _id },
+        {
+          $pull: { joinedEvents: event._id }
+        },
+        { new: true }
+      )
+        .then(user => {
+          res.json(user);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// @route   PUT api/events/:id
+// @desc    Edit an event
+// @access  Private
 router.put('/:id', (req, res) => {
   Event.findOneAndUpdate(req.params.id, req.body)
     .then(() => {
@@ -107,10 +177,9 @@ router.put('/:id', (req, res) => {
     });
 });
 
-//@route DELETE api/events/:id
-//@desc  delete an event
-//@access creator
-
+// @route   DELETE api/events/:id
+// @desc    Delete an event
+// @access  Private
 router.delete('/:id', (req, res) => {
   Event.findOneAndDelete(req.params.id)
     .then(() => {

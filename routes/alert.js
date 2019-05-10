@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Import the model
+// Import the models
 const Alert = require('../models/Alert');
 const User = require('../models/User');
 

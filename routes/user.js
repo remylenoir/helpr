@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Import the model
+// Import the models
 const User = require('../models/User');
 const Alert = require('../models/Alert');
 
@@ -23,7 +23,7 @@ router.get('/all', (req, res) => {
 // @access  Private
 router.get('/:id', (req, res) => {
   User.findById(req.params.id)
-    .populate('createdAlerts')
+    .populate('createdAlerts', 'createdEvents', 'joinedEvents')
     .then(user => {
       res.json(user);
     })
