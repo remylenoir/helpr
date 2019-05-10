@@ -8,7 +8,7 @@ const userSchema = new Schema(
     role: {
       type: String,
       default: "user",
-      enum: ["user", "creator", "organizer", "admin"]
+      enum: ["user", "admin"]
     },
     firstName: { type: String, default: "" },
     lastName: { type: String, default: "" },
@@ -20,6 +20,12 @@ const userSchema = new Schema(
       }
     ],
     joinedEvents: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Event"
+      }
+    ],
+    organizedEvents: [
       {
         type: Schema.Types.ObjectId,
         ref: "Event"

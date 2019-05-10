@@ -16,7 +16,8 @@ const eventSchema = new Schema(
     categories: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Category"
+        ref: "Category",
+        required: true
       }
     ],
     organizer: [
@@ -27,8 +28,7 @@ const eventSchema = new Schema(
     ],
     creator: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
+      ref: "User"
     },
     attendees: [
       {
