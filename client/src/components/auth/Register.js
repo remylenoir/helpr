@@ -1,13 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setAlert_ACTION } from '../../actions/alert';
+import { register_ACTION } from '../../actions/auth';
 
-const service = axios.create({
-    baseURL: "http://localhost:5000/api",
-    withCredentials: true
-  });
 
-const Register = () => {
+const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -27,10 +26,20 @@ const Register = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
-    console.log(formData)
-    const response = await service.post('/auth/signup', { username, password })
-    console.log(response);
+
+    if (password !== password2) {
+      setAlert_ACTION('Passwords must match');
+      return;
+    } 
+    
+    register_ACTION({username, password});
+     
   };
+
+  // Redirect if authenticated
+  if(isAuthenticated) {
+    return <Redirect to="/dashboard" />
+  }
 
   return (
     <Fragment>
@@ -73,4 +82,15 @@ const Register = () => {
   );
 };
 
-export default Register;
+Register.propTypes = {
+  setAlert_ACTION: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(
+  mapStateToProps,
+  { setAlert_ACTION, register_ACTION }
+)(Register);
