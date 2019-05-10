@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const alertSchema = new Schema(
@@ -8,22 +8,22 @@ const alertSchema = new Schema(
     location: { type: String, required: true },
     type: {
       type: String,
-      enum: ["People in need", "Places", "Other"],
+      enum: ['People in need', 'Places', 'Other'],
       required: true
     },
-    imageURL: { type: String, default: "" },
+    imageURL: { type: String, default: '' },
     creator: {
       type: Schema.Types.ObjectId,
-      ref: "User"
+      ref: 'User'
     }
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at"
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
     }
   }
 );
 
-const Alert = mongoose.model("Alert", alertSchema);
+const Alert = mongoose.model('Alert', alertSchema);
 module.exports = Alert;

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -7,60 +7,62 @@ const userSchema = new Schema(
     password: { type: String, required: true },
     role: {
       type: String,
-      default: "user",
-      enum: ["user", "admin"]
+      default: 'user',
+      enum: ['user', 'admin']
     },
-    firstName: { type: String, default: "" },
-    lastName: { type: String, default: "" },
-    profilePicture: { type: String, default: "" },
+    firstName: { type: String, default: '' },
+    lastName: { type: String, default: '' },
+    profilePicture: { type: String, default: '' },
     createdEvents: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Event"
+        ref: 'Event'
       }
     ],
     joinedEvents: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Event"
+        ref: 'Event'
       }
     ],
     organizedEvents: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Event"
+        ref: 'Event'
       }
     ],
     createdAlerts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Alert"
+        ref: 'Alert'
       }
     ],
-    favorites: [
+    favEvents: [
       {
-        events: {
-          type: Schema.Types.ObjectId,
-          ref: "Event"
-        },
-        alerts: {
-          type: Schema.Types.ObjectId,
-          ref: "Alert"
-        },
-        ngos: {
-          type: Schema.Types.ObjectId,
-          ref: "NGO"
-        }
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
+      }
+    ],
+    favAlerts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
+      }
+    ],
+    favNGOs: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Event'
       }
     ]
   },
   {
     timestamps: {
-      createdAt: "created_at",
-      updatedAt: "updated_at"
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
     }
   }
 );
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
 module.exports = User;

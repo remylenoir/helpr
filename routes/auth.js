@@ -3,8 +3,12 @@ const passport = require('passport');
 const router = express.Router();
 
 // Bcrypt to encrypt passwords
+<<<<<<< HEAD
 const bcrypt =
   process.platform === 'win32' ? require('bcryptjs') : require('bcrypt');
+=======
+const bcrypt = process.platform === 'win32' ? require('bcryptjs') : require('bcrypt');
+>>>>>>> 28f4c279d8f94211d8f5d3107c6e98ae12aa5218
 
 // Import the model
 const User = require('../models/User');
@@ -16,9 +20,7 @@ router.post('/signup', (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res
-      .status(422)
-      .json({ message: 'Please provide a username and a password' });
+    return res.status(422).json({ message: 'Please provide a username and a password' });
   }
 
   // if (password.length < 8) {
@@ -27,8 +29,7 @@ router.post('/signup', (req, res) => {
 
   User.findOne({ username })
     .then(user => {
-      if (user)
-        return res.status(409).json({ message: 'Username already taken' });
+      if (user) return res.status(409).json({ message: 'Username already taken' });
 
       // Encryption of the password
       const salt = bcrypt.genSaltSync();
