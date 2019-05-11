@@ -69,7 +69,7 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const userID = req.params.id;
 
-  User.findByIdAndUpdate(userID, req.body)
+  User.findByIdAndUpdate(userID, req.body, { new: true })
     .then(user => {
       res.json(user);
     })
@@ -82,14 +82,14 @@ router.put('/:id', (req, res) => {
 // @desc    Delete the user by ID
 // @access  Private
 router.delete('/:id', (req, res) => {
-  const { _id } = req.user;
+  const userID = req.params.id;
 
-  User.findOneAndDelete({ _id })
+  User.findOneAndDelete(userID)
     .then(() => {
-      return res.status(200).json({ message: 'User deleted' });
+      res.status(200).json({ message: `User ID ${userID} deleted` });
     })
     .catch(error => {
-      res.status(401).json(error);
+      res.json(error);
     });
 });
 
