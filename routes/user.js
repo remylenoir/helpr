@@ -28,21 +28,9 @@ router.get('/:id', (req, res) => {
     .populate('joinedEvents', 'title coverImage shortDesc')
     .populate('organizedEvents', 'title coverImage shortDesc')
     .populate('createdAlerts', 'title imageURL description type')
-    .populate({
-      path: 'favorites',
-      populate: {
-        path: 'events',
-        select: ['title', 'coverImage', 'shortDesc']
-      },
-      populate: {
-        path: 'alerts',
-        select: ['title', 'imageURL', 'description', 'type']
-      },
-      populate: {
-        path: 'ngos',
-        select: ['title', 'imageURL']
-      }
-    })
+    .populate('favEvents', 'title coverImage shortDesc')
+    .populate('favAlerts', 'title imageURL description type')
+    .populate('favNGOs', 'title imageURL')
     .then(user => {
       res.json(user);
     })
