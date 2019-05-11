@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
-import AlertsPreview from './AlertsPreview';
-import EventsPreview from './EventsPreview';
+import PreviewCard from './PreviewCard';
 
 const Dashboard = ({
   getCurrentProfile_ACTION,
@@ -22,7 +21,7 @@ const Dashboard = ({
       <h1>Dashboard</h1>
       <h2>Welcome {profile && profile.username}</h2>
       {profile.createdAlerts.length > 0 ? (
-        <AlertsPreview />
+        <PreviewCard type="createdAlerts"/>
       ) : (
         <div>
           <h2>You have no created alerts</h2>
@@ -36,7 +35,7 @@ const Dashboard = ({
       )}
 
       {profile.createdEvents.length > 0 ? (
-        <EventsPreview />
+        <PreviewCard type="createdEvents"/>
       ) : (
         <div>
           <h2>You have no created events</h2>
