@@ -223,7 +223,9 @@ router.put('/bookmark/:id', (req, res) => {
 // @desc    Edit an event
 // @access  Private
 router.put('/:id', (req, res) => {
-  Event.findOneAndUpdate(req.params.id, req.body)
+  const eventID = req.params.id;
+
+  Event.findOneAndUpdate(eventID, req.body)
     .then(event => {
       res.status(200).json(event);
     })
@@ -233,13 +235,40 @@ router.put('/:id', (req, res) => {
 });
 
 // @route   DELETE api/events/:id
-// @desc    Delete an event
+// @desc    Delete an event and all the users's references
 // @access  Private
 router.delete('/:id', (req, res) => {
   const eventID = req.params.id;
+
   Event.findOneAndDelete(eventID)
     .then(() => {
-      res.status(200).res.json({ message: 'Event deleted' });
+      User.updateMany(
+        {
+          $or: [
+            { favEvents: eventID },
+            { createdEvents: eventID },
+            { joinedEvents: eventID },
+            { organizedEvents: eventID }
+          ]
+        },
+        {
+          $pull: {
+            favEvents: eventID,
+            createdEvents: eventID,
+            joinedEvents: eventID,
+            organizedEvents: eventID
+          }
+        }
+      )
+        .then(user => {
+          res
+            .status(200)
+            .res.json({ message: `Event ID ${eventID} and all users's references deleted` });
+        })
+        .catch(err => {
+          res.json(err);
+        });
+      res.json({ message: `Event ID ${eventID} deleted` });
     })
     .catch(err => {
       res.json(err);
