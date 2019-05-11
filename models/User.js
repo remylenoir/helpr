@@ -12,7 +12,10 @@ const userSchema = new Schema(
     },
     firstName: { type: String, default: '' },
     lastName: { type: String, default: '' },
-    profilePicture: { type: String, default: '' },
+    profilePicture: {
+      type: String,
+      default: 'https://source.unsplash.com/150x150/?portrait,cat'
+    },
     createdEvents: [
       {
         type: Schema.Types.ObjectId,

@@ -16,7 +16,9 @@ router.post('/signup', (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(422).json({ message: 'Please provide a username and a password' });
+    return res
+      .status(422)
+      .json({ message: 'Please provide a username and a password' });
   }
 
   // if (password.length < 8) {
@@ -25,7 +27,8 @@ router.post('/signup', (req, res) => {
 
   User.findOne({ username })
     .then(user => {
-      if (user) return res.status(409).json({ message: 'Username already taken' });
+      if (user)
+        return res.status(409).json({ message: 'Username already taken' });
 
       // Encryption of the password
       const salt = bcrypt.genSaltSync();
