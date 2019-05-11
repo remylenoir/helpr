@@ -14,7 +14,7 @@ const PreviewCard = ({
           <h3>{alert.title}</h3>
           <img src={alert.imageURL} alt='alert pic' />
           <p>{alert.description}</p>
-          <Link to='/alert/'>Dashboard</Link>
+          <Link to='/alert/'>More details</Link>
         </Fragment>
       ))}
     </div>
@@ -31,22 +31,41 @@ const PreviewCard = ({
     </div>
   ) : type === 'favAlerts' ? (
     <div>
-      {/* {createdEvents.map(event => (
+      {favAlerts.map(alert => (
+        <Fragment key={alert._id}>
+          <h3>{alert.title}</h3>
+          <img src={alert.imageURL} alt='alert pic' />
+          <p>{alert.description}</p>
+          <Link to='/alert/'>Dashboard</Link>
+        </Fragment>
+      ))}
+    </div>
+  ) : type === 'favEvents' ? (
+    <div>
+      {favEvents.map(event => (
         <Fragment key={event._id}>
           <h3>{event.title}</h3>
           <img src={event.imageURL} alt='event pic' />
           <p>{event.description}</p>
           <a href='#!'>More details</a>
         </Fragment>
-      ))} */}
-      {favAlerts}
+      ))}
     </div>
-  ) : null
+  ) : type === 'joinedEvents' ? (
+    <div>
+      {joinedEvents.map(event => (
+        <Fragment key={event._id}>
+          <h3>{event.title}</h3>
+          <img src={event.imageURL} alt='event pic' />
+          <p>{event.description}</p>
+          <a href='#!'>More details</a>
+        </Fragment>
+      ))}
+    </div>
+  ) : null;
 };
 
-PreviewCard.propTypes = {
-  alerts: PropTypes.array.isRequired
-};
+PreviewCard.propTypes = {};
 
 const mapStateToProps = state => ({
   profile: state.profile.profile
