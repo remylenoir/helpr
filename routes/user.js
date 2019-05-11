@@ -24,31 +24,19 @@ router.get('/:id', (req, res) => {
   const userID = req.params.id;
 
   User.findById(userID)
-    .populate({
-      path: 'createdEvents',
-      select: ['title', 'coverImage']
-    })
-    .populate({
-      path: 'joinedEvents',
-      select: ['title', 'coverImage']
-    })
-    .populate({
-      path: 'organizedEvents',
-      select: ['title', 'coverImage']
-    })
-    .populate({
-      path: 'createdAlerts',
-      select: ['title', 'imageURL']
-    })
+    .populate('createdEvents', 'title coverImage shortDesc')
+    .populate('joinedEvents', 'title coverImage shortDesc')
+    .populate('organizedEvents', 'title coverImage shortDesc')
+    .populate('createdAlerts', 'title imageURL description type')
     .populate({
       path: 'favorites',
       populate: {
         path: 'events',
-        select: ['title', 'coverImage']
+        select: ['title', 'coverImage', 'shortDesc']
       },
       populate: {
         path: 'alerts',
-        select: ['title', 'imageURL']
+        select: ['title', 'imageURL', 'description', 'type']
       },
       populate: {
         path: 'ngos',
