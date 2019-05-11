@@ -46,7 +46,7 @@ const userSchema = new Schema(
     favAlerts: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Event'
+        ref: 'Alert'
       }
     ],
     favNGOs: [
