@@ -60,7 +60,6 @@ router.get('/:id', (req, res) => {
 // @desc    Bookmark/unbookmark a NGO
 // @access  Public
 router.put('/bookmark/:id', (req, res) => {
-  // User and Event IDs
   const { _id } = req.user;
   const favNGOs = req.params.id;
 
@@ -74,8 +73,8 @@ router.put('/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(user => {
-            res.json(user);
+          .then(() => {
+            res.status(200).json({ message: `NGO ID ${favNGOs} successfully bookmarked` });
           })
           .catch(err => {
             res.json(err);
@@ -88,8 +87,8 @@ router.put('/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(user => {
-            res.json(user);
+          .then(() => {
+            res.status(200).json({ message: `NGO ID ${favNGOs} successfully unbookmarked` });
           })
           .catch(err => {
             res.json(err);
@@ -107,7 +106,7 @@ router.put('/bookmark/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const ngoID = req.params.id;
 
-  NGO.findByIdAndUpdate(ngoID, req.body)
+  NGO.findByIdAndUpdate(ngoID, req.body, { new: true })
     .then(ngo => {
       res.status(200).json(ngo);
     })
@@ -124,10 +123,27 @@ router.delete('/:id', (req, res) => {
 
   NGO.findOneAndDelete(ngoID)
     .then(() => {
-      return res.status(200).json({ message: 'NGO deleted' });
+      User.updateMany(
+        {
+          $or: [{ favAlerts: ngoID }, { createdAlerts: ngoID }]
+        },
+        {
+          $pull: {
+            favAlerts: ngoID,
+            createdAlerts: ngoID
+          }
+        }
+      )
+        .then(() => {
+          res.status(200).res.json({ message: `NGO ID ${ngoID} and all users's references deleted` });
+        })
+        .catch(err => {
+          res.json(err);
+        });
+      res.json({ message: `NGO ID ${ngoID} and all users's references deleted` });
     })
-    .catch(error => {
-      res.status(401).json(error);
+    .catch(err => {
+      res.json(err);
     });
 });
 

@@ -52,7 +52,7 @@ const userSchema = new Schema(
     favNGOs: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Event'
+        ref: 'NGO'
       }
     ]
   },
