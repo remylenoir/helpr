@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -13,7 +14,7 @@ const PreviewCard = ({
           <h3>{alert.title}</h3>
           <img src={alert.imageURL} alt='alert pic' />
           <p>{alert.description}</p>
-          <a href='#!'>More details</a>
+          <Link to='/alert/'{alert._id}>Dashboard</Link>
         </Fragment>
       ))}
     </div>
