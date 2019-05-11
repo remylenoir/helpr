@@ -9,11 +9,11 @@ const eventSchema = new Schema(
     location: { type: String, required: true },
     date: {
       type: Date,
-      default: Date.now,
+      default: new Date(),
       required: true
     },
-    location: { type: [Number], required: true },
-    coverImage: String,
+    location: { type: { type: String, default: 'Point' }, coordinates: [Number] },
+    coverImage: { type: String, default: '' },
     categories: [
       {
         type: Schema.Types.ObjectId,

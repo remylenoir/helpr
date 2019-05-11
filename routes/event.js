@@ -77,13 +77,27 @@ router.get('/all', (req, res) => {
 router.get('/:id', (req, res) => {
   const eventID = req.params.id;
 
+  let currentDate = new Date();
+  console.log(currentDate);
+
   Event.findById(eventID)
     .populate('creator', 'username profilePicture')
     .populate('attendees', 'username profilePicture')
     .populate('organizer', 'username profilePicture')
     .populate('categories', 'title')
     .then(event => {
-      res.status(200).json(event);
+      console.log(event.date);
+      if (currentDate > event.date) {
+        Event.findOneAndUpdate(
+          eventID,
+          {
+            $set: { isActive: false }
+          },
+          { new: true }
+        );
+      } else {
+        res.status(200).json(event);
+      }
     })
     .catch(err => {
       res.json(err);
