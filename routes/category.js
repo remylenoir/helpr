@@ -10,6 +10,7 @@ const Event = require('../models/Event');
 // @access  Private
 router.post('/add', (req, res) => {
   const { title, description, imageURL } = req.body;
+
   Category.create({
     title,
     description,
@@ -40,7 +41,9 @@ router.get('/all', (req, res) => {
 // @desc    Get a category
 // @access  Public
 router.get('/:id', (req, res) => {
-  Category.findById(req.params.id)
+  const categoryID = req.params.id;
+
+  Category.findById(categoryID)
     .then(category => {
       res.status(200).json(category);
     })
@@ -53,7 +56,9 @@ router.get('/:id', (req, res) => {
 // @desc    Edit a category
 // @access  Private
 router.put('/:id', (req, res) => {
-  Category.findOneAndUpdate(req.params.id, req.body, { new: true })
+  const categoryID = req.params.id;
+
+  Category.findOneAndUpdate(categoryID, req.body, { new: true })
     .then(category => {
       res.status(200).json(category);
     })
@@ -66,9 +71,11 @@ router.put('/:id', (req, res) => {
 // @desc    Delete a category
 // @access  Private
 router.delete('/:id', (req, res) => {
-  Category.findOneAndDelete(req.params.id)
+  const categoryID = req.params.id;
+
+  Category.findOneAndDelete(categoryID)
     .then(() => {
-      res.status(200).res.json({ message: 'Event deleted' });
+      res.status(200).json({ message: `Category ID ${categoryID} and all references deleted` });
     })
     .catch(err => {
       res.json(err);

@@ -12,6 +12,7 @@ const eventSchema = new Schema(
       default: Date.now,
       required: true
     },
+    location: { type: [Number], required: true },
     coverImage: String,
     categories: [
       {
@@ -36,6 +37,9 @@ const eventSchema = new Schema(
         ref: 'User'
       }
     ],
+    isActive: {
+      type: Boolean
+    },
     comments: [
       {
         text: String,

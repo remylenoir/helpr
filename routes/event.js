@@ -47,12 +47,11 @@ router.post('/add', (req, res) => {
         },
         { new: true }
       )
-        .then(user => {
-          res.json(user);
-        })
+        .then(user => user)
         .catch(err => {
           res.json(err);
         });
+      res.status(200).json(event);
     })
     .catch(err => {
       res.json(err);
@@ -79,22 +78,10 @@ router.get('/:id', (req, res) => {
   const eventID = req.params.id;
 
   Event.findById(eventID)
-    .populate({
-      path: 'creator',
-      select: ['username', 'profilePicture']
-    })
-    .populate({
-      path: 'attendees',
-      select: ['username', 'profilePicture']
-    })
-    .populate({
-      path: 'organizer',
-      select: ['username', 'profilePicture']
-    })
-    .populate({
-      path: 'categories',
-      select: ['title']
-    })
+    .populate('creator', 'username profilePicture')
+    .populate('attendees', 'username profilePicture')
+    .populate('organizer', 'username profilePicture')
+    .populate('categories', 'title')
     .then(event => {
       res.status(200).json(event);
     })
@@ -107,7 +94,6 @@ router.get('/:id', (req, res) => {
 // @desc    Join an event
 // @access  Public
 router.put('/join/:id', (req, res) => {
-  // User and Event IDs
   const { _id } = req.user;
   const joinedEvents = req.params.id;
 
@@ -118,21 +104,19 @@ router.put('/join/:id', (req, res) => {
     },
     { new: true }
   )
-    .then(() => {
+    .then(event => {
       User.findOneAndUpdate(
         { _id },
         {
           $addToSet: { joinedEvents }
-          // addToSet: add a value to an array unless the value is already present
         },
         { new: true }
       )
-        .then(user => {
-          res.json(user);
-        })
+        .then(user => user)
         .catch(err => {
           res.json(err);
         });
+      res.status(200).json(event);
     })
     .catch(err => {
       res.json(err);
@@ -143,7 +127,6 @@ router.put('/join/:id', (req, res) => {
 // @desc    Leave an event
 // @access  Public
 router.put('/leave/:id', (req, res) => {
-  // User and Event IDs
   const { _id } = req.user;
   const eventID = req.params.id;
 
@@ -154,7 +137,7 @@ router.put('/leave/:id', (req, res) => {
     },
     { new: true }
   )
-    .then(() => {
+    .then(event => {
       User.findOneAndUpdate(
         { _id },
         {
@@ -162,12 +145,11 @@ router.put('/leave/:id', (req, res) => {
         },
         { new: true }
       )
-        .then(user => {
-          res.json(user);
-        })
+        .then(user => user)
         .catch(err => {
           res.json(err);
         });
+      res.status(200).json(event);
     })
     .catch(err => {
       res.json(err);
@@ -178,7 +160,6 @@ router.put('/leave/:id', (req, res) => {
 // @desc    Bookmark/unbookmark an event
 // @access  Public
 router.put('/bookmark/:id', (req, res) => {
-  // User and Event IDs
   const { _id } = req.user;
   const favEvents = req.params.id;
 
@@ -192,8 +173,8 @@ router.put('/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(user => {
-            res.json(user);
+          .then(() => {
+            res.status(200).json({ message: `Event ID ${favEvents} successfully bookmarked` });
           })
           .catch(err => {
             res.json(err);
@@ -206,8 +187,8 @@ router.put('/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(user => {
-            res.json(user);
+          .then(() => {
+            res.status(200).json({ message: `Event ID ${favEvents} successfully unbookmarked` });
           })
           .catch(err => {
             res.json(err);
@@ -223,7 +204,9 @@ router.put('/bookmark/:id', (req, res) => {
 // @desc    Edit an event
 // @access  Private
 router.put('/:id', (req, res) => {
-  Event.findOneAndUpdate(req.params.id, req.body)
+  const eventID = req.params.id;
+
+  Event.findOneAndUpdate(eventID, req.body, { new: true })
     .then(event => {
       res.status(200).json(event);
     })
@@ -233,13 +216,37 @@ router.put('/:id', (req, res) => {
 });
 
 // @route   DELETE api/events/:id
-// @desc    Delete an event
+// @desc    Delete an event and all the users's references
 // @access  Private
 router.delete('/:id', (req, res) => {
   const eventID = req.params.id;
+
   Event.findOneAndDelete(eventID)
     .then(() => {
-      res.status(200).res.json({ message: 'Event deleted' });
+      User.updateMany(
+        {
+          $or: [
+            { favEvents: eventID },
+            { createdEvents: eventID },
+            { joinedEvents: eventID },
+            { organizedEvents: eventID }
+          ]
+        },
+        {
+          $pull: {
+            favEvents: eventID,
+            createdEvents: eventID,
+            joinedEvents: eventID,
+            organizedEvents: eventID
+          }
+        }
+      )
+        .then(() => {
+          res.status(200).json({ message: `Event ID ${eventID} and all users's references deleted` });
+        })
+        .catch(err => {
+          res.json(err);
+        });
     })
     .catch(err => {
       res.json(err);

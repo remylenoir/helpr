@@ -28,12 +28,11 @@ router.post('/add', (req, res) => {
         },
         { new: true }
       )
-        .then(creator => {
-          res.json(creator);
-        })
+        .then(creator => creator)
         .catch(error => {
           res.json(error);
         });
+      res.status(200).json(alert);
     })
     .catch(error => {
       res.json(error);
@@ -58,7 +57,7 @@ router.get('/all', (req, res) => {
 // @access  Private
 router.get('/:id', (req, res) => {
   Alert.findById(req.params.id)
-    .populate('creator')
+    .populate('creator', 'username profilePicture')
     .then(alert => {
       res.json(alert);
     })
@@ -71,7 +70,6 @@ router.get('/:id', (req, res) => {
 // @desc    Bookmark/unbookmark an alert
 // @access  Public
 router.put('/bookmark/:id', (req, res) => {
-  // User and Event IDs
   const { _id } = req.user;
   const favAlerts = req.params.id;
 
@@ -85,8 +83,8 @@ router.put('/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(user => {
-            res.json(user);
+          .then(() => {
+            res.status(200).json({ message: `Alert ID ${favAlerts} successfully bookmarked` });
           })
           .catch(err => {
             res.json(err);
@@ -99,8 +97,8 @@ router.put('/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(user => {
-            res.json(user);
+          .then(() => {
+            res.status(200).json({ message: `Alert ID ${favAlerts} successfully unbookmarked` });
           })
           .catch(err => {
             res.json(err);
@@ -116,7 +114,9 @@ router.put('/bookmark/:id', (req, res) => {
 // @desc    Update the alert by ID
 // @access  Private
 router.put('/:id', (req, res) => {
-  Alert.findByIdAndUpdate(req.params.id, req.body)
+  const alertID = req.params.id;
+
+  Alert.findByIdAndUpdate(alertID, req.body, { new: true })
     .then(alert => {
       res.json(alert);
     })
@@ -129,12 +129,30 @@ router.put('/:id', (req, res) => {
 // @desc    Delete the alert by ID
 // @access  Private
 router.delete('/:id', (req, res) => {
-  Alert.findOneAndDelete(req.params.id)
+  const alertID = req.params.id;
+
+  Alert.findOneAndDelete(alertID)
     .then(() => {
-      return res.status(200).json({ message: 'Alert deleted' });
+      User.updateMany(
+        {
+          $or: [{ favAlerts: alertID }, { createdAlerts: alertID }]
+        },
+        {
+          $pull: {
+            favAlerts: alertID,
+            createdAlerts: alertID
+          }
+        }
+      )
+        .then(() => {
+          res.status(200).json({ message: `Alert ID ${alertID} and all users's references deleted` });
+        })
+        .catch(err => {
+          res.json(err);
+        });
     })
-    .catch(error => {
-      res.status(401).json(error);
+    .catch(err => {
+      res.json(err);
     });
 });
 
