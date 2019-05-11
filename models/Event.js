@@ -6,7 +6,7 @@ const eventSchema = new Schema(
     title: { type: String, required: true },
     shortDesc: { type: String, required: true },
     fullDesc: { type: String, required: true },
-    location: { type: String, required: true },
+    // location: { type: String, required: true },
     date: {
       type: Date,
       default: new Date(),
