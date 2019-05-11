@@ -38,7 +38,8 @@ const eventSchema = new Schema(
       }
     ],
     isActive: {
-      type: Boolean
+      type: Boolean,
+      default: true
     },
     comments: [
       {

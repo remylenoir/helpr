@@ -62,9 +62,34 @@ router.post('/add', (req, res) => {
 // @desc    Get all events
 // @access  Public
 router.get('/all', (req, res) => {
+  const currentDate = new Date();
+
   Event.find({})
+
     .then(events => {
-      res.status(200).json(events);
+      events.map(event => {
+        if (currentDate > event.date) {
+          Event.updateMany(
+            {
+              isActive: true
+            },
+            {
+              $set: {
+                isActive: false
+              }
+            }
+          )
+            .then(() => {
+              Event.find({}).then(latestEvents => {
+                res.status(200).json(latestEvents);
+              });
+            })
+            .catch(err => {
+              res.json(err);
+            });
+        }
+      });
+      // res.status(200).json(events);
     })
     .catch(err => {
       res.json(err);
@@ -76,9 +101,7 @@ router.get('/all', (req, res) => {
 // @access  Public
 router.get('/:id', (req, res) => {
   const eventID = req.params.id;
-
-  let currentDate = new Date();
-  console.log(currentDate);
+  const currentDate = new Date();
 
   Event.findById(eventID)
     .populate('creator', 'username profilePicture')
@@ -86,7 +109,6 @@ router.get('/:id', (req, res) => {
     .populate('organizer', 'username profilePicture')
     .populate('categories', 'title')
     .then(event => {
-      console.log(event.date);
       if (currentDate > event.date) {
         Event.findOneAndUpdate(
           eventID,
@@ -94,7 +116,13 @@ router.get('/:id', (req, res) => {
             $set: { isActive: false }
           },
           { new: true }
-        );
+        )
+          .then(updatedEvent => {
+            res.status(200).json(updatedEvent);
+          })
+          .catch(err => {
+            res.json(err);
+          });
       } else {
         res.status(200).json(event);
       }
