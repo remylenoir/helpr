@@ -145,14 +145,11 @@ router.delete('/:id', (req, res) => {
         }
       )
         .then(() => {
-          res
-            .status(200)
-            .res.json({ message: `Alert ID ${alertID} and all users's references deleted` });
+          res.status(200).json({ message: `Alert ID ${alertID} and all users's references deleted` });
         })
         .catch(err => {
           res.json(err);
         });
-      res.json({ message: `Alert ID ${alertID} and all users's references deleted` });
     })
     .catch(err => {
       res.json(err);

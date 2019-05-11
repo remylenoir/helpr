@@ -124,23 +124,19 @@ router.delete('/:id', (req, res) => {
   NGO.findOneAndDelete(ngoID)
     .then(() => {
       User.updateMany(
-        {
-          $or: [{ favAlerts: ngoID }, { createdAlerts: ngoID }]
-        },
+        { favNGOs: ngoID },
         {
           $pull: {
-            favAlerts: ngoID,
-            createdAlerts: ngoID
+            favNGOs: ngoID
           }
         }
       )
         .then(() => {
-          res.status(200).res.json({ message: `NGO ID ${ngoID} and all users's references deleted` });
+          res.status(200).json({ message: `NGO ID ${ngoID} and all users's references deleted` });
         })
         .catch(err => {
           res.json(err);
         });
-      res.json({ message: `NGO ID ${ngoID} and all users's references deleted` });
     })
     .catch(err => {
       res.json(err);
