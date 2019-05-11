@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const uploadCloud = require('../config/cloudinary');
 
 // Import the model
 const User = require('../models/User');
@@ -39,10 +40,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// @route   PUT api/users/:id
-// @desc    Update the user by ID
-// @access  Private
-router.put('/:id', (req, res) => {
+router.put('/:id', uploadCloud.single('photo'), (req, res) => {
   const userID = req.params.id;
 
   User.findByIdAndUpdate(userID, req.body, { new: true })
