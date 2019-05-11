@@ -5,7 +5,7 @@ const alertSchema = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    location: { type: String, required: true },
+    location: { type: [Number], required: true },
     type: {
       type: String,
       enum: ['People in need', 'Places', 'Other'],
