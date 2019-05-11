@@ -14,7 +14,7 @@ const PreviewCard = ({
           <h3>{alert.title}</h3>
           <img src={alert.imageURL} alt='alert pic' />
           <p>{alert.description}</p>
-          <Link to='/alert/'{alert._id}>Dashboard</Link>
+          <Link to='/alert/'>Dashboard</Link>
         </Fragment>
       ))}
     </div>
