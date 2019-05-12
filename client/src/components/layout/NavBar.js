@@ -10,9 +10,7 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout_ACTION }) => {
       <h2>
         <Link to='/dashboard'>Dashboard</Link>
         <br/>
-        <a onClick={logout_ACTION} href='#!'>
-          Logout
-        </a>
+        <Link onClick={logout_ACTION} to='/dashboard'>Logout</Link>
       </h2>
     </nav>
   );
