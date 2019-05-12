@@ -44,7 +44,10 @@ const eventSchema = new Schema(
     comments: [
       {
         text: String,
-        date: Date,
+        date: {
+          type: Date,
+          default: new Date()
+        },
         author: {
           type: Schema.Types.ObjectId,
           ref: 'User'
