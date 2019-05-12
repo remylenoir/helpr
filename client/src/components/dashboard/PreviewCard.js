@@ -14,7 +14,7 @@ const PreviewCard = ({
           <h3>{alert.title}</h3>
           <img src={alert.imageURL} alt='alert pic' />
           <p>{alert.description}</p>
-          <Link to='/alert/'>More details</Link>
+          <Link to={`/alert/${alert._id}`}>More details</Link>
         </Fragment>
       ))}
     </div>
@@ -36,7 +36,7 @@ const PreviewCard = ({
           <h3>{alert.title}</h3>
           <img src={alert.imageURL} alt='alert pic' />
           <p>{alert.description}</p>
-          <Link to='/alert/'>Dashboard</Link>
+          <Link to={`/alert/${alert._id}`}>More details</Link>
         </Fragment>
       ))}
     </div>
@@ -65,7 +65,10 @@ const PreviewCard = ({
   ) : null;
 };
 
-PreviewCard.propTypes = {};
+PreviewCard.propTypes = {
+  type: PropTypes.string.isRequired,
+  profile: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => ({
   profile: state.profile.profile
