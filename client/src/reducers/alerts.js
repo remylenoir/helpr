@@ -5,7 +5,7 @@ const initialState = {
   location: null,
   edit: false,
   loading: true,
-  delete: false,
+  isDeleted: false,
 };
 
 export default function(state = initialState, action) {
@@ -35,7 +35,7 @@ export default function(state = initialState, action) {
         location: null,
         edit: false,
         loading: false,
-        delete: true,
+        isDeleted: true,
       };
     default:
       return state;

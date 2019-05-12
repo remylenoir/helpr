@@ -12,18 +12,14 @@ import Spinner from '../layout/Spinner';
 
 const AlertDetails = ({
   match: {
-    params: { alertId: alertId }
+    params: { alertId }
   },
+  alerts: { alert, edit, isDeleted, location, loading },
   auth,
-  alert,
-  edit,
-  isDeleted,
-  location,
-  loading,
   getAlert_ACTION,
   editAlert_ACTION,
   deleteAlert_ACTION,
-  setAlert_ACTION,
+  setAlert_ACTION
 }) => {
   // Set the state to handle edit form toggle
   const [displayEdit, editToggle] = useState(false);
@@ -82,8 +78,8 @@ const AlertDetails = ({
   };
 
   // If alert is deleted redirect to dashboard
-  if(isDeleted) {
-    return <Redirect to="/dashboard" />
+  if (isDeleted) {
+    return <Redirect to='/dashboard' />;
   }
 
   const creatorContent = (
@@ -189,23 +185,17 @@ const AlertDetails = ({
 };
 
 AlertDetails.propTypes = {
-  alert: PropTypes.object,
+  alerts: PropTypes.object,
   auth: PropTypes.object.isRequired,
-  loading: PropTypes.bool.isRequired,
-  location: PropTypes.array,
-  getAlert_ACTION: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
+  getAlert_ACTION: PropTypes.func.isRequired,
   setAlert_ACTION: PropTypes.func.isRequired,
   editAlert_ACTION: PropTypes.func.isRequired,
   deleteAlert_ACTION: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  alert: state.alerts.alert,
-  edit: state.alerts.edit,
-  isDeleted: state.alerts.delete,
-  loading: state.alerts.loading,
-  location: state.alerts.location,
+  alerts: state.alerts,
   auth: state.auth
 });
 
