@@ -64,11 +64,13 @@ router.post('/add', (req, res) => {
 router.get('/all', (req, res) => {
   const currentDate = new Date();
 
+  // For all the events, check if the event is still active
+  // by comparing the current date and the event date
   Event.find({})
-
     .then(events => {
       events.map(event => {
         if (currentDate > event.date) {
+          // Then update the active state
           Event.updateMany(
             {
               isActive: true
@@ -78,18 +80,19 @@ router.get('/all', (req, res) => {
                 isActive: false
               }
             }
-          )
-            .then(() => {
-              Event.find({}).then(latestEvents => {
-                res.status(200).json(latestEvents);
-              });
-            })
-            .catch(err => {
-              res.json(err);
-            });
+          ).then(isActiveEvents => isActiveEvents);
         }
       });
-      // res.status(200).json(events);
+
+      // Once the active state is updated
+      // return the updated events in the response
+      Event.find({})
+        .then(updatedEvents => {
+          res.status(200).json(updatedEvents);
+        })
+        .catch(err => {
+          res.json(err);
+        });
     })
     .catch(err => {
       res.json(err);
