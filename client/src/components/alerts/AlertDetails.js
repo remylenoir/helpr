@@ -8,10 +8,10 @@ const AlertDetails = ({
   match: {
     params: { alertId: alertId }
   },
+  auth,
   alert,
   location,
   loading,
-  auth,
   getAlert_ACTION
 }) => {
   useEffect(() => {

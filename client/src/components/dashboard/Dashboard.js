@@ -39,6 +39,7 @@ const Dashboard = ({
 
       <div style={{ border: '1px solid black', margin: '10px' }}>
         <h3>Created Alerts</h3>
+
         <button
           onClick={() =>
             toggleContent({
@@ -49,6 +50,7 @@ const Dashboard = ({
         >
           {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
         </button>
+
         {createdAlertsDisplay && (
           <Fragment>
             {profile.createdAlerts.length > 0 ? (
@@ -63,6 +65,7 @@ const Dashboard = ({
       {profile.favAlerts.length > 0 && (
         <div style={{ border: '1px solid black', margin: '10px' }}>
           <h3>Bookmarked Alerts</h3>
+
           <button
             onClick={() =>
               toggleContent({
@@ -73,6 +76,7 @@ const Dashboard = ({
           >
             {favAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
           </button>
+
           {favAlertsDisplay && (
             <Fragment>
               <PreviewCard type='favAlerts' />
@@ -83,6 +87,7 @@ const Dashboard = ({
 
       <div style={{ border: '1px solid black', margin: '10px' }}>
         <h3>Created Events</h3>
+
         <button
           onClick={() =>
             toggleContent({
@@ -93,6 +98,7 @@ const Dashboard = ({
         >
           {createdEventsDisplay ? <span>Hide</span> : <span>Show</span>}
         </button>
+
         {createdEventsDisplay && (
           <Fragment>
             {profile.createdEvents.length > 0 ? (
@@ -107,6 +113,7 @@ const Dashboard = ({
       {profile.joinedEvents.length > 0 && (
         <div style={{ border: '1px solid black', margin: '10px' }}>
           <h3>Joined Events</h3>
+
           <button
             onClick={() =>
               toggleContent({
@@ -117,6 +124,7 @@ const Dashboard = ({
           >
             {joinedEventsDisplay ? <span>Hide</span> : <span>Show</span>}
           </button>
+
           {joinedEventsDisplay && (
             <Fragment>
               <PreviewCard type='joinedEvents' />
@@ -128,6 +136,7 @@ const Dashboard = ({
       {profile.favEvents.length > 0 && (
         <div style={{ border: '1px solid black', margin: '10px' }}>
           <h3>Bookmarked Events</h3>
+
           <button
             onClick={() =>
               toggleContent({
@@ -138,6 +147,7 @@ const Dashboard = ({
           >
             {favEventsDisplay ? <span>Hide</span> : <span>Show</span>}
           </button>
+
           {favEventsDisplay && (
             <Fragment>
               <PreviewCard type='favEvents' />
