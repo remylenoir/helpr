@@ -14,6 +14,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 // Profile
 export const GET_PROFILE = 'GET_PROFILE';
-export const PROFILE_ERROR = 'PROFILE_ERROR'
+export const PROFILE_ERROR = 'PROFILE_ERROR';
 // Alerts
-export const GET_ALERT = 'GET_ALERT'
+export const GET_ALERT = 'GET_ALERT';
+export const EDIT_ALERT = 'EDIT_ALERT';
+export const DELETE_ALERT = 'DELETE_ALERT';
