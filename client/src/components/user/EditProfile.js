@@ -51,7 +51,7 @@ const EditProfile = ({
 
     // Send edit action to reducer and display success message
     editCurrentProfile_ACTION(user._id, formData);
-    setAlert_ACTION('Changes saved');
+    setAlert_ACTION('Changes have been saved');
   };
 
   return loading && user === null ? (
