@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Hero from './Hero';
 import Features from './Features';
 import HorizontalScroll from './HorizontalScroll';
+
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
 

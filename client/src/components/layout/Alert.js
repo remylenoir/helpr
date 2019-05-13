@@ -2,15 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+// Bootstrap components
 import AlertMessage from 'react-bootstrap/Alert';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map(alert => (
-    <AlertMessage key={alert.id} variant='danger' className=' w-100 my-3'>
-      {alert.msg}
-    </AlertMessage>
+    <Row key={alert.id}>
+      <AlertMessage variant='danger' className=' my-3 mx-auto position-absolute'>
+        {alert.msg}
+      </AlertMessage>
+    </Row>
   ));
 
 Alert.propTypes = {

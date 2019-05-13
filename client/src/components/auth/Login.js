@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -49,26 +49,14 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
           <Form onSubmit={onSubmit}>
             <Form.Group>
               <Form.Label>Username</Form.Label>
-              <Form.Control
-                type='text'
-                placeholder='Username'
-                name='username'
-                value={username}
-                onChange={onChange}
-              />
+              <Form.Control type='text' name='username' value={username} onChange={onChange} />
             </Form.Group>
 
             <Form.Group>
               <Form.Label>Password</Form.Label>
-              <Form.Control
-                type='password'
-                placeholder='Password'
-                name='password'
-                value={password}
-                onChange={onChange}
-              />
+              <Form.Control type='password' name='password' value={password} onChange={onChange} />
             </Form.Group>
-            <Button color='primary' type='submit'>
+            <Button type='submit' variant='primary btn-block'>
               Submit
             </Button>
             <hr />
