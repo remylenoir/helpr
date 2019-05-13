@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
-import Button from 'react-bootstrap/Button';
+
+// Bootstrap components
+// import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading } }) => {
   const [displayContent, toggleContent] = useState({
@@ -31,15 +35,23 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
   return loading && profile === null ? (
     <Spinner />
   ) : (
-    <div>
-      <h1>Dashboard</h1>
+    <Container className='py-3' fluid>
       <Link to='/profile'>Profile</Link>
-      <h2>Welcome {profile && profile.username}</h2>
+      <Row>
+        <Container>
+          <h1>Welcome {profile && profile.username}</h1>
+          <hr />
+        </Container>
+      </Row>
 
-      <div style={{ border: '1px solid black', margin: '10px' }}>
-        <h3>Created Alerts</h3>
-
-        <Button
+      <Row>
+        <Container fluid>
+          <h2>Created Alerts</h2>
+          <hr />
+          <Row>
+            <div className='horizontal-scroll'>
+              <div className='horizontal-scroll-wrapper'>
+                {/* <Button
           onClick={() =>
             toggleContent({
               ...displayContent,
@@ -48,113 +60,152 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
           }
         >
           {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
-        </Button>
+        </Button> */}
 
-        {createdAlertsDisplay && (
-          <Fragment>
-            {profile.createdAlerts.length > 0 ? (
-              <PreviewCard type='createdAlerts' />
-            ) : (
-              noContentMsg('alerts')
-            )}
-          </Fragment>
-        )}
-      </div>
+                {createdAlertsDisplay && (
+                  <Fragment>
+                    {profile.createdAlerts.length > 0 ? (
+                      <PreviewCard type='createdAlerts' />
+                    ) : (
+                      noContentMsg('alerts')
+                    )}
+                  </Fragment>
+                )}
+              </div>
+            </div>
+          </Row>
+        </Container>
+      </Row>
 
       {profile.favAlerts.length > 0 && (
-        <div style={{ border: '1px solid black', margin: '10px' }}>
-          <h3>Bookmarked Alerts</h3>
+        <Row className='my-2'>
+          <Container fluid>
+            <h2>Bookmarked Alerts</h2>
+            <hr />
 
-          <button
-            onClick={() =>
-              toggleContent({
-                ...displayContent,
-                favAlertsDisplay: !favAlertsDisplay
-              })
-            }
-          >
-            {favAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
-          </button>
+            <Row>
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  {/* <button
+              onClick={() =>
+                toggleContent({
+                  ...displayContent,
+                  favAlertsDisplay: !favAlertsDisplay
+                })
+              }
+            >
+              {favAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
+            </button> */}
 
-          {favAlertsDisplay && (
-            <Fragment>
-              <PreviewCard type='favAlerts' />
-            </Fragment>
-          )}
-        </div>
+                  {favAlertsDisplay && (
+                    <Fragment>
+                      <PreviewCard type='favAlerts' />
+                    </Fragment>
+                  )}
+                </div>
+              </div>
+            </Row>
+          </Container>
+        </Row>
       )}
 
-      <div style={{ border: '1px solid black', margin: '10px' }}>
-        <h3>Created Events</h3>
+      <Row className='my-2'>
+        <Container fluid>
+          <h2>Created Events</h2>
+          <hr />
 
-        <button
-          onClick={() =>
-            toggleContent({
-              ...displayContent,
-              createdEventsDisplay: !createdEventsDisplay
-            })
-          }
-        >
-          {createdEventsDisplay ? <span>Hide</span> : <span>Show</span>}
-        </button>
-
-        {createdEventsDisplay && (
-          <Fragment>
-            {profile.createdEvents.length > 0 ? (
-              <PreviewCard type='createdEvents' />
-            ) : (
-              noContentMsg('events')
-            )}
-          </Fragment>
-        )}
-      </div>
-
-      {profile.joinedEvents.length > 0 && (
-        <div style={{ border: '1px solid black', margin: '10px' }}>
-          <h3>Joined Events</h3>
-
-          <button
+          <Row>
+            <div className='horizontal-scroll'>
+              <div className='horizontal-scroll-wrapper'>
+                {/* <button
             onClick={() =>
               toggleContent({
                 ...displayContent,
-                joinedEventsDisplay: !joinedEventsDisplay
+                createdEventsDisplay: !createdEventsDisplay
               })
             }
           >
-            {joinedEventsDisplay ? <span>Hide</span> : <span>Show</span>}
-          </button>
+            {createdEventsDisplay ? <span>Hide</span> : <span>Show</span>}
+          </button> */}
 
-          {joinedEventsDisplay && (
-            <Fragment>
-              <PreviewCard type='joinedEvents' />
-            </Fragment>
-          )}
-        </div>
+                {createdEventsDisplay && (
+                  <Fragment>
+                    {profile.createdEvents.length > 0 ? (
+                      <PreviewCard type='createdEvents' />
+                    ) : (
+                      noContentMsg('events')
+                    )}
+                  </Fragment>
+                )}
+              </div>
+            </div>
+          </Row>
+        </Container>
+      </Row>
+
+      {profile.joinedEvents.length > 0 && (
+        <Row className='my-2'>
+          <Container fluid>
+            <h2>Joined Events</h2>
+            <hr />
+            <Row>
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  {/* <button
+              onClick={() =>
+                toggleContent({
+                  ...displayContent,
+                  joinedEventsDisplay: !joinedEventsDisplay
+                })
+              }
+            >
+              {joinedEventsDisplay ? <span>Hide</span> : <span>Show</span>}
+            </button> */}
+
+                  {joinedEventsDisplay && (
+                    <Fragment>
+                      <PreviewCard type='joinedEvents' />
+                    </Fragment>
+                  )}
+                </div>
+              </div>
+            </Row>
+          </Container>
+        </Row>
       )}
 
       {profile.favEvents.length > 0 && (
-        <div style={{ border: '1px solid black', margin: '10px' }}>
-          <h3>Bookmarked Events</h3>
+        <Row className='my-2'>
+          <Container fluid>
+            <h2>Bookmarked Events</h2>
+            <hr />
 
-          <button
-            onClick={() =>
-              toggleContent({
-                ...displayContent,
-                favEventsDisplay: !favEventsDisplay
-              })
-            }
-          >
-            {favEventsDisplay ? <span>Hide</span> : <span>Show</span>}
-          </button>
+            <Row>
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  {/* <button
+              onClick={() =>
+                toggleContent({
+                  ...displayContent,
+                  favEventsDisplay: !favEventsDisplay
+                })
+              }
+            >
+              {favEventsDisplay ? <span>Hide</span> : <span>Show</span>}
+            </button> */}
 
-          {favEventsDisplay && (
-            <Fragment>
-              <PreviewCard type='favEvents' />
-            </Fragment>
-          )}
-        </div>
+                  {favEventsDisplay && (
+                    <Fragment>
+                      <PreviewCard type='favEvents' />
+                    </Fragment>
+                  )}
+                </div>
+              </div>
+            </Row>
+          </Container>
+        </Row>
       )}
-    </div>
+    </Container>
   );
 };
 
@@ -181,13 +232,12 @@ const noContentMsg = type => {
         <h4>You have no created {type}</h4>
         <p>
           Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
-
         </p>
         <p>
           Do you want to create an {singularType}? <a href='#!'>Click here</a>
         </p>
       </div>
-    )
+    );
   }
 };
 
