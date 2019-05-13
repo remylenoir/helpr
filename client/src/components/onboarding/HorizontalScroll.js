@@ -7,7 +7,7 @@ function HorizontalScroll(props) {
   return (
     <Fragment>
       <div className='horizontal-scroll'>
-        <h2>Volunteer events</h2>
+        <h3>Volunteer events</h3>
         <div className='horizontal-scroll-wrapper'>
           {/* Duplicated Card component for testing, needs to pass props to Card and map through them */}
           <Card style={{ width: '15rem' }}>
