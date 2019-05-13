@@ -48,6 +48,7 @@ const EventDetails = ({
       location: loading || !location ? '' : location,
       coverImage: loading || !event.coverImage ? '' : event.coverImage
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onChange = event => {

@@ -2,29 +2,28 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAllEvents_ACTION } from '../../actions/events';
-import EventPreview from './EventPreview'
+import EventPreview from './EventPreview';
 
-const EventList = ({ getAllEvents_ACTION, events: {events, loading} }) => {
+const EventList = ({ getAllEvents_ACTION }) => {
   useEffect(() => {
     getAllEvents_ACTION();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
       <h1>All events</h1>
-    <Fragment>
-      <EventPreview />
-    </Fragment>
+      <Fragment>
+        <EventPreview />
+      </Fragment>
     </div>
   );
 };
 
-EventList.propTypes = {};
-
-const mapStateToProps = state => ({
-  events: state.events
-});
+EventList.propTypes = {
+  getAllEvents_ACTION: PropTypes.func
+};
 
 export default connect(
-  mapStateToProps,
+  null,
   { getAllEvents_ACTION }
 )(EventList);

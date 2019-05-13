@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,12 +16,14 @@ const EventPreview = ({ events: { events, loading } }) => {
           <Link to={`/event/${event._id}`}>More details</Link>
         </div>
       );
-    }); 
+    });
 
   return loading && events === null ? <Spinner /> : <div>{eventElements}</div>;
 };
 
-EventPreview.propTypes = {};
+EventPreview.propTypes = {
+  events: PropTypes.func
+};
 
 const mapStateToProps = state => ({
   events: state.events

@@ -46,6 +46,7 @@ const AlertDetails = ({
       description: loading || !alert.description ? '' : alert.description,
       imageURL: loading || !alert.imageURL ? '' : alert.imageURL
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading, edit]);
 
   const onChange = event => {
