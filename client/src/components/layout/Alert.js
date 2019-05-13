@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 // Bootstrap components
 import AlertMessage from 'react-bootstrap/Alert';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
 const Alert = ({ alerts }) =>
