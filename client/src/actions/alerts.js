@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { GET_ALERT, EDIT_ALERT, DELETE_ALERT } from './types';
 
-
 const service = axios.create({
   baseURL: 'http://localhost:5000/api',
   withCredentials: true
@@ -18,17 +17,18 @@ export const getAlert_ACTION = alertId => async dispatch => {
 
 export const editAlert_ACTION = (alertId, body) => async dispatch => {
   try {
-    const response = await service.put(`/alerts/${alertId}`, body, { new: true });
+    const response = await service.put(`/alerts/${alertId}`, body, {
+      new: true
+    });
 
     dispatch({
       type: EDIT_ALERT,
-      payload: response.data,
-    })
-    
+      payload: response.data
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export const deleteAlert_ACTION = alertId => async dispatch => {
   try {
@@ -36,8 +36,6 @@ export const deleteAlert_ACTION = alertId => async dispatch => {
 
     dispatch({
       type: DELETE_ALERT
-    })
-  } catch (error) {
-    
-  }
-}
+    });
+  } catch (error) {}
+};

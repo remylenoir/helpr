@@ -2,11 +2,13 @@ import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
+import { clearEvent_ACTION } from '../../actions/events'
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 
 const Dashboard = ({
   getCurrentProfile_ACTION,
+  clearEvent_ACTION,
   id,
   profile: { profile, loading }
 }) => {
@@ -28,6 +30,7 @@ const Dashboard = ({
 
   useEffect(() => {
     getCurrentProfile_ACTION(id);
+    // clearEvent_ACTION();
   }, []);
 
   return loading && profile === null ? (
@@ -188,5 +191,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile_ACTION }
+  { getCurrentProfile_ACTION, clearEvent_ACTION }
 )(Dashboard);

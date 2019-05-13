@@ -25,7 +25,7 @@ const PreviewCard = ({
           <h3>{event.title}</h3>
           <img src={event.imageURL} alt='event pic' />
           <p>{event.description}</p>
-          <a href='#!'>More details</a>
+          <Link to={`/event/${event._id}`}>More details</Link>
         </Fragment>
       ))}
     </div>
@@ -47,7 +47,7 @@ const PreviewCard = ({
           <h3>{event.title}</h3>
           <img src={event.imageURL} alt='event pic' />
           <p>{event.description}</p>
-          <a href='#!'>More details</a>
+          <Link to={`/event/${event._id}`}>More details</Link>
         </Fragment>
       ))}
     </div>
@@ -58,7 +58,7 @@ const PreviewCard = ({
           <h3>{event.title}</h3>
           <img src={event.imageURL} alt='event pic' />
           <p>{event.description}</p>
-          <a href='#!'>More details</a>
+          <Link to={`/event/${event._id}`}>More details</Link>
         </Fragment>
       ))}
     </div>
@@ -67,7 +67,7 @@ const PreviewCard = ({
 
 PreviewCard.propTypes = {
   type: PropTypes.string.isRequired,
-  profile: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
