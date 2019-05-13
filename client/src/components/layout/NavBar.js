@@ -4,35 +4,35 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout_ACTION } from '../../actions/auth';
 
+// Bootstrap components
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+
 const NavBar = ({ auth: { isAuthenticated, loading }, logout_ACTION }) => {
   const authLinks = (
-    <nav>
-      <h2>
-        <Link to='/dashboard'>Dashboard</Link>
-        <br/>
-        <Link onClick={logout_ACTION} to='/dashboard'>Logout</Link>
-      </h2>
-    </nav>
+    <Fragment>
+      <Link to='/dashboard'>Dashboard</Link>
+      <Link onClick={logout_ACTION} to='/dashboard'>
+        Logout
+      </Link>
+    </Fragment>
   );
 
   const guestLinks = (
-    <nav>
-      <h2>
-        <Link to='/register'>Register</Link>
-        <br />
-        <Link to='/login'>Login</Link>
-      </h2>
-    </nav>
+    <Fragment>
+      <Link to='/register'>Register</Link>
+      <Link to='/login'>Login</Link>
+    </Fragment>
   );
 
   return (
-    <nav>
-      <h2>
-        <Link to='/'>Home</Link>
-      </h2>
-      {/* add !loading &&  */}
-      {<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>}
-    </nav>
+    <Navbar collapseOnSelect expand='lg' bg='light'>
+      <Link to='/'>Home</Link>
+      <Navbar.Toggle aria-controls='responsive-navbar-nav' />
+      <Navbar.Collapse id='responsive-navbar-nav'>
+        <Nav className='mr-auto'>{isAuthenticated ? authLinks : guestLinks}</Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 

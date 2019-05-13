@@ -5,6 +5,7 @@ import { getCurrentProfile_ACTION } from '../../actions/profile';
 import { clearEvent_ACTION } from '../../actions/events'
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
+import Button from 'react-bootstrap/Button';
 
 const Dashboard = ({
   getCurrentProfile_ACTION,
@@ -12,6 +13,8 @@ const Dashboard = ({
   id,
   profile: { profile, loading }
 }) => {
+
+const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading } }) => {
   const [displayContent, toggleContent] = useState({
     createdAlertsDisplay: true,
     createdEventsDisplay: true,
@@ -43,7 +46,7 @@ const Dashboard = ({
       <div style={{ border: '1px solid black', margin: '10px' }}>
         <h3>Created Alerts</h3>
 
-        <button
+        <Button
           onClick={() =>
             toggleContent({
               ...displayContent,
@@ -52,7 +55,18 @@ const Dashboard = ({
           }
         >
           {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
-        </button>
+        </Button>
+
+        {/* <button
+          onClick={() =>
+            toggleContent({
+              ...displayContent,
+              createdAlertsDisplay: !createdAlertsDisplay
+            })
+          }
+        >
+          {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
+        </button> */}
 
         {createdAlertsDisplay && (
           <Fragment>
