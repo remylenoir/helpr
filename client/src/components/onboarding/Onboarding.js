@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Hero from './Hero';
 import Features from './Features';
+import HorizontalScroll from './HorizontalScroll';
 
 const Onboarding = () => {
   return (
@@ -14,6 +15,7 @@ const Onboarding = () => {
         url={'https://source.unsplash.com/random'}
       />
       <Features />
+      <HorizontalScroll />
     </Fragment>
   );
 };
