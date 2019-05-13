@@ -22,9 +22,11 @@ const App = () => (
         <Row>
           <NavBar />
         </Row>
-        <Row>
-          <Alert />
-        </Row>
+        <Container fluid>
+          <Row>
+            <Alert />
+          </Row>
+        </Container>
         <Switch>
           <Route exact path='/' component={Landing} />
           <Route component={Routes} />

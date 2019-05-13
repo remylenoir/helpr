@@ -8,7 +8,7 @@ const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map(alert => (
-    <AlertMessage key={alert.id} variant='danger'>
+    <AlertMessage key={alert.id} variant='danger' className=' w-100 my-3'>
       {alert.msg}
     </AlertMessage>
 
