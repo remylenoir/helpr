@@ -1,10 +1,10 @@
 import React from 'react';
+import Onboarding from '../onboarding/Onboarding';
 
 const Landing = () => {
   return (
     <div>
-      {/* <Link to='/register'>Sign Up</Link>
-      <Link to='/login'>Login</Link> */}
+      <Onboarding />
     </div>
   );
 };
