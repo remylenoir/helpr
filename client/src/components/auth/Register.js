@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,6 +8,8 @@ import { register_ACTION } from '../../actions/auth';
 // Bootstrap components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -44,42 +46,39 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
   }
 
   return (
-    <Fragment>
-      <h3>Sign Up</h3>
-      <p>
-        Create your account. <br />
-        <small>
-          <em>All fields are mandatory</em>
-        </small>
-      </p>
+    <Container>
+      <Row className='vh-100 align-items-center'>
+        <Container>
+          <h3 className='text-center'>Do you want to be part of&nbsp;a&nbsp;great community?</h3>
+          <p className='text-center'>Create your account</p>
+          <hr />
 
-      <Form onSubmit={onSubmit}>
-        <Form.Group controlId='formUsername'>
-          <Form.Label>Username</Form.Label>
-          <Form.Control type='text' name='username' value={username} onChange={onChange} />
-        </Form.Group>
+          <Form onSubmit={onSubmit}>
+            <Form.Group controlId='formUsername'>
+              <Form.Label>Username</Form.Label>
+              <Form.Control type='text' name='username' value={username} onChange={onChange} />
+            </Form.Group>
 
-        <Form.Group controlId='formPassword'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control type='password' name='password' value={password} onChange={onChange} />
-        </Form.Group>
+            <Form.Group controlId='formPassword'>
+              <Form.Label>Password</Form.Label>
+              <Form.Control type='password' name='password' value={password} onChange={onChange} />
+            </Form.Group>
 
-        <Form.Group controlId='formPassword2'>
-          <Form.Label>Confirm your password</Form.Label>
-          <Form.Control type='password' name='password2' value={password2} onChange={onChange} />
-        </Form.Group>
-
-        <Button color='primary' type='submit'>
-          Submit
-        </Button>
-
-        <hr />
-
-        <p>
-          Already have an account? <Link to='/login'>Sign In</Link>
-        </p>
-      </Form>
-    </Fragment>
+            <Form.Group controlId='formPassword2'>
+              <Form.Label>Confirm your password</Form.Label>
+              <Form.Control type='password' name='password2' value={password2} onChange={onChange} />
+            </Form.Group>
+            <Button type='submit' variant='primary btn-block'>
+              Submit
+            </Button>
+            <hr />
+            <p className='text-center'>
+              Already have an account? <Link to='/login'>Log in</Link>
+            </p>
+          </Form>
+        </Container>
+      </Row>
+    </Container>
   );
 };
 
