@@ -20,7 +20,10 @@ const Onboarding = () => {
       </Row>
       <Features />
       <Row>
-        <HorizontalScroll />
+        <HorizontalScroll
+          title={'Volunteer work near by'}
+          btnText={'See more'}
+        />
       </Row>
     </Fragment>
   );

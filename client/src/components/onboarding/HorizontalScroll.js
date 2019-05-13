@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-function HorizontalScroll(props) {
+function HorizontalScroll({ title, btnText }) {
   return (
     <Fragment>
       <div className='horizontal-scroll'>
-        <h3>Volunteer events</h3>
+        <h3>{title}</h3>
         <div className='horizontal-scroll-wrapper'>
           {/* Duplicated Card component for testing, needs to pass props to Card and map through them */}
           <Card style={{ width: '15rem' }}>
@@ -52,12 +52,15 @@ function HorizontalScroll(props) {
             </Card.Body>
           </Card>
         </div>
-        <Button variant='outline-primary'>Primary</Button>
+        <Button variant='outline-primary'>{btnText}</Button>
       </div>
     </Fragment>
   );
 }
 
-HorizontalScroll.propTypes = {};
+HorizontalScroll.propTypes = {
+  title: PropTypes.string,
+  btnText: PropTypes.string
+};
 
 export default HorizontalScroll;
