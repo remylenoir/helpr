@@ -26,7 +26,7 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
 
   useEffect(() => {
     getCurrentProfile_ACTION(id);
-  }, [getCurrentProfile_ACTION, id]);
+  }, []);
 
   return loading && profile === null ? (
     <Spinner />
@@ -161,17 +161,34 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
 const noContentMsg = type => {
   const singularType = type.substring(0, type.length - 1);
 
-  return (
-    <div>
-      <h4>You have no created {type}</h4>
-      <p>
-        Do you want to see all the {type}? <a href='#!'>Click here</a>
-      </p>
-      <p>
-        Do you want to create an {singularType}? <a href='#!'>Click here</a>
-      </p>
-    </div>
-  );
+  if (type === 'alerts') {
+    return (
+      <div>
+        <h4>You have no created {type}</h4>
+        <p>
+          Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
+        </p>
+        <p>
+          Do you want to create an {singularType}? <a href='#!'>Click here</a>
+        </p>
+      </div>
+    );
+  }
+
+  if (type === 'events') {
+    return (
+      <div>
+        <h4>You have no created {type}</h4>
+        <p>
+          Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
+
+        </p>
+        <p>
+          Do you want to create an {singularType}? <a href='#!'>Click here</a>
+        </p>
+      </div>
+    )
+  }
 };
 
 Dashboard.propTypes = {

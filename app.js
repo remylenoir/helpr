@@ -50,6 +50,7 @@ app.use(
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 hbs.registerHelper('ifUndefined', (value, options) => {
@@ -80,7 +81,7 @@ require('./passport')(app);
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.BASE_URL_CLIENT,
     credentials: true
   })
 );
@@ -105,5 +106,9 @@ app.use('/api/ngo', ngoRoutes);
 
 const categoryRoutes = require('./routes/category');
 app.use('/api/categories', categoryRoutes);
+
+app.use((req, res) => {
+  res.sendFile('/public/index.html');
+});
 
 module.exports = app;
