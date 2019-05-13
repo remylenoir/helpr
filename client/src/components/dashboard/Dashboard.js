@@ -5,11 +5,9 @@ import { getCurrentProfile_ACTION } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 
-const Dashboard = ({
-  getCurrentProfile_ACTION,
-  id,
-  profile: { profile, loading }
-}) => {
+import Button from 'react-bootstrap/Button';
+
+const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading } }) => {
   const [displayContent, toggleContent] = useState({
     createdAlertsDisplay: true,
     createdEventsDisplay: true,
@@ -28,7 +26,7 @@ const Dashboard = ({
 
   useEffect(() => {
     getCurrentProfile_ACTION(id);
-  }, []);
+  }, [getCurrentProfile_ACTION, id]);
 
   return loading && profile === null ? (
     <Spinner />
@@ -40,7 +38,7 @@ const Dashboard = ({
       <div style={{ border: '1px solid black', margin: '10px' }}>
         <h3>Created Alerts</h3>
 
-        <button
+        <Button
           onClick={() =>
             toggleContent({
               ...displayContent,
@@ -49,7 +47,18 @@ const Dashboard = ({
           }
         >
           {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
-        </button>
+        </Button>
+
+        {/* <button
+          onClick={() =>
+            toggleContent({
+              ...displayContent,
+              createdAlertsDisplay: !createdAlertsDisplay
+            })
+          }
+        >
+          {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
+        </button> */}
 
         {createdAlertsDisplay && (
           <Fragment>

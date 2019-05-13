@@ -2,13 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import AlertMessage from 'react-bootstrap/Alert';
+
 const Alert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map(alert => (
-    <div key={alert.id} style={{color: 'red'}}>
-      <h2>{alert.msg}</h2>
-    </div>
+    <AlertMessage key={alert.id} variant='danger'>
+      {alert.msg}
+    </AlertMessage>
+
+    // <div style={{color: 'red'}}>
+    //   <h2>{alert.msg}</h2>
+    // </div>
   ));
 
 Alert.propTypes = {
