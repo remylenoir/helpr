@@ -2,10 +2,10 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
-import Dashboard from '../dashboard/Dashboard'
+import Dashboard from '../dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
-import AlertDetails from '../alerts/AlertDetails'
-import EventDetails from '../events/EventDetails'
+import AlertDetails from '../alerts/AlertDetails';
+import EventDetails from '../events/EventDetails';
 
 const Routes = () => {
   return (
