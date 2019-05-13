@@ -1,3 +1,14 @@
 .navbar {
   width: 100vw;
+  flex-wrap: nowrap;
+
+  .user {
+    &-name {
+      text-overflow: ellipsis;
+    }
+    &-dropdown {
+      height: 50px;
+      padding: 5px 0.75rem;
+    }
+  }
 }

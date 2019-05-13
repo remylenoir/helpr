@@ -6,11 +6,7 @@ import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 import Button from 'react-bootstrap/Button';
 
-const Dashboard = ({
-  getCurrentProfile_ACTION,
-  id,
-  profile: { profile, loading }
-}) => {
+const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading } }) => {
   const [displayContent, toggleContent] = useState({
     createdAlertsDisplay: true,
     createdEventsDisplay: true,
@@ -29,7 +25,7 @@ const Dashboard = ({
 
   useEffect(() => {
     getCurrentProfile_ACTION(id);
-  }, []);
+  }, [getCurrentProfile_ACTION, id]);
 
   return loading && profile === null ? (
     <Spinner />
