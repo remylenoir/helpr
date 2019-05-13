@@ -4,7 +4,7 @@ import { GET_PROFILE, EDIT_PROFILE } from './types';
 // Get current user profile
 export const getCurrentProfile_ACTION = userId => async dispatch => {
   const response = await service.get(`/users/${userId}`);
-
+  
   dispatch({
     type: GET_PROFILE,
     payload: response.data
