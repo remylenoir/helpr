@@ -13,63 +13,64 @@ import Row from 'react-bootstrap/Row';
 
 const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => {
   const authLinks = (
-    <Fragment>
-      <Dropdown>
-        <Dropdown.Toggle
-          id='dropdown-user'
-          variant='outline-dark'
-          className='d-flex align-items-center user-dropdown'
-        >
-          <Container>
-            <Row className='align-items-center'>
-              <div className='col text-right user-name'>
-                <Link to='/dashboard' className='text-dark'>
-                  {user && user.username}
-                </Link>
-              </div>
-              <div className='pr-2'>
-                <Image
-                  src='https://source.unsplash.com/random'
-                  width='35'
-                  height='35'
-                  className='border'
-                  roundedCircle
-                />
-              </div>
-            </Row>
-          </Container>
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item>
-            <Link to='/dashboard'>Dashboard</Link>
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>
-            <Link onClick={logout_ACTION} to='/dashboard'>
-              Logout
-            </Link>
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </Fragment>
+    <div className='dropdown'>
+      <button
+        className='btn btn-outline-dark dropdown-toggle d-flex align-items-center user-dropdown'
+        type='button'
+        id='dropdown-user'
+        data-toggle='dropdown'
+        aria-haspopup='true'
+        aria-expanded='false'
+      >
+        <Container>
+          <Row className='align-items-center'>
+            <div className='col text-right user-name'>{user && user.username}</div>
+            <div className='pr-2'>
+              <Image
+                src='https://source.unsplash.com/random'
+                width='35'
+                height='35'
+                className='border'
+                roundedCircle
+              />
+            </div>
+          </Row>
+        </Container>
+      </button>
+      <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+        <Link to='/dashboard' className='dropdown-item'>
+          Dashboard
+        </Link>
+        <div className='dropdown-divider' />
+        <Link onClick={logout_ACTION} to='/dashboard' className='dropdown-item'>
+          Logout
+        </Link>
+      </div>
+    </div>
   );
 
   const guestLinks = (
-    <Fragment>
-      <Dropdown>
-        <Dropdown.Toggle id='dropdown-guest' variant='outline-dark' className='user-dropdown'>
-          Login / register
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item>
-            <Link to='/login'>Login</Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <Link to='/register'>Register</Link>
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
-    </Fragment>
+    <div className='dropdown'>
+      <button
+        className='btn btn-outline-dark dropdown-toggle user-dropdown'
+        type='button'
+        id='dropdown-guest'
+        data-toggle='dropdown'
+        aria-haspopup='true'
+        aria-expanded='false'
+      >
+        Login / register
+      </button>
+      <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+        <Link to='/login' className='dropdown-item'>
+          Login
+        </Link>
+        <div className='dropdown-divider' />
+        <Link to='/register' className='dropdown-item'>
+          Register
+        </Link>
+      </div>
+    </div>
   );
 
   return (
