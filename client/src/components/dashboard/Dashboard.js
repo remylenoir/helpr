@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
@@ -32,6 +33,7 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
   ) : (
     <div>
       <h1>Dashboard</h1>
+      <Link to='/profile'>Profile</Link>
       <h2>Welcome {profile && profile.username}</h2>
 
       <div style={{ border: '1px solid black', margin: '10px' }}>

@@ -48,7 +48,7 @@ const EventDetails = ({
       location: loading || !location ? '' : location,
       coverImage: loading || !event.coverImage ? '' : event.coverImage
     });
-  }, [edit]);
+  }, []);
 
   const onChange = event => {
     const { name, value } = event.target;
