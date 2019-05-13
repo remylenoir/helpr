@@ -19,6 +19,7 @@ export const GET_ALERT = 'GET_ALERT';
 export const EDIT_ALERT = 'EDIT_ALERT';
 export const DELETE_ALERT = 'DELETE_ALERT';
 // Events
+export const GET_ALL_EVENTS = 'GET_ALL_EVENTS'
 export const GET_EVENT = 'GET_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';
 export const CLEAR_EVENT = 'CLEAR_EVENT';
