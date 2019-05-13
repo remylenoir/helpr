@@ -1,0 +1,21 @@
+.horizontal-scroll {
+  text-align: center;
+  .horizontal-scroll-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 1.25rem;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > * {
+      flex: 0 0 auto;
+      margin-right: 1.25rem;
+      &last-child {
+        margin-right: none;
+      }
+    }
+  }
+}
