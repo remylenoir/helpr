@@ -26,7 +26,7 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
 
   useEffect(() => {
     getCurrentProfile_ACTION(id);
-  }, [getCurrentProfile_ACTION, id]);
+  }, []);
 
   return loading && profile === null ? (
     <Spinner />
@@ -167,13 +167,12 @@ const noContentMsg = type => {
         <h4>You have no created {type}</h4>
         <p>
           Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
-
         </p>
         <p>
           Do you want to create an {singularType}? <a href='#!'>Click here</a>
         </p>
       </div>
-    )
+    );
   }
 
   return (
