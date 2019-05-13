@@ -8,6 +8,7 @@ import AlertDetails from '../alerts/AlertDetails'
 import EventDetails from '../events/EventDetails'
 import Profile from '../user/Profile'
 import EditProfile from '../user/EditProfile'
+import AlertList from '../alerts/AlertList'
 
 const Routes = () => {
   return (
@@ -15,6 +16,7 @@ const Routes = () => {
       <Switch>
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/alert/all' component={AlertList} />
         <Route exact path='/alert/:alertId' component={AlertDetails} />
         <Route exact path='/event/:eventId' component={EventDetails} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />

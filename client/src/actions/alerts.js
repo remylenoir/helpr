@@ -7,6 +7,14 @@ import { GET_ALERT, EDIT_ALERT, DELETE_ALERT } from './types';
 //   withCredentials: true
 // });
 
+export const getAllAlerts_ACTION = () => async dispatch => {
+  const response = await service.get(`/alerts/all`);
+  dispatch({
+    type: GET_ALL_ALERTS,
+    payload: response.data
+  });
+};
+
 export const getAlert_ACTION = alertId => async dispatch => {
   const response = await service.get(`/alerts/${alertId}`);
 
