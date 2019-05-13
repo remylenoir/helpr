@@ -3,65 +3,113 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+// Bootstrap components
+import Card from 'react-bootstrap/Card';
+
 const PreviewCard = ({
   type,
   profile: { createdAlerts, createdEvents, favAlerts, favEvents, joinedEvents }
 }) => {
   return type === 'createdAlerts' ? (
-    <div>
+    <Fragment>
       {createdAlerts.map(alert => (
-        <Fragment key={alert._id}>
-          <h3>{alert.title}</h3>
-          <img src={alert.imageURL} alt='alert pic' />
-          <p>{alert.description}</p>
-          <Link to={`/alert/${alert._id}`}>More details</Link>
-        </Fragment>
+        <Card key={alert._id} style={{ width: '15rem' }}>
+          <Card.Img variant='top' src={alert.imageURL} />
+          <Card.Body>
+            <Card.Title>{alert.title}</Card.Title>
+            <Card.Text>{alert.description}</Card.Text>
+            <Link to={`/alert/${alert._id}`}>More details</Link>
+          </Card.Body>
+        </Card>
+
+        // <Fragment key={alert._id}>
+        //   <h4>{alert.title}</h4>
+        //   <Image src={alert.imageURL} fluid />
+        //   <p>{alert.description}</p>
+        //   <Link to={`/alert/${alert._id}`}>More details</Link>
+        // </Fragment>
       ))}
-    </div>
+    </Fragment>
   ) : type === 'createdEvents' ? (
-    <div>
+    <Fragment>
       {createdEvents.map(event => (
-        <Fragment key={event._id}>
-          <h3>{event.title}</h3>
-          <img src={event.imageURL} alt='event pic' />
-          <p>{event.description}</p>
-          <Link to={`/event/${event._id}`}>More details</Link>
-        </Fragment>
+        <Card key={event._id} style={{ width: '15rem' }}>
+          <Card.Img variant='top' src={event.imageURL} />
+          <Card.Body>
+            <Card.Title>{event.title}</Card.Title>
+            <Card.Text>{event.description}</Card.Text>
+            <Link to={`/event/${event._id}`}>More details</Link>
+          </Card.Body>
+        </Card>
+
+        // <Fragment key={event._id}>
+        //   <h4>{event.title}</h4>
+        //   <Image src={event.imageURL} fluid />
+        //   <p>{event.description}</p>
+        //   <Link to={`/event/${event._id}`}>More details</Link>
+        // </Fragment>
       ))}
-    </div>
+    </Fragment>
   ) : type === 'favAlerts' ? (
-    <div>
+    <Fragment>
       {favAlerts.map(alert => (
-        <Fragment key={alert._id}>
-          <h3>{alert.title}</h3>
-          <img src={alert.imageURL} alt='alert pic' />
-          <p>{alert.description}</p>
-          <Link to={`/alert/${alert._id}`}>More details</Link>
-        </Fragment>
+        <Card key={alert._id} style={{ width: '15rem' }}>
+          <Card.Img variant='top' src={alert.imageURL} />
+          <Card.Body>
+            <Card.Title>{alert.title}</Card.Title>
+            <Card.Text>{alert.description}</Card.Text>
+            <Link to={`/alert/${alert._id}`}>More details</Link>
+          </Card.Body>
+        </Card>
+
+        // <Fragment key={alert._id}>
+        //   <h4>{alert.title}</h4>
+        //   <Image src={alert.imageURL} fluid />
+        //   <p>{alert.description}</p>
+        //   <Link to={`/alert/${alert._id}`}>More details</Link>
+        // </Fragment>
       ))}
-    </div>
+    </Fragment>
   ) : type === 'favEvents' ? (
-    <div>
+    <Fragment>
       {favEvents.map(event => (
-        <Fragment key={event._id}>
-          <h3>{event.title}</h3>
-          <img src={event.imageURL} alt='event pic' />
-          <p>{event.description}</p>
-          <Link to={`/event/${event._id}`}>More details</Link>
-        </Fragment>
+        <Card key={event._id} style={{ width: '15rem' }}>
+          <Card.Img variant='top' src={event.imageURL} />
+          <Card.Body>
+            <Card.Title>{event.title}</Card.Title>
+            <Card.Text>{event.description}</Card.Text>
+            <Link to={`/event/${event._id}`}>More details</Link>
+          </Card.Body>
+        </Card>
+
+        // <Fragment key={event._id}>
+        //   <h4>{event.title}</h4>
+        //   <Image src={event.imageURL} fluid />
+        //   <p>{event.description}</p>
+        //   <Link to={`/event/${event._id}`}>More details</Link>
+        // </Fragment>
       ))}
-    </div>
+    </Fragment>
   ) : type === 'joinedEvents' ? (
-    <div>
+    <Fragment>
       {joinedEvents.map(event => (
-        <Fragment key={event._id}>
-          <h3>{event.title}</h3>
-          <img src={event.imageURL} alt='event pic' />
-          <p>{event.description}</p>
-          <Link to={`/event/${event._id}`}>More details</Link>
-        </Fragment>
+        <Card key={event._id} style={{ width: '15rem' }}>
+          <Card.Img variant='top' src={event.imageURL} />
+          <Card.Body>
+            <Card.Title>{event.title}</Card.Title>
+            <Card.Text>{event.description}</Card.Text>
+            <Link to={`/event/${event._id}`}>More details</Link>
+          </Card.Body>
+        </Card>
+
+        // <Fragment key={event._id}>
+        //     <h4>{event.title}</h4>
+        //     <Image src={event.imageURL} fluid />
+        //     <p>{event.description}</p>
+        //     <Link to={`/event/${event._id}`}>More details</Link>
+        //   </Fragment>
       ))}
-    </div>
+    </Fragment>
   ) : null;
 };
 

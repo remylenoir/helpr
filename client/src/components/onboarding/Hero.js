@@ -1,4 +1,6 @@
 import React from 'react';
+
+// Bootstrap components
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
