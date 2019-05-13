@@ -1,10 +1,24 @@
 import axios from 'axios';
-import { GET_EVENT, EDIT_EVENT, CLEAR_EVENT, DELETE_EVENT } from './types';
+import {
+  GET_EVENT,
+  EDIT_EVENT,
+  CLEAR_EVENT,
+  DELETE_EVENT,
+  GET_ALL_EVENTS
+} from './types';
 
 const service = axios.create({
   baseURL: 'http://localhost:5000/api',
   withCredentials: true
 });
+
+export const getAllEvents_ACTION = () => async dispatch => {
+  const response = await service.get(`/events/all`);
+  dispatch({
+    type: GET_ALL_EVENTS,
+    payload: response.data
+  });
+};
 
 export const getEvent_ACTION = eventId => async dispatch => {
   const response = await service.get(`/events/${eventId}`);

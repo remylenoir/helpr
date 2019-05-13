@@ -176,17 +176,20 @@ const noContentMsg = type => {
     )
   }
 
-  return (
-    <div>
-      <h4>You have no created {type}</h4>
-      <p>
-        Do you want to see all the {type}? <a href='#!'>Click here</a>
-      </p>
-      <p>
-        Do you want to create an {singularType}? <a href='#!'>Click here</a>
-      </p>
-    </div>
-  );
+  if (type === 'events') {
+    return (
+      <div>
+        <h4>You have no created {type}</h4>
+        <p>
+          Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
+
+        </p>
+        <p>
+          Do you want to create an {singularType}? <a href='#!'>Click here</a>
+        </p>
+      </div>
+    )
+  }
 };
 
 Dashboard.propTypes = {
