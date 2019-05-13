@@ -8,7 +8,6 @@ const service = axios.create({
 
 export const getAllAlerts_ACTION = () => async dispatch => {
   const response = await service.get(`/alerts/all`);
-  console.log('alert called')
   dispatch({
     type: GET_ALL_ALERTS,
     payload: response.data
