@@ -5,6 +5,7 @@ const Onboarding = () => {
   return (
     <div>
       <Hero
+        details={false}
         title={'Helpr.'}
         msg={'Helping people just got easier!'}
         button={true}
