@@ -7,6 +7,8 @@ import { login_ACTION } from '../../actions/auth';
 // Bootstrap components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 
 const Login = ({ login_ACTION, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -37,41 +39,46 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
   }
 
   return (
-    <Fragment>
-      <h3>Sign In</h3>
-      <p>Sign into your account</p>
+    <Container>
+      <Row className='vh-100 align-items-center'>
+        <Container>
+          <h3 className='text-center'>It's good to see you again</h3>
+          <p className='text-center'>Sign into your account</p>
+          <hr />
 
-      <Form onSubmit={onSubmit}>
-        <Form.Group>
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Username'
-            name='username'
-            value={username}
-            onChange={onChange}
-          />
-        </Form.Group>
+          <Form onSubmit={onSubmit}>
+            <Form.Group>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Username'
+                name='username'
+                value={username}
+                onChange={onChange}
+              />
+            </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={onChange}
-          />
-        </Form.Group>
-        <Button color='primary' type='submit'>
-          Submit
-        </Button>
-        <hr />
-        <p>
-          Don't have an account? <Link to='/register'>Sign Up</Link>
-        </p>
-      </Form>
-    </Fragment>
+            <Form.Group>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type='password'
+                placeholder='Password'
+                name='password'
+                value={password}
+                onChange={onChange}
+              />
+            </Form.Group>
+            <Button color='primary' type='submit'>
+              Submit
+            </Button>
+            <hr />
+            <p className='text-center'>
+              Don't have an account? <Link to='/register'>Sign Up</Link>
+            </p>
+          </Form>
+        </Container>
+      </Row>
+    </Container>
   );
 };
 

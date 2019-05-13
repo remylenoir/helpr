@@ -7,13 +7,12 @@ import { logout_ACTION } from '../../actions/auth';
 // Bootstrap components
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
-import Dropdown from 'react-bootstrap/Dropdown';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
 const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => {
   const authLinks = (
-    <div className='dropdown'>
+    <Fragment>
       <button
         className='btn btn-outline-dark dropdown-toggle d-flex align-items-center user-dropdown'
         type='button'
@@ -46,11 +45,11 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
           Logout
         </Link>
       </div>
-    </div>
+    </Fragment>
   );
 
   const guestLinks = (
-    <div className='dropdown'>
+    <Fragment>
       <button
         className='btn btn-outline-dark dropdown-toggle user-dropdown'
         type='button'
@@ -70,13 +69,14 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
           Register
         </Link>
       </div>
-    </div>
+    </Fragment>
   );
 
   return (
     <Navbar collapseOnSelect expand='lg' bg='light'>
       <Link to='/'>Helpr.</Link>
-      {isAuthenticated ? authLinks : guestLinks}
+
+      <div className='dropdown'>{isAuthenticated ? authLinks : guestLinks}</div>
     </Navbar>
   );
 };

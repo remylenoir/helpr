@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Register from '../auth/Register';
 import Login from '../auth/Login';
 import Dashboard from '../dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
-import AlertDetails from '../alerts/AlertDetails'
-import EventDetails from '../events/EventDetails'
-import Profile from '../user/Profile'
-import EditProfile from '../user/EditProfile'
+import AlertDetails from '../alerts/AlertDetails';
+import EventDetails from '../events/EventDetails';
+import Profile from '../user/Profile';
+import EditProfile from '../user/EditProfile';
 
 const Routes = () => {
   return (
-    <div>
+    <Fragment>
       <Switch>
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
@@ -21,7 +21,7 @@ const Routes = () => {
         <PrivateRoute exact path='/profile' component={Profile} />
         <PrivateRoute exact path='/profile/edit' component={EditProfile} />
       </Switch>
-    </div>
+    </Fragment>
   );
 };
 
