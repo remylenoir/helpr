@@ -8,7 +8,6 @@ const service = axios.create({
 
 export const getEvent_ACTION = eventId => async dispatch => {
   const response = await service.get(`/events/${eventId}`);
-  console.log('get event action', response);
 
   dispatch({
     type: GET_EVENT,
