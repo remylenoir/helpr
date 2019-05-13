@@ -14,6 +14,7 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const EDIT_PROFILE = 'EDIT_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 // Alerts
+export const GET_ALL_ALERTS = 'GET_ALL_ALERTS';
 export const GET_ALERT = 'GET_ALERT';
 export const EDIT_ALERT = 'EDIT_ALERT';
 export const DELETE_ALERT = 'DELETE_ALERT';

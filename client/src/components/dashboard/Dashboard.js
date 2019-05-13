@@ -161,6 +161,21 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
 const noContentMsg = type => {
   const singularType = type.substring(0, type.length - 1);
 
+  if (type === 'alerts') {
+    return (
+      <div>
+        <h4>You have no created {type}</h4>
+        <p>
+          Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
+
+        </p>
+        <p>
+          Do you want to create an {singularType}? <a href='#!'>Click here</a>
+        </p>
+      </div>
+    )
+  }
+
   return (
     <div>
       <h4>You have no created {type}</h4>
