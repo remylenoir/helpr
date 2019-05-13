@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
-import { clearEvent_ACTION } from '../../actions/events';
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 import Button from 'react-bootstrap/Button';
@@ -30,7 +29,6 @@ const Dashboard = ({
 
   useEffect(() => {
     getCurrentProfile_ACTION(id);
-    // clearEvent_ACTION();
   }, []);
 
   return loading && profile === null ? (
@@ -53,17 +51,6 @@ const Dashboard = ({
         >
           {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
         </Button>
-
-        {/* <button
-          onClick={() =>
-            toggleContent({
-              ...displayContent,
-              createdAlertsDisplay: !createdAlertsDisplay
-            })
-          }
-        >
-          {createdAlertsDisplay ? <span>Hide</span> : <span>Show</span>}
-        </button> */}
 
         {createdAlertsDisplay && (
           <Fragment>
@@ -202,5 +189,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile_ACTION, clearEvent_ACTION }
+  { getCurrentProfile_ACTION }
 )(Dashboard);

@@ -88,16 +88,16 @@ const EventDetails = ({
     deleteEvent_ACTION(eventId);
   };
 
-  // If alert is deleted redirect to dashboard
+  // If event is deleted redirect to dashboard
   if (isDeleted) {
     return <Redirect to='/dashboard' />;
   }
 
   const creatorContent = (
     <Fragment>
-      {/* If edit toggle is false display alert details, else display edit form */}
+      {/* If edit toggle is false display event details, else display edit form */}
       {!displayEdit ? (
-        // Alert details
+        // Event details
         <Fragment>
           <h2>{event && event.title}</h2>
           <p>Description: {event && event.fullDesc}</p>
@@ -160,7 +160,7 @@ const EventDetails = ({
             </div>
             <input type='submit' value='Confirm Edit' />
           </form>
-          <button onClick={() => editToggle(!displayEdit)}>Edit alert</button>
+          <button onClick={() => editToggle(!displayEdit)}>Edit event</button>
         </Fragment>
       )}
     </Fragment>
@@ -182,7 +182,7 @@ const EventDetails = ({
     </Fragment>
   );
 
-  // If alert info is still being fetched display spinner
+  // If event info is still being fetched display spinner
   return loading && event === null ? (
     <Spinner />
   ) : (
@@ -195,15 +195,10 @@ const EventDetails = ({
   );
 };
 
-// EventDetails.propTypes = {
-//   alerts: PropTypes.object,
-//   auth: PropTypes.object.isRequired,
-//   match: PropTypes.object.isRequired,
-//   getAlert_ACTION: PropTypes.func.isRequired,
-//   setAlert_ACTION: PropTypes.func.isRequired,
-//   editAlert_ACTION: PropTypes.func.isRequired,
-//   deleteAlert_ACTION: PropTypes.func.isRequired
-// };
+EventDetails.propTypes = {
+  events: PropTypes.object,
+  auth: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => ({
   events: state.events,
