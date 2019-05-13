@@ -1,17 +1,6 @@
-import axios from 'axios';
+import service from '../utils/service';
 import { setAlert_ACTION } from './alert';
-import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT
-} from './types';
-
-const service = axios.create({
-  baseURL: 'http://localhost:5000/api',
-  withCredentials: true
-});
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
 
 // Load user
 export const loadUSER_ACTION = user => dispatch => {};

@@ -80,7 +80,7 @@ require('./passport')(app);
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.BASE_URL_CLIENT,
     credentials: true
   })
 );
