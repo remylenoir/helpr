@@ -6,6 +6,8 @@ import Dashboard from '../dashboard/Dashboard'
 import PrivateRoute from './PrivateRoute';
 import AlertDetails from '../alerts/AlertDetails'
 import EventDetails from '../events/EventDetails'
+import Profile from '../user/Profile'
+import EditProfile from '../user/EditProfile'
 
 const Routes = () => {
   return (
@@ -16,6 +18,8 @@ const Routes = () => {
         <Route exact path='/alert/:alertId' component={AlertDetails} />
         <Route exact path='/event/:eventId' component={EventDetails} />
         <PrivateRoute exact path='/dashboard' component={Dashboard} />
+        <PrivateRoute exact path='/profile' component={Profile} />
+        <PrivateRoute exact path='/profile/edit' component={EditProfile} />
       </Switch>
     </div>
   );

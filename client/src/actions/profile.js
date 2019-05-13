@@ -1,28 +1,27 @@
 import axios from 'axios';
-import { setAlert_ACTION } from './alert';
-import { GET_PROFILE, PROFILE_ERROR } from './types';
+import { GET_PROFILE, EDIT_PROFILE } from './types';
 
 const service = axios.create({
   baseURL: 'http://localhost:5000/api',
   withCredentials: true
 });
 
-// Get current users profile
+// Get current user profile
 export const getCurrentProfile_ACTION = userId => async dispatch => {
-  try {
-    const response = await service.get(`/users/${userId}`);
-    
-    dispatch({
-      type: GET_PROFILE,
-      payload: response.data
-    });
-  } catch (error) {
-    const err = error.response.data.message;
+  const response = await service.get(`/users/${userId}`);
 
-    dispatch(setAlert_ACTION(err));
+  dispatch({
+    type: GET_PROFILE,
+    payload: response.data
+  });
+};
 
-    dispatch({
-      type: PROFILE_ERROR
-    });
-  }
+// Edit current user profile
+export const editCurrentProfile_ACTION = (userId, body) => async dispatch => {
+  const response = await service.put(`/users/${userId}`, body, { new: true });
+
+  dispatch({
+    type: EDIT_PROFILE,
+    payload: response.data
+  });
 };

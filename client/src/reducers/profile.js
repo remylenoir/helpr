@@ -1,9 +1,9 @@
-import { GET_PROFILE, PROFILE_ERROR } from '../actions/types';
+import { GET_PROFILE, EDIT_PROFILE } from '../actions/types';
 
 const initialState = {
   profile: null,
   loading: true,
-  error: {}
+  edit: false
 };
 
 export default function(state = initialState, action) {
@@ -14,12 +14,15 @@ export default function(state = initialState, action) {
       return {
         ...state,
         profile: payload,
-        loading: false
+        loading: false,
+        edit: false,
       };
-    case PROFILE_ERROR:
+    case EDIT_PROFILE:
       return {
         ...state,
-        loading: false
+        profile: payload,
+        loading: false,
+        edit: true
       };
     default:
       return state;
