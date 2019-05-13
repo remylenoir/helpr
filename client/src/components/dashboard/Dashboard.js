@@ -2,19 +2,16 @@ import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
-import { clearEvent_ACTION } from '../../actions/events'
+import { clearEvent_ACTION } from '../../actions/events';
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 import Button from 'react-bootstrap/Button';
 
 const Dashboard = ({
   getCurrentProfile_ACTION,
-  clearEvent_ACTION,
   id,
   profile: { profile, loading }
 }) => {
-
-const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading } }) => {
   const [displayContent, toggleContent] = useState({
     createdAlertsDisplay: true,
     createdEventsDisplay: true,
