@@ -11,10 +11,6 @@ const Alert = ({ alerts }) =>
     <AlertMessage key={alert.id} variant='danger' className=' w-100 my-3'>
       {alert.msg}
     </AlertMessage>
-
-    // <div style={{color: 'red'}}>
-    //   <h2>{alert.msg}</h2>
-    // </div>
   ));
 
 Alert.propTypes = {

@@ -38,11 +38,11 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
 
   return (
     <Fragment>
-      <h1>Sign In</h1>
-      <p>Sign Into Your Account</p>
+      <h3>Sign In</h3>
+      <p>Sign into your account</p>
 
       <Form onSubmit={onSubmit}>
-        <Form.Group controlId='formBasicEmail'>
+        <Form.Group>
           <Form.Label>Username</Form.Label>
           <Form.Control
             type='text'
@@ -53,7 +53,7 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
           />
         </Form.Group>
 
-        <Form.Group controlId='formBasicPassword'>
+        <Form.Group>
           <Form.Label>Password</Form.Label>
           <Form.Control
             type='password'
@@ -66,11 +66,11 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
         <Button color='primary' type='submit'>
           Submit
         </Button>
+        <hr />
+        <p>
+          Don't have an account? <Link to='/register'>Sign Up</Link>
+        </p>
       </Form>
-
-      <p>
-        Don't have an account? <Link to='/register'>Sign Up</Link>
-      </p>
     </Fragment>
   );
 };
