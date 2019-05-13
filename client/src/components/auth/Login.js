@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login_ACTION } from '../../actions/auth';
 
+// Bootstrap components
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -39,32 +40,10 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
     <Fragment>
       <h1>Sign In</h1>
       <p>Sign Into Your Account</p>
-      {/* <form onSubmit={onSubmit}>
-        <div>
-          <input
-            type='text'
-            placeholder='Username'
-            name='username'
-            value={username}
-            onChange={onChange}
-          />
-        </div>
-        <div>
-          <input
-            type='password'
-            placeholder='Password'
-            name='password'
-            value={password}
-            onChange={onChange}
-          />
-        </div>
-
-        <input type='submit' value='Login' />
-      </form> */}
 
       <Form onSubmit={onSubmit}>
         <Form.Group controlId='formBasicEmail'>
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>Username</Form.Label>
           <Form.Control
             type='text'
             placeholder='Username'
