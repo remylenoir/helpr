@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Hero from './Hero';
 
 const Onboarding = () => {
   return (
-    <div>
+    <Fragment>
       <Hero
         title={'Helpr.'}
         msg={'Helping people just got easier!'}
@@ -11,7 +11,7 @@ const Onboarding = () => {
         btnMsg={'Get involve now!'}
         url={'https://source.unsplash.com/random'}
       />
-    </div>
+    </Fragment>
   );
 };
 
