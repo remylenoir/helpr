@@ -1,14 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Onboarding from '../onboarding/Onboarding';
-
-// Bootstrap components
-import Row from 'react-bootstrap/Row';
 
 const Landing = () => {
   return (
-    <Row>
+    <Fragment>
       <Onboarding />
-    </Row>
+    </Fragment>
   );
 };
 

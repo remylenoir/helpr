@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import service from '../utils/service';
-import { GET_ALERT, GET_ALL_ALERTS, EDIT_ALERT, DELETE_ALERT } from './types';
+import { GET_ALERT, EDIT_ALERT, DELETE_ALERT, GET_ALL_ALERTS } from './types';
 
 // const service = axios.create({
 //   baseURL: 'http://localhost:5000/api',
