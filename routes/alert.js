@@ -127,7 +127,7 @@ router.put('/add/bookmark/:id', (req, res) => {
         { new: true }
       )
         .then(() => {
-          res.status(200).json({ message: `Alert ID ${favAlerts} successfully bookmarked` });
+          res.status(200).json(favAlerts);
         })
         .catch(err => {
           res.json(err);
@@ -155,8 +155,8 @@ router.put('/remove/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(() => {
-            res.status(200).json({ message: `Alert ID ${favAlerts} successfully unbookmarked` });
+          .then(data => {
+            res.status(200).json(favAlerts);
           })
           .catch(err => {
             res.json(err);
