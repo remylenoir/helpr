@@ -138,7 +138,7 @@ router.put('/add/bookmark/:id', (req, res) => {
     });
 });
 
-// @route   PUT api/alerts/delete/bookmark/:id
+// @route   PUT api/alerts/remove/bookmark/:id
 // @desc    Unbookmark an alert
 // @access  Public
 router.put('/remove/bookmark/:id', (req, res) => {
