@@ -20,18 +20,22 @@ const App = () => (
   <Provider store={store}>
     <Router>
       <Container fluid>
-        <Row>
+        <Row className='main-navigation'>
           <NavBar />
         </Row>
-        <Row>
-          <AppBar />
+
+        <Row className='alert-container'>
+          <Alert />
         </Row>
-        <Alert />
 
         <Switch>
           <Route exact path='/' component={Landing} />
           <Route component={Routes} />
         </Switch>
+
+        <Row className='app-bar'>
+          <AppBar />
+        </Row>
       </Container>
     </Router>
   </Provider>

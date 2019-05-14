@@ -1,0 +1,25 @@
+.horizontal {
+  &-scroll {
+    text-align: center;
+    max-width: 100%;
+
+    &-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 1.25rem;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      > * {
+        flex: 0 0 auto;
+        margin-right: 1.25rem;
+        &:first-child {
+          margin-left: 1.25em;
+        }
+      }
+    }
+  }
+}

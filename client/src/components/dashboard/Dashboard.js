@@ -32,8 +32,6 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      <AppBar />
-
       <Container className='py-3' fluid>
         {/* <Link to='/profile'>Settings</Link> */}
         <Row>
