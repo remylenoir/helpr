@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getEvent_ACTION } from '../../actions/events';
 import Spinner from '../layout/Spinner';
+import FollowEventBtn from './FollowEventBtn';
 
 const EventDetails = ({
   match: {
@@ -37,7 +38,7 @@ const EventDetails = ({
       {event && auth.isAuthenticated && auth.user._id === event.creator ? (
         <Link to={`/event/${event._id}/edit`}>Edit event</Link>
       ) : (
-        auth.isAuthenticated && <button>Follow Event</button>
+        auth.isAuthenticated && <FollowEventBtn />
       )}
       <br />
       <Link to='/event/all'>See all events</Link>

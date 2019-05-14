@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
     case CREATE_EVENT:
       return {
         ...state,
-        alert: payload,
+        event: payload,
         edit: false,
         loading: false,
         isCreated: true,
@@ -35,10 +35,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         events: payload,
-        event: null,
-        date: null,
-        location: null,
-        edit: false,
         loading: false,
         isCreated: false,
         isDeleted: false
@@ -68,7 +64,6 @@ export default function(state = initialState, action) {
     case CLEAR_EVENT:
       return {
         ...state,
-        event: null,
         date: null,
         location: null,
         edit: false,

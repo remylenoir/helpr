@@ -3,14 +3,17 @@ import {
   EDIT_PROFILE,
   CHECK_BOOKMARK,
   ADD_BOOKMARK_ALERT,
-  REMOVE_BOOKMARK_ALERT
+  REMOVE_BOOKMARK_ALERT,
+  ADD_BOOKMARK_EVENT,
+  REMOVE_BOOKMARK_EVENT
 } from '../actions/types';
 
 const initialState = {
   profile: null,
   loading: true,
   edit: false,
-  alertBookmarked: null
+  alertBookmarked: null,
+  eventBookmarked: null
 };
 
 export default function(state = initialState, action) {
@@ -43,6 +46,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         alertBookmarked: null,
+        loading: false
+      };
+    case ADD_BOOKMARK_EVENT:
+      return {
+        ...state,
+        eventBookmarked: payload,
+        loading: false
+      };
+    case REMOVE_BOOKMARK_EVENT:
+      return {
+        ...state,
+        eventBookmarked: null,
         loading: false
       };
     case CHECK_BOOKMARK:
