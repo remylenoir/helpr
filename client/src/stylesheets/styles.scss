@@ -1,5 +1,6 @@
 // Abstracts
 @import 'abstracts/utilities';
+@import 'abstracts/variables';
 
 // Components
 @import 'components/auth';
@@ -10,6 +11,7 @@
 @import 'components/button';
 @import 'components/navbar';
 @import 'components/feature';
+@import 'components/bookmark';
 @import 'components/horizontal-scroll';
 
 // Pages

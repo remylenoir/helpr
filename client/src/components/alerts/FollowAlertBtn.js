@@ -19,8 +19,8 @@ const FollowAlertBtn = ({
   const [isClicked, setClicked] = useState(false);
 
   useEffect(() => {
-    getCurrentProfile_ACTION(user._id)
-  }, [isClicked])
+    getCurrentProfile_ACTION(user._id);
+  }, [isClicked]);
 
   const handleBookmark = e => {
     e.preventDefault();
@@ -35,21 +35,25 @@ const FollowAlertBtn = ({
     removeBookmarkAlert_ACTION(alert._id);
     getCurrentProfile_ACTION(user._id);
   };
-  console.log(profile.favAlerts);
+
   return (
     <Fragment>
-      {profile && profile.favAlerts.filter(alerts => alerts._id === alert._id).length > 0 ? (
-        <button onClick={handleDelete}>Unbookmark Alert</button>
-      ) : (
-        <button onClick={handleBookmark}>Bookmark Alert</button>
-      )}
-
-      {/* { profile && bookmarkedAlert[0]._id === alert._id ?
-      <button onClick={handleBookmark}>Unbookmark Alert</button> :
-      <button onClick={handleBookmark}>Bookmark Alert</button>} */}
+      <div className='position-absolute bookmark'>
+        {profile && profile.favAlerts.filter(alerts => alerts._id === alert._id).length > 0 ? (
+          <button onClick={handleDelete} className={`${bookmarkClass} active`}>
+            <i className='fas fa-bookmark active' />
+          </button>
+        ) : (
+          <button onClick={handleBookmark} className={bookmarkClass}>
+            <i className='fas fa-bookmark' />
+          </button>
+        )}
+      </div>
     </Fragment>
   );
 };
+
+const bookmarkClass = 'bookmark-button d-flex flex-column justify-content-center align-items-center';
 
 const mapStateToProps = state => ({
   user: state.auth.user,

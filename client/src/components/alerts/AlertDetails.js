@@ -49,7 +49,8 @@ const AlertDetails = ({
         />
       </Row>
       <Row>
-        <Container className='py-3'>
+        <Container className='position-relative py-3'>
+          {auth.isAuthenticated && <FollowAlerBtn />}
           <h2>Description:</h2>
           <hr />
           <p>{alert && alert.description}</p>
@@ -62,12 +63,10 @@ const AlertDetails = ({
           </p>
           <hr />
           <div className='text-center'>
-            {alert && auth.isAuthenticated && auth.user._id === alert.creator._id ? (
+            {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
               <Link to={`/alert/${alert._id}/edit`} className='btn btn-secondary'>
                 Edit alert
               </Link>
-            ) : (
-              auth.isAuthenticated && <FollowAlerBtn />
             )}
           </div>
           <br />
@@ -79,26 +78,6 @@ const AlertDetails = ({
         </Container>
       </Row>
     </Container>
-    // <div>
-    //   <h2>{alert && alert.title}</h2>
-    //   <p>Date of creation: {alert && alert.created_at}</p>
-    //   <p>Type of alert: {alert && alert.type}</p>
-    //   <p>Description: {alert && alert.description}</p>
-    //   <p>
-    //     Location: {location && location[0]}, {location && location[1]}
-    //   </p>
-    //   <p>
-    //     Images: <img src={alert && alert.imageURL} alt='alert pic' />
-    //   </p>
-    //   <br />
-    //   {alert && auth.isAuthenticated && auth.user._id === alert.creator._id ? (
-    //     <Link to={`/alert/${alert._id}/edit`}>Edit alert</Link>
-    //   ) : (
-    //     auth.isAuthenticated && <button>Follow Alert</button>
-    //   )}
-    //   <br />
-    //   <Link to='/alert/all'>See all alerts</Link>
-    // </div>
   );
 };
 
