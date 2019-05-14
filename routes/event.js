@@ -113,7 +113,7 @@ router.get('/:id', (req, res) => {
     .populate('categories', 'title')
     .then(event => {
       if (currentDate > event.date) {
-        Event.findOneAndUpdate(
+        Event.findByIdAndUpdate(
           eventID,
           {
             $set: { isActive: false }

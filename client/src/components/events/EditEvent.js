@@ -2,31 +2,33 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { editAlert_ACTION, deleteAlert_ACTION } from '../../actions/alerts';
+import { editEvent_ACTION, deleteEvent_ACTION } from '../../actions/events';
 import { setAlert_ACTION } from '../../actions/alert';
 import Spinner from '../layout/Spinner';
 
-const EditAlert = ({
-  alerts: { alert, loading, isDeleted },
-  editAlert_ACTION,
-  deleteAlert_ACTION,
+const EditEvent = ({
+  events: { event, date, location, loading, isDeleted },
+  editEvent_ACTION,
+  deleteEvent_ACTION,
   setAlert_ACTION
 }) => {
   const [formData, setFormData] = useState({
     title: '',
-    type: '',
-    description: '',
-    imageURL: ''
+    date: '',
+    fullDesc: '',
+    location: '',
+    coverImage: ''
   });
 
-  const { title, type, description, imageURL } = formData;
+  const { title, fullDesc, coverImage } = formData;
 
   useEffect(() => {
     setFormData({
-      title: loading || !alert.title ? '' : alert.title,
-      type: loading || !alert.type ? '' : alert.type,
-      description: loading || !alert.description ? '' : alert.description,
-      imageURL: loading || !alert.imageURL ? '' : alert.imageURL
+      title: loading || !event.title ? '' : event.title,
+      fullDesc: loading || !event.fullDesc ? '' : event.fullDesc,
+      date: loading || !date ? '' : date,
+      location: loading || !location ? '' : location,
+      coverImage: loading || !event.coverImage ? '' : event.coverImage
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -43,12 +45,18 @@ const EditAlert = ({
   const onSubmit = e => {
     e.preventDefault();
 
-    if (title === '' || type === '' || description === '' || imageURL === '') {
+    if (
+      title === '' ||
+      fullDesc === '' ||
+      date === '' ||
+      location === '' ||
+      coverImage === ''
+    ) {
       setAlert_ACTION('All inputs must be filled');
       return;
     }
 
-    editAlert_ACTION(alert._id, formData);
+    editEvent_ACTION(event._id, formData);
     setAlert_ACTION('Changes have been saved');
   };
 
@@ -56,14 +64,14 @@ const EditAlert = ({
     e.preventDefault();
 
     //Send delete action to reducer
-    deleteAlert_ACTION(alert._id);
+    deleteEvent_ACTION(event._id);
   };
 
   if (isDeleted) {
     return <Redirect to='/dashboard' />;
   }
 
-  return loading && alert === null ? (
+  return loading && event === null ? (
     <Spinner />
   ) : (
     <div>
@@ -74,24 +82,11 @@ const EditAlert = ({
             <input type='text' name='title' value={title} onChange={onChange} />
           </div>
           <div>
-            <select name='type'>
-              <option value={type} onChange={onChange}>
-                People in need
-              </option>
-              <option value={type} onChange={onChange}>
-                Places
-              </option>
-              <option value={type} onChange={onChange}>
-                Other
-              </option>
-            </select>
-          </div>
-          <div>
             <label>Description</label>
             <input
               type='text'
               name='description'
-              value={description}
+              value={fullDesc}
               onChange={onChange}
             />
           </div>
@@ -99,31 +94,32 @@ const EditAlert = ({
             <label>Image</label>
             <input
               type='text'
-              name='imageURL'
-              value={imageURL}
+              name='coverImage'
+              value={coverImage}
               onChange={onChange}
             />
           </div>
           <input type='submit' value='Confirm Edit' />
         </form>
-        <Link to={`/alert/${alert._id}`}>Back to alert details</Link>
-        <button onClick={handleDelete}>Delete Alert</button>
+        <Link to={`/event/${event._id}`}>Back to event details</Link>
+        <button onClick={handleDelete}>Delete event</button>
       </Fragment>
     </div>
   );
 };
 
-EditAlert.propTypes = {
-  editAlert_ACTION: PropTypes.func.isRequired,
-  deleteAlert_ACTION: PropTypes.func.isRequired,
+EditEvent.propTypes = {
+  events: PropTypes.object,
+  editEvent_ACTION: PropTypes.func.isRequired,
+  deleteEvent_ACTION: PropTypes.func.isRequired,
   setAlert_ACTION: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  alerts: state.alerts
+  events: state.events
 });
 
 export default connect(
   mapStateToProps,
-  { editAlert_ACTION, deleteAlert_ACTION, setAlert_ACTION }
-)(EditAlert);
+  { editEvent_ACTION, deleteEvent_ACTION, setAlert_ACTION }
+)(EditEvent);

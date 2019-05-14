@@ -17,6 +17,7 @@ import EditAlert from '../alerts/EditAlert';
 // Events components
 import EventDetails from '../events/EventDetails';
 import EventList from '../events/EventList';
+import EditEvent from '../events/EditEvent';
 
 // User components
 import Profile from '../user/Profile';
@@ -44,6 +45,7 @@ const Routes = () => {
             path='/alert/:alertId/edit'
             component={EditAlert}
           />
+          <Route exact path='/event/:eventId/edit' component={EditEvent} />
         </Switch>
       </Row>
     </Fragment>
