@@ -87,6 +87,7 @@ router.get('/all', (req, res) => {
       // Once the active state is updated
       // return the updated events in the response
       Event.find({})
+        .populate('categories', 'title')
         .then(updatedEvents => {
           res.status(200).json(updatedEvents);
         })
@@ -219,7 +220,11 @@ router.put('/bookmark/:id', (req, res) => {
           { new: true }
         )
           .then(() => {
-            res.status(200).json({ message: `Event ID ${favEvents} successfully bookmarked` });
+            res
+              .status(200)
+              .json({
+                message: `Event ID ${favEvents} successfully bookmarked`
+              });
           })
           .catch(err => {
             res.json(err);
@@ -233,7 +238,11 @@ router.put('/bookmark/:id', (req, res) => {
           { new: true }
         )
           .then(() => {
-            res.status(200).json({ message: `Event ID ${favEvents} successfully unbookmarked` });
+            res
+              .status(200)
+              .json({
+                message: `Event ID ${favEvents} successfully unbookmarked`
+              });
           })
           .catch(err => {
             res.json(err);
@@ -287,7 +296,11 @@ router.delete('/:id', (req, res) => {
         }
       )
         .then(() => {
-          res.status(200).json({ message: `Event ID ${eventID} and all users's references deleted` });
+          res
+            .status(200)
+            .json({
+              message: `Event ID ${eventID} and all users's references deleted`
+            });
         })
         .catch(err => {
           res.json(err);

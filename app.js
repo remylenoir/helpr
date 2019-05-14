@@ -15,19 +15,25 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 
 const mongoConnectURI =
-  process.env.NODE_ENV === 'development' ? process.env.MONGODB_URI_DEV : process.env.MONGODB_URI_PROD;
+  process.env.NODE_ENV === 'development'
+    ? process.env.MONGODB_URI_DEV
+    : process.env.MONGODB_URI_PROD;
 
 mongoose
   .connect(mongoConnectURI, { useNewUrlParser: true, useFindAndModify: false })
   .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
+    console.log(
+      `Connected to Mongo! Database name: "${x.connections[0].name}"`
+    );
   })
   .catch(err => {
     console.error('Error connecting to mongo', err);
   });
 
 const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
+const debug = require('debug')(
+  `${app_name}:${path.basename(__filename).split('.')[0]}`
+);
 
 const app = express();
 
@@ -50,14 +56,12 @@ app.use(
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use((req, res, next) => {
-  // If no routes match, send them the React HTML.
-  res.sendFile(__dirname + '/public/index.html');
-});
+
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 hbs.registerHelper('ifUndefined', (value, options) => {
-  if (arguments.length < 2) throw new Error('Handlebars Helper ifUndefined needs 1 parameter');
+  if (arguments.length < 2)
+    throw new Error('Handlebars Helper ifUndefined needs 1 parameter');
   if (typeof value !== undefined) {
     return options.inverse(this);
   } else {
@@ -109,5 +113,9 @@ app.use('/api/ngo', ngoRoutes);
 
 const categoryRoutes = require('./routes/category');
 app.use('/api/categories', categoryRoutes);
+
+app.use((req, res) => {
+  res.sendFile('/public/index.html');
+});
 
 module.exports = app;
