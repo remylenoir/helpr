@@ -157,7 +157,7 @@ const noContentMsg = type => {
           Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
         </p>
         <p>
-          Do you want to create an {singularType}? <a href='#!'>Click here</a>
+          Do you want to create an {singularType}? <Link to='/create/event'>Click here</Link>
         </p>
       </Container>
     );
