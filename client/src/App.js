@@ -6,6 +6,7 @@ import Routes from './components/routing/Routes';
 import Landing from './components/layout/Landing';
 import Alert from './components/layout/Alert';
 import NavBar from './components/layout/NavBar';
+import AppBar from './components/layout/AppBar/AppBar';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -22,7 +23,9 @@ const App = () => (
         <Row>
           <NavBar />
         </Row>
-
+        <Row>
+          <AppBar />
+        </Row>
         <Alert />
 
         <Switch>

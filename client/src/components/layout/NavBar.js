@@ -76,7 +76,7 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
   );
 
   return (
-    <Navbar collapseOnSelect expand='lg' bg='light'>
+    <Navbar collapseOnSelect expand='true' bg='light'>
       <Link to='/'>Helpr.</Link>
 
       <div className='dropdown'>{isAuthenticated ? authLinks : guestLinks}</div>

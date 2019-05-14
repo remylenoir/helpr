@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import AppBar from '../layout/AppBar/AppBar';
 
 // Actions
 import { getCurrentProfile_ACTION } from '../../actions/profile';
@@ -31,102 +32,106 @@ const Dashboard = ({
   return loading && profile === null && alerts === null ? (
     <Spinner />
   ) : (
-    <Container className='py-3' fluid>
-      {/* <Link to='/profile'>Settings</Link> */}
-      <Row>
-        <Container>
-          <h1>Welcome {profile && profile.username}</h1>
-          <hr />
-        </Container>
-      </Row>
+    <Fragment>
+      <AppBar />
 
-      <Row>
-        <Container fluid>
-          <h2>Created Alerts</h2>
-          <hr />
-          <Row>
-            {profile && profile.createdAlerts.length > 0 ? (
-              <div className='horizontal-scroll'>
-                <div className='horizontal-scroll-wrapper'>
-                  <PreviewCard type='createdAlerts' />
+      <Container className='py-3' fluid>
+        {/* <Link to='/profile'>Settings</Link> */}
+        <Row>
+          <Container>
+            <h1>Welcome {profile && profile.username}</h1>
+            <hr />
+          </Container>
+        </Row>
+
+        <Row>
+          <Container fluid>
+            <h2>Created Alerts</h2>
+            <hr />
+            <Row>
+              {profile && profile.createdAlerts.length > 0 ? (
+                <div className='horizontal-scroll'>
+                  <div className='horizontal-scroll-wrapper'>
+                    <PreviewCard type='createdAlerts' />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              noContentMsg('alerts')
-            )}
+              ) : (
+                noContentMsg('alerts')
+              )}
+            </Row>
+          </Container>
+        </Row>
+
+        {profile && profile.favAlerts.length > 0 && (
+          <Row className='my-2'>
+            <Container fluid>
+              <h2>Bookmarked Alerts</h2>
+              <hr />
+
+              <Row>
+                <div className='horizontal-scroll'>
+                  <div className='horizontal-scroll-wrapper'>
+                    <PreviewCard type='favAlerts' />
+                  </div>
+                </div>
+              </Row>
+            </Container>
           </Row>
-        </Container>
-      </Row>
+        )}
 
-      {profile && profile.favAlerts.length > 0 && (
         <Row className='my-2'>
           <Container fluid>
-            <h2>Bookmarked Alerts</h2>
+            <h2>Created Events</h2>
             <hr />
 
             <Row>
-              <div className='horizontal-scroll'>
-                <div className='horizontal-scroll-wrapper'>
-                  <PreviewCard type='favAlerts' />
+              {profile && profile.createdEvents.length > 0 ? (
+                <div className='horizontal-scroll'>
+                  <div className='horizontal-scroll-wrapper'>
+                    <PreviewCard type='createdEvents' />
+                  </div>
                 </div>
-              </div>
+              ) : (
+                noContentMsg('events')
+              )}
             </Row>
           </Container>
         </Row>
-      )}
 
-      <Row className='my-2'>
-        <Container fluid>
-          <h2>Created Events</h2>
-          <hr />
-
-          <Row>
-            {profile && profile.createdEvents.length > 0 ? (
-              <div className='horizontal-scroll'>
-                <div className='horizontal-scroll-wrapper'>
-                  <PreviewCard type='createdEvents' />
+        {profile && profile.joinedEvents.length > 0 && (
+          <Row className='my-2'>
+            <Container fluid>
+              <h2>Joined Events</h2>
+              <hr />
+              <Row>
+                <div className='horizontal-scroll'>
+                  <div className='horizontal-scroll-wrapper'>
+                    <PreviewCard type='joinedEvents' />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              noContentMsg('events')
-            )}
+              </Row>
+            </Container>
           </Row>
-        </Container>
-      </Row>
+        )}
 
-      {profile && profile.joinedEvents.length > 0 && (
-        <Row className='my-2'>
-          <Container fluid>
-            <h2>Joined Events</h2>
-            <hr />
-            <Row>
-              <div className='horizontal-scroll'>
-                <div className='horizontal-scroll-wrapper'>
-                  <PreviewCard type='joinedEvents' />
+        {profile && profile.favEvents.length > 0 && (
+          <Row className='my-2'>
+            <Container fluid>
+              <h2>Bookmarked Events</h2>
+              <hr />
+
+              <Row>
+                <div className='horizontal-scroll'>
+                  <div className='horizontal-scroll-wrapper'>
+                    <PreviewCard type='favEvents' />
+                  </div>
                 </div>
-              </div>
-            </Row>
-          </Container>
-        </Row>
-      )}
-
-      {profile && profile.favEvents.length > 0 && (
-        <Row className='my-2'>
-          <Container fluid>
-            <h2>Bookmarked Events</h2>
-            <hr />
-
-            <Row>
-              <div className='horizontal-scroll'>
-                <div className='horizontal-scroll-wrapper'>
-                  <PreviewCard type='favEvents' />
-                </div>
-              </div>
-            </Row>
-          </Container>
-        </Row>
-      )}
-    </Container>
+              </Row>
+            </Container>
+          </Row>
+        )}
+      </Container>
+    </Fragment>
   );
 };
 

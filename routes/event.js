@@ -113,7 +113,7 @@ router.get('/:id', (req, res) => {
     .populate('categories', 'title')
     .then(event => {
       if (currentDate > event.date) {
-        Event.findOneAndUpdate(
+        Event.findByIdAndUpdate(
           eventID,
           {
             $set: { isActive: false }
@@ -142,7 +142,7 @@ router.put('/join/:id', (req, res) => {
   const { _id } = req.user;
   const joinedEvents = req.params.id;
 
-  Event.findOneAndUpdate(
+  Event.findByIdAndUpdate(
     joinedEvents,
     {
       $addToSet: { attendees: _id }
@@ -175,7 +175,7 @@ router.put('/leave/:id', (req, res) => {
   const { _id } = req.user;
   const eventID = req.params.id;
 
-  Event.findOneAndUpdate(
+  Event.findByIdAndUpdate(
     eventID,
     {
       $pull: { attendees: _id }
@@ -251,7 +251,7 @@ router.put('/bookmark/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const eventID = req.params.id;
 
-  Event.findOneAndUpdate(eventID, req.body, { new: true })
+  Event.findByIdAndUpdate(eventID, req.body, { new: true })
     .then(event => {
       res.status(200).json(event);
     })

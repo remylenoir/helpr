@@ -58,7 +58,7 @@ router.get('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
   const categoryID = req.params.id;
 
-  Category.findOneAndUpdate(categoryID, req.body, { new: true })
+  Category.findByIdAndUpdate(categoryID, req.body, { new: true })
     .then(category => {
       res.status(200).json(category);
     })
