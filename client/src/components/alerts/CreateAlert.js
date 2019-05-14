@@ -1,29 +1,42 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { createAlert_ACTION } from '../../actions/alerts';
 import { setAlert_ACTION } from '../../actions/alert';
+import geolocatedFunc from '../../utils/geolocation';
 
 const CreateAlert = ({
   auth: { user },
   alerts,
+  coords,
   createAlert_ACTION,
   setAlert_ACTION
 }) => {
   const [formData, setFormData] = useState({
     title: '',
     type: 'People in need',
-    location: '',
+    location: {},
     description: '',
     imageURL: ''
   });
 
-  if (alerts && alerts.isCreated) {
-    return <Redirect to='/dashboard' />
-  }
-
   const { title, type, location, description, imageURL } = formData;
+
+  useEffect(() => {
+    const latitude = coords && coords.latitude;
+    const longitude = coords && coords.longitude;
+
+    coords && setFormData({
+      ...formData,
+      location: {
+        type: 'Point',
+        coordinates: [latitude, longitude]
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coords]);
 
   const onChange = event => {
     const { name, value } = event.target;
@@ -50,6 +63,10 @@ const CreateAlert = ({
     createAlert_ACTION(formData, user._id);
     setAlert_ACTION('Alert successfully created');
   };
+
+  if (alerts && alerts.isCreated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <div>
@@ -86,7 +103,7 @@ const CreateAlert = ({
             <input
               type='text'
               name='location'
-              value={location}
+              value={location.coordinates || ""}
               onChange={onChange}
             />
           </div>
@@ -110,15 +127,21 @@ CreateAlert.propTypes = {
   auth: PropTypes.object,
   alerts: PropTypes.object,
   createAlert_ACTION: PropTypes.func.isRequired,
-  setAlert_ACTION: PropTypes.func.isRequired,
+  setAlert_ACTION: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  alerts: state.alerts,
+  alerts: state.alerts
 });
 
-export default connect(
-  mapStateToProps,
-  { createAlert_ACTION, setAlert_ACTION }
+const reduxConnect = () =>
+  connect(
+    mapStateToProps,
+    { createAlert_ACTION, setAlert_ACTION }
+  );
+
+export default compose(
+  reduxConnect(),
+  geolocatedFunc()
 )(CreateAlert);

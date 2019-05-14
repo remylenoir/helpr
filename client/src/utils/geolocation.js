@@ -1,4 +1,3 @@
-import React from 'react';
 import { geolocated } from 'react-geolocated';
 
 const geolocatedFunc = () =>
