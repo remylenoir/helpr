@@ -6,6 +6,7 @@ import HorizontalScroll from './HorizontalScroll';
 // Bootstrap components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import AlertWithMap from './AlertWithMap';
 
 const Onboarding = () => {
   return (
@@ -38,6 +39,12 @@ const Onboarding = () => {
               type={'all'}
             />
           </Row>
+
+          <AlertWithMap
+            sectionTitle={'Help people who are in need'}
+            btnText={'See all help alerts'}
+            desc={'tenetur quisquam reiciendis esse quam corporis eum.'}
+          />
         </Container>
       </Row>
     </Fragment>
