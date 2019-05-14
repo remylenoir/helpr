@@ -1,36 +1,52 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { bookmarkAlert_ACTION } from '../../actions/alerts';
-import { checkBookmark_ACTION, getCurrentProfile_ACTION, addBookmarkAlert_ACTION } from '../../actions/profile'
+import {
+  addBookmarkAlert_ACTION,
+  removeBookmarkAlert_ACTION,
+  getCurrentProfile_ACTION
+} from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 
 const FollowAlertBtn = ({
-  user: { favAlerts, alertBookmarked },
   profile,
   alert,
+  user,
   addBookmarkAlert_ACTION,
-  checkBookmark_ACTION, 
+  removeBookmarkAlert_ACTION,
   getCurrentProfile_ACTION
 }) => {
-  const [isClicked, setClicked] = useState(false)
+  const [isClicked, setClicked] = useState(false);
+
+  useEffect(() => {
+    getCurrentProfile_ACTION(user._id)
+  }, [isClicked])
 
   const handleBookmark = e => {
     e.preventDefault();
+    setClicked(!isClicked);
     addBookmarkAlert_ACTION(alert._id);
-    // checkBookmark_ACTION(alert._id)
-    setClicked(!isClicked)
+    getCurrentProfile_ACTION(user._id);
   };
 
-  useEffect(() => {
-    // checkBookmark_ACTION(alert._id)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [alertBookmarked])
-
+  const handleDelete = e => {
+    e.preventDefault();
+    setClicked(!isClicked);
+    removeBookmarkAlert_ACTION(alert._id);
+    getCurrentProfile_ACTION(user._id);
+  };
+  console.log(profile.favAlerts);
   return (
     <Fragment>
-      { profile && !profile.alertBookmarked ?
-      <button onClick={handleBookmark}>Bookmark Alert</button> :
-      <button onClick={handleBookmark}>Unbookmark Alert</button>}
+      {profile && profile.favAlerts.filter(alerts => alerts._id === alert._id).length > 0 ? (
+        <button onClick={handleDelete}>Unbookmark Alert</button>
+      ) : (
+        <button onClick={handleBookmark}>Bookmark Alert</button>
+      )}
+
+      {/* { profile && bookmarkedAlert[0]._id === alert._id ?
+      <button onClick={handleBookmark}>Unbookmark Alert</button> :
+      <button onClick={handleBookmark}>Bookmark Alert</button>} */}
     </Fragment>
   );
 };
@@ -38,10 +54,14 @@ const FollowAlertBtn = ({
 const mapStateToProps = state => ({
   user: state.auth.user,
   alert: state.alerts.alert,
-  profile: state.profile
+  profile: state.profile.profile
 });
 
 export default connect(
   mapStateToProps,
-  { addBookmarkAlert_ACTION, checkBookmark_ACTION, getCurrentProfile_ACTION }
+  {
+    addBookmarkAlert_ACTION,
+    removeBookmarkAlert_ACTION,
+    getCurrentProfile_ACTION
+  }
 )(FollowAlertBtn);

@@ -21,6 +21,7 @@ export const GET_ALERT = 'GET_ALERT';
 export const EDIT_ALERT = 'EDIT_ALERT';
 export const DELETE_ALERT = 'DELETE_ALERT';
 export const ADD_BOOKMARK_ALERT = 'ADD_BOOKMARK_ALERT';
+export const REMOVE_BOOKMARK_ALERT = 'REMOVE_BOOKMARK_ALERT';
 export const BOOKMARK_ALERT = 'BOOKMARK_ALERT';
 
 // Events

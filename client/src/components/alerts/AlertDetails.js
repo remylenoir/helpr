@@ -19,7 +19,7 @@ const AlertDetails = ({
   useEffect(() => {
     // Get alert info by ID when component mounts
     getAlert_ACTION(alertId);
-    auth.isAuthenticated && checkBookmark_ACTION(alertId);
+    // auth.isAuthenticated && checkBookmark_ACTION(alertId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
