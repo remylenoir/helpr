@@ -22,7 +22,7 @@ const EventPreview = ({ events: { events, loading } }) => {
 };
 
 EventPreview.propTypes = {
-  events: PropTypes.func
+  events: PropTypes.object
 };
 
 const mapStateToProps = state => ({
