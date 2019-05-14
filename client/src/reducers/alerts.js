@@ -3,7 +3,8 @@ import {
   EDIT_ALERT,
   DELETE_ALERT,
   GET_ALL_ALERTS,
-  CREATE_ALERT
+  CREATE_ALERT,
+  BOOKMARK_ALERT
 } from '../actions/types';
 
 const initialState = {
@@ -68,6 +69,10 @@ export default function(state = initialState, action) {
         loading: false,
         isCreated: false,
         isDeleted: true
+      };
+    case BOOKMARK_ALERT:
+      return {
+        ...state
       };
     default:
       return state;

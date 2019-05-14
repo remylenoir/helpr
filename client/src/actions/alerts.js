@@ -1,15 +1,21 @@
 import service from '../utils/service';
-import { GET_ALERT, EDIT_ALERT, DELETE_ALERT, GET_ALL_ALERTS, CREATE_ALERT } from './types';
-
+import {
+  GET_ALERT,
+  EDIT_ALERT,
+  DELETE_ALERT,
+  GET_ALL_ALERTS,
+  CREATE_ALERT,
+  BOOKMARK_ALERT
+} from './types';
 
 export const createAlert_ACTION = (body, userId) => async dispatch => {
   const response = await service.post('/alerts/add', body, userId);
 
   dispatch({
     type: CREATE_ALERT,
-    payload: response.data,
-  })
-}
+    payload: response.data
+  });
+};
 
 export const getAllAlerts_ACTION = () => async dispatch => {
   const response = await service.get(`/alerts/all`);
@@ -52,4 +58,16 @@ export const deleteAlert_ACTION = alertId => async dispatch => {
       type: DELETE_ALERT
     });
   } catch (error) {}
+};
+
+export const bookmarkAlert_ACTION = (alertId, userId) => async dispatch => {
+  try {
+    await service.put(`/alerts/bookmark/${alertId}`);
+  
+    dispatch({
+      type: BOOKMARK_ALERT
+    });
+  } catch (error) {
+    console.log(error)
+  }
 };

@@ -1,9 +1,10 @@
-import { GET_PROFILE, EDIT_PROFILE } from '../actions/types';
+import { GET_PROFILE, EDIT_PROFILE, CHECK_BOOKMARK, BOOKMARK_ALERT } from '../actions/types';
 
 const initialState = {
   profile: null,
   loading: true,
-  edit: false
+  edit: false,
+  alertBookmarked: null,
 };
 
 export default function(state = initialState, action) {
@@ -11,7 +12,7 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case GET_PROFILE:
-      return {
+    return {
         ...state,
         profile: payload,
         loading: false,
@@ -24,6 +25,18 @@ export default function(state = initialState, action) {
         loading: false,
         edit: true
       };
+    case BOOKMARK_ALERT:
+      return {
+        ...state,
+        alertBookmarked: state.profile.favAlerts.some(alert => alert._id === payload),
+        loading: false,
+      }
+      case CHECK_BOOKMARK:
+        return {
+          ...state,
+          alertBookmarked: state.profile.favAlerts.some(alert => alert._id === payload),
+          loading: false,
+        }
     default:
       return state;
   }

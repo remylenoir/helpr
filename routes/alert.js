@@ -72,7 +72,7 @@ router.get('/:id', (req, res) => {
 router.put('/bookmark/:id', (req, res) => {
   const { _id } = req.user;
   const favAlerts = req.params.id;
-
+  
   User.findById({ _id })
     .then(user => {
       if (!user.favAlerts.includes(favAlerts)) {

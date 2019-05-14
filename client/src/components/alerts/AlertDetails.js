@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAlert_ACTION } from '../../actions/alerts';
+import { checkBookmark_ACTION } from '../../actions/profile'
 import Spinner from '../layout/Spinner';
+import FollowAlerBtn from './FollowAlertBtn'
 
 const AlertDetails = ({
   match: {
@@ -11,11 +13,13 @@ const AlertDetails = ({
   },
   alerts: { alert, location, loading },
   auth,
-  getAlert_ACTION
+  getAlert_ACTION,
+  checkBookmark_ACTION
 }) => {
   useEffect(() => {
     // Get alert info by ID when component mounts
     getAlert_ACTION(alertId);
+    auth.isAuthenticated && checkBookmark_ACTION(alertId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -38,7 +42,7 @@ const AlertDetails = ({
       {alert && auth.isAuthenticated && auth.user._id === alert.creator._id ? (
         <Link to={`/alert/${alert._id}/edit`}>Edit alert</Link>
       ) : (
-        auth.isAuthenticated && <button>Follow Alert</button>
+        auth.isAuthenticated && <FollowAlerBtn />
       )}
       <br />
       <Link to='/alert/all'>See all alerts</Link>
@@ -60,5 +64,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAlert_ACTION }
+  { getAlert_ACTION, checkBookmark_ACTION }
 )(AlertDetails);
