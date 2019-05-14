@@ -40,6 +40,9 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
         <Link to='/dashboard' className='dropdown-item'>
           Dashboard
         </Link>
+        <Link to='/profile' className='dropdown-item'>
+          Settings
+        </Link>
         <div className='dropdown-divider' />
         <Link onClick={logout_ACTION} to='/dashboard' className='dropdown-item'>
           Logout

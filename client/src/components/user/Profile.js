@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 
-const Profile = ({
-  user: { username, firstName, lastName, profilePicture },
-  loading,
-  user
-}) => {
+const Profile = ({ user: { username, firstName, lastName, profilePicture }, loading, user }) => {
   // Set the state to handle edit form toggle
 
   return loading && user === null ? (
@@ -21,6 +17,7 @@ const Profile = ({
       <img src={profilePicture} alt='profile-pic' />
       <br />
       <Link to='/profile/edit'>Edit profile</Link>
+      <Link to='/dashboard'>Back to your dashboard</Link>
     </div>
   );
 };

@@ -1,11 +1,5 @@
-// import axios from 'axios';
 import service from '../utils/service';
 import { GET_ALERT, EDIT_ALERT, DELETE_ALERT, GET_ALL_ALERTS } from './types';
-
-// const service = axios.create({
-//   baseURL: 'http://localhost:5000/api',
-//   withCredentials: true
-// });
 
 export const getAllAlerts_ACTION = () => async dispatch => {
   const response = await service.get(`/alerts/all`);

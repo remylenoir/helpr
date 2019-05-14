@@ -1,9 +1,12 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+// Actions
 import { getCurrentProfile_ACTION } from '../../actions/profile';
 import { getAllAlerts_ACTION } from '../../actions/alerts';
+
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 
@@ -29,7 +32,7 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Container className='py-3' fluid>
-      <Link to='/profile'>Profile</Link>
+      {/* <Link to='/profile'>Settings</Link> */}
       <Row>
         <Container>
           <h1>Welcome {profile && profile.username}</h1>
@@ -42,17 +45,15 @@ const Dashboard = ({
           <h2>Created Alerts</h2>
           <hr />
           <Row>
-            <div className='horizontal-scroll'>
-              <div className='horizontal-scroll-wrapper'>
-                <Fragment>
-                  {profile && profile.createdAlerts.length > 0 ? (
-                    <PreviewCard type='createdAlerts' />
-                  ) : (
-                    noContentMsg('alerts')
-                  )}
-                </Fragment>
+            {profile && profile.createdAlerts.length > 0 ? (
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  <PreviewCard type='createdAlerts' />
+                </div>
               </div>
-            </div>
+            ) : (
+              noContentMsg('alerts')
+            )}
           </Row>
         </Container>
       </Row>
@@ -66,9 +67,7 @@ const Dashboard = ({
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
-                  <Fragment>
-                    <PreviewCard type='favAlerts' />
-                  </Fragment>
+                  <PreviewCard type='favAlerts' />
                 </div>
               </div>
             </Row>
@@ -82,17 +81,15 @@ const Dashboard = ({
           <hr />
 
           <Row>
-            <div className='horizontal-scroll'>
-              <div className='horizontal-scroll-wrapper'>
-                <Fragment>
-                  {profile && profile.createdEvents.length > 0 ? (
-                    <PreviewCard type='createdEvents' />
-                  ) : (
-                    noContentMsg('events')
-                  )}
-                </Fragment>
+            {profile && profile.createdEvents.length > 0 ? (
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  <PreviewCard type='createdEvents' />
+                </div>
               </div>
-            </div>
+            ) : (
+              noContentMsg('events')
+            )}
           </Row>
         </Container>
       </Row>
@@ -105,9 +102,7 @@ const Dashboard = ({
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
-                  <Fragment>
-                    <PreviewCard type='joinedEvents' />
-                  </Fragment>
+                  <PreviewCard type='joinedEvents' />
                 </div>
               </div>
             </Row>
@@ -124,9 +119,7 @@ const Dashboard = ({
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
-                  <Fragment>
-                    <PreviewCard type='favEvents' />
-                  </Fragment>
+                  <PreviewCard type='favEvents' />
                 </div>
               </div>
             </Row>
@@ -142,7 +135,7 @@ const noContentMsg = type => {
 
   if (type === 'alerts') {
     return (
-      <div>
+      <Container>
         <h4>You have no created {type}</h4>
         <p>
           Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
@@ -150,13 +143,13 @@ const noContentMsg = type => {
         <p>
           Do you want to create an {singularType}? <a href='#!'>Click here</a>
         </p>
-      </div>
+      </Container>
     );
   }
 
   if (type === 'events') {
     return (
-      <div>
+      <Container>
         <h4>You have no created {type}</h4>
         <p>
           Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
@@ -164,7 +157,7 @@ const noContentMsg = type => {
         <p>
           Do you want to create an {singularType}? <a href='#!'>Click here</a>
         </p>
-      </div>
+      </Container>
     );
   }
 };

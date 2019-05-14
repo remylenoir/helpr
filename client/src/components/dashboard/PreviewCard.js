@@ -21,13 +21,6 @@ const PreviewCard = ({
             <Link to={`/alert/${alert._id}`}>More details</Link>
           </Card.Body>
         </Card>
-
-        // <Fragment key={alert._id}>
-        //   <h4>{alert.title}</h4>
-        //   <Image src={alert.imageURL} fluid />
-        //   <p>{alert.description}</p>
-        //   <Link to={`/alert/${alert._id}`}>More details</Link>
-        // </Fragment>
       ))}
     </Fragment>
   ) : type === 'createdEvents' ? (
@@ -41,13 +34,6 @@ const PreviewCard = ({
             <Link to={`/event/${event._id}`}>More details</Link>
           </Card.Body>
         </Card>
-
-        // <Fragment key={event._id}>
-        //   <h4>{event.title}</h4>
-        //   <Image src={event.imageURL} fluid />
-        //   <p>{event.description}</p>
-        //   <Link to={`/event/${event._id}`}>More details</Link>
-        // </Fragment>
       ))}
     </Fragment>
   ) : type === 'favAlerts' ? (
@@ -61,13 +47,6 @@ const PreviewCard = ({
             <Link to={`/alert/${alert._id}`}>More details</Link>
           </Card.Body>
         </Card>
-
-        // <Fragment key={alert._id}>
-        //   <h4>{alert.title}</h4>
-        //   <Image src={alert.imageURL} fluid />
-        //   <p>{alert.description}</p>
-        //   <Link to={`/alert/${alert._id}`}>More details</Link>
-        // </Fragment>
       ))}
     </Fragment>
   ) : type === 'favEvents' ? (
@@ -81,13 +60,6 @@ const PreviewCard = ({
             <Link to={`/event/${event._id}`}>More details</Link>
           </Card.Body>
         </Card>
-
-        // <Fragment key={event._id}>
-        //   <h4>{event.title}</h4>
-        //   <Image src={event.imageURL} fluid />
-        //   <p>{event.description}</p>
-        //   <Link to={`/event/${event._id}`}>More details</Link>
-        // </Fragment>
       ))}
     </Fragment>
   ) : type === 'joinedEvents' ? (
@@ -101,13 +73,6 @@ const PreviewCard = ({
             <Link to={`/event/${event._id}`}>More details</Link>
           </Card.Body>
         </Card>
-
-        // <Fragment key={event._id}>
-        //     <h4>{event.title}</h4>
-        //     <Image src={event.imageURL} fluid />
-        //     <p>{event.description}</p>
-        //     <Link to={`/event/${event._id}`}>More details</Link>
-        //   </Fragment>
       ))}
     </Fragment>
   ) : null;
