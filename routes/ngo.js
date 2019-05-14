@@ -59,28 +59,86 @@ router.get('/:id', (req, res) => {
 // @route   PUT api/ngo/bookmark/:id
 // @desc    Bookmark/unbookmark a NGO
 // @access  Public
-router.put('/bookmark/:id', (req, res) => {
+// router.put('/bookmark/:id', (req, res) => {
+//   const { _id } = req.user;
+//   const favNGOs = req.params.id;
+
+//   User.findById({ _id })
+//     .then(user => {
+//       if (!user.favNGOs.includes(favNGOs)) {
+//         User.findOneAndUpdate(
+//           { _id },
+//           {
+//             $push: { favNGOs }
+//           },
+//           { new: true }
+//         )
+//           .then(() => {
+//             res.status(200).json({ message: `NGO ID ${favNGOs} successfully bookmarked` });
+//           })
+//           .catch(err => {
+//             res.json(err);
+//           });
+//       } else {
+//         User.findOneAndUpdate(
+//           { _id },
+//           {
+//             $pull: { favNGOs }
+//           },
+//           { new: true }
+//         )
+//           .then(() => {
+//             res.status(200).json({ message: `NGO ID ${favNGOs} successfully unbookmarked` });
+//           })
+//           .catch(err => {
+//             res.json(err);
+//           });
+//       }
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
+
+// @route   PUT api/events/add/bookmark/:id
+// @desc    Bookmark an event
+// @access  Public
+router.put('/add/bookmark/:id', (req, res) => {
   const { _id } = req.user;
   const favNGOs = req.params.id;
 
   User.findById({ _id })
     .then(user => {
-      if (!user.favNGOs.includes(favNGOs)) {
-        User.findOneAndUpdate(
-          { _id },
-          {
-            $push: { favNGOs }
-          },
-          { new: true }
-        )
-          .then(() => {
-            res.status(200).json({ message: `NGO ID ${favNGOs} successfully bookmarked` });
-          })
-          .catch(err => {
-            res.json(err);
-          });
-      } else {
-        User.findOneAndUpdate(
+      User.findByIdAndUpdate(
+        _id,
+        {
+          $addToSet: { favNGOs }
+        },
+        { new: true }
+      )
+        .then(() => {
+          res.status(200).json(favNGOs);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// @route   PUT api/events/remove/bookmark/:id
+// @desc    Unbookmark an event
+// @access  Public
+router.put('/remove/bookmark/:id', (req, res) => {
+  const { _id } = req.user;
+  const favNGOs = req.params.id;
+
+  User.findById({ _id })
+    .then(user => {
+      if (user.favNGOs.includes(favNGOs)) {
+        User.findByIdAndUpdate(
           { _id },
           {
             $pull: { favNGOs }
@@ -88,7 +146,7 @@ router.put('/bookmark/:id', (req, res) => {
           { new: true }
         )
           .then(() => {
-            res.status(200).json({ message: `NGO ID ${favNGOs} successfully unbookmarked` });
+            res.status(200).json(favNGOs);
           })
           .catch(err => {
             res.json(err);

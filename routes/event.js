@@ -205,32 +205,94 @@ router.put('/leave/:id', (req, res) => {
 // @route   PUT api/events/bookmark/:id
 // @desc    Bookmark/unbookmark an event
 // @access  Public
-router.put('/bookmark/:id', (req, res) => {
+// router.put('/bookmark/:id', (req, res) => {
+//   const { _id } = req.user;
+//   const favEvents = req.params.id;
+
+//   User.findById({ _id })
+//     .then(user => {
+//       if (!user.favEvents.includes(favEvents)) {
+//         User.findOneAndUpdate(
+//           { _id },
+//           {
+//             $push: { favEvents }
+//           },
+//           { new: true }
+//         )
+//           .then(() => {
+//             res
+//               .status(200)
+//               .json({
+//                 message: `Event ID ${favEvents} successfully bookmarked`
+//               });
+//           })
+//           .catch(err => {
+//             res.json(err);
+//           });
+//       } else {
+//         User.findOneAndUpdate(
+//           { _id },
+//           {
+//             $pull: { favEvents }
+//           },
+//           { new: true }
+//         )
+//           .then(() => {
+//             res
+//               .status(200)
+//               .json({
+//                 message: `Event ID ${favEvents} successfully unbookmarked`
+//               });
+//           })
+//           .catch(err => {
+//             res.json(err);
+//           });
+//       }
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
+
+// @route   PUT api/events/add/bookmark/:id
+// @desc    Bookmark an event
+// @access  Public
+router.put('/add/bookmark/:id', (req, res) => {
   const { _id } = req.user;
   const favEvents = req.params.id;
 
   User.findById({ _id })
     .then(user => {
-      if (!user.favEvents.includes(favEvents)) {
-        User.findOneAndUpdate(
-          { _id },
-          {
-            $push: { favEvents }
-          },
-          { new: true }
-        )
-          .then(() => {
-            res
-              .status(200)
-              .json({
-                message: `Event ID ${favEvents} successfully bookmarked`
-              });
-          })
-          .catch(err => {
-            res.json(err);
-          });
-      } else {
-        User.findOneAndUpdate(
+      User.findByIdAndUpdate(
+        _id,
+        {
+          $addToSet: { favEvents }
+        },
+        { new: true }
+      )
+        .then(() => {
+          res.status(200).json(favEvents);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// @route   PUT api/events/remove/bookmark/:id
+// @desc    Unbookmark an event
+// @access  Public
+router.put('/remove/bookmark/:id', (req, res) => {
+  const { _id } = req.user;
+  const favEvents = req.params.id;
+
+  User.findById({ _id })
+    .then(user => {
+      if (user.favEvents.includes(favEvents)) {
+        User.findByIdAndUpdate(
           { _id },
           {
             $pull: { favEvents }
@@ -238,11 +300,7 @@ router.put('/bookmark/:id', (req, res) => {
           { new: true }
         )
           .then(() => {
-            res
-              .status(200)
-              .json({
-                message: `Event ID ${favEvents} successfully unbookmarked`
-              });
+            res.status(200).json(favEvents);
           })
           .catch(err => {
             res.json(err);
@@ -296,11 +354,9 @@ router.delete('/:id', (req, res) => {
         }
       )
         .then(() => {
-          res
-            .status(200)
-            .json({
-              message: `Event ID ${eventID} and all users's references deleted`
-            });
+          res.status(200).json({
+            message: `Event ID ${eventID} and all users's references deleted`
+          });
         })
         .catch(err => {
           res.json(err);

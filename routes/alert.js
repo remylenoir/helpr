@@ -116,7 +116,7 @@ router.get('/:id', (req, res) => {
 router.put('/add/bookmark/:id', (req, res) => {
   const { _id } = req.user;
   const favAlerts = req.params.id;
-  
+
   User.findById({ _id })
     .then(user => {
       User.findByIdAndUpdate(
@@ -155,7 +155,7 @@ router.put('/remove/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(data => {
+          .then(() => {
             res.status(200).json(favAlerts);
           })
           .catch(err => {
