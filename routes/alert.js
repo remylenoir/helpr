@@ -127,7 +127,7 @@ router.put('/add/bookmark/:id', (req, res) => {
         { new: true }
       )
         .then(() => {
-          res.status(200).json({ message: `Alert ID ${favAlerts} successfully bookmarked` });
+          res.status(200).json(favAlerts);
         })
         .catch(err => {
           res.json(err);
@@ -138,7 +138,7 @@ router.put('/add/bookmark/:id', (req, res) => {
     });
 });
 
-// @route   PUT api/alerts/delete/bookmark/:id
+// @route   PUT api/alerts/remove/bookmark/:id
 // @desc    Unbookmark an alert
 // @access  Public
 router.put('/remove/bookmark/:id', (req, res) => {
@@ -155,8 +155,8 @@ router.put('/remove/bookmark/:id', (req, res) => {
           },
           { new: true }
         )
-          .then(() => {
-            res.status(200).json({ message: `Alert ID ${favAlerts} successfully unbookmarked` });
+          .then(data => {
+            res.status(200).json(favAlerts);
           })
           .catch(err => {
             res.json(err);
