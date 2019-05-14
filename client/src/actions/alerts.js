@@ -1,8 +1,19 @@
 import service from '../utils/service';
-import { GET_ALERT, EDIT_ALERT, DELETE_ALERT, GET_ALL_ALERTS } from './types';
+import { GET_ALERT, EDIT_ALERT, DELETE_ALERT, GET_ALL_ALERTS, CREATE_ALERT } from './types';
+
+
+export const createAlert_ACTION = (body, userId) => async dispatch => {
+  const response = await service.post('/alerts/add', body, userId);
+
+  dispatch({
+    type: CREATE_ALERT,
+    payload: response.data,
+  })
+}
 
 export const getAllAlerts_ACTION = () => async dispatch => {
   const response = await service.get(`/alerts/all`);
+
   dispatch({
     type: GET_ALL_ALERTS,
     payload: response.data

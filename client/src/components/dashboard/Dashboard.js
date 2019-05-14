@@ -25,7 +25,6 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile_ACTION(id);
-    getAllAlerts_ACTION();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -146,7 +145,7 @@ const noContentMsg = type => {
           Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
         </p>
         <p>
-          Do you want to create an {singularType}? <a href='#!'>Click here</a>
+          Do you want to create an {singularType}? <Link to='/create/alert'>Click here</Link>
         </p>
       </Container>
     );

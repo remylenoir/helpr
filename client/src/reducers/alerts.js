@@ -1,4 +1,10 @@
-import { GET_ALERT, EDIT_ALERT, DELETE_ALERT, GET_ALL_ALERTS } from '../actions/types';
+import {
+  GET_ALERT,
+  EDIT_ALERT,
+  DELETE_ALERT,
+  GET_ALL_ALERTS,
+  CREATE_ALERT
+} from '../actions/types';
 
 const initialState = {
   alerts: null,
@@ -6,22 +12,33 @@ const initialState = {
   location: null,
   edit: false,
   loading: true,
-  isDeleted: false,
+  isCreated: false,
+  isDeleted: false
 };
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case CREATE_ALERT:
+      return {
+        ...state,
+        alert: payload,
+        edit: false,
+        loading: false,
+        isCreated: true,
+        isDeleted: false
+      };
     case GET_ALL_ALERTS:
-    return {
-      ...state,
-      alerts: payload,
-      location: null,
-      edit: false,
-      loading: false,
-      isDeleted: false,
-    }
+      return {
+        ...state,
+        alerts: payload,
+        location: null,
+        edit: false,
+        loading: false,
+        isCreated: false,
+        isDeleted: false
+      };
     case GET_ALERT:
       return {
         ...state,
@@ -29,7 +46,8 @@ export default function(state = initialState, action) {
         location: payload.location.coordinates,
         edit: false,
         loading: false,
-        isDeleted: false,
+        isCreated: false,
+        isDeleted: false
       };
     case EDIT_ALERT:
       return {
@@ -38,7 +56,8 @@ export default function(state = initialState, action) {
         location: payload.location.coordinates,
         edit: true,
         loading: false,
-        isDeleted: false,
+        isCreated: false,
+        isDeleted: false
       };
     case DELETE_ALERT:
       return {
@@ -47,7 +66,8 @@ export default function(state = initialState, action) {
         location: null,
         edit: false,
         loading: false,
-        isDeleted: true,
+        isCreated: false,
+        isDeleted: true
       };
     default:
       return state;
