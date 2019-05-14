@@ -1,5 +1,21 @@
 import service from '../utils/service';
-import { GET_EVENT, EDIT_EVENT, CLEAR_EVENT, DELETE_EVENT, GET_ALL_EVENTS } from './types';
+import {
+  GET_EVENT,
+  EDIT_EVENT,
+  CLEAR_EVENT,
+  DELETE_EVENT,
+  GET_ALL_EVENTS,
+  CREATE_EVENT
+} from './types';
+
+export const createEvent_ACTION = (body, userId) => async dispatch => {
+  const response = await service.post('/events/add', body, userId);
+
+  dispatch({
+    type: CREATE_EVENT,
+    payload: response.data
+  });
+};
 
 export const getAllEvents_ACTION = () => async dispatch => {
   const response = await service.get(`/events/all`);
@@ -11,7 +27,7 @@ export const getAllEvents_ACTION = () => async dispatch => {
 
 export const getEvent_ACTION = eventId => async dispatch => {
   const response = await service.get(`/events/${eventId}`);
-  
+
   dispatch({
     type: GET_EVENT,
     payload: response.data

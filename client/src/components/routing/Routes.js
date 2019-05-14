@@ -19,6 +19,7 @@ import CreateAlert from '../alerts/CreateAlert';
 import EventDetails from '../events/EventDetails';
 import EventList from '../events/EventList';
 import EditEvent from '../events/EditEvent';
+import CreateEvent from '../events/CreateEvent';
 
 // User components
 import Profile from '../user/Profile';
@@ -42,6 +43,7 @@ const Routes = () => {
           <PrivateRoute exact path='/profile' component={Profile} />
           <PrivateRoute exact path='/profile/edit' component={EditProfile} />
           <PrivateRoute exact path='/create/alert' component={CreateAlert} />
+          <PrivateRoute exact path='/create/event' component={CreateEvent} />
           <PrivateRoute
             exact
             path='/alert/:alertId/edit'
