@@ -31,7 +31,7 @@ import Row from 'react-bootstrap/Row';
 const Routes = () => {
   return (
     <Fragment>
-      <Row>
+      <Row className='private-container'>
         <Switch>
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
@@ -44,16 +44,8 @@ const Routes = () => {
           <PrivateRoute exact path='/profile/edit' component={EditProfile} />
           <PrivateRoute exact path='/create/alert' component={CreateAlert} />
           <PrivateRoute exact path='/create/event' component={CreateEvent} />
-          <PrivateRoute
-            exact
-            path='/alert/:alertId/edit'
-            component={EditAlert}
-          />
-          <PrivateRoute
-            exact
-            path='/event/:eventId/edit'
-            component={EditEvent}
-          />
+          <PrivateRoute exact path='/alert/:alertId/edit' component={EditAlert} />
+          <PrivateRoute exact path='/event/:eventId/edit' component={EditEvent} />
         </Switch>
       </Row>
     </Fragment>

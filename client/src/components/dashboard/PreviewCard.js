@@ -29,12 +29,14 @@ const PreviewCard = ({
     <Fragment>
       {createdEvents.map(event => (
         <Card key={event._id} style={{ width: '15rem' }}>
-          <Card.Img variant='top' src={event.imageURL} />
-          <Card.Body>
-            <Card.Title>{event.title}</Card.Title>
-            <Card.Text>{event.description}</Card.Text>
-            <Link to={`/event/${event._id}`}>More details</Link>
-          </Card.Body>
+          <Link to={`/event/${event._id}`}>
+            {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
+            <Card.Body>
+              <Card.Title>{event.title}</Card.Title>
+              <Card.Text>{event.description}</Card.Text>
+              {/* <Link to={`/event/${event._id}`}>More details</Link> */}
+            </Card.Body>
+          </Link>
         </Card>
       ))}
     </Fragment>
@@ -42,12 +44,14 @@ const PreviewCard = ({
     <Fragment>
       {favAlerts.map(alert => (
         <Card key={alert._id} style={{ width: '15rem' }}>
-          <Card.Img variant='top' src={alert.imageURL} />
-          <Card.Body>
-            <Card.Title>{alert.title}</Card.Title>
-            <Card.Text>{alert.description}</Card.Text>
-            <Link to={`/alert/${alert._id}`}>More details</Link>
-          </Card.Body>
+          <Link to={`/alert/${alert._id}`}>
+            {alert.imageURL && <Card.Img variant='top' src={alert.imageURL} />}
+            <Card.Body>
+              <Card.Title>{alert.title}</Card.Title>
+              <Card.Text>{alert.description}</Card.Text>
+              {/* <Link to={`/alert/${alert._id}`}>More details</Link> */}
+            </Card.Body>
+          </Link>
         </Card>
       ))}
     </Fragment>
@@ -55,12 +59,14 @@ const PreviewCard = ({
     <Fragment>
       {favEvents.map(event => (
         <Card key={event._id} style={{ width: '15rem' }}>
-          <Card.Img variant='top' src={event.imageURL} />
-          <Card.Body>
-            <Card.Title>{event.title}</Card.Title>
-            <Card.Text>{event.description}</Card.Text>
-            <Link to={`/event/${event._id}`}>More details</Link>
-          </Card.Body>
+          <Link to={`/event/${event._id}`}>
+            {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
+            <Card.Body>
+              <Card.Title>{event.title}</Card.Title>
+              <Card.Text>{event.description}</Card.Text>
+              {/* <Link to={`/event/${event._id}`}>More details</Link> */}
+            </Card.Body>
+          </Link>
         </Card>
       ))}
     </Fragment>
@@ -68,12 +74,14 @@ const PreviewCard = ({
     <Fragment>
       {joinedEvents.map(event => (
         <Card key={event._id} style={{ width: '15rem' }}>
-          <Card.Img variant='top' src={event.imageURL} />
-          <Card.Body>
-            <Card.Title>{event.title}</Card.Title>
-            <Card.Text>{event.description}</Card.Text>
-            <Link to={`/event/${event._id}`}>More details</Link>
-          </Card.Body>
+          <Link to={`/event/${event._id}`}>
+            {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
+            <Card.Body>
+              <Card.Title>{event.title}</Card.Title>
+              <Card.Text>{event.description}</Card.Text>
+              {/* <Link to={`/event/${event._id}`}>More details</Link> */}
+            </Card.Body>
+          </Link>
         </Card>
       ))}
     </Fragment>
