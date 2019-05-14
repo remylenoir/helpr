@@ -1,14 +1,14 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 // import { bookmarkAlert_ACTION } from '../../actions/alerts';
-import { checkBookmark_ACTION, getCurrentProfile_ACTION, bookmarkAlert_ACTION } from '../../actions/profile'
+import { checkBookmark_ACTION, getCurrentProfile_ACTION, addBookmarkAlert_ACTION } from '../../actions/profile'
 import Spinner from '../layout/Spinner';
 
 const FollowAlertBtn = ({
   user: { favAlerts, alertBookmarked },
   profile,
   alert,
-  bookmarkAlert_ACTION,
+  addBookmarkAlert_ACTION,
   checkBookmark_ACTION, 
   getCurrentProfile_ACTION
 }) => {
@@ -16,13 +16,13 @@ const FollowAlertBtn = ({
 
   const handleBookmark = e => {
     e.preventDefault();
-    bookmarkAlert_ACTION(alert._id);
+    addBookmarkAlert_ACTION(alert._id);
     // checkBookmark_ACTION(alert._id)
     setClicked(!isClicked)
   };
 
   useEffect(() => {
-    checkBookmark_ACTION(alert._id)
+    // checkBookmark_ACTION(alert._id)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [alertBookmarked])
 
@@ -43,5 +43,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { bookmarkAlert_ACTION, checkBookmark_ACTION, getCurrentProfile_ACTION }
+  { addBookmarkAlert_ACTION, checkBookmark_ACTION, getCurrentProfile_ACTION }
 )(FollowAlertBtn);

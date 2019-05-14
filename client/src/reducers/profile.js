@@ -1,4 +1,4 @@
-import { GET_PROFILE, EDIT_PROFILE, CHECK_BOOKMARK, BOOKMARK_ALERT } from '../actions/types';
+import { GET_PROFILE, EDIT_PROFILE, CHECK_BOOKMARK, ADD_BOOKMARK_ALERT } from '../actions/types';
 
 const initialState = {
   profile: null,
@@ -25,7 +25,7 @@ export default function(state = initialState, action) {
         loading: false,
         edit: true
       };
-    case BOOKMARK_ALERT:
+    case ADD_BOOKMARK_ALERT:
       return {
         ...state,
         alertBookmarked: state.profile.favAlerts.some(alert => alert._id === payload),

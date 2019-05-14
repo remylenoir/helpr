@@ -1,5 +1,5 @@
 import service from '../utils/service';
-import { GET_PROFILE, EDIT_PROFILE, CHECK_BOOKMARK, BOOKMARK_ALERT } from './types';
+import { GET_PROFILE, EDIT_PROFILE, CHECK_BOOKMARK, ADD_BOOKMARK_ALERT } from './types';
 
 // Get current user profile
 export const getCurrentProfile_ACTION = userId => async dispatch => {
@@ -28,12 +28,25 @@ export const checkBookmark_ACTION = alertId => dispatch => {
   })
 }
 
-export const bookmarkAlert_ACTION = (alertId, userId) => async dispatch => {
+// export const bookmarkAlert_ACTION = (alertId, userId) => async dispatch => {
+//   try {
+//     await service.put(`/alerts/bookmark/${alertId}`);
+  
+//     dispatch({
+//       type: BOOKMARK_ALERT,
+//       payload: alertId,
+//     });
+//   } catch (error) {
+//     console.log(error)
+//   }
+// };
+
+export const addBookmarkAlert_ACTION = (alertId, userId) => async dispatch => {
   try {
-    await service.put(`/alerts/bookmark/${alertId}`);
+    await service.put(`/alerts/add/bookmark/${alertId}`);
   
     dispatch({
-      type: BOOKMARK_ALERT
+      type: ADD_BOOKMARK_ALERT
     });
   } catch (error) {
     console.log(error)

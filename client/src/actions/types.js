@@ -20,7 +20,9 @@ export const GET_ALL_ALERTS = 'GET_ALL_ALERTS';
 export const GET_ALERT = 'GET_ALERT';
 export const EDIT_ALERT = 'EDIT_ALERT';
 export const DELETE_ALERT = 'DELETE_ALERT';
+export const ADD_BOOKMARK_ALERT = 'ADD_BOOKMARK_ALERT';
 export const BOOKMARK_ALERT = 'BOOKMARK_ALERT';
+
 // Events
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const GET_ALL_EVENTS = 'GET_ALL_EVENTS'
