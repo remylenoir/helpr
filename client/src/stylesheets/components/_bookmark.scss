@@ -1,0 +1,33 @@
+.bookmark {
+  top: -30px;
+  left: 70vw;
+  z-index: 10;
+
+  &-button {
+    background-color: rgb(224, 224, 224);
+    border: 1px solid rgb(192, 192, 192);
+    padding: 1.5em;
+    width: $icon-size;
+    height: $icon-size;
+    border-radius: 50%;
+    transition: all ease-in-out 0.3s;
+
+    &.active {
+      background-color: rgb(255, 174, 0);
+      border: 1px solid #ae750b;
+    }
+
+    i {
+      font-size: 1.3em;
+
+      &:before {
+        transition: all ease-in-out 0.3s;
+      }
+      &.active {
+        &:before {
+          color: rgb(255, 255, 255);
+        }
+      }
+    }
+  }
+}

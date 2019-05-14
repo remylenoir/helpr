@@ -46,7 +46,8 @@ const AlertDetails = ({
         />
       </Row>
       <Row>
-        <Container className='py-3'>
+        <Container className='position-relative py-3'>
+          {auth.isAuthenticated && <FollowAlerBtn />}
           <h2>Description:</h2>
           <hr />
           <p>{alert && alert.description}</p>
@@ -59,17 +60,10 @@ const AlertDetails = ({
           </p>
           <hr />
           <div className='text-center'>
-            {alert &&
-            auth.isAuthenticated &&
-            auth.user._id === alert.creator._id ? (
-              <Link
-                to={`/alert/${alert._id}/edit`}
-                className='btn btn-secondary'
-              >
+            {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
+              <Link to={`/alert/${alert._id}/edit`} className='btn btn-secondary'>
                 Edit alert
               </Link>
-            ) : (
-              auth.isAuthenticated && <FollowAlerBtn />
             )}
           </div>
           <br />

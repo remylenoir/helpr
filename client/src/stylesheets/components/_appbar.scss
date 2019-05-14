@@ -1,7 +1,7 @@
 .create-container,
 .triggerButton + label {
-  width: 3.5em;
-  height: 3.5em;
+  width: $icon-size;
+  height: $icon-size;
 }
 
 .create-container {
@@ -12,7 +12,7 @@
   cursor: pointer;
   position: absolute;
   right: 0;
-  left: 0;
+  left: 10px;
   margin: 0 auto;
   background-color: tomato;
   border-radius: 50%;
@@ -23,7 +23,7 @@
 .triggerButton + label:after {
   position: absolute;
   content: '';
-  height: calc(3.5em / 2);
+  height: calc(#{$icon-size} / 2);
   width: 0.25em;
   background-color: #fff;
   top: 0;
@@ -36,12 +36,12 @@
 }
 
 .triggerButton + label:before {
-  height: calc(3.5em / 2);
+  height: calc(#{$icon-size} / 2);
   width: 0.25em;
 }
 
 .triggerButton + label:after {
-  width: calc(3.5em / 2);
+  width: calc(#{$icon-size} / 2);
   height: 0.25em;
 }
 
@@ -58,13 +58,13 @@
   cursor: pointer;
   position: absolute;
   padding: 1.5em;
-  width: 1em;
-  height: 1em;
+  width: $icon-size;
+  height: $icon-size;
   border-radius: 50%;
   opacity: 0;
   z-index: 1;
   transform: rotateZ(90deg);
-  font-size: 1.4em;
+  font-size: 1em;
   color: #fff;
   transition-property: all;
   transition-duration: 0.35s;
@@ -78,12 +78,12 @@
 
 .triggerButton:checked ~ a .one {
   background-color: purple;
-  transform: translateX(-2.5em) translateY(-3.5em);
+  transform: translateX(-3.2em) translateY(-4em);
   transition-delay: 0.2s;
 }
 
 .triggerButton:checked ~ a .two {
   background-color: slateblue;
-  transform: translateX(2.2em) translateY(-3.5em);
+  transform: translateX(4.4em) translateY(-4em);
   transition-delay: 0.1s;
 }
