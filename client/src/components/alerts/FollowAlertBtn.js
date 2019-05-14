@@ -5,7 +5,7 @@ import {
   removeBookmarkAlert_ACTION,
   getCurrentProfile_ACTION
 } from '../../actions/profile';
-import {setAlert_ACTION} from '../../actions/alert';
+import { setAlert_ACTION } from '../../actions/alert';
 import Spinner from '../layout/Spinner';
 
 const FollowAlertBtn = ({
@@ -21,7 +21,7 @@ const FollowAlertBtn = ({
 
   useEffect(() => {
     getCurrentProfile_ACTION(user._id);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isClicked]);
 
   const handleBookmark = e => {
@@ -29,7 +29,7 @@ const FollowAlertBtn = ({
     setClicked(!isClicked);
     addBookmarkAlert_ACTION(alert._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Alert successfully bookmarked')
+    setAlert_ACTION('Alert successfully bookmarked');
   };
 
   const handleDelete = e => {
@@ -37,21 +37,27 @@ const FollowAlertBtn = ({
     setClicked(!isClicked);
     removeBookmarkAlert_ACTION(alert._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Alert successfully unbookmarked')
+    setAlert_ACTION('Alert successfully unbookmarked');
   };
 
   return (
     <Fragment>
-      {profile &&
-      profile.favAlerts.filter(alerts => alerts._id === alert._id).length >
-        0 ? (
-        <button onClick={handleDelete}>Unbookmark Alert</button>
-      ) : (
-        <button onClick={handleBookmark}>Bookmark Alert</button>
-      )}
+      <div className='position-absolute bookmark'>
+        {profile && profile.favAlerts.filter(alerts => alerts._id === alert._id).length > 0 ? (
+          <button onClick={handleDelete} className={`${bookmarkClass} active`}>
+            <i className='fas fa-bookmark active' />
+          </button>
+        ) : (
+          <button onClick={handleBookmark} className={bookmarkClass}>
+            <i className='fas fa-bookmark' />
+          </button>
+        )}
+      </div>
     </Fragment>
   );
 };
+
+const bookmarkClass = 'bookmark-button d-flex flex-column justify-content-center align-items-center';
 
 const mapStateToProps = state => ({
   user: state.auth.user,
