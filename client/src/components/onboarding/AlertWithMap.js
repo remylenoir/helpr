@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Map from '../map/Map';
@@ -18,7 +17,5 @@ const AlertWithMap = ({ sectionTitle, btnText, desc }) => {
     </Fragment>
   );
 };
-
-AlertWithMap.propTypes = {};
 
 export default AlertWithMap;
