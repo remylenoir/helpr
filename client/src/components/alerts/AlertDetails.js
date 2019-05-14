@@ -22,7 +22,6 @@ const AlertDetails = ({
   getAlert_ACTION
 }) => {
   useEffect(() => {
-    // Get alert info by ID when component mounts
     getAlert_ACTION(alertId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -60,11 +59,16 @@ const AlertDetails = ({
           </p>
           <hr />
           <div className='text-center'>
-            {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
-              <Link to={`/alert/${alert._id}/edit`} className='btn btn-secondary'>
-                Edit alert
-              </Link>
-            )}
+            {alert &&
+              auth.isAuthenticated &&
+              auth.user._id === alert.creator._id && (
+                <Link
+                  to={`/alert/${alert._id}/edit`}
+                  className='btn btn-secondary'
+                >
+                  Edit alert
+                </Link>
+              )}
           </div>
           <br />
           <div className='text-center'>

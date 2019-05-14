@@ -40,13 +40,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         alertBookmarked: payload,
-        loading: false
+        loading: false,
       };
     case REMOVE_BOOKMARK_ALERT:
       return {
         ...state,
         alertBookmarked: null,
-        loading: false
+        loading: false,
       };
     case ADD_BOOKMARK_EVENT:
       return {

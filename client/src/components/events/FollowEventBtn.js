@@ -5,22 +5,22 @@ import {
   removeBookmarkEvent_ACTION,
   getCurrentProfile_ACTION
 } from '../../actions/profile';
-import {setAlert_ACTION} from '../../actions/alert';
-import Spinner from '../layout/Spinner';
+import { setAlert_ACTION } from '../../actions/alert';
 
-const FollowAlertBtn = ({
+const FollowEventBtn = ({
   profile,
   event,
   user,
   addBookmarkEvent_ACTION,
   removeBookmarkEvent_ACTION,
-  getCurrentProfile_ACTION, setAlert_ACTION
+  getCurrentProfile_ACTION,
+  setAlert_ACTION
 }) => {
   const [isClicked, setClicked] = useState(false);
 
   useEffect(() => {
     getCurrentProfile_ACTION(user._id);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isClicked]);
 
   const handleBookmark = e => {
@@ -28,8 +28,7 @@ const FollowAlertBtn = ({
     setClicked(!isClicked);
     addBookmarkEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Event successfully bookmarked')
-
+    setAlert_ACTION('Event successfully bookmarked');
   };
 
   const handleDelete = e => {
@@ -37,12 +36,13 @@ const FollowAlertBtn = ({
     setClicked(!isClicked);
     removeBookmarkEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Event successfully unbookmarked')
+    setAlert_ACTION('Event successfully unbookmarked');
   };
 
   return (
     <Fragment>
       {profile &&
+      event &&
       profile.favEvents.filter(events => events._id === event._id).length >
         0 ? (
         <button onClick={handleDelete}>Unbookmark Event</button>
@@ -67,4 +67,4 @@ export default connect(
     getCurrentProfile_ACTION,
     setAlert_ACTION
   }
-)(FollowAlertBtn);
+)(FollowEventBtn);

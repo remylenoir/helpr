@@ -6,7 +6,6 @@ import {
   getCurrentProfile_ACTION
 } from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
-import Spinner from '../layout/Spinner';
 
 const FollowAlertBtn = ({
   profile,
@@ -43,7 +42,10 @@ const FollowAlertBtn = ({
   return (
     <Fragment>
       <div className='position-absolute bookmark'>
-        {profile && profile.favAlerts.filter(alerts => alerts._id === alert._id).length > 0 ? (
+        {profile &&
+        alert &&
+        profile.favAlerts.filter(alerts => alerts._id === alert._id).length >
+          0 ? (
           <button onClick={handleDelete} className={`${bookmarkClass} active`}>
             <i className='fas fa-bookmark active' />
           </button>
@@ -57,7 +59,8 @@ const FollowAlertBtn = ({
   );
 };
 
-const bookmarkClass = 'bookmark-button d-flex flex-column justify-content-center align-items-center';
+const bookmarkClass =
+  'bookmark-button d-flex flex-column justify-content-center align-items-center';
 
 const mapStateToProps = state => ({
   user: state.auth.user,

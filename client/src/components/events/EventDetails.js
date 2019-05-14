@@ -15,7 +15,6 @@ const EventDetails = ({
   getEvent_ACTION
 }) => {
   useEffect(() => {
-    // Get alert info by ID when component mounts
     getEvent_ACTION(eventId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -25,7 +24,7 @@ const EventDetails = ({
     <Spinner />
   ) : (
     <div>
-       <h2>{event && event.title}</h2>
+      <h2>{event && event.title}</h2>
       <p>Description: {event && event.fullDesc}</p>
       <p>Date: {date && date}</p>
       <p>
