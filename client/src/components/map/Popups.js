@@ -3,7 +3,7 @@ import { Popup, Marker } from 'react-map-gl';
 import { getAllAlerts_ACTION } from '../../actions/alerts';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Pin from './Pin';
+// import Pin from './Pin';
 
 const Popups = ({ getAllAlerts_ACTION, alerts: { alerts } }) => {
   useEffect(() => {
