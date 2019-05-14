@@ -2,7 +2,6 @@ import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import AppBar from '../layout/AppBar/AppBar';
 
 // Actions
 import { getCurrentProfile_ACTION } from '../../actions/profile';
@@ -34,7 +33,6 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <Container className='py-3' fluid>
-        {/* <Link to='/profile'>Settings</Link> */}
         <Row>
           <Container>
             <h1>Welcome {profile && profile.username}</h1>
