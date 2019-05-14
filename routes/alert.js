@@ -131,7 +131,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const alertID = req.params.id;
 
-  Alert.findOneAndDelete(alertID)
+  Alert.findByIdAndDelete(alertID)
     .then(() => {
       User.updateMany(
         {

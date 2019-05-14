@@ -266,7 +266,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const eventID = req.params.id;
 
-  Event.findOneAndDelete(eventID)
+  Event.findByIdAndDelete(eventID)
     .then(() => {
       User.updateMany(
         {

@@ -73,7 +73,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const categoryID = req.params.id;
 
-  Category.findOneAndDelete(categoryID)
+  Category.findByIdAndDelete(categoryID)
     .then(() => {
       res.status(200).json({ message: `Category ID ${categoryID} and all references deleted` });
     })

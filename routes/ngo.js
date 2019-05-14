@@ -121,7 +121,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const ngoID = req.params.id;
 
-  NGO.findOneAndDelete(ngoID)
+  NGO.findByIdAndDelete(ngoID)
     .then(() => {
       User.updateMany(
         { favNGOs: ngoID },

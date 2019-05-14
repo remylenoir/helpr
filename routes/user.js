@@ -58,7 +58,7 @@ router.put('/:id', uploadCloud.single('photo'), (req, res) => {
 router.delete('/:id', (req, res) => {
   const userID = req.params.id;
 
-  User.findOneAndDelete(userID)
+  User.findByIdAndDelete(userID)
     .then(() => {
       res.status(200).json({ message: `User ID ${userID} deleted` });
     })
