@@ -23,8 +23,20 @@ const Onboarding = () => {
             />
           </Row>
           <Features />
+          {/* if type is all, show all events, if type is 'category name' it would only show the category */}
           <Row>
-            <HorizontalScroll title={'Volunteer work near by'} btnText={'See more'} />
+            <HorizontalScroll
+              headingTitle={'Volunteer work near by'}
+              btnText={'See more'}
+              type={'all'}
+            />
+          </Row>
+          <Row>
+            <HorizontalScroll
+              headingTitle={'More events'}
+              btnText={'See more'}
+              type={'all'}
+            />
           </Row>
         </Container>
       </Row>
