@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactMapGL, { NavigationControl, FullscreenControl } from 'react-map-gl';
-import Popups from '../map/Popups';
+import Popups from './Popups';
 
 const TOKEN =
   'pk.eyJ1IjoiYmFndWV0dGVkaW1zdW0iLCJhIjoiY2p1cjU5bWV3MDg4ejRkbjZ5YTF6bzNibSJ9.5TvJkViFSKc4l9p9JX-41w';
