@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import OurFontAwesome from '../OurFontAwesome';
 import { Link } from 'react-router-dom';
 
-const AppIcon = ({ icon, title, url }) => {
+const Item = ({ icon, title, url }) => {
   return (
     <Fragment>
       <Link to={url}>
@@ -17,4 +17,4 @@ const AppIcon = ({ icon, title, url }) => {
   );
 };
 
-export default AppIcon;
+export default Item;

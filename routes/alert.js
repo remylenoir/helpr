@@ -69,28 +69,86 @@ router.get('/:id', (req, res) => {
 // @route   PUT api/alerts/bookmark/:id
 // @desc    Bookmark/unbookmark an alert
 // @access  Public
-router.put('/bookmark/:id', (req, res) => {
+// router.put('/bookmark/:id', (req, res) => {
+//   const { _id } = req.user;
+//   const favAlerts = req.params.id;
+
+//   User.findById({ _id })
+//     .then(user => {
+//       if (!user.favAlerts.includes(favAlerts)) {
+//         User.findOneAndUpdate(
+//           { _id },
+//           {
+//             $push: { favAlerts }
+//           },
+//           { new: true }
+//         )
+//           .then(() => {
+//             res.status(200).json({ message: `Alert ID ${favAlerts} successfully bookmarked` });
+//           })
+//           .catch(err => {
+//             res.json(err);
+//           });
+//       } else {
+//         User.findOneAndUpdate(
+//           { _id },
+//           {
+//             $pull: { favAlerts }
+//           },
+//           { new: true }
+//         )
+//           .then(() => {
+//             res.status(200).json({ message: `Alert ID ${favAlerts} successfully unbookmarked` });
+//           })
+//           .catch(err => {
+//             res.json(err);
+//           });
+//       }
+//     })
+//     .catch(err => {
+//       res.json(err);
+//     });
+// });
+
+// @route   PUT api/alerts/add/bookmark/:id
+// @desc    Bookmark an alert
+// @access  Public
+router.put('/add/bookmark/:id', (req, res) => {
   const { _id } = req.user;
   const favAlerts = req.params.id;
   
   User.findById({ _id })
     .then(user => {
-      if (!user.favAlerts.includes(favAlerts)) {
-        User.findOneAndUpdate(
-          { _id },
-          {
-            $push: { favAlerts }
-          },
-          { new: true }
-        )
-          .then(() => {
-            res.status(200).json({ message: `Alert ID ${favAlerts} successfully bookmarked` });
-          })
-          .catch(err => {
-            res.json(err);
-          });
-      } else {
-        User.findOneAndUpdate(
+      User.findByIdAndUpdate(
+        _id,
+        {
+          $addToSet: { favAlerts }
+        },
+        { new: true }
+      )
+        .then(() => {
+          res.status(200).json({ message: `Alert ID ${favAlerts} successfully bookmarked` });
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+// @route   PUT api/alerts/delete/bookmark/:id
+// @desc    Unbookmark an alert
+// @access  Public
+router.put('/remove/bookmark/:id', (req, res) => {
+  const { _id } = req.user;
+  const favAlerts = req.params.id;
+
+  User.findById({ _id })
+    .then(user => {
+      if (user.favAlerts.includes(favAlerts)) {
+        User.findByIdAndUpdate(
           { _id },
           {
             $pull: { favAlerts }

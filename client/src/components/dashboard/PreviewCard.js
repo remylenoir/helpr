@@ -14,12 +14,14 @@ const PreviewCard = ({
     <Fragment>
       {createdAlerts.map(alert => (
         <Card key={alert._id} style={{ width: '15rem' }}>
-          <Card.Img variant='top' src={alert.imageURL} />
-          <Card.Body>
-            <Card.Title>{alert.title}</Card.Title>
-            <Card.Text>{alert.description}</Card.Text>
-            <Link to={`/alert/${alert._id}`}>More details</Link>
-          </Card.Body>
+          <Link to={`/alert/${alert._id}`}>
+            {alert.imageURL && <Card.Img variant='top' src={alert.imageURL} />}
+            <Card.Body>
+              <Card.Title>{alert.title}</Card.Title>
+              <Card.Text>{alert.description}</Card.Text>
+              {/* <Link to={`/alert/${alert._id}`}>More details</Link> */}
+            </Card.Body>
+          </Link>
         </Card>
       ))}
     </Fragment>

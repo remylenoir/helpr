@@ -38,7 +38,7 @@ const HorizontalScroll = ({
     filteredEvents &&
     filteredEvents.map(event => {
       return (
-        <Card style={{ width: '15rem' }}>
+        <Card key={event._id} style={{ width: '15rem' }}>
           <Card.Img variant='top' src={event.coverImage} />
           <Card.Body>
             <Card.Title>{event.title}</Card.Title>
