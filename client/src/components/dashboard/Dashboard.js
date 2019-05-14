@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
-import { getAllAlerts_ACTION } from '../../actions/alerts'
+import { getAllAlerts_ACTION } from '../../actions/alerts';
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 
@@ -17,7 +17,7 @@ const Dashboard = ({
   getAllAlerts_ACTION,
   id,
   profile: { profile, loading },
-  alerts,
+  alerts
 }) => {
   useEffect(() => {
     getCurrentProfile_ACTION(id);
@@ -44,7 +44,6 @@ const Dashboard = ({
           <Row>
             <div className='horizontal-scroll'>
               <div className='horizontal-scroll-wrapper'>
-                (
                 <Fragment>
                   {profile && profile.createdAlerts.length > 0 ? (
                     <PreviewCard type='createdAlerts' />
@@ -52,7 +51,6 @@ const Dashboard = ({
                     noContentMsg('alerts')
                   )}
                 </Fragment>
-                )
               </div>
             </div>
           </Row>
@@ -68,11 +66,9 @@ const Dashboard = ({
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
-                  (
                   <Fragment>
                     <PreviewCard type='favAlerts' />
                   </Fragment>
-                  )
                 </div>
               </div>
             </Row>
@@ -88,7 +84,6 @@ const Dashboard = ({
           <Row>
             <div className='horizontal-scroll'>
               <div className='horizontal-scroll-wrapper'>
-                (
                 <Fragment>
                   {profile && profile.createdEvents.length > 0 ? (
                     <PreviewCard type='createdEvents' />
@@ -96,7 +91,6 @@ const Dashboard = ({
                     noContentMsg('events')
                   )}
                 </Fragment>
-                )
               </div>
             </div>
           </Row>
@@ -111,11 +105,9 @@ const Dashboard = ({
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
-                  (
                   <Fragment>
                     <PreviewCard type='joinedEvents' />
                   </Fragment>
-                  )
                 </div>
               </div>
             </Row>
@@ -132,11 +124,9 @@ const Dashboard = ({
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
-                  (
                   <Fragment>
                     <PreviewCard type='favEvents' />
                   </Fragment>
-                  )
                 </div>
               </div>
             </Row>
@@ -155,8 +145,7 @@ const noContentMsg = type => {
       <div>
         <h4>You have no created {type}</h4>
         <p>
-          Do you want to see all the {type}?{' '}
-          <Link to='/alert/all'>Click here</Link>
+          Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
         </p>
         <p>
           Do you want to create an {singularType}? <a href='#!'>Click here</a>
@@ -170,8 +159,7 @@ const noContentMsg = type => {
       <div>
         <h4>You have no created {type}</h4>
         <p>
-          Do you want to see all the {type}?{' '}
-          <Link to='/event/all'>Click here</Link>
+          Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
         </p>
         <p>
           Do you want to create an {singularType}? <a href='#!'>Click here</a>
