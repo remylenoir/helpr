@@ -1,13 +1,19 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 // Redux actions
 import { createAlert_ACTION } from '../../actions/alerts';
 import { setAlert_ACTION } from '../../actions/alert';
 
+// Bootstrap components
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+// App utils
 import geolocatedFunc from '../../utils/geolocation';
 
 const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAlert_ACTION }) => {
@@ -48,7 +54,7 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
   const onSubmit = e => {
     e.preventDefault();
 
-    if (title === '' || description === '' || location === '' || imageURL === '') {
+    if (title === '' || description === '' || location === '') {
       setAlert_ACTION('All inputs must be filled');
       return;
     }
@@ -62,9 +68,64 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
   }
 
   return (
-    <div>
-      <Fragment>
-        <form onSubmit={onSubmit}>
+    <Fragment>
+      <Form
+        className='container d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+        onSubmit={onSubmit}
+      >
+        <Form.Group>
+          <Form.Label>Title</Form.Label>
+          <Form.Control type='text' name='title' value={title} onChange={onChange} />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Type</Form.Label>
+          <Form.Control as='select' name='type'>
+            <option value={type} onChange={onChange}>
+              People in need
+            </option>
+            <option value={type} onChange={onChange}>
+              Places
+            </option>
+            <option value={type} onChange={onChange}>
+              Other
+            </option>
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            as='textarea'
+            rows='3'
+            name='description'
+            value={description}
+            onChange={onChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Image</Form.Label>
+          <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Location</Form.Label>
+          <Form.Control
+            disabled
+            type='text'
+            name='location'
+            value={location.coordinates || ''}
+            onChange={onChange}
+          />
+        </Form.Group>
+
+        <Button variant='primary' type='submit'>
+          Create the alert
+        </Button>
+      </Form>
+
+      {/* <form onSubmit={onSubmit}>
           <div>
             <label>Title</label>
             <input type='text' name='title' value={title} onChange={onChange} />
@@ -94,10 +155,9 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
             <label>Image</label>
             <input type='text' name='imageURL' value={imageURL} onChange={onChange} />
           </div>
-          <input type='submit' value='Create Alert' />
-        </form>
-      </Fragment>
-    </div>
+          <input type='submit' value='Create Alert' /> 
+        </form>*/}
+    </Fragment>
   );
 };
 
