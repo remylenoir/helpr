@@ -108,10 +108,6 @@ router.get('/:id', (req, res) => {
   const currentDate = new Date();
 
   Event.findById(eventID)
-    .populate('creator', 'username profilePicture')
-    .populate('attendees', 'username profilePicture')
-    .populate('organizer', 'username profilePicture')
-    .populate('categories', 'title')
     .then(event => {
       if (currentDate > event.date) {
         Event.findByIdAndUpdate(
@@ -121,6 +117,10 @@ router.get('/:id', (req, res) => {
           },
           { new: true }
         )
+          .populate('creator', 'username profilePicture')
+          .populate('attendees', 'username profilePicture')
+          .populate('organizer', 'username profilePicture')
+          .populate('categories', 'title')
           .then(updatedEvent => {
             res.status(200).json(updatedEvent);
           })
