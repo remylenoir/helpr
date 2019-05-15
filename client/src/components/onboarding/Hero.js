@@ -2,8 +2,8 @@ import React from 'react';
 import moment from 'moment';
 
 // Bootstrap components
-import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
 
 const Hero = ({ title, details, msg, date, creator, button, btnMsg, url, type }) => {
   switch (type) {
@@ -14,7 +14,7 @@ const Hero = ({ title, details, msg, date, creator, button, btnMsg, url, type })
             <h1>{title}</h1>
             <h4>{msg}</h4>
             <p>
-              Created by {creator && creator.username} <br /> {moment(date).format('DD/MM/YYYY')}
+              Created by {creator && creator.username} <br /> {moment(date).fromNow()}
             </p>
             {button && <Button variant='primary'>{btnMsg}</Button>}
           </div>

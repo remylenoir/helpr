@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // Redux actions
@@ -9,11 +9,9 @@ import { getAlert_ACTION } from '../../actions/alerts';
 // App components
 import Spinner from '../layout/Spinner';
 import FollowAlerBtn from './FollowAlertBtn';
-
 import Hero from '../onboarding/Hero';
 
 // Bootstrap components
-// import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
@@ -45,7 +43,7 @@ const AlertDetails = ({
           creator={alert && alert.creator}
           button={false}
           btnMsg={'Get involve now!'}
-          url={'https://source.unsplash.com/random'}
+          url={alert && alert.imageURL}
         />
       </Row>
       <Row>
@@ -59,7 +57,7 @@ const AlertDetails = ({
           <p>
             <span className='text-danger'>Insert map</span>
             <br />
-            {location && location[0]}, {location && location[1]}
+            {alert && alert.location.coordinates[0]}, {alert && alert.location.coordinates[1]}
           </p>
           <hr />
           <div className='text-center'>

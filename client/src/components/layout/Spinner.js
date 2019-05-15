@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
+// Bootstrap components
 import Spinner from 'react-bootstrap/Spinner';
 
 export default () => (
