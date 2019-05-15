@@ -2,13 +2,15 @@ import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import moment from 'moment';
+
+// Date Picker
+import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/themes/airbnb.css';
 
 // Redux actions
 import { setAlert_ACTION } from '../../actions/alert';
 import { createEvent_ACTION } from '../../actions/events';
-
-// App components
-import DatePicker from '../layout/DatePicker';
 
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
@@ -19,7 +21,7 @@ import Container from 'react-bootstrap/Container';
 const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTION }) => {
   const [formData, setFormData] = useState({
     title: '',
-    date: '',
+    date: new Date(),
     shortDesc: '',
     fullDesc: '',
     street: '',
@@ -43,25 +45,20 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
     });
   };
 
-  // const onChangeDate = event => {
-  //   const date = event._d;
+  const onChangeDate = event => {
+    const date = moment(event[0]).format();
 
-  //   setFormData({
-  //     ...formData,
-  //     date
-  //   });
-  // };
-
-  // const onSaveDate = event => {
-  //   console.log('saved', moment(date).format('llll'));
-  // };
+    setFormData({
+      ...formData,
+      date
+    });
+  };
 
   const onSubmit = e => {
     e.preventDefault();
 
     if (
       title === '' ||
-      // date === '' ||
       shortDesc === '' ||
       fullDesc === '' ||
       street === '' ||
@@ -95,7 +92,21 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
 
             <Form.Group>
               <Form.Label htmlFor='date'>Date</Form.Label>
-              <DatePicker />
+              <br />
+              <Flatpickr
+                className='datepicker form-control'
+                data-enable-time
+                name={date}
+                value={date}
+                onChange={onChangeDate}
+                options={{
+                  minTime: '09:00',
+                  maxTime: '23:00',
+                  locale: {
+                    firstDayOfWeek: 1
+                  }
+                }}
+              />
             </Form.Group>
 
             <Form.Group>
