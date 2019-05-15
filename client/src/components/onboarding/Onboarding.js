@@ -1,12 +1,14 @@
 import React, { Fragment } from 'react';
-import Hero from './Hero';
+
+// App components
+import Hero from '../layout/Hero';
 import Features from './Features';
 import HorizontalScroll from './HorizontalScroll';
 
 // Bootstrap components
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import AlertWithMap from './AlertWithMap';
+import Container from 'react-bootstrap/Container';
 
 const Onboarding = () => {
   return (
@@ -15,7 +17,7 @@ const Onboarding = () => {
         <Container fluid>
           <Row>
             <Hero
-              details={false}
+              type={'home'}
               title={'Helpr.'}
               msg={'Helping people just got easier!'}
               button={true}
@@ -33,11 +35,7 @@ const Onboarding = () => {
             />
           </Row>
           <Row>
-            <HorizontalScroll
-              headingTitle={'More events'}
-              btnText={'See more'}
-              type={'all'}
-            />
+            <HorizontalScroll headingTitle={'More events'} btnText={'See more'} type={'all'} />
           </Row>
 
           <AlertWithMap

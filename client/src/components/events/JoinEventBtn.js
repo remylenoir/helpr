@@ -1,16 +1,14 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
-import {
-  joinEvent_ACTION,
-  leaveEvent_ACTION,
-  getCurrentProfile_ACTION
-} from '../../actions/profile';
+
+// Redux actions
+import { joinEvent_ACTION, leaveEvent_ACTION, getCurrentProfile_ACTION } from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
 
 const JoinEventBtn = ({
   profile,
   event,
-  auth: {user, isAuthenticated},
+  auth: { user, isAuthenticated },
   joinEvent_ACTION,
   leaveEvent_ACTION,
   getCurrentProfile_ACTION,
@@ -19,14 +17,13 @@ const JoinEventBtn = ({
   const [isClicked, setClicked] = useState(false);
 
   useEffect(() => {
-    
     user && getCurrentProfile_ACTION(user._id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isClicked]);
 
   const handleBookmark = e => {
     if (isAuthenticated === null) {
-      setAlert_ACTION('Must be logged in')
+      setAlert_ACTION('Must be logged in');
       return;
     }
     e.preventDefault();
@@ -46,17 +43,29 @@ const JoinEventBtn = ({
 
   return (
     <Fragment>
-      {profile &&
-      event &&
-      profile.joinedEvents.filter(events => events._id === event._id).length >
-        0 ? (
+      {/* {profile && event && profile.joinedEvents.filter(events => events._id === event._id).length > 0 ? (
         <button onClick={handleDelete}>Leave Event</button>
       ) : (
         <button onClick={handleBookmark}>Join Event</button>
-      )}
+      )} */}
+      <div className='position-absolute join'>
+        {profile &&
+        event &&
+        profile.joinedEvents.filter(events => events._id === event._id).length > 0 ? (
+          <div onClick={handleDelete} className={`${bookmarkClass} active`}>
+            <i className='fas fa-calendar-plus active' />
+          </div>
+        ) : (
+          <div onClick={handleBookmark} className={bookmarkClass}>
+            <i className='far fa-calendar-plus' />
+          </div>
+        )}
+      </div>
     </Fragment>
   );
 };
+
+const bookmarkClass = 'join-button d-flex flex-column justify-content-center align-items-center';
 
 const mapStateToProps = state => ({
   auth: state.auth,

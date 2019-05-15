@@ -10,6 +10,11 @@ import { setAlert_ACTION } from '../../actions/alert';
 // App components
 import Spinner from '../layout/Spinner';
 
+// Bootstrap components
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
+
 const EditAlert = ({
   alerts: { alert, loading, isDeleted },
   editAlert_ACTION,
@@ -47,7 +52,7 @@ const EditAlert = ({
   const onSubmit = e => {
     e.preventDefault();
 
-    if (title === '' || type === '' || description === '' || imageURL === '') {
+    if (title === '' || type === '' || description === '') {
       setAlert_ACTION('All inputs must be filled');
       return;
     }
@@ -72,6 +77,60 @@ const EditAlert = ({
   ) : (
     <div>
       <Fragment>
+        <Form
+          className='container d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+          onSubmit={onSubmit}
+        >
+          <Form.Group>
+            <Form.Label>Title</Form.Label>
+            <Form.Control type='text' name='title' value={title} onChange={onChange} />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Type</Form.Label>
+            <Form.Control as='select' name='type'>
+              <option value={type} onChange={onChange}>
+                People in need
+              </option>
+              <option value={type} onChange={onChange}>
+                Places
+              </option>
+              <option value={type} onChange={onChange}>
+                Other
+              </option>
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as='textarea'
+              rows='3'
+              name='description'
+              value={description}
+              onChange={onChange}
+            />
+          </Form.Group>
+
+          <Form.Group>
+            <Form.Label>Image</Form.Label>
+            <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
+          </Form.Group>
+
+          <ButtonToolbar className='justify-content-around'>
+            <Button variant='primary' type='submit'>
+              Update
+            </Button>
+            <Button variant='danger' type='submit' onClick={handleDelete}>
+              Delete
+            </Button>
+          </ButtonToolbar>
+        </Form>
+        <br />
+        <Link to={`/alert/${alert._id}`} className='btn btn-secondary'>
+          Back to alert details
+        </Link>
+        {/*       
         <form onSubmit={onSubmit}>
           <div>
             <label>Title</label>
@@ -101,7 +160,7 @@ const EditAlert = ({
           <input type='submit' value='Confirm Edit' />
         </form>
         <Link to={`/alert/${alert._id}`}>Back to alert details</Link>
-        <button onClick={handleDelete}>Delete Alert</button>
+        <button onClick={handleDelete}>Delete Alert</button> */}
       </Fragment>
     </div>
   );
