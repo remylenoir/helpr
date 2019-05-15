@@ -1,0 +1,12 @@
+#my-map {
+  .popup-inner {
+    font-size: 0.8rem;
+    .mapboxgl-popup-content {
+      padding: 10px 25px;
+    }
+    .mapboxgl-popup-close-button {
+      right: -4px;
+      top: -6px;
+    }
+  }
+}
