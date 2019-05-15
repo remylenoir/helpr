@@ -119,6 +119,7 @@ const Search = ({
 
   return (
     <div>
+      <Link to='/explore'>Explore</Link>
       <div>
         <form onSubmit={eventOnSubmit}>
           <input
