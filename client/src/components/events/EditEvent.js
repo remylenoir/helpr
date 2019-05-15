@@ -1,33 +1,53 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
+// Redux actions
 import { editEvent_ACTION, deleteEvent_ACTION } from '../../actions/events';
 import { setAlert_ACTION } from '../../actions/alert';
+
+// App components
 import Spinner from '../layout/Spinner';
+import BackLink from '../layout/BackLink';
+import DatePicker from '../layout/DatePicker';
+
+// Bootstrap components
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 const EditEvent = ({
-  events: { event, date, location, loading, isDeleted },
+  events: { event, date, loading, isDeleted },
   editEvent_ACTION,
   deleteEvent_ACTION,
-  setAlert_ACTION
+  setAlert_ACTION,
+  history
 }) => {
   const [formData, setFormData] = useState({
     title: '',
-    date: '',
+    shortDesc: '',
     fullDesc: '',
-    location: '',
+    date: '',
+    street: '',
+    city: '',
+    zipcode: '',
     coverImage: ''
   });
 
-  const { title, fullDesc, coverImage } = formData;
+  const { title, shortDesc, fullDesc, street, city, zipcode, coverImage } = formData;
 
   useEffect(() => {
     setFormData({
+      date: loading || !date ? '' : date,
       title: loading || !event.title ? '' : event.title,
       fullDesc: loading || !event.fullDesc ? '' : event.fullDesc,
-      date: loading || !date ? '' : date,
-      location: loading || !location ? '' : location,
+      shortDesc: loading || !event.shortDesc ? '' : event.shortDesc,
+      street: loading || !event.street ? '' : event.street,
+      city: loading || !event.city ? '' : event.city,
+      zipcode: loading || !event.zipcode ? '' : event.zipcode,
       coverImage: loading || !event.coverImage ? '' : event.coverImage
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,9 +67,12 @@ const EditEvent = ({
 
     if (
       title === '' ||
+      shortDesc === '' ||
       fullDesc === '' ||
       date === '' ||
-      location === '' ||
+      street === '' ||
+      city === '' ||
+      zipcode === '' ||
       coverImage === ''
     ) {
       setAlert_ACTION('All inputs must be filled');
@@ -58,6 +81,8 @@ const EditEvent = ({
 
     editEvent_ACTION(event._id, formData);
     setAlert_ACTION('Changes have been saved');
+
+    history.push(`/event/${event._id}`);
   };
 
   const handleDelete = e => {
@@ -76,6 +101,81 @@ const EditEvent = ({
   ) : (
     <div>
       <Fragment>
+        <Container className='py-3 inner-view'>
+          <BackLink url={`/event/${event._id}`} title={'Back to the event'} />
+
+          <h1>Edit the alert</h1>
+          <hr />
+          <Form
+            className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+            onSubmit={onSubmit}
+          >
+            <Form.Group>
+              <Form.Label htmlFor='title'>Title</Form.Label>
+              <Form.Control type='text' name='title' value={title} onChange={onChange} />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label htmlFor='date'>Date</Form.Label>
+              <DatePicker />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows='1'
+                name='shortDesc'
+                value={shortDesc}
+                onChange={onChange}
+              />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label htmlFor='fullDesc'>Description</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows='3'
+                name='fullDesc'
+                value={fullDesc}
+                onChange={onChange}
+              />
+            </Form.Group>
+
+            <h3>Address</h3>
+            <Form.Group>
+              <Form.Label htmlFor='street'>Street</Form.Label>
+              <Form.Control type='text' name='street' value={street} onChange={onChange} />
+            </Form.Group>
+
+            <Form.Row>
+              <Form.Group as={Col}>
+                <Form.Label htmlFor='city'>City</Form.Label>
+                <Form.Control type='text' name='city' value={city} onChange={onChange} />
+              </Form.Group>
+
+              <Form.Group as={Col}>
+                <Form.Label htmlFor='zipcode'>Zip</Form.Label>
+                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
+              </Form.Group>
+            </Form.Row>
+
+            <Form.Group>
+              <Form.Label htmlFor='coverImage'>Image</Form.Label>
+              <Form.Control type='file' name='coverImage' value={coverImage} onChange={onChange} />
+            </Form.Group>
+
+            <ButtonToolbar className='justify-content-around py-3'>
+              <Button variant='primary' type='submit'>
+                Update
+              </Button>
+              <Button variant='danger' type='submit' onClick={handleDelete}>
+                Delete
+              </Button>
+            </ButtonToolbar>
+          </Form>
+        </Container>
+        {/*         
         <form onSubmit={onSubmit}>
           <div>
             <label>Title</label>
@@ -83,26 +183,16 @@ const EditEvent = ({
           </div>
           <div>
             <label>Description</label>
-            <input
-              type='text'
-              name='description'
-              value={fullDesc}
-              onChange={onChange}
-            />
+            <input type='text' name='description' value={fullDesc} onChange={onChange} />
           </div>
           <div>
             <label>Image</label>
-            <input
-              type='text'
-              name='coverImage'
-              value={coverImage}
-              onChange={onChange}
-            />
+            <input type='text' name='coverImage' value={coverImage} onChange={onChange} />
           </div>
           <input type='submit' value='Confirm Edit' />
         </form>
         <Link to={`/event/${event._id}`}>Back to event details</Link>
-        <button onClick={handleDelete}>Delete event</button>
+        <button onClick={handleDelete}>Delete event</button> */}
       </Fragment>
     </div>
   );

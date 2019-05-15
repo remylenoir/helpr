@@ -58,8 +58,6 @@ const EventDetails = ({
           <hr />
           <p>
             <span className='text-danger'>Insert map</span>
-            <br />
-            {event && event.location.coordinates[0]}, {event && event.location.coordinates[1]}
           </p>
           <hr />
           <EventAttendees />

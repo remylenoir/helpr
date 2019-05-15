@@ -11,6 +11,7 @@ import { setAlert_ACTION } from '../../actions/alert';
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 // App utils
 import geolocatedFunc from '../../utils/geolocation';
@@ -68,61 +69,65 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
 
   return (
     <Fragment>
-      <Form
-        className='container d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
-        onSubmit={onSubmit}
-      >
-        <Form.Group>
-          <Form.Label>Title</Form.Label>
-          <Form.Control type='text' name='title' value={title} onChange={onChange} />
-        </Form.Group>
+      <Container className='py-3 inner-view'>
+        <h1>Create an alert</h1>
+        <hr />
+        <Form
+          className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+          onSubmit={onSubmit}
+        >
+          <Form.Group>
+            <Form.Label>Title</Form.Label>
+            <Form.Control type='text' name='title' value={title} onChange={onChange} />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Type</Form.Label>
-          <Form.Control as='select' name='type'>
-            <option value={type} onChange={onChange}>
-              People in need
-            </option>
-            <option value={type} onChange={onChange}>
-              Places
-            </option>
-            <option value={type} onChange={onChange}>
-              Other
-            </option>
-          </Form.Control>
-        </Form.Group>
+          <Form.Group>
+            <Form.Label>Type</Form.Label>
+            <Form.Control as='select' name='type'>
+              <option value={type} onChange={onChange}>
+                People in need
+              </option>
+              <option value={type} onChange={onChange}>
+                Places
+              </option>
+              <option value={type} onChange={onChange}>
+                Other
+              </option>
+            </Form.Control>
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            as='textarea'
-            rows='3'
-            name='description'
-            value={description}
-            onChange={onChange}
-          />
-        </Form.Group>
+          <Form.Group>
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as='textarea'
+              rows='3'
+              name='description'
+              value={description}
+              onChange={onChange}
+            />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Image</Form.Label>
-          <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
-        </Form.Group>
+          <Form.Group>
+            <Form.Label>Image</Form.Label>
+            <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
+          </Form.Group>
 
-        <Form.Group>
-          <Form.Label>Location</Form.Label>
-          <Form.Control
-            disabled
-            type='text'
-            name='location'
-            value={location.coordinates || ''}
-            onChange={onChange}
-          />
-        </Form.Group>
+          <Form.Group>
+            <Form.Label>Location</Form.Label>
+            <Form.Control
+              disabled
+              type='text'
+              name='location'
+              value={location.coordinates || ''}
+              onChange={onChange}
+            />
+          </Form.Group>
 
-        <Button variant='primary' type='submit'>
-          Create the alert
-        </Button>
-      </Form>
+          <Button variant='primary' type='submit'>
+            Create the alert
+          </Button>
+        </Form>
+      </Container>
 
       {/* <form onSubmit={onSubmit}>
           <div>
