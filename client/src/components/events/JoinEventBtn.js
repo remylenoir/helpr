@@ -1,27 +1,25 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
-
-// Redux actions
 import {
-  addBookmarkAlert_ACTION,
-  removeBookmarkAlert_ACTION,
+  joinEvent_ACTION,
+  leaveEvent_ACTION,
   getCurrentProfile_ACTION
 } from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
 
-const FollowAlertBtn = ({
+const JoinEventBtn = ({
   profile,
-  alert,
+  event,
   auth: {user, isAuthenticated},
-  addBookmarkAlert_ACTION,
-  removeBookmarkAlert_ACTION,
+  joinEvent_ACTION,
+  leaveEvent_ACTION,
   getCurrentProfile_ACTION,
   setAlert_ACTION
 }) => {
   const [isClicked, setClicked] = useState(false);
 
   useEffect(() => {
-
+    
     user && getCurrentProfile_ACTION(user._id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isClicked]);
@@ -33,50 +31,45 @@ const FollowAlertBtn = ({
     }
     e.preventDefault();
     setClicked(!isClicked);
-    addBookmarkAlert_ACTION(alert._id);
+    joinEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Alert successfully bookmarked');
+    setAlert_ACTION('Successfully joined event');
   };
 
   const handleDelete = e => {
     e.preventDefault();
     setClicked(!isClicked);
-    removeBookmarkAlert_ACTION(alert._id);
+    leaveEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Alert successfully unbookmarked');
+    setAlert_ACTION('Successfully left event');
   };
 
   return (
     <Fragment>
-      <div className='position-absolute bookmark'>
-        {profile && alert && profile.favAlerts.filter(alerts => alerts._id === alert._id).length > 0 ? (
-          <div onClick={handleDelete} className={`${bookmarkClass} active`}>
-            <i className='fas fa-bookmark active' />
-          </div>
-        ) : (
-          <div onClick={handleBookmark} className={bookmarkClass}>
-            <i className='fas fa-bookmark' />
-          </div>
-        )}
-      </div>
+      {profile &&
+      event &&
+      profile.joinedEvents.filter(events => events._id === event._id).length >
+        0 ? (
+        <button onClick={handleDelete}>Leave Event</button>
+      ) : (
+        <button onClick={handleBookmark}>Join Event</button>
+      )}
     </Fragment>
   );
 };
 
-const bookmarkClass = 'bookmark-button d-flex flex-column justify-content-center align-items-center';
-
 const mapStateToProps = state => ({
   auth: state.auth,
-  alert: state.alerts.alert,
+  event: state.events.event,
   profile: state.profile.profile
 });
 
 export default connect(
   mapStateToProps,
   {
-    addBookmarkAlert_ACTION,
-    removeBookmarkAlert_ACTION,
+    joinEvent_ACTION,
+    leaveEvent_ACTION,
     getCurrentProfile_ACTION,
     setAlert_ACTION
   }
-)(FollowAlertBtn);
+)(JoinEventBtn);

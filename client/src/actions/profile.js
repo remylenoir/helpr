@@ -6,7 +6,9 @@ import {
   ADD_BOOKMARK_ALERT,
   REMOVE_BOOKMARK_ALERT,
   ADD_BOOKMARK_EVENT,
-  REMOVE_BOOKMARK_EVENT
+  REMOVE_BOOKMARK_EVENT,
+  JOIN_EVENT,
+  LEAVE_EVENT
 } from './types';
 
 // Get current user profile
@@ -45,7 +47,7 @@ export const addBookmarkAlert_ACTION = (alertId, userId) => async dispatch => {
       payload: response.data
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -60,7 +62,7 @@ export const removeBookmarkAlert_ACTION = (
       type: REMOVE_BOOKMARK_ALERT
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -73,7 +75,7 @@ export const addBookmarkEvent_ACTION = (eventId, userId) => async dispatch => {
       payload: response.data
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -88,6 +90,31 @@ export const removeBookmarkEvent_ACTION = (
       type: REMOVE_BOOKMARK_EVENT
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+  }
+};
+
+export const joinEvent_ACTION = eventId => async dispatch => {
+  try {
+    const response = await service.put(`/events/join/${eventId}`);
+
+    dispatch({
+      type: JOIN_EVENT,
+      payload: response.data
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const leaveEvent_ACTION = eventId => async dispatch => {
+  try {
+    await service.put(`/events/leave/${eventId}`);
+
+    dispatch({
+      type: LEAVE_EVENT,
+    });
+  } catch (error) {
+    console.error(error);
   }
 };
