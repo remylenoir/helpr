@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Redux actions
 import { getAlert_ACTION } from '../../actions/alerts';
 
 // App components
+import Hero from '../layout/Hero';
 import Spinner from '../layout/Spinner';
 import FollowAlerBtn from './FollowAlertBtn';
-import Hero from '../onboarding/Hero';
 
 // Bootstrap components
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 const AlertDetails = ({
   match: {
@@ -35,20 +36,19 @@ const AlertDetails = ({
     <Container className='pb-3 inner-view' fluid>
       <Row>
         <Hero
-          details={'details'}
+          type={'details'}
           title={alert && alert.title}
-          type={'alert'}
           msg={alert && alert.type}
           date={alert && alert.created_at}
           creator={alert && alert.creator}
-          button={false}
-          btnMsg={'Get involve now!'}
           url={alert && alert.imageURL}
         />
       </Row>
       <Row>
         <Container className='position-relative py-3'>
-          <FollowAlerBtn />
+          <div className='actions-buttons position-absolute'>
+            <FollowAlerBtn />
+          </div>
           <h2>Description:</h2>
           <hr />
           <p>{alert && alert.description}</p>
@@ -60,12 +60,21 @@ const AlertDetails = ({
             {alert && alert.location.coordinates[0]}, {alert && alert.location.coordinates[1]}
           </p>
           <hr />
+
+          {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
+            <Card border='warning' className='my-3 no-shadow text-center'>
+              <Card.Header>Administrator area</Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  <Link to={`/alert/${alert._id}/edit`} className='btn btn-warning'>
+                    Edit alert
+                  </Link>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          )}
+
           <div className='text-center'>
-            {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
-              <Link to={`/alert/${alert._id}/edit`} className='btn btn-secondary'>
-                Edit alert
-              </Link>
-            )}{' '}
             {alert && auth.isAuthenticated && (
               <Link to={`/dashboard`} className='btn btn-secondary'>
                 Back to the dashboard

@@ -9,7 +9,6 @@ import { createAlert_ACTION } from '../../actions/alerts';
 import { setAlert_ACTION } from '../../actions/alert';
 
 // Bootstrap components
-import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 

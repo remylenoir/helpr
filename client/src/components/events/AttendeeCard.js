@@ -2,8 +2,14 @@
 import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+// Redux actions
 import { getEvent_ACTION } from '../../actions/events';
 import { getCurrentProfile_ACTION } from '../../actions/profile';
+
+// Bootstrap components
+import Card from 'react-bootstrap/Card';
+import Image from 'react-bootstrap/Image';
 
 const AttendeeCard = ({ event, getEvent_ACTION, profile, user }) => {
   useEffect(() => {
@@ -18,10 +24,12 @@ const AttendeeCard = ({ event, getEvent_ACTION, profile, user }) => {
   const attendeeElement =
     event &&
     event.attendees.map(attendee => (
-      <div key={attendee._id}>
-        <h5>{attendee.username}</h5>
-        <img src={attendee.profilePicture} alt='profile-pic' />
-      </div>
+      <Card key={attendee._id} className='align-items-center'>
+        <Card.Body>
+          <Image variant='top' src={attendee.profilePicture} className='attendee-profile' />
+          <Card.Subtitle className='my-2 text-muted'>{attendee.username}</Card.Subtitle>
+        </Card.Body>
+      </Card>
     ));
 
   return <Fragment>{attendeeElement}</Fragment>;
