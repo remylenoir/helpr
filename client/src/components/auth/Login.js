@@ -39,8 +39,8 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
   }
 
   return (
-    <Container>
-      <Row className='vh-100 align-items-center'>
+    <div className='auth-view d-flex align-items-center justify-content-center container'>
+      <Row>
         <Container>
           <h3 className='text-center'>It's good to see you again</h3>
           <p className='text-center'>Sign into your account</p>
@@ -66,7 +66,7 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
           </Form>
         </Container>
       </Row>
-    </Container>
+    </div>
   );
 };
 
