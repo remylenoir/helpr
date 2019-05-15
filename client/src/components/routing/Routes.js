@@ -8,7 +8,8 @@ import Login from '../auth/Login';
 // Main components
 import Dashboard from '../dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
-import Search from '../layout/Search'
+import Search from '../layout/Search';
+import Bookmarks from '../bookmarks/Bookmarks'
 
 // Alert components
 import AlertDetails from '../alerts/AlertDetails';
@@ -42,6 +43,7 @@ const Routes = () => {
           <Route exact path='/event/all' component={EventList} />
           <Route exact path='/event/:eventId' component={EventDetails} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <PrivateRoute exact path='/bookmarks' component={Bookmarks} />
           <PrivateRoute exact path='/profile' component={Profile} />
           <PrivateRoute exact path='/profile/edit' component={EditProfile} />
           <PrivateRoute exact path='/create/alert' component={CreateAlert} />

@@ -63,7 +63,7 @@ const CreateEvent = ({
           </div>
           <div>
             <label>Date</label>
-            <input type='text' name='date' value={date} onChange={onChange} />
+            <input type='text' name='date' value={date || ''} onChange={onChange} />
           </div>
           <div>
             <label>Location</label>
@@ -111,7 +111,7 @@ const CreateEvent = ({
 CreateEvent.propTypes = {
   auth: PropTypes.object,
   events: PropTypes.object,
-  createAlert_ACTION: PropTypes.func.isRequired,
+  createEvent_ACTION: PropTypes.func.isRequired,
   setAlert_ACTION: PropTypes.func.isRequired
 };
 

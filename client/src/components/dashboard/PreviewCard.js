@@ -19,7 +19,6 @@ const PreviewCard = ({
             <Card.Body>
               <Card.Title>{alert.title}</Card.Title>
               <Card.Text>{alert.description}</Card.Text>
-              {/* <Link to={`/alert/${alert._id}`}>More details</Link> */}
             </Card.Body>
           </Link>
         </Card>
@@ -34,7 +33,6 @@ const PreviewCard = ({
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Text>{event.description}</Card.Text>
-              {/* <Link to={`/event/${event._id}`}>More details</Link> */}
             </Card.Body>
           </Link>
         </Card>
@@ -49,7 +47,6 @@ const PreviewCard = ({
             <Card.Body>
               <Card.Title>{alert.title}</Card.Title>
               <Card.Text>{alert.description}</Card.Text>
-              {/* <Link to={`/alert/${alert._id}`}>More details</Link> */}
             </Card.Body>
           </Link>
         </Card>
@@ -64,7 +61,6 @@ const PreviewCard = ({
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Text>{event.description}</Card.Text>
-              {/* <Link to={`/event/${event._id}`}>More details</Link> */}
             </Card.Body>
           </Link>
         </Card>
@@ -79,7 +75,6 @@ const PreviewCard = ({
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Text>{event.description}</Card.Text>
-              {/* <Link to={`/event/${event._id}`}>More details</Link> */}
             </Card.Body>
           </Link>
         </Card>

@@ -1,6 +1,4 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-
 
 import Item from './Item';
 import PopMenu from './PopMenu';
@@ -18,7 +16,7 @@ const AppMenu = () => {
         <PopMenu />
 
         <Item url={'#'} icon={'fa-map-marker-alt'} title={'Map'} />
-        <Item url={'#'} icon={'fa-bookmark'} title={'Bookmarks'} />
+        <Item url={'/bookmarks'} icon={'fa-bookmark'} title={'Bookmarks'} />
       </Fragment>
     </Navbar>
   );
