@@ -99,13 +99,13 @@ const EditProfile = ({
       <Container>
         <Row>
           <Col>
-            <div id='edit-profile'>
+            <div id='profile'>
               <Link to='/profile'>
                 <OurFontAwesome icon={'fa-arrow-left'} /> Back to profile
               </Link>
               <Form onSubmit={onSubmit}>
                 <div className='image-edit'>
-                  <Form.Label for='profileImg'>
+                  <Form.Label for='profileImg' className='profile-img-holder'>
                     <span className='edit-title'>Edit image</span>
                     <Image src={user.profilePicture} className='profile-img' />
                   </Form.Label>
