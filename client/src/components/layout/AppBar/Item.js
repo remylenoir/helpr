@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
-import OurFontAwesome from '../OurFontAwesome';
 import { Link } from 'react-router-dom';
+
+// App components
+import OurFontAwesome from '../OurFontAwesome';
 
 const Item = ({ icon, title, url }) => {
   return (

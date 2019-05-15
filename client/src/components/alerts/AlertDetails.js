@@ -10,6 +10,7 @@ import { getAlert_ACTION } from '../../actions/alerts';
 import Hero from '../layout/Hero';
 import Spinner from '../layout/Spinner';
 import FollowAlerBtn from './FollowAlertBtn';
+import Subtitle from '../layout/Headings/Subtitle';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -49,16 +50,17 @@ const AlertDetails = ({
           <div className='actions-buttons position-absolute'>
             <FollowAlerBtn />
           </div>
-          <h2>Description:</h2>
-          <hr />
+
+          <Subtitle title={'Description'} />
           <p>{alert && alert.description}</p>
-          <h2>Location:</h2>
-          <hr />
+
+          <Subtitle title={'Location'} />
           <p>
             <span className='text-danger'>Insert map</span>
             <br />
             {alert && alert.location.coordinates[0]}, {alert && alert.location.coordinates[1]}
           </p>
+
           <hr />
 
           {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (

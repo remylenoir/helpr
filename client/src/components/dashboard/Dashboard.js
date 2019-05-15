@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Redux actions
 import { getCurrentProfile_ACTION } from '../../actions/profile';
@@ -10,6 +10,7 @@ import { getAllEvents_ACTION } from '../../actions/events';
 // App components
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
+import Subtitle from '../layout/Headings/Subtitle';
 
 // Bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -40,10 +41,11 @@ const Dashboard = ({
           </Container>
         </Row>
 
+        {/* ----- ALERTS ----- */}
+        {/* Created Alerts */}
         <Row>
           <Container fluid>
-            <h2>Created Alerts</h2>
-            <hr />
+            <Subtitle title={'Created Alerts'} />
             <Row>
               {profile && profile.createdAlerts.length > 0 ? (
                 <div className='horizontal-scroll'>
@@ -58,12 +60,11 @@ const Dashboard = ({
           </Container>
         </Row>
 
+        {/* Bookmarked Alerts */}
         {profile && profile.favAlerts.length > 0 && (
           <Row className='my-2'>
             <Container fluid>
-              <h2>Bookmarked Alerts</h2>
-              <hr />
-
+              <Subtitle title={'Bookmarked Alerts'} />
               <Row>
                 <div className='horizontal-scroll'>
                   <div className='horizontal-scroll-wrapper'>
@@ -75,11 +76,11 @@ const Dashboard = ({
           </Row>
         )}
 
+        {/* ----- EVENTS ----- */}
+        {/* Created Events */}
         <Row className='my-2'>
           <Container fluid>
-            <h2>Created Events</h2>
-            <hr />
-
+            <Subtitle title={'Created Events'} />
             <Row>
               {profile && profile.createdEvents.length > 0 ? (
                 <div className='horizontal-scroll'>
@@ -94,11 +95,11 @@ const Dashboard = ({
           </Container>
         </Row>
 
+        {/* Joined Alerts */}
         {profile && profile.joinedEvents.length > 0 && (
           <Row className='my-2'>
             <Container fluid>
-              <h2>Joined Events</h2>
-              <hr />
+              <Subtitle title={'Joined Events'} />
               <Row>
                 <div className='horizontal-scroll'>
                   <div className='horizontal-scroll-wrapper'>
@@ -110,12 +111,11 @@ const Dashboard = ({
           </Row>
         )}
 
+        {/* Bookmarked Events */}
         {profile && profile.favEvents.length > 0 && (
           <Row className='my-2'>
             <Container fluid>
-              <h2>Bookmarked Events</h2>
-              <hr />
-
+              <Subtitle title={'Bookmarked Events'} />
               <Row>
                 <div className='horizontal-scroll'>
                   <div className='horizontal-scroll-wrapper'>
@@ -139,12 +139,10 @@ const noContentMsg = type => {
       <Container>
         <h4>You have no created {type}</h4>
         <p>
-          Do you want to see all the {type}?{' '}
-          <Link to='/alert/all'>Click here</Link>
+          Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
         </p>
         <p>
-          Do you want to create an {singularType}?{' '}
-          <Link to='/create/alert'>Click here</Link>
+          Do you want to create an {singularType}? <Link to='/create/alert'>Click here</Link>
         </p>
       </Container>
     );
@@ -155,12 +153,10 @@ const noContentMsg = type => {
       <Container>
         <h4>You have no created {type}</h4>
         <p>
-          Do you want to see all the {type}?{' '}
-          <Link to='/event/all'>Click here</Link>
+          Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
         </p>
         <p>
-          Do you want to create an {singularType}?{' '}
-          <Link to='/create/event'>Click here</Link>
+          Do you want to create an {singularType}? <Link to='/create/event'>Click here</Link>
         </p>
       </Container>
     );

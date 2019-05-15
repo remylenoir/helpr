@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 // Redux actions
-import { createAlert_ACTION } from '../../actions/alerts';
 import { setAlert_ACTION } from '../../actions/alert';
+import { createAlert_ACTION } from '../../actions/alerts';
 
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
@@ -128,39 +128,6 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
           </Button>
         </Form>
       </Container>
-
-      {/* <form onSubmit={onSubmit}>
-          <div>
-            <label>Title</label>
-            <input type='text' name='title' value={title} onChange={onChange} />
-          </div>
-          <div>
-            <select name='type'>
-              <option value={type} onChange={onChange}>
-                People in need
-              </option>
-              <option value={type} onChange={onChange}>
-                Places
-              </option>
-              <option value={type} onChange={onChange}>
-                Other
-              </option>
-            </select>
-          </div>
-          <div>
-            <label>Description</label>
-            <input type='text' name='description' value={description} onChange={onChange} />
-          </div>
-          <div>
-            <label>Location</label>
-            <input type='text' name='location' value={location.coordinates || ''} onChange={onChange} />
-          </div>
-          <div>
-            <label>Image</label>
-            <input type='text' name='imageURL' value={imageURL} onChange={onChange} />
-          </div>
-          <input type='submit' value='Create Alert' /> 
-        </form>*/}
     </Fragment>
   );
 };

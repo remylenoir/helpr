@@ -21,7 +21,7 @@ const Onboarding = () => {
               title={'Helpr.'}
               msg={'Helping people just got easier!'}
               button={true}
-              btnMsg={'Get involve now!'}
+              btnMsg={'Get involved now!'}
               url={'https://source.unsplash.com/random'}
             />
           </Row>
@@ -40,7 +40,7 @@ const Onboarding = () => {
 
           <AlertWithMap
             sectionTitle={'Help people who are in need'}
-            btnText={'See all help alerts'}
+            btnText={'See all the alerts'}
             desc={'tenetur quisquam reiciendis esse quam corporis eum.'}
           />
         </Container>

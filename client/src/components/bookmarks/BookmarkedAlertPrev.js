@@ -19,9 +19,7 @@ const BookmarkedAlertPrev = ({ profile: { profile, loading } }) => {
           {profile.favAlerts.map(alert => (
             <Card key={alert._id} style={{ width: '15rem' }}>
               <Link to={`/alert/${alert._id}`}>
-                {alert.imageURL && (
-                  <Card.Img variant='top' src={alert.imageURL} />
-                )}
+                {alert.imageURL && <Card.Img variant='top' src={alert.imageURL} />}
                 <Card.Body>
                   <Card.Title>{alert.title}</Card.Title>
                   <Card.Text>{alert.description}</Card.Text>
@@ -31,7 +29,7 @@ const BookmarkedAlertPrev = ({ profile: { profile, loading } }) => {
           ))}
         </Fragment>
       ) : (
-        <h3>You have no bookmarked alerts</h3>
+        <p>You have no bookmarked alerts</p>
       )}
     </Fragment>
   );

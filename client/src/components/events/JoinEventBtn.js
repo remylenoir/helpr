@@ -2,8 +2,8 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 // Redux actions
-import { joinEvent_ACTION, leaveEvent_ACTION, getCurrentProfile_ACTION } from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
+import { joinEvent_ACTION, leaveEvent_ACTION, getCurrentProfile_ACTION } from '../../actions/profile';
 
 const JoinEventBtn = ({
   profile,

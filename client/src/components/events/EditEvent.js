@@ -2,15 +2,15 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import moment from 'moment';
 
 // Date Picker
+import moment from 'moment';
 import Flatpickr from 'react-flatpickr';
 import 'flatpickr/dist/themes/airbnb.css';
 
 // Redux actions
-import { editEvent_ACTION, deleteEvent_ACTION } from '../../actions/events';
 import { setAlert_ACTION } from '../../actions/alert';
+import { editEvent_ACTION, deleteEvent_ACTION } from '../../actions/events';
 
 // App components
 import Spinner from '../layout/Spinner';

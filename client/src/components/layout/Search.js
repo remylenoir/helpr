@@ -1,18 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+// Redux actions
 import { getAllEvents_ACTION } from '../../actions/events';
 import { getAllAlerts_ACTION } from '../../actions/alerts';
 
-const Search = ({
-  events,
-  alerts,
-  history,
-  getAllEvents_ACTION,
-  getAllAlerts_ACTION
-}) => {
+// App components
+import BackLink from '../layout/BackLink';
+
+const Search = ({ events, alerts, history, getAllEvents_ACTION, getAllAlerts_ACTION }) => {
   useEffect(() => {
     getAllEvents_ACTION();
     getAllAlerts_ACTION();
@@ -44,8 +43,7 @@ const Search = ({
     let suggestions = [];
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, 'i');
-      suggestions =
-        events && allEventsArr.filter(event => regex.test(event.title));
+      suggestions = events && allEventsArr.filter(event => regex.test(event.title));
 
       setEventSuggestions(suggestions);
     } else if (value.length === 0) {
@@ -76,8 +74,7 @@ const Search = ({
     let suggestions = [];
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, 'i');
-      suggestions =
-        alerts && allAlertsArr.filter(alert => regex.test(alert.title));
+      suggestions = alerts && allAlertsArr.filter(alert => regex.test(alert.title));
 
       setAlertSuggestions(suggestions);
     } else if (value.length === 0) {
@@ -119,24 +116,16 @@ const Search = ({
 
   return (
     <div>
-      <Link to='/explore'>Explore</Link>
+      <BackLink url={`/explore`} title={'Explore'} />
       <div>
         <form onSubmit={eventOnSubmit}>
-          <input
-            onChange={onTextChangedEvents}
-            type='text'
-            placeholder='Search events'
-          />
+          <input onChange={onTextChangedEvents} type='text' placeholder='Search events' />
           {renderSuggestionsEvents()}
         </form>
       </div>
       <div>
         <form onSubmit={alertOnSubmit}>
-          <input
-            onChange={onTextChangedAlerts}
-            type='text'
-            placeholder='Search alerts'
-          />
+          <input onChange={onTextChangedAlerts} type='text' placeholder='Search alerts' />
           {renderSuggestionsAlerts()}
         </form>
       </div>
