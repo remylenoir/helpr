@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+
 
 import Item from './Item';
 import PopMenu from './PopMenu';
@@ -11,7 +13,7 @@ const AppMenu = () => {
     <Navbar collapseOnSelect fixed='bottom' expand='true' bg='primary'>
       <Fragment>
         <Item url={'/'} icon={'fa-home'} title={'Home'} />
-        <Item url={'#'} icon={'fa-search'} title={'Events'} />
+        <Item url={'/search'} icon={'fa-search'} title={'Events'} />
 
         <PopMenu />
 

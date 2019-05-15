@@ -45,7 +45,7 @@ export default function(state = initialState, action) {
         ...state,
         event: payload,
         date: payload.date,
-        location: payload.location.coordinates,
+        location: null,
         edit: false,
         loading: false,
         isCreated: false,
