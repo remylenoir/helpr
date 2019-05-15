@@ -44,7 +44,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         alert: payload,
-        location: payload.location.coordinates,
         edit: false,
         loading: false,
         isCreated: false,
