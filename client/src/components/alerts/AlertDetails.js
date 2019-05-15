@@ -65,6 +65,11 @@ const AlertDetails = ({
               <Link to={`/alert/${alert._id}/edit`} className='btn btn-secondary'>
                 Edit alert
               </Link>
+            )}{' '}
+            {alert && auth.isAuthenticated && (
+              <Link to={`/dashboard`} className='btn btn-secondary'>
+                Back to the dashboard
+              </Link>
             )}
           </div>
           <br />
