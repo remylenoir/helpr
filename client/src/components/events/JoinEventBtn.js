@@ -1,18 +1,18 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import {
-  addBookmarkEvent_ACTION,
-  removeBookmarkEvent_ACTION,
+  joinEvent_ACTION,
+  leaveEvent_ACTION,
   getCurrentProfile_ACTION
 } from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
 
-const FollowEventBtn = ({
+const JoinEventBtn = ({
   profile,
   event,
   auth: {user, isAuthenticated},
-  addBookmarkEvent_ACTION,
-  removeBookmarkEvent_ACTION,
+  joinEvent_ACTION,
+  leaveEvent_ACTION,
   getCurrentProfile_ACTION,
   setAlert_ACTION
 }) => {
@@ -31,28 +31,28 @@ const FollowEventBtn = ({
     }
     e.preventDefault();
     setClicked(!isClicked);
-    addBookmarkEvent_ACTION(event._id);
+    joinEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Event successfully bookmarked');
+    setAlert_ACTION('Successfully joined event');
   };
 
   const handleDelete = e => {
     e.preventDefault();
     setClicked(!isClicked);
-    removeBookmarkEvent_ACTION(event._id);
+    leaveEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Event successfully unbookmarked');
+    setAlert_ACTION('Successfully left event');
   };
 
   return (
     <Fragment>
       {profile &&
       event &&
-      profile.favEvents.filter(events => events._id === event._id).length >
+      profile.joinedEvents.filter(events => events._id === event._id).length >
         0 ? (
-        <button onClick={handleDelete}>Unbookmark Event</button>
+        <button onClick={handleDelete}>Leave Event</button>
       ) : (
-        <button onClick={handleBookmark}>Bookmark Event</button>
+        <button onClick={handleBookmark}>Join Event</button>
       )}
     </Fragment>
   );
@@ -67,9 +67,9 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    addBookmarkEvent_ACTION,
-    removeBookmarkEvent_ACTION,
+    joinEvent_ACTION,
+    leaveEvent_ACTION,
     getCurrentProfile_ACTION,
     setAlert_ACTION
   }
-)(FollowEventBtn);
+)(JoinEventBtn);

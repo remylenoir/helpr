@@ -5,7 +5,9 @@ import {
   ADD_BOOKMARK_ALERT,
   REMOVE_BOOKMARK_ALERT,
   ADD_BOOKMARK_EVENT,
-  REMOVE_BOOKMARK_EVENT
+  REMOVE_BOOKMARK_EVENT,
+  JOIN_EVENT,
+  LEAVE_EVENT
 } from '../actions/types';
 
 const initialState = {
@@ -13,7 +15,8 @@ const initialState = {
   loading: true,
   edit: false,
   alertBookmarked: null,
-  eventBookmarked: null
+  eventBookmarked: null,
+  eventJoined: null
 };
 
 export default function(state = initialState, action) {
@@ -40,13 +43,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         alertBookmarked: payload,
-        loading: false,
+        loading: false
       };
     case REMOVE_BOOKMARK_ALERT:
       return {
         ...state,
         alertBookmarked: null,
-        loading: false,
+        loading: false
       };
     case ADD_BOOKMARK_EVENT:
       return {
@@ -64,6 +67,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         // alertBookmarked: state.profile.favAlerts.some(alert => alert._id === payload),
+        loading: false
+      };
+    case JOIN_EVENT:
+      return {
+        ...state,
+        eventJoined: payload,
+        loading: false
+      };
+    case LEAVE_EVENT:
+      return {
+        ...state,
+        eventJoined: null,
         loading: false
       };
     default:

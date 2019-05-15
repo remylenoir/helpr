@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getEvent_ACTION } from '../../actions/events';
 import Spinner from '../layout/Spinner';
 import FollowEventBtn from './FollowEventBtn';
+import JoinEventBtn from './JoinEventBtn';
 
 const EventDetails = ({
   match: {
@@ -24,6 +25,8 @@ const EventDetails = ({
     <Spinner />
   ) : (
     <div>
+      <FollowEventBtn />
+      <JoinEventBtn />
       <h2>{event && event.title}</h2>
       <p>Description: {event && event.fullDesc}</p>
       <p>Date: {date && date}</p>
@@ -34,11 +37,9 @@ const EventDetails = ({
         Images: <img src={event && event.coverImage} alt='event pic' />
       </p>
       <br />
-      {event && auth.isAuthenticated && auth.user._id === event.creator ? (
-        <Link to={`/event/${event._id}/edit`}>Edit event</Link>
-      ) : (
-        auth.isAuthenticated && <FollowEventBtn />
-      )}
+      {event && auth.isAuthenticated && auth.user._id === event.creator ?
+        <Link to={`/event/${event._id}/edit`}>Edit event</Link> : <Fragment></Fragment> }
+      
       <br />
       <Link to='/event/all'>See all events</Link>
     </div>

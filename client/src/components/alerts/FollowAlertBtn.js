@@ -10,7 +10,7 @@ import { setAlert_ACTION } from '../../actions/alert';
 const FollowAlertBtn = ({
   profile,
   alert,
-  user,
+  auth: {user, isAuthenticated},
   addBookmarkAlert_ACTION,
   removeBookmarkAlert_ACTION,
   getCurrentProfile_ACTION,
@@ -19,11 +19,16 @@ const FollowAlertBtn = ({
   const [isClicked, setClicked] = useState(false);
 
   useEffect(() => {
-    getCurrentProfile_ACTION(user._id);
+
+    user && getCurrentProfile_ACTION(user._id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isClicked]);
 
   const handleBookmark = e => {
+    if (isAuthenticated === null) {
+      setAlert_ACTION('Must be logged in')
+      return;
+    }
     e.preventDefault();
     setClicked(!isClicked);
     addBookmarkAlert_ACTION(alert._id);
@@ -59,7 +64,7 @@ const FollowAlertBtn = ({
 const bookmarkClass = 'bookmark-button d-flex flex-column justify-content-center align-items-center';
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
+  auth: state.auth,
   alert: state.alerts.alert,
   profile: state.profile.profile
 });

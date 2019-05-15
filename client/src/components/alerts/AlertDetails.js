@@ -46,7 +46,7 @@ const AlertDetails = ({
       </Row>
       <Row>
         <Container className='position-relative py-3'>
-          {auth.isAuthenticated && <FollowAlerBtn />}
+          <FollowAlerBtn />
           <h2>Description:</h2>
           <hr />
           <p>{alert && alert.description}</p>
