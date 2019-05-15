@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
+
+// Redux actions
 import {
   addBookmarkAlert_ACTION,
   removeBookmarkAlert_ACTION,

@@ -3,23 +3,18 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-// Actions
+// Redux actions
 import { getCurrentProfile_ACTION } from '../../actions/profile';
 
+// App components
 import Spinner from '../layout/Spinner';
 import PreviewCard from './PreviewCard';
 
 // Bootstrap components
-// import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-const Dashboard = ({
-  getCurrentProfile_ACTION,
-  id,
-  profile: { profile, loading },
-  alerts
-}) => {
+const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }, alerts }) => {
   useEffect(() => {
     getCurrentProfile_ACTION(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -136,12 +131,10 @@ const noContentMsg = type => {
       <Container>
         <h4>You have no created {type}</h4>
         <p>
-          Do you want to see all the {type}?{' '}
-          <Link to='/alert/all'>Click here</Link>
+          Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
         </p>
         <p>
-          Do you want to create an {singularType}?{' '}
-          <Link to='/create/alert'>Click here</Link>
+          Do you want to create an {singularType}? <Link to='/create/alert'>Click here</Link>
         </p>
       </Container>
     );
@@ -152,12 +145,10 @@ const noContentMsg = type => {
       <Container>
         <h4>You have no created {type}</h4>
         <p>
-          Do you want to see all the {type}?{' '}
-          <Link to='/event/all'>Click here</Link>
+          Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
         </p>
         <p>
-          Do you want to create an {singularType}?{' '}
-          <Link to='/create/event'>Click here</Link>
+          Do you want to create an {singularType}? <Link to='/create/event'>Click here</Link>
         </p>
       </Container>
     );

@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+// Redux actions
 import { getAlert_ACTION } from '../../actions/alerts';
+
+// App components
 import Spinner from '../layout/Spinner';
 import FollowAlerBtn from './FollowAlertBtn';
 

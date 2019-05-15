@@ -3,17 +3,14 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+
+// Redux actions
 import { createAlert_ACTION } from '../../actions/alerts';
 import { setAlert_ACTION } from '../../actions/alert';
+
 import geolocatedFunc from '../../utils/geolocation';
 
-const CreateAlert = ({
-  auth: { user },
-  alerts,
-  coords,
-  createAlert_ACTION,
-  setAlert_ACTION
-}) => {
+const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAlert_ACTION }) => {
   const [formData, setFormData] = useState({
     title: '',
     type: 'People in need',
@@ -28,14 +25,15 @@ const CreateAlert = ({
     const latitude = coords && coords.latitude;
     const longitude = coords && coords.longitude;
 
-    coords && setFormData({
-      ...formData,
-      location: {
-        type: 'Point',
-        coordinates: [latitude, longitude]
-      }
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    coords &&
+      setFormData({
+        ...formData,
+        location: {
+          type: 'Point',
+          coordinates: [latitude, longitude]
+        }
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coords]);
 
   const onChange = event => {
@@ -50,12 +48,7 @@ const CreateAlert = ({
   const onSubmit = e => {
     e.preventDefault();
 
-    if (
-      title === '' ||
-      description === '' ||
-      location === '' ||
-      imageURL === ''
-    ) {
+    if (title === '' || description === '' || location === '' || imageURL === '') {
       setAlert_ACTION('All inputs must be filled');
       return;
     }
@@ -91,30 +84,15 @@ const CreateAlert = ({
           </div>
           <div>
             <label>Description</label>
-            <input
-              type='text'
-              name='description'
-              value={description}
-              onChange={onChange}
-            />
+            <input type='text' name='description' value={description} onChange={onChange} />
           </div>
           <div>
             <label>Location</label>
-            <input
-              type='text'
-              name='location'
-              value={location.coordinates || ""}
-              onChange={onChange}
-            />
+            <input type='text' name='location' value={location.coordinates || ''} onChange={onChange} />
           </div>
           <div>
             <label>Image</label>
-            <input
-              type='text'
-              name='imageURL'
-              value={imageURL}
-              onChange={onChange}
-            />
+            <input type='text' name='imageURL' value={imageURL} onChange={onChange} />
           </div>
           <input type='submit' value='Create Alert' />
         </form>

@@ -1,7 +1,11 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+// Redux actions
 import { getAllAlerts_ACTION } from '../../actions/alerts';
+
+// App components
 import AlertPreview from './AlertPreview';
 
 // Bootstrap components

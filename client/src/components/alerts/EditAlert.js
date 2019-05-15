@@ -2,8 +2,12 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+// Redux actions
 import { editAlert_ACTION, deleteAlert_ACTION } from '../../actions/alerts';
 import { setAlert_ACTION } from '../../actions/alert';
+
+// App components
 import Spinner from '../layout/Spinner';
 
 const EditAlert = ({
@@ -88,21 +92,11 @@ const EditAlert = ({
           </div>
           <div>
             <label>Description</label>
-            <input
-              type='text'
-              name='description'
-              value={description}
-              onChange={onChange}
-            />
+            <input type='text' name='description' value={description} onChange={onChange} />
           </div>
           <div>
             <label>Image</label>
-            <input
-              type='text'
-              name='imageURL'
-              value={imageURL}
-              onChange={onChange}
-            />
+            <input type='text' name='imageURL' value={imageURL} onChange={onChange} />
           </div>
           <input type='submit' value='Confirm Edit' />
         </form>
