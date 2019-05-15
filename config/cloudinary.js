@@ -10,7 +10,7 @@ cloudinary.config({
 
 const storage = cloudinaryStorage({
   cloudinary,
-  folder: 'profile-pic',
+  folder: 'app-images',
   allowedFormats: ['jpg', 'png'],
   transformation: [{ width: 300, crop: 'scale' }],
   filename: (req, file, done) => {
