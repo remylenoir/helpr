@@ -42,25 +42,21 @@ const FollowAlertBtn = ({
   return (
     <Fragment>
       <div className='position-absolute bookmark'>
-        {profile &&
-        alert &&
-        profile.favAlerts.filter(alerts => alerts._id === alert._id).length >
-          0 ? (
-          <button onClick={handleDelete} className={`${bookmarkClass} active`}>
+        {profile && alert && profile.favAlerts.filter(alerts => alerts._id === alert._id).length > 0 ? (
+          <div onClick={handleDelete} className={`${bookmarkClass} active`}>
             <i className='fas fa-bookmark active' />
-          </button>
+          </div>
         ) : (
-          <button onClick={handleBookmark} className={bookmarkClass}>
+          <div onClick={handleBookmark} className={bookmarkClass}>
             <i className='fas fa-bookmark' />
-          </button>
+          </div>
         )}
       </div>
     </Fragment>
   );
 };
 
-const bookmarkClass =
-  'bookmark-button d-flex flex-column justify-content-center align-items-center';
+const bookmarkClass = 'bookmark-button d-flex flex-column justify-content-center align-items-center';
 
 const mapStateToProps = state => ({
   user: state.auth.user,
