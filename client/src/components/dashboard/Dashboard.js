@@ -24,7 +24,7 @@ const Dashboard = ({ getCurrentProfile_ACTION, id, profile: { profile, loading }
     <Spinner />
   ) : (
     <Fragment>
-      <Container className='py-3' fluid>
+      <Container className='dashboard py-3' fluid>
         <Row>
           <Container>
             <h1>Welcome {profile && profile.username}</h1>

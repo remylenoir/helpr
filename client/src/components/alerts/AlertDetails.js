@@ -32,7 +32,7 @@ const AlertDetails = ({
   return loading && alert === null ? (
     <Spinner />
   ) : (
-    <Container className='pb-3' fluid>
+    <Container className='pb-3 alert-detail' fluid>
       <Row>
         <Hero
           details={'details'}

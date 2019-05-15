@@ -1,5 +1,10 @@
 .private {
   &-container {
-    margin-bottom: 80px;
+    // margin-bottom: 120px;
   }
+}
+
+.dashboard,
+.alert-detail {
+  margin-bottom: $app-bar;
 }

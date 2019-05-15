@@ -46,8 +46,8 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
   }
 
   return (
-    <Container>
-      <Row className='vh-100 align-items-center'>
+    <div className='auth-view d-flex align-items-center justify-content-center container'>
+      <Row>
         <Container>
           <h3 className='text-center'>Do you want to be part of&nbsp;a&nbsp;great community?</h3>
           <p className='text-center'>Create your account</p>
@@ -78,7 +78,7 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
           </Form>
         </Container>
       </Row>
-    </Container>
+    </div>
   );
 };
 
