@@ -9,12 +9,19 @@ import {
 import { setAlert_ACTION } from '../../actions/alert';
 import Spinner from '../layout/Spinner';
 import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import OurFontAwesome from '../layout/OurFontAwesome';
 
 const EditProfile = ({
   id,
   user,
   loading,
   edit,
+  history,
   editCurrentProfile_ACTION,
   setAlert_ACTION,
   uploadCurrentProfilePicture_ACTION
@@ -27,7 +34,7 @@ const EditProfile = ({
     profilePicture: ''
   });
 
-  const { username, firstName, lastName, profilePicture } = formData;
+  const { username, firstName, lastName } = formData;
 
   useEffect(() => {
     //If the profile data is not loaded set its value to '', otherwise set it to its corresponding value from the store
@@ -69,62 +76,85 @@ const EditProfile = ({
       setAlert_ACTION('All inputs must be filled');
       return;
     }
+    //Check if user didn't change anything, then do nothing
+    if (
+      username === user.username &&
+      firstName === user.firstName &&
+      lastName === user.lastName
+    ) {
+      return;
+    }
 
     // Send edit action to reducer and display success message
     editCurrentProfile_ACTION(user._id, formData);
     setAlert_ACTION('Changes have been saved');
+
+    history.push('/profile');
   };
 
   return loading && user === null ? (
     <Spinner />
   ) : (
-    <div>
-      <Fragment>
-        <form onSubmit={onSubmit}>
-          <div className='image-edit'>
-            <label for='profileImg'>
-              <span className='edit-title'>Edit image</span>
-              <Image src={user.profilePicture} />
-            </label>
-            <input
-              type='file'
-              id='profileImg'
-              name='profilePicture'
-              onChange={onUpload}
-            />
-          </div>
-          <div>
-            <label>Username</label>
-            <input
-              type='text'
-              name='username'
-              value={username}
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <label>First name:</label>
-            <input
-              type='text'
-              name='firstName'
-              value={firstName}
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <label>Last name:</label>
-            <input
-              type='text'
-              name='lastName'
-              value={lastName}
-              onChange={onChange}
-            />
-          </div>
-          <input type='submit' value='Save changes' />
-        </form>
-        <Link to='/profile'>Back to profile</Link>
-      </Fragment>
-    </div>
+    <Fragment>
+      <Container>
+        <Row>
+          <Col>
+            <div id='edit-profile'>
+              <Link to='/profile'>
+                <OurFontAwesome icon={'fa-arrow-left'} /> Back to profile
+              </Link>
+              <Form onSubmit={onSubmit}>
+                <div className='image-edit'>
+                  <Form.Label for='profileImg'>
+                    <span className='edit-title'>Edit image</span>
+                    <Image src={user.profilePicture} className='profile-img' />
+                  </Form.Label>
+                  <input
+                    type='file'
+                    id='profileImg'
+                    name='profilePicture'
+                    onChange={onUpload}
+                  />
+                </div>
+                <Form.Group>
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    placeholder={user.username}
+                    type='text'
+                    name='username'
+                    value={username}
+                    onChange={onChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>First name:</Form.Label>
+                  <Form.Control
+                    placeholder={user.firstName}
+                    type='text'
+                    name='firstName'
+                    value={firstName}
+                    onChange={onChange}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Last name:</Form.Label>
+                  <Form.Control
+                    placeholder={user.lastName}
+                    type='text'
+                    name='lastName'
+                    value={lastName}
+                    onChange={onChange}
+                  />
+                </Form.Group>
+                <Button type='submit' variant='primary btn-block'>
+                  Update
+                </Button>
+              </Form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </Fragment>
   );
 };
 

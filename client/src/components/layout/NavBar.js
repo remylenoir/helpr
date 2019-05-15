@@ -10,7 +10,10 @@ import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => {
+const NavBar = ({
+  auth: { isAuthenticated, loading, user },
+  logout_ACTION
+}) => {
   const authLinks = (
     <Fragment>
       <button
@@ -23,7 +26,9 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
       >
         <Container>
           <Row className='align-items-center'>
-            <div className='col text-right user-name'>{user && user.username}</div>
+            <div className='col text-right user-name'>
+              {user && user.username}
+            </div>
             <div className='pr-2'>
               <Image
                 src='https://source.unsplash.com/random'
@@ -44,7 +49,7 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
           Settings
         </Link>
         <div className='dropdown-divider' />
-        <Link onClick={logout_ACTION} to='/dashboard' className='dropdown-item'>
+        <Link onClick={logout_ACTION} to='/' className='dropdown-item'>
           Logout
         </Link>
       </div>

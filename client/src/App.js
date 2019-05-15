@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+import history from './history';
 // Components
 import Routes from './components/routing/Routes';
 import Landing from './components/layout/Landing';
@@ -18,7 +18,7 @@ import Row from 'react-bootstrap/Row';
 
 const App = () => (
   <Provider store={store}>
-    <Router>
+    <Router history={history}>
       <Container fluid>
         <Row className='main-navigation'>
           <NavBar />

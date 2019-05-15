@@ -1,28 +1,39 @@
-.image-edit {
-  position: relative;
-  display: inline-block;
-  label {
-    position: relative;
-    overflow: hidden;
-    border-radius: 100%;
-    span {
-      position: absolute;
-      background: rgba(0, 0, 0, 0.5);
-      display: inline-block;
-      width: 100%;
-      text-align: center;
-      color: #fff;
-      bottom: 1px;
-      cursor: pointer;
-      font-size: 1em;
-      height: 21%;
-    }
+#edit-profile {
+  i {
+    cursor: pointer;
   }
-  input {
-    visibility: hidden;
-    position: absolute;
-    width: 0px;
-    top: 80px;
-    left: 70px;
+  padding-top: 1em;
+  .image-edit {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+    .profile-img {
+      max-width: 160px;
+    }
+    label {
+      position: relative;
+      overflow: hidden;
+      border-radius: 100%;
+      span {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        bottom: 1px;
+        cursor: pointer;
+        font-size: 1em;
+        height: 21%;
+      }
+    }
+    input {
+      visibility: hidden;
+      position: absolute;
+      width: 0px;
+      top: 80px;
+      left: 70px;
+    }
   }
 }
