@@ -6,6 +6,7 @@ import { getEvent_ACTION } from '../../actions/events';
 import Spinner from '../layout/Spinner';
 import FollowEventBtn from './FollowEventBtn';
 import JoinEventBtn from './JoinEventBtn';
+import EventAttendees from './EventAttendees';
 
 const EventDetails = ({
   match: {
@@ -36,6 +37,8 @@ const EventDetails = ({
       <p>
         Images: <img src={event && event.coverImage} alt='event pic' />
       </p>
+      <br/>
+      <EventAttendees />
       <br />
       {event && auth.isAuthenticated && auth.user._id === event.creator ?
         <Link to={`/event/${event._id}/edit`}>Edit event</Link> : <Fragment></Fragment> }

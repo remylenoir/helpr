@@ -35,6 +35,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         events: payload,
+        event: null,
         loading: false,
         isCreated: false,
         isDeleted: false
