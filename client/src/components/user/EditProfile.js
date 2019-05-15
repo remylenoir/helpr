@@ -2,10 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  editCurrentProfile_ACTION,
-  uploadCurrentProfilePicture_ACTION
-} from '../../actions/profile';
+import { editCurrentProfile_ACTION, uploadCurrentProfilePicture_ACTION } from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
 import Spinner from '../layout/Spinner';
 import Image from 'react-bootstrap/Image';
@@ -77,11 +74,7 @@ const EditProfile = ({
       return;
     }
     //Check if user didn't change anything, then do nothing
-    if (
-      username === user.username &&
-      firstName === user.firstName &&
-      lastName === user.lastName
-    ) {
+    if (username === user.username && firstName === user.firstName && lastName === user.lastName) {
       return;
     }
 
@@ -105,16 +98,11 @@ const EditProfile = ({
               </Link>
               <Form onSubmit={onSubmit}>
                 <div className='image-edit'>
-                  <Form.Label for='profileImg'>
+                  <Form.Label htmlFor='profileImg'>
                     <span className='edit-title'>Edit image</span>
                     <Image src={user.profilePicture} className='profile-img' />
                   </Form.Label>
-                  <input
-                    type='file'
-                    id='profileImg'
-                    name='profilePicture'
-                    onChange={onUpload}
-                  />
+                  <input type='file' id='profileImg' name='profilePicture' onChange={onUpload} />
                 </div>
                 <Form.Group>
                   <Form.Label>Username</Form.Label>

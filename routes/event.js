@@ -11,10 +11,12 @@ const User = require('../models/User');
 router.post('/add', (req, res) => {
   const {
     title,
-    location,
+    date,
     shortDesc,
     fullDesc,
-    date,
+    street,
+    city,
+    zipcode,
     coverImage,
     categories,
     organizer,
@@ -27,10 +29,12 @@ router.post('/add', (req, res) => {
 
   Event.create({
     title,
+    date,
     shortDesc,
     fullDesc,
-    location,
-    date,
+    street,
+    city,
+    zipcode,
     coverImage,
     categories,
     organizer,

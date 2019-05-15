@@ -1,12 +1,16 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+// Redux actions
+import { getAllEvents_ACTION } from '../../actions/events';
+
+// App components
+import Spinner from '../layout/Spinner';
+
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
-import { getAllEvents_ACTION } from '../../actions/events';
-import Spinner from '../layout/Spinner';
 
 const HorizontalScroll = ({
   headingTitle,
@@ -17,6 +21,7 @@ const HorizontalScroll = ({
 }) => {
   useEffect(() => {
     getAllEvents_ACTION();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // check to see type is 'all' or 'category name', once we defined different categories,

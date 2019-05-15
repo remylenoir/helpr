@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 // Redux actions
 import { editAlert_ACTION, deleteAlert_ACTION } from '../../actions/alerts';
@@ -9,17 +9,20 @@ import { setAlert_ACTION } from '../../actions/alert';
 
 // App components
 import Spinner from '../layout/Spinner';
+import BackLink from '../layout/BackLink';
 
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar';
 
 const EditAlert = ({
   alerts: { alert, loading, isDeleted },
   editAlert_ACTION,
   deleteAlert_ACTION,
-  setAlert_ACTION
+  setAlert_ACTION,
+  history
 }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -59,6 +62,8 @@ const EditAlert = ({
 
     editAlert_ACTION(alert._id, formData);
     setAlert_ACTION('Changes have been saved');
+
+    history.push(`/alert/${alert._id}`);
   };
 
   const handleDelete = e => {
@@ -75,10 +80,14 @@ const EditAlert = ({
   return loading && alert === null ? (
     <Spinner />
   ) : (
-    <div>
-      <Fragment>
+    <Fragment>
+      <Container className='py-3 inner-view'>
+        <BackLink url={`/alert/${alert._id}`} title={'Back to the alert'} />
+
+        <h1>Edit the alert</h1>
+        <hr />
         <Form
-          className='container d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+          className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
           onSubmit={onSubmit}
         >
           <Form.Group>
@@ -117,7 +126,7 @@ const EditAlert = ({
             <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
           </Form.Group>
 
-          <ButtonToolbar className='justify-content-around'>
+          <ButtonToolbar className='justify-content-around py-3'>
             <Button variant='primary' type='submit'>
               Update
             </Button>
@@ -126,10 +135,10 @@ const EditAlert = ({
             </Button>
           </ButtonToolbar>
         </Form>
-        <br />
+        {/* <br />
         <Link to={`/alert/${alert._id}`} className='btn btn-secondary'>
           Back to alert details
-        </Link>
+        </Link> */}
         {/*       
         <form onSubmit={onSubmit}>
           <div>
@@ -161,8 +170,8 @@ const EditAlert = ({
         </form>
         <Link to={`/alert/${alert._id}`}>Back to alert details</Link>
         <button onClick={handleDelete}>Delete Alert</button> */}
-      </Fragment>
-    </div>
+      </Container>
+    </Fragment>
   );
 };
 

@@ -1,23 +1,19 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { logout_ACTION } from '../../actions/auth';
 
 // Bootstrap components
-import Navbar from 'react-bootstrap/Navbar';
-import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
 
-const NavBar = ({
-  auth: { isAuthenticated, loading, user },
-  logout_ACTION
-}) => {
+const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => {
   const authLinks = (
     <Fragment>
       <button
-        className='btn btn-outline-dark dropdown-toggle d-flex align-items-center user-dropdown'
+        className={navbarClass}
         type='button'
         id='dropdown-user'
         data-toggle='dropdown'
@@ -26,22 +22,11 @@ const NavBar = ({
       >
         <Container>
           <Row className='align-items-center'>
-            <div className='col text-right user-name'>
-              {user && user.username}
-            </div>
-            <div className='pr-2'>
-              <Image
-                src='https://source.unsplash.com/random'
-                width='35'
-                height='35'
-                className='border'
-                roundedCircle
-              />
-            </div>
+            <div className='col text-right user-name pr-1'>{user && user.username}</div>
           </Row>
         </Container>
       </button>
-      <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+      <div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
         <Link to='/dashboard' className='dropdown-item'>
           Dashboard
         </Link>
@@ -59,7 +44,7 @@ const NavBar = ({
   const guestLinks = (
     <Fragment>
       <button
-        className='btn btn-outline-dark dropdown-toggle user-dropdown'
+        className={navbarClass}
         type='button'
         id='dropdown-guest'
         data-toggle='dropdown'
@@ -68,7 +53,7 @@ const NavBar = ({
       >
         Login / register
       </button>
-      <div className='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+      <div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
         <Link to='/login' className='dropdown-item'>
           Login
         </Link>
@@ -88,6 +73,8 @@ const NavBar = ({
     </Navbar>
   );
 };
+
+const navbarClass = 'btn dropdown-toggle d-flex align-items-center user-dropdown p-0';
 
 NavBar.propTypes = {
   logout_ACTION: PropTypes.func.isRequired,

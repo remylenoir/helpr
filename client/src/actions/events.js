@@ -1,20 +1,17 @@
 import service from '../utils/service';
-import {
-  GET_EVENT,
-  EDIT_EVENT,
-  CLEAR_EVENT,
-  DELETE_EVENT,
-  GET_ALL_EVENTS,
-  CREATE_EVENT
-} from './types';
+import { GET_EVENT, EDIT_EVENT, CLEAR_EVENT, DELETE_EVENT, GET_ALL_EVENTS, CREATE_EVENT } from './types';
 
 export const createEvent_ACTION = (body, userId) => async dispatch => {
-  const response = await service.post('/events/add', body, userId);
+  try {
+    const response = await service.post('/events/add', body, userId);
 
-  dispatch({
-    type: CREATE_EVENT,
-    payload: response.data
-  });
+    dispatch({
+      type: CREATE_EVENT,
+      payload: response.data
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getAllEvents_ACTION = () => async dispatch => {

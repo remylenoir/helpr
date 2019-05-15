@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "history": "^4.9.0",
+    "input-moment": "^0.4.0",
     "material-kit-react": "^1.4.0",
     "moment": "^2.24.0",
     "react": "^16.8.6",

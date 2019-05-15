@@ -6,19 +6,19 @@ const eventSchema = new Schema(
     title: { type: String, required: true },
     shortDesc: { type: String, required: true },
     fullDesc: { type: String, required: true },
-    // location: { type: String, required: true },
     date: {
       type: Date,
-      default: new Date(),
       required: true
     },
-    location: { type: { type: String, default: 'Point' }, coordinates: [Number] },
+    street: { type: String, required: true },
+    city: { type: String, required: true },
+    zipcode: { type: Number, required: true },
     coverImage: { type: String, default: '' },
     categories: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true
+        ref: 'Category'
+        // required: true
       }
     ],
     organizer: [
