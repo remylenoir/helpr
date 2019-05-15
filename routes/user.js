@@ -40,7 +40,11 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.put('/:id', uploadCloud.single('photo'), (req, res) => {
+// @route   PUT api/users/:id
+// @desc    Update user profile
+// @access  Private
+
+router.put('/:id', (req, res) => {
   const userID = req.params.id;
 
   User.findByIdAndUpdate(userID, req.body, { new: true })
@@ -51,6 +55,22 @@ router.put('/:id', uploadCloud.single('photo'), (req, res) => {
       res.json(error);
     });
 });
+
+// @route   POST api/users/upload
+// @desc    Upload user profile picture
+// @access  Private
+
+router.post(
+  '/upload',
+  uploadCloud.single('profilePicture'),
+  (req, res, next) => {
+    if (!req.file) {
+      next(new Error('No file uplaoded!'));
+      return;
+    }
+    res.json(req.file.secure_url);
+  }
+);
 
 // @route   DELETE api/users/:id
 // @desc    Delete the user by ID

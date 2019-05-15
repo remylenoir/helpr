@@ -5,7 +5,8 @@ import {
   ADD_BOOKMARK_ALERT,
   REMOVE_BOOKMARK_ALERT,
   ADD_BOOKMARK_EVENT,
-  REMOVE_BOOKMARK_EVENT
+  REMOVE_BOOKMARK_EVENT,
+  UPLOAD_PROFILE_PICTURE
 } from '../actions/types';
 
 const initialState = {
@@ -36,6 +37,14 @@ export default function(state = initialState, action) {
         edit: true,
         alertBookmarked: null
       };
+    case UPLOAD_PROFILE_PICTURE:
+      return {
+        ...state,
+        profile: { ...state.profile, profilePicture: payload },
+        loading: false,
+        edit: true
+      };
+
     case ADD_BOOKMARK_ALERT:
       return {
         ...state,

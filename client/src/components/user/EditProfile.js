@@ -2,9 +2,13 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { editCurrentProfile_ACTION } from '../../actions/profile';
+import {
+  editCurrentProfile_ACTION,
+  uploadCurrentProfilePicture_ACTION
+} from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
 import Spinner from '../layout/Spinner';
+import Image from 'react-bootstrap/Image';
 
 const EditProfile = ({
   id,
@@ -12,23 +16,26 @@ const EditProfile = ({
   loading,
   edit,
   editCurrentProfile_ACTION,
-  setAlert_ACTION
+  setAlert_ACTION,
+  uploadCurrentProfilePicture_ACTION
 }) => {
   // Set the state to handle edit form input values
   const [formData, setFormData] = useState({
     username: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
+    profilePicture: ''
   });
 
-  const { username, firstName, lastName } = formData;
+  const { username, firstName, lastName, profilePicture } = formData;
 
   useEffect(() => {
     //If the profile data is not loaded set its value to '', otherwise set it to its corresponding value from the store
     setFormData({
       username: loading || !user ? '' : user.username,
       firstName: loading || !user ? '' : user.firstName,
-      lastName: loading || !user ? '' : user.lastName
+      lastName: loading || !user ? '' : user.lastName,
+      profilePicture: loading || !user ? '' : user.profilePicture
     });
   }, [loading, user]);
 
@@ -39,6 +46,15 @@ const EditProfile = ({
       ...formData,
       [name]: value
     });
+  };
+
+  //profile pic upload
+  const onUpload = e => {
+    const file = e.target.files[0];
+    const data = new FormData();
+    data.append('profilePicture', file);
+
+    uploadCurrentProfilePicture_ACTION(data);
   };
 
   const onSubmit = e => {
@@ -60,6 +76,18 @@ const EditProfile = ({
     <div>
       <Fragment>
         <form onSubmit={onSubmit}>
+          <div className='image-edit'>
+            <label for='profileImg'>
+              <span className='edit-title'>Edit image</span>
+              <Image src={user.profilePicture} />
+            </label>
+            <input
+              type='file'
+              id='profileImg'
+              name='profilePicture'
+              onChange={onUpload}
+            />
+          </div>
           <div>
             <label>Username</label>
             <input
@@ -111,5 +139,9 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editCurrentProfile_ACTION, setAlert_ACTION }
+  {
+    editCurrentProfile_ACTION,
+    setAlert_ACTION,
+    uploadCurrentProfilePicture_ACTION
+  }
 )(EditProfile);

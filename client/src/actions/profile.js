@@ -6,7 +6,8 @@ import {
   ADD_BOOKMARK_ALERT,
   REMOVE_BOOKMARK_ALERT,
   ADD_BOOKMARK_EVENT,
-  REMOVE_BOOKMARK_EVENT
+  REMOVE_BOOKMARK_EVENT,
+  UPLOAD_PROFILE_PICTURE
 } from './types';
 
 // Get current user profile
@@ -25,6 +26,16 @@ export const editCurrentProfile_ACTION = (userId, body) => async dispatch => {
 
   dispatch({
     type: EDIT_PROFILE,
+    payload: response.data
+  });
+};
+
+// Upload current user profile picure
+export const uploadCurrentProfilePicture_ACTION = data => async dispatch => {
+  const response = await service.post(`/users/upload`, data);
+
+  dispatch({
+    type: UPLOAD_PROFILE_PICTURE,
     payload: response.data
   });
 };

@@ -14,6 +14,7 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const EDIT_PROFILE = 'EDIT_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const CHECK_BOOKMARK = 'CHECK_BOOKMARK';
+export const UPLOAD_PROFILE_PICTURE = 'UPLOAD_PROFILE_PICTURE';
 // Alerts
 export const CREATE_ALERT = 'CREATE_ALERT';
 export const GET_ALL_ALERTS = 'GET_ALL_ALERTS';
@@ -25,7 +26,7 @@ export const REMOVE_BOOKMARK_ALERT = 'REMOVE_BOOKMARK_ALERT';
 export const BOOKMARK_ALERT = 'BOOKMARK_ALERT';
 // Events
 export const CREATE_EVENT = 'CREATE_EVENT';
-export const GET_ALL_EVENTS = 'GET_ALL_EVENTS'
+export const GET_ALL_EVENTS = 'GET_ALL_EVENTS';
 export const GET_EVENT = 'GET_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';
 export const CLEAR_EVENT = 'CLEAR_EVENT';
