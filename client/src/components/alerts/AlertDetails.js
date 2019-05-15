@@ -59,16 +59,11 @@ const AlertDetails = ({
           </p>
           <hr />
           <div className='text-center'>
-            {alert &&
-              auth.isAuthenticated &&
-              auth.user._id === alert.creator._id && (
-                <Link
-                  to={`/alert/${alert._id}/edit`}
-                  className='btn btn-secondary'
-                >
-                  Edit alert
-                </Link>
-              )}
+            {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
+              <Link to={`/alert/${alert._id}/edit`} className='btn btn-secondary'>
+                Edit alert
+              </Link>
+            )}
           </div>
           <br />
           <div className='text-center'>

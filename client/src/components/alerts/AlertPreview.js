@@ -1,34 +1,37 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
+// App components
 import Spinner from '../layout/Spinner';
 
 // Bootstrap components
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
 
 const AlertPreview = ({ alerts: { alerts, loading } }) => {
   const alertElements =
     alerts &&
     alerts.map(alert => {
       return (
-        <div key={alert._id}>
-          <Row>
-            <div className='col'>
-              <h3>{alert.title}</h3>
-            </div>
-            <div className='col'>Type & creator</div>
-          </Row>
-
-          <p>{alert.description}</p>
-          <img src={alert.imageURL} alt='' />
-          <Link to={`/alert/${alert._id}`}>More details</Link>
-        </div>
+        <Fragment>
+          <Card className='mt-1 mb-4'>
+            <Link to={`/alert/${alert._id}`}>
+              <Card.Body>
+                <Card.Title>{alert.title}</Card.Title>
+                <Card.Subtitle className='mb-2 text-muted'>
+                  {alert.type} - {moment(alert.created_at).fromNow()}
+                </Card.Subtitle>
+                <Card.Text>{alert.description}</Card.Text>
+              </Card.Body>
+            </Link>
+          </Card>
+        </Fragment>
       );
     });
 
-  return loading && alerts === null ? <Spinner /> : <div>{alertElements}</div>;
+  return loading && alerts === null ? <Spinner /> : <>{alertElements}</>;
 };
 
 AlertPreview.propTypes = {
