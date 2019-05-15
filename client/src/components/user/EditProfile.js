@@ -52,9 +52,14 @@ const EditProfile = ({
   const onUpload = e => {
     const file = e.target.files[0];
     const data = new FormData();
-    data.append('profilePicture', file);
 
+    data.append('profilePicture', file);
     uploadCurrentProfilePicture_ACTION(data);
+
+    setFormData({
+      ...formData,
+      profilePicture: user.profilePicture
+    });
   };
 
   const onSubmit = e => {
