@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getAllEvents_ACTION } from '../../actions/events';
@@ -8,6 +9,7 @@ import { getAllAlerts_ACTION } from '../../actions/alerts';
 const Search = ({
   events,
   alerts,
+  history,
   getAllEvents_ACTION,
   getAllAlerts_ACTION
 }) => {
@@ -34,7 +36,6 @@ const Search = ({
       };
     });
 
-  const [suggestions, setSuggestions] = useState([]);
   const [eventSuggestions, setEventSuggestions] = useState([]);
   const [alertSuggestions, setAlertSuggestions] = useState([]);
 
@@ -102,11 +103,17 @@ const Search = ({
     );
   };
 
-  const eventOnSubmit = (e) => {
+  const eventOnSubmit = e => {
     e.preventDefault();
     if (events && eventSuggestions.length === 1) {
-      console.log(eventSuggestions, eventSuggestions[0].id);
-      return <Redirect to={`/event/${eventSuggestions[0].id}`}/>
+      history.push(`/event/${eventSuggestions[0].id}`);
+    }
+  };
+
+  const alertOnSubmit = e => {
+    e.preventDefault();
+    if (alerts && alertSuggestions.length === 1) {
+      history.push(`/alert/${alertSuggestions[0].id}`);
     }
   };
 
@@ -123,18 +130,26 @@ const Search = ({
         </form>
       </div>
       <div>
-        <input
-          onChange={onTextChangedAlerts}
-          type='text'
-          placeholder='Search alerts'
-        />
-        {renderSuggestionsAlerts()}
+        <form onSubmit={alertOnSubmit}>
+          <input
+            onChange={onTextChangedAlerts}
+            type='text'
+            placeholder='Search alerts'
+          />
+          {renderSuggestionsAlerts()}
+        </form>
       </div>
     </div>
   );
 };
 
-Search.propTypes = {};
+Search.propTypes = {
+  history: PropTypes.object,
+  events: PropTypes.array,
+  alerts: PropTypes.array,
+  getAllAlerts_ACTION: PropTypes.func.isRequired,
+  getAllEvents_ACTION: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   events: state.events.events,
