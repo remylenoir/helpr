@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import moment from 'moment';
 
 // Bootstrap components
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 
-const Hero = ({ title, details, msg, date, creator, button, btnMsg, url, type }) => {
-  switch (type) {
-    case 'alert':
-      return (
-        <div className={`hero ${details && 'details'}`}>
+const Hero = ({ type, title, msg, date, creator, button, btnMsg, url }) => {
+  return (
+    <Fragment>
+      {type && type === 'details' && (
+        <div className={`hero ${type && 'details'}`}>
           <div className='container wrapper text-center'>
             <h1>{title}</h1>
             <h4>{msg}</h4>
@@ -21,9 +21,9 @@ const Hero = ({ title, details, msg, date, creator, button, btnMsg, url, type })
           <div className='overlay'> </div>
           {url && <Image src={url} />}
         </div>
-      );
-    default: {
-      return (
+      )}
+
+      {type && type === 'home' && (
         <div className={'hero'}>
           <div className='wrapper'>
             <h1>{title}</h1>
@@ -33,9 +33,9 @@ const Hero = ({ title, details, msg, date, creator, button, btnMsg, url, type })
           <div className='overlay'> </div>
           {url && <Image src={url} />}
         </div>
-      );
-    }
-  }
+      )}
+    </Fragment>
+  );
 };
 
 export default Hero;

@@ -1,28 +1,68 @@
-.image-edit {
-  position: relative;
-  display: inline-block;
-  label {
+#profile {
+  i {
+    cursor: pointer;
+  }
+  padding-top: 1em;
+  .image-edit {
     position: relative;
-    overflow: hidden;
-    border-radius: 100%;
-    span {
+    display: flex;
+    justify-content: center;
+    margin: 1.5em 0;
+    .profile-img-holder {
+      position: relative;
+      overflow: hidden;
+      border-radius: 100%;
+      .edit-title {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.5);
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        bottom: 1px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        height: 25%;
+      }
+    }
+    input {
+      visibility: hidden;
       position: absolute;
-      background: rgba(0, 0, 0, 0.5);
-      display: inline-block;
-      width: 100%;
-      text-align: center;
-      color: #fff;
-      bottom: 1px;
-      cursor: pointer;
-      font-size: 1em;
-      height: 21%;
+      width: 0px;
+      top: 80px;
+      left: 70px;
     }
   }
-  input {
-    visibility: hidden;
-    position: absolute;
-    width: 0px;
-    top: 80px;
-    left: 70px;
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  .user-stats {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1em;
+      margin-top: 2.125em;
+      padding-left: 0;
+      li {
+        background: #ededed;
+        padding: 0.675rem;
+        list-style: none;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        span {
+          margin-bottom: 0.5rem;
+        }
+        label {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+}
+.profile-img {
+  max-width: 120px;
 }

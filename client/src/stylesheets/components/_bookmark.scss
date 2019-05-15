@@ -1,7 +1,8 @@
-.bookmark {
+.bookmark,
+.join {
   cursor: pointer;
-  top: -30px;
-  left: 70vw;
+  // top: -30px;
+  // left: 70vw;
   z-index: 10;
 
   &-button {
@@ -31,4 +32,19 @@
       }
     }
   }
+}
+
+.join {
+  left: -80px;
+  &-button {
+    &.active {
+      background-color: #007bff;
+      border: 1px solid #085bb3;
+    }
+  }
+}
+
+.actions-buttons {
+  top: -30px;
+  left: 75vw;
 }
