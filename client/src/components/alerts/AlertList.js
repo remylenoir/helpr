@@ -4,18 +4,29 @@ import { connect } from 'react-redux';
 import { getAllAlerts_ACTION } from '../../actions/alerts';
 import AlertPreview from './AlertPreview';
 
+// Bootstrap components
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+
 const AlertList = ({ getAllAlerts_ACTION }) => {
   useEffect(() => {
     getAllAlerts_ACTION();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div>
-      <h1>All alerts</h1>
-      <Fragment>
-        <AlertPreview />
-      </Fragment>
-    </div>
+    <Container className='py-3' fluid>
+      <Row>
+        <Container>
+          <h1>All alerts</h1>
+          <hr />
+        </Container>
+      </Row>
+      <Row>
+        <Container>
+          <AlertPreview />
+        </Container>
+      </Row>
+    </Container>
   );
 };
 
