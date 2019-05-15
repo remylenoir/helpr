@@ -18,7 +18,7 @@ const AlertList = ({ getAllAlerts_ACTION }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <Container className='py-3' fluid>
+    <Container className='inner-view py-3' fluid>
       <Row>
         <Container>
           <h1>All alerts</h1>
