@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
@@ -38,13 +39,15 @@ const HorizontalScroll = ({
     filteredEvents &&
     filteredEvents.map(event => {
       return (
-        <Card key={event._id} style={{ width: '15rem' }}>
-          <Card.Img variant='top' src={event.coverImage} />
-          <Card.Body>
-            <Card.Title>{event.title}</Card.Title>
-            <Card.Text>{event.shortDesc}</Card.Text>
-          </Card.Body>
-        </Card>
+        <Link to={`/event/${event._id}`}>
+          <Card key={event._id} style={{ width: '15rem' }}>
+            <Card.Img variant='top' src={event.coverImage} />
+            <Card.Body>
+              <Card.Title>{event.title}</Card.Title>
+              <Card.Text>{event.shortDesc}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Link>
       );
     });
 
@@ -55,7 +58,9 @@ const HorizontalScroll = ({
         <div className='horizontal-scroll-wrapper'>
           {loading && events === null ? <Spinner /> : type && allEventElements}
         </div>
-        <Button variant='outline-primary'>{btnText}</Button>
+        <Link to='/event/all'>
+          <Button variant='outline-primary'>{btnText}</Button>
+        </Link>
       </div>
     </Fragment>
   );
