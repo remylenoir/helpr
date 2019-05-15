@@ -11,7 +11,7 @@ const AppMenu = () => {
     <Navbar collapseOnSelect fixed='bottom' expand='true' bg='primary'>
       <Fragment>
         <Item url={'/'} icon={'fa-home'} title={'Home'} />
-        <Item url={'/search'} icon={'fa-search'} title={'Events'} />
+        <Item url={'/explore'} icon={'fa-search'} title={'Explore'} />
 
         <PopMenu />
 
