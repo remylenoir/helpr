@@ -28,7 +28,7 @@ const FilteredAlertPrev = ({ alerts: { alerts, loading }, typeFilter }) => {
       );
     });
 
-  return loading && alerts === null ? <Spinner /> : <Fragment>{alertElements.length > 0 ? alertElements : <p>There are no active alerts of <b>{typeFilter}</b> type</p>}</Fragment>;
+  return loading && alerts === null ? <Spinner /> : <Fragment>{alertElements.length > 0 || typeFilter === 'All' ? alertElements : <p>There are no active alerts of <b>{typeFilter}</b> type</p>}</Fragment>;
 };
 
 FilteredAlertPrev.propTypes = {

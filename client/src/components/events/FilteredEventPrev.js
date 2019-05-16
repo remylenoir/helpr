@@ -31,7 +31,7 @@ const FilteredEventPrev = ({ events: { events, loading }, categoryFilter }) => {
       );
     });
 
-  return loading && events === null ? <Spinner /> : <Fragment>{eventElements.length > 0 ? eventElements : <p>There are no active events on <b>{categoryFilter}</b> category</p>}</Fragment>;
+  return loading && events === null ? <Spinner /> : <Fragment>{eventElements.length > 0 || categoryFilter === 'All' ? eventElements : <p>There are no active events on <b>{categoryFilter}</b> category</p>}</Fragment>;
 };
 
 FilteredEventPrev.propTypes = {
