@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const uploadCloud = require('../config/cloudinary');
 
 // Import the models
 const Event = require('../models/Event');
@@ -331,6 +332,18 @@ router.put('/:id', (req, res) => {
     .catch(err => {
       res.json(err);
     });
+});
+
+// @route   POST api/events/upload
+// @desc    Upload event picture
+// @access  Private
+
+router.post('/upload', uploadCloud.single('coverImage'), (req, res, next) => {
+  if (!req.file) {
+    next(new Error('No file uplaoded!'));
+    return;
+  }
+  res.json(req.file.secure_url);
 });
 
 // @route   DELETE api/events/:id

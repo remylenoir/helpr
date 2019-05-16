@@ -1,5 +1,13 @@
 import service from '../utils/service';
-import { GET_EVENT, EDIT_EVENT, CLEAR_EVENT, DELETE_EVENT, GET_ALL_EVENTS, CREATE_EVENT } from './types';
+import {
+  GET_EVENT,
+  EDIT_EVENT,
+  CLEAR_EVENT,
+  DELETE_EVENT,
+  GET_ALL_EVENTS,
+  CREATE_EVENT,
+  UPLOAD_EVENT_IMG
+} from './types';
 
 export const createEvent_ACTION = (body, userId) => async dispatch => {
   try {
@@ -59,4 +67,13 @@ export const deleteEvent_ACTION = eventId => async dispatch => {
       type: DELETE_EVENT
     });
   } catch (error) {}
+};
+
+export const uploadEventImg_ACTION = data => async dispatch => {
+  const response = await service.post(`/events/upload`, data);
+  console.log(data, response.data);
+  dispatch({
+    type: UPLOAD_EVENT_IMG,
+    payload: response.data
+  });
 };
