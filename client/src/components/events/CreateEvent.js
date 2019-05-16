@@ -11,6 +11,7 @@ import 'flatpickr/dist/themes/airbnb.css';
 // Redux actions
 import { setAlert_ACTION } from '../../actions/alert';
 import { createEvent_ACTION } from '../../actions/events';
+import { uploadEventImg_ACTION } from '../../actions/events';
 
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
@@ -18,7 +19,13 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
-const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTION }) => {
+const CreateEvent = ({
+  auth: { user },
+  events,
+  createEvent_ACTION,
+  setAlert_ACTION,
+  uploadEventImg_ACTION
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     date: new Date(),
@@ -34,7 +41,16 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
     return <Redirect to='/dashboard' />;
   }
 
-  const { title, date, shortDesc, fullDesc, street, city, zipcode, coverImage } = formData;
+  const {
+    title,
+    date,
+    shortDesc,
+    fullDesc,
+    street,
+    city,
+    zipcode,
+    coverImage
+  } = formData;
 
   const onChange = event => {
     const { name, value } = event.target;
@@ -54,6 +70,20 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
     });
   };
 
+  const onUpload = e => {
+    const file = e.target.files[0];
+    const data = new FormData();
+
+    data.append('coverImage', file);
+    uploadEventImg_ACTION(data);
+
+    setFormData({
+      ...formData,
+      coverImage: events.coverImage
+    });
+    console.log(events.coverImage);
+  };
+
   const onSubmit = e => {
     e.preventDefault();
 
@@ -69,7 +99,6 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
       setAlert_ACTION('All inputs must be filled');
       return;
     }
-
     createEvent_ACTION(formData, user._id);
     setAlert_ACTION('Event successfully created');
     console.log(formData);
@@ -86,8 +115,17 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
             onSubmit={onSubmit}
           >
             <Form.Group>
+              <img src={coverImage} alt='' />
+              <input type='file' name='coverImage' onChange={onUpload} />
+            </Form.Group>
+            <Form.Group>
               <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control type='text' name='title' value={title} onChange={onChange} />
+              <Form.Control
+                type='text'
+                name='title'
+                value={title}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <Form.Group>
@@ -100,6 +138,7 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
                 value={date}
                 onChange={onChangeDate}
                 options={{
+                  disableMobile: true,
                   minTime: '09:00',
                   maxTime: '23:00',
                   locale: {
@@ -134,25 +173,45 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
             <h3>Address</h3>
             <Form.Group>
               <Form.Label htmlFor='street'>Street</Form.Label>
-              <Form.Control type='text' name='street' value={street} onChange={onChange} />
+              <Form.Control
+                type='text'
+                name='street'
+                value={street}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label htmlFor='city'>City</Form.Label>
-                <Form.Control type='text' name='city' value={city} onChange={onChange} />
+                <Form.Control
+                  type='text'
+                  name='city'
+                  value={city}
+                  onChange={onChange}
+                />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
+                <Form.Control
+                  type='number'
+                  name='zipcode'
+                  value={zipcode}
+                  onChange={onChange}
+                />
               </Form.Group>
             </Form.Row>
 
-            <Form.Group>
+            {/* <Form.Group>
               <Form.Label htmlFor='coverImage'>Image</Form.Label>
-              <Form.Control type='file' name='coverImage' value={coverImage} onChange={onChange} />
-            </Form.Group>
+              <Form.Control
+                type='file'
+                name='coverImage'
+                value={coverImage}
+                onChange={onChange}
+              />
+            </Form.Group> */}
 
             <Button variant='primary' type='submit'>
               Create the alert
@@ -178,5 +237,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createEvent_ACTION, setAlert_ACTION }
+  { createEvent_ACTION, setAlert_ACTION, uploadEventImg_ACTION }
 )(CreateEvent);
