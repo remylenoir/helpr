@@ -34,6 +34,10 @@ const AlertDetails = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const handleClick = event => {
+    document.querySelector('.collapse').classList.toggle('show');
+  };
+
   // If alert info is still being fetched display spinner
   return loading && alert === null ? (
     <Spinner />
@@ -85,6 +89,7 @@ const AlertDetails = ({
                   className='d-flex justify-content-between align-items-center bg-primary'
                   as={Card.Header}
                   eventKey='0'
+                  onClick={handleClick}
                 >
                   <div>Show the comments</div>
                   <div>
