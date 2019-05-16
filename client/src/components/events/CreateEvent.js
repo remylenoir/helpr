@@ -10,8 +10,7 @@ import 'flatpickr/dist/themes/airbnb.css';
 
 // Redux actions
 import { setAlert_ACTION } from '../../actions/alert';
-import { createEvent_ACTION } from '../../actions/events';
-import { uploadEventImg_ACTION } from '../../actions/events';
+import { createEvent_ACTION, uploadEventImg_ACTION } from '../../actions/events';
 
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
@@ -36,7 +35,7 @@ const CreateEvent = ({
     street: '',
     city: '',
     zipcode: '',
-    coverImage: ''
+    coverImage: '',
   });
 
   if (events && events.isCreated) {
@@ -81,16 +80,17 @@ const CreateEvent = ({
     data.append('coverImage', file);
     uploadEventImg_ACTION(data);
 
-    setFormData({
-      ...formData,
-      coverImage: events.coverImage
-    });
+    // setFormData({
+    //   ...formData,
+    //   coverImage: events.coverImage
+    // });
     console.log(events.coverImage);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-
+    
+    formData.coverImage = events.event.coverImage
     if (
       title === '' ||
       date === '' ||
@@ -100,12 +100,12 @@ const CreateEvent = ({
       venue === '' ||
       street === '' ||
       city === '' ||
-      zipcode === '' ||
-      coverImage === ''
+      zipcode === '' 
     ) {
       setAlert_ACTION('All inputs must be filled');
       return;
     }
+    console.log(formData)
     createEvent_ACTION(formData, user._id);
     setAlert_ACTION('Event successfully created');
   };
@@ -135,7 +135,7 @@ const CreateEvent = ({
               <Form.Control as='select' onChange={onChange} name='categories'>
                 <option value={''} onChange={onChange} />
                 <option value={'Homlessness & Poverty'} onChange={onChange}>
-                  Homlessness and Poverty
+                  Homelessness and Poverty
                 </option>
                 <option value={'Refugees'} onChange={onChange}>
                   Refugees

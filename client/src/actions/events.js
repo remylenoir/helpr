@@ -7,13 +7,14 @@ import {
   GET_ALL_EVENTS,
   CREATE_EVENT,
   ADD_COMMENT_EVENT,
-  UPLOAD_EVENT_IMG
+  UPLOAD_EVENT_IMG,
+  IMG_STATE_TRANSFER
 } from './types';
 
 export const createEvent_ACTION = (body, userId) => async dispatch => {
   try {
     const response = await service.post('/events/add', body, userId);
-
+    console.log(body)
     dispatch({
       type: CREATE_EVENT,
       payload: response.data
@@ -87,6 +88,12 @@ export const addCommentEvent_ACTION = (eventId, body) => async dispatch => {
   }
 }
 
+const transferIMG_ACTION = () => dispatch => {
+  dispatch({
+    type: IMG_STATE_TRANSFER
+  })
+}
+
 export const uploadEventImg_ACTION = data => async dispatch => {
   const response = await service.post(`/events/upload`, data);
   console.log(data, response.data);
@@ -94,4 +101,5 @@ export const uploadEventImg_ACTION = data => async dispatch => {
     type: UPLOAD_EVENT_IMG,
     payload: response.data
   });
+  dispatch(transferIMG_ACTION())
 };

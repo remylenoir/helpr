@@ -5,7 +5,8 @@ import {
   CLEAR_EVENT,
   GET_ALL_EVENTS,
   CREATE_EVENT, ADD_COMMENT_EVENT,
-  UPLOAD_EVENT_IMG
+  UPLOAD_EVENT_IMG,
+  IMG_STATE_TRANSFER
 } from '../actions/types';
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
   edit: false,
   loading: true,
   isCreated: false,
-  isDeleted: false
+  isDeleted: false,
+  coverImage: null,
 };
 
 export default function(state = initialState, action) {
@@ -38,6 +40,14 @@ export default function(state = initialState, action) {
         edit: false,
         loading: false
       };
+    case IMG_STATE_TRANSFER:
+    return {
+      ...state,
+      event: {
+        ...state.event,
+        coverImage: state.coverImage,
+      }
+    }
     case GET_ALL_EVENTS:
       return {
         ...state,
@@ -45,7 +55,8 @@ export default function(state = initialState, action) {
         event: null,
         loading: false,
         isCreated: false,
-        isDeleted: false
+        isDeleted: false,
+        coverImage: null,
       };
     case GET_EVENT:
       return {
@@ -55,7 +66,8 @@ export default function(state = initialState, action) {
         edit: false,
         loading: false,
         isCreated: false,
-        isDeleted: false
+        isDeleted: false,
+        coverImage: null,
       };
     case EDIT_EVENT:
       return {
