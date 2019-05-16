@@ -13,33 +13,28 @@ import { getAllEvents_ACTION } from '../../actions/events';
 import AlertPreview from '../alerts/AlertPreview';
 import EventPreview from '../events/EventPreview';
 import Subtitle from '../layout/Headings/Subtitle';
-import OurFontAwesome from '../layout/OurFontAwesome';
+// import OurFontAwesome from '../layout/OurFontAwesome';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const Explore = ({
-  alerts,
-  events,
-  getAllAlerts_ACTION,
-  getAllEvents_ACTION
-}) => {
+const Explore = ({ alerts, events, getAllAlerts_ACTION, getAllEvents_ACTION }) => {
   useEffect(() => {
     getAllAlerts_ACTION();
     getAllEvents_ACTION();
-    window.scroll(0, 0)
+    window.scroll(0, 0);
   }, []);
 
   return (
     <Container className='inner-view py-3' fluid>
-      <Row>
+      {/* <FadeIn>
         <FadeIn>
           <Link to='/search' className='explore-search'>
             <OurFontAwesome icon={'fa-search'} />
           </Link>
         </FadeIn>
-      </Row>
+      </FadeIn> */}
       <Row>
         <Container>
           <FadeIn>
@@ -53,7 +48,11 @@ const Explore = ({
         <Container fluid>
           <FadeIn>
             <Subtitle title={'New Alerts'} />
-            <Link to='/alert/all'>See all alerts</Link>
+            <Link to='/alert/all' className='text-primary'>
+              See all alerts
+            </Link>
+
+            <br />
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
@@ -69,8 +68,13 @@ const Explore = ({
         <Container fluid>
           <FadeIn>
             <Subtitle title={'Next Events'} />
-            <Link to='/event/all'>See all events</Link>
-            <Row>
+
+            <Link to='/event/all' className='text-primary'>
+              See all events
+            </Link>
+
+            <br />
+            <Row className='mb-2'>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
                   <EventPreview />

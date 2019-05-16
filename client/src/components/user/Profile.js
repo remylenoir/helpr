@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // App components
-import OurFontAwesome from '../layout/OurFontAwesome';
+import BackLink from '../layout/BackLink';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -29,9 +29,8 @@ const Profile = ({
           <Row>
             <Col>
               <div id='profile'>
-                <Link to='/dashboard'>
-                  <OurFontAwesome icon={'fa-arrow-left'} /> Back to Dashboard
-                </Link>
+                <BackLink url={'/dashboard'} title={'Back to dashboard'} />
+
                 <div className='image-edit'>
                   <div className='profile-img-holder'>
                     <Image className='profile-img' src={profilePicture} />
@@ -62,7 +61,7 @@ const Profile = ({
                   </ul>
                 </div>
                 <div className='text-center'>
-                  <Link to='/profile/edit' class='btn btn-primary'>
+                  <Link to='/profile/edit' className='btn btn-primary'>
                     Edit profile
                   </Link>
                 </div>
