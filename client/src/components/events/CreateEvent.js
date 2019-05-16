@@ -140,7 +140,7 @@ const CreateEvent = ({
               </Form.Control>
             </Form.Group>
 
-            {/* <Form.Group>
+            <Form.Group>
               <Form.Label htmlFor='date'>Date</Form.Label>
               <br />
               <Flatpickr
@@ -150,6 +150,7 @@ const CreateEvent = ({
                 value={date}
                 onChange={onChangeDate}
                 options={{
+                  disableMobile: true,
                   minTime: '09:00',
                   maxTime: '23:00',
                   locale: {
@@ -157,7 +158,7 @@ const CreateEvent = ({
                   }
                 }}
               />
-            </Form.Group> */}
+            </Form.Group>
 
             <Form.Group>
               <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
