@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Redux actions
-import { editEvent_ACTION } from '../../actions/events';
+import { editEvent_ACTION, getEvent_ACTION } from '../../actions/events';
 
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 
-const CommentCard = ({ event, user, editEvent_ACTION }) => {
+const CommentCard = ({ event, user, editEvent_ACTION, getEvent_ACTION }) => {
   const eventData = {
     date: event && event.date,
     title: event && event.title,
@@ -29,7 +29,8 @@ const CommentCard = ({ event, user, editEvent_ACTION }) => {
     e.preventDefault();
     const filteredComments = event && event.comments.filter(commentEl => commentEl._id !== value);
     eventData.comments = filteredComments;
-    editEvent_ACTION(event._id, eventData);
+
+    editEvent_ACTION(event._id, eventData).then(res => getEvent_ACTION(event._id));
   };
 
   const commentElement =
@@ -83,5 +84,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editEvent_ACTION }
+  { editEvent_ACTION, getEvent_ACTION }
 )(CommentCard);

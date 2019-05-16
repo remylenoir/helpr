@@ -16,10 +16,10 @@ const AttendeeCard = ({ event, getEvent_ACTION, profile, user }) => {
     profile && getCurrentProfile_ACTION(user._id);
   }, []);
 
-  useEffect(() => {
-    event && getEvent_ACTION(event._id);
-    profile && getCurrentProfile_ACTION(user._id);
-  }, [profile]);
+  // useEffect(() => {
+  //   event && getEvent_ACTION(event._id);
+  //   profile && getCurrentProfile_ACTION(user._id);
+  // }, [event.comments]);
 
   const attendeeElement =
     event &&

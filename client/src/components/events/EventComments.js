@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 // Redux actions
-import { editEvent_ACTION } from '../../actions/events';
+import { editEvent_ACTION, getEvent_ACTION } from '../../actions/events';
 
 // App components
 import CommentCard from './CommentCard';
@@ -13,7 +13,7 @@ import CommentCard from './CommentCard';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const EventComments = ({ event, user, editEvent_ACTION }) => {
+const EventComments = ({ event, user, editEvent_ACTION, getEvent_ACTION }) => {
   const [commentData, setCommentData] = useState({
     text: '',
     author: ''
@@ -46,7 +46,7 @@ const EventComments = ({ event, user, editEvent_ACTION }) => {
   const onSubmit = e => {
     e.preventDefault();
     event && eventData.comments.push(commentData);
-    editEvent_ACTION(event._id, eventData);
+    editEvent_ACTION(event._id, eventData).then(res => getEvent_ACTION(event._id));
     setCommentData({
       text: '',
       author: ''
@@ -106,5 +106,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editEvent_ACTION }
+  { editEvent_ACTION, getEvent_ACTION }
 )(EventComments);
