@@ -9,30 +9,23 @@ import Spinner from '../layout/Spinner';
 
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 const EventPreview = ({ events: { events, loading } }) => {
   const eventElements =
     events &&
     events.map(event => {
       return (
-        <Card key={event._id} className='mt-1 mb-4'>
+        <Card key={event._id} className='mt-1 mb-4 text-left'>
           <Link to={`/event/${event._id}`}>
             <Card.Img variant='top' src={event.coverImage} />
-
-            {moment(event.date).format('MMMM Do, h:mm a')}
-            <br />
-            {event.title}
-            <br />
-            {event.shortDesc}
-
-            {/* <Card.Body>
-              <Card.Title>{event.title}</Card.Title>
-              <Card.Subtitle>{event.shorDescs}</Card.Subtitle>
-              <Card.Subtitle className='mb-2 text-muted'>
-                {event.creator.username} - {moment(event.created_at).fromNow()}
-              </Card.Subtitle>
-              <Card.Text>{event.shortDesc}</Card.Text>
-            </Card.Body> */}
+            <Container className='py-2'>
+              <span className='card-date text-uppercase'>
+                {moment(event.date).format('MMMM Do, h:mm a')}
+              </span>
+              <Card.Subtitle className='mb-2 text-muted'>{event.categories}</Card.Subtitle>
+              <Card.Title className='mt-2'>{event.title}</Card.Title>
+            </Container>
           </Link>
         </Card>
       );
