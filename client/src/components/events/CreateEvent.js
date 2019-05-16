@@ -11,6 +11,7 @@ import 'flatpickr/dist/themes/airbnb.css';
 // Redux actions
 import { setAlert_ACTION } from '../../actions/alert';
 import { createEvent_ACTION } from '../../actions/events';
+import { uploadEventImg_ACTION } from '../../actions/events';
 
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
@@ -22,7 +23,8 @@ const CreateEvent = ({
   auth: { user },
   events,
   createEvent_ACTION,
-  setAlert_ACTION
+  setAlert_ACTION,
+  uploadEventImg_ACTION
 }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -70,6 +72,20 @@ const CreateEvent = ({
     });
   };
 
+  const onUpload = e => {
+    const file = e.target.files[0];
+    const data = new FormData();
+
+    data.append('coverImage', file);
+    uploadEventImg_ACTION(data);
+
+    setFormData({
+      ...formData,
+      coverImage: events.coverImage
+    });
+    console.log(events.coverImage);
+  };
+
   const onSubmit = e => {
     e.preventDefault();
 
@@ -86,7 +102,6 @@ const CreateEvent = ({
       setAlert_ACTION('All inputs must be filled');
       return;
     }
-
     createEvent_ACTION(formData, user._id);
     setAlert_ACTION('Event successfully created');
     console.log(formData);
@@ -102,6 +117,10 @@ const CreateEvent = ({
             className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
             onSubmit={onSubmit}
           >
+            <Form.Group>
+              <img src={coverImage} alt='' />
+              <input type='file' name='coverImage' onChange={onUpload} />
+            </Form.Group>
             <Form.Group>
               <Form.Label htmlFor='title'>Title</Form.Label>
               <Form.Control
@@ -215,7 +234,7 @@ const CreateEvent = ({
               </Form.Group>
             </Form.Row>
 
-            <Form.Group>
+            {/* <Form.Group>
               <Form.Label htmlFor='coverImage'>Image</Form.Label>
               <Form.Control
                 type='file'
@@ -223,7 +242,7 @@ const CreateEvent = ({
                 value={coverImage}
                 onChange={onChange}
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Button variant='primary' type='submit'>
               Create the alert
@@ -249,5 +268,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { createEvent_ACTION, setAlert_ACTION }
+  { createEvent_ACTION, setAlert_ACTION, uploadEventImg_ACTION }
 )(CreateEvent);
