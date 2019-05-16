@@ -15,7 +15,7 @@ const AppMenu = () => {
 
         <PopMenu />
 
-        <Item url={'#'} icon={'fa-map-marker-alt'} title={'Map'} />
+        <Item url={'/map'} icon={'fa-map-marker-alt'} title={'Map'} />
         <Item url={'/bookmarks'} icon={'fa-bookmark'} title={'Bookmarks'} />
       </Fragment>
     </Navbar>
