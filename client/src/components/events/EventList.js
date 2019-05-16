@@ -17,6 +17,7 @@ import Form from 'react-bootstrap/Form';
 const EventList = ({ getAllEvents_ACTION }) => {
   useEffect(() => {
     getAllEvents_ACTION();
+    window.scroll(0, 0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [category, setCategory] = useState('All');

@@ -6,7 +6,7 @@ export const setAlert_ACTION = (msg, type) => dispatch => {
 
   dispatch({
     type: SET_ALERT,
-    payload: { msg, type }
+    payload: { msg, type, id }
   });
 
   setTimeout(() => {
