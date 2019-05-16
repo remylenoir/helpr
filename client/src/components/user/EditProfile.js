@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 // Redux actions
 import { editCurrentProfile_ACTION, uploadCurrentProfilePicture_ACTION } from '../../actions/profile';

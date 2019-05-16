@@ -80,7 +80,10 @@ const AlertComments = ({ alert, user, editAlert_ACTION }) => {
   const guestContent = (
     <Fragment>
       <p className='m-0'>
-        <Link to='/login'>Log in</Link> to see comments
+        <Link to='/login' className='text-primary'>
+          Log in
+        </Link>{' '}
+        to see comments
       </p>
     </Fragment>
   );

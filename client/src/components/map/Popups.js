@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect, useState } from 'react';
 import { Popup, Marker } from 'react-map-gl';
 import { getAllAlerts_ACTION } from '../../actions/alerts';
