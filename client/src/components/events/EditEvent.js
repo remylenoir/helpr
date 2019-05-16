@@ -138,8 +138,8 @@ const EditEvent = ({
               <Form.Label>Category</Form.Label>
               <Form.Control as='select' onChange={onChange} name='categories'>
                 <option value={''} onChange={onChange} />
-                <option value={'Homlessness & Poverty'} onChange={onChange}>
-                  Homlessness and Poverty
+                <option value={'Homelessness & Poverty'} onChange={onChange}>
+                  Homelessness and Poverty
                 </option>
                 <option value={'Refugees'} onChange={onChange}>
                   Refugees
