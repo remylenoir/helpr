@@ -97,14 +97,14 @@ const EditAlert = ({
 
           <Form.Group>
             <Form.Label>Type</Form.Label>
-            <Form.Control as='select' name='type'>
-              <option value={type} onChange={onChange}>
+            <Form.Control as='select' onChange={onChange} name='type'>
+              <option value={'People in need'} onChange={onChange}>
                 People in need
               </option>
-              <option value={type} onChange={onChange}>
+              <option value={'Places'} onChange={onChange}>
                 Places
               </option>
-              <option value={type} onChange={onChange}>
+              <option value={"Other"} onChange={onChange}>
                 Other
               </option>
             </Form.Control>

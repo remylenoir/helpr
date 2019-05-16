@@ -16,10 +16,16 @@ import Container from 'react-bootstrap/Container';
 // App utils
 import geolocatedFunc from '../../utils/geolocation';
 
-const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAlert_ACTION }) => {
+const CreateAlert = ({
+  auth: { user },
+  alerts,
+  coords,
+  createAlert_ACTION,
+  setAlert_ACTION
+}) => {
   const [formData, setFormData] = useState({
     title: '',
-    type: 'People in need',
+    type: '',
     location: {},
     description: '',
     imageURL: ''
@@ -44,7 +50,7 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
 
   const onChange = event => {
     const { name, value } = event.target;
-
+    
     setFormData({
       ...formData,
       [name]: value
@@ -78,19 +84,24 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
         >
           <Form.Group>
             <Form.Label>Title</Form.Label>
-            <Form.Control type='text' name='title' value={title} onChange={onChange} />
+            <Form.Control
+              type='text'
+              name='title'
+              value={title}
+              onChange={onChange}
+            />
           </Form.Group>
 
           <Form.Group>
             <Form.Label>Type</Form.Label>
-            <Form.Control as='select' name='type'>
-              <option value={type} onChange={onChange}>
+            <Form.Control as='select' onChange={onChange} name='type'>
+              <option value={'People in need'} onChange={onChange}>
                 People in need
               </option>
-              <option value={type} onChange={onChange}>
+              <option value={'Places'} onChange={onChange}>
                 Places
               </option>
-              <option value={type} onChange={onChange}>
+              <option value={"Other"} onChange={onChange}>
                 Other
               </option>
             </Form.Control>
@@ -109,7 +120,12 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
 
           <Form.Group>
             <Form.Label>Image</Form.Label>
-            <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
+            <Form.Control
+              type='file'
+              name='image'
+              value={imageURL}
+              onChange={onChange}
+            />
           </Form.Group>
 
           <Form.Group>
