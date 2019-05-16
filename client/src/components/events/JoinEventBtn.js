@@ -23,14 +23,14 @@ const JoinEventBtn = ({
 
   const handleBookmark = e => {
     if (isAuthenticated === null) {
-      setAlert_ACTION('Must be logged in');
+      setAlert_ACTION('Must be logged in', 'danger');
       return;
     }
     e.preventDefault();
     setClicked(!isClicked);
     joinEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Successfully joined event');
+    setAlert_ACTION('Successfully joined event', 'success');
   };
 
   const handleDelete = e => {
@@ -38,7 +38,7 @@ const JoinEventBtn = ({
     setClicked(!isClicked);
     leaveEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Successfully left event');
+    setAlert_ACTION('Successfully left event', 'success');
   };
 
   return (

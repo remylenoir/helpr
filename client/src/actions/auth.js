@@ -18,7 +18,7 @@ export const register_ACTION = ({ username, password }) => async dispatch => {
     });
   } catch (error) {
     const err = error.response.data.message;
-    dispatch(setAlert_ACTION(err));
+    dispatch(setAlert_ACTION(err, 'danger'));
     dispatch({
       type: REGISTER_FAIL
     });
@@ -37,7 +37,7 @@ export const login_ACTION = ({ username, password }) => async dispatch => {
       payload: response.data
     });
   } catch (error) {
-    dispatch(setAlert_ACTION('Invalid credentials'));
+    dispatch(setAlert_ACTION('Invalid credentials', 'danger'));
     dispatch({
       type: LOGIN_FAIL
     });

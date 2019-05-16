@@ -102,12 +102,12 @@ const CreateEvent = ({
       city === '' ||
       zipcode === '' 
     ) {
-      setAlert_ACTION('All inputs must be filled');
+      setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
     console.log(formData)
     createEvent_ACTION(formData, user._id);
-    setAlert_ACTION('Event successfully created');
+    setAlert_ACTION('Event successfully created', 'success');
   };
 
   return (

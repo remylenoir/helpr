@@ -11,7 +11,7 @@ const Alert = ({ alerts }) =>
   alerts.length > 0 &&
   alerts.map(alert => (
     <Row key={alert.id}>
-      <AlertMessage variant='danger' className=' my-3 mx-auto position-absolute'>
+      <AlertMessage variant={alert.type} className=' my-3 mx-auto position-absolute'>
         {alert.msg}
       </AlertMessage>
     </Row>

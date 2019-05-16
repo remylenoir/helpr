@@ -94,12 +94,12 @@ const EditEvent = ({
       zipcode === '' ||
       coverImage === ''
     ) {
-      setAlert_ACTION('All inputs must be filled');
+      setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
 
     editEvent_ACTION(event._id, formData);
-    setAlert_ACTION('Changes have been saved');
+    setAlert_ACTION('Changes have been saved', 'success');
 
     history.push(`/event/${event._id}`);
   };

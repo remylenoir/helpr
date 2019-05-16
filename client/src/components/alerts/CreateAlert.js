@@ -74,12 +74,12 @@ const CreateAlert = ({
     e.preventDefault();
 
     if (title === '' || description === '' || type === '') {
-      setAlert_ACTION('All inputs must be filled');
+      setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
     console.log(formData, 'test');
     createAlert_ACTION(formData, user._id);
-    setAlert_ACTION('Alert successfully created');
+    setAlert_ACTION('Alert successfully created', 'success');
   };
 
   if (alerts && alerts.isCreated) {

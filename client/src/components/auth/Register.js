@@ -35,7 +35,7 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
     e.preventDefault();
 
     if (password !== password2) {
-      setAlert_ACTION('Passwords must match');
+      setAlert_ACTION('Passwords must match', 'danger');
       return;
     }
 

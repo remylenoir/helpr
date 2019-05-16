@@ -76,7 +76,7 @@ const EditProfile = ({
     e.preventDefault();
     // Set error message when any of the inputs is not filled
     if (username === '' || firstName === '' || lastName === '') {
-      setAlert_ACTION('All inputs must be filled');
+      setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
     //Check if user didn't change anything, then do nothing
@@ -86,7 +86,7 @@ const EditProfile = ({
 
     // Send edit action to reducer and display success message
     editCurrentProfile_ACTION(user._id, formData);
-    setAlert_ACTION('Changes have been saved');
+    setAlert_ACTION('Changes have been saved', 'success');
 
     history.push('/profile');
   };

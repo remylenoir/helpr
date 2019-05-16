@@ -56,12 +56,12 @@ const EditAlert = ({
     e.preventDefault();
 
     if (title === '' || type === '' || description === '') {
-      setAlert_ACTION('All inputs must be filled');
+      setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
 
     editAlert_ACTION(alert._id, formData);
-    setAlert_ACTION('Changes have been saved');
+    setAlert_ACTION('Changes have been saved', 'success');
 
     history.push(`/alert/${alert._id}`);
   };

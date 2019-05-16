@@ -27,14 +27,14 @@ const FollowAlertBtn = ({
 
   const handleBookmark = e => {
     if (isAuthenticated === null) {
-      setAlert_ACTION('Must be logged in');
+      setAlert_ACTION('Must be logged in', 'danger');
       return;
     }
     e.preventDefault();
     setClicked(!isClicked);
     addBookmarkAlert_ACTION(alert._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Alert successfully bookmarked');
+    setAlert_ACTION('Alert successfully bookmarked', 'success');
   };
 
   const handleDelete = e => {
@@ -42,7 +42,7 @@ const FollowAlertBtn = ({
     setClicked(!isClicked);
     removeBookmarkAlert_ACTION(alert._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Alert successfully unbookmarked');
+    setAlert_ACTION('Alert successfully unbookmarked', 'success');
   };
 
   return (

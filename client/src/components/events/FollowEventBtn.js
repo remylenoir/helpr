@@ -27,14 +27,14 @@ const FollowEventBtn = ({
 
   const handleBookmark = e => {
     if (isAuthenticated === null) {
-      setAlert_ACTION('Must be logged in');
+      setAlert_ACTION('Must be logged in', 'danger');
       return;
     }
     e.preventDefault();
     setClicked(!isClicked);
     addBookmarkEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Event successfully bookmarked');
+    setAlert_ACTION('Event successfully bookmarked', 'success');
   };
 
   const handleDelete = e => {
@@ -42,7 +42,7 @@ const FollowEventBtn = ({
     setClicked(!isClicked);
     removeBookmarkEvent_ACTION(event._id);
     getCurrentProfile_ACTION(user._id);
-    setAlert_ACTION('Event successfully unbookmarked');
+    setAlert_ACTION('Event successfully unbookmarked', 'success');
   };
 
   return (
