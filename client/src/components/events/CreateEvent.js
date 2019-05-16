@@ -29,7 +29,7 @@ const CreateEvent = ({
   const [formData, setFormData] = useState({
     title: '',
     date: new Date(),
-    cetegories: '',
+    categories: '',
     shortDesc: '',
     fullDesc: '',
     street: '',
@@ -42,17 +42,7 @@ const CreateEvent = ({
     return <Redirect to='/dashboard' />;
   }
 
-  const {
-    title,
-    date,
-    categories,
-    shortDesc,
-    fullDesc,
-    street,
-    city,
-    zipcode,
-    coverImage
-  } = formData;
+  const { title, date, categories, shortDesc, fullDesc, street, city, zipcode, coverImage } = formData;
 
   const onChange = event => {
     const { name, value } = event.target;
@@ -123,12 +113,7 @@ const CreateEvent = ({
             </Form.Group>
             <Form.Group>
               <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control
-                type='text'
-                name='title'
-                value={title}
-                onChange={onChange}
-              />
+              <Form.Control type='text' name='title' value={title} onChange={onChange} />
             </Form.Group>
 
             <Form.Group>
@@ -204,33 +189,18 @@ const CreateEvent = ({
             <h3>Address</h3>
             <Form.Group>
               <Form.Label htmlFor='street'>Street</Form.Label>
-              <Form.Control
-                type='text'
-                name='street'
-                value={street}
-                onChange={onChange}
-              />
+              <Form.Control type='text' name='street' value={street} onChange={onChange} />
             </Form.Group>
 
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label htmlFor='city'>City</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='city'
-                  value={city}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='city' value={city} onChange={onChange} />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                <Form.Control
-                  type='number'
-                  name='zipcode'
-                  value={zipcode}
-                  onChange={onChange}
-                />
+                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
               </Form.Group>
             </Form.Row>
 
