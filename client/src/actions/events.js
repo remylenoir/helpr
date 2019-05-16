@@ -6,6 +6,7 @@ import {
   DELETE_EVENT,
   GET_ALL_EVENTS,
   CREATE_EVENT,
+  ADD_COMMENT_EVENT,
   UPLOAD_EVENT_IMG
 } from './types';
 
@@ -68,6 +69,23 @@ export const deleteEvent_ACTION = eventId => async dispatch => {
     });
   } catch (error) {}
 };
+
+export const addCommentEvent_ACTION = (eventId, body) => async dispatch => {
+  try {
+    const response = await service.put(`/events/${eventId}`, body, {
+      new: true
+    });
+    console.log('action trigger, reponse: ', response.data)
+    console.log('body: ', body)
+
+    dispatch({
+      type: ADD_COMMENT_EVENT,
+      dispatch: response.data
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export const uploadEventImg_ACTION = data => async dispatch => {
   const response = await service.post(`/events/upload`, data);

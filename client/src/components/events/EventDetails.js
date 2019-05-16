@@ -14,6 +14,7 @@ import JoinEventBtn from './JoinEventBtn';
 import FollowEventBtn from './FollowEventBtn';
 import EventAttendees from './EventAttendees';
 import Subtitle from '../layout/Headings/Subtitle';
+import EventComments from '../events/EventComments';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -24,7 +25,7 @@ const EventDetails = ({
   match: {
     params: { eventId }
   },
-  events: { event, date, location, loading },
+  events: { event, loading },
   auth,
   getEvent_ACTION
 }) => {
@@ -76,6 +77,10 @@ const EventDetails = ({
           <div className='mb-4'>
             <Subtitle title={'Description'} />
             <p>{event && event.fullDesc}</p>
+          </div>
+
+          <div className='mb-4'>
+            <EventComments />
           </div>
 
           <div className='mb-4'>

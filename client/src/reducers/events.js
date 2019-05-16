@@ -4,7 +4,7 @@ import {
   DELETE_EVENT,
   CLEAR_EVENT,
   GET_ALL_EVENTS,
-  CREATE_EVENT,
+  CREATE_EVENT, ADD_COMMENT_EVENT,
   UPLOAD_EVENT_IMG
 } from '../actions/types';
 
@@ -21,7 +21,6 @@ const initialState = {
 
 export default function(state = initialState, action) {
   const { type, payload } = action;
-
   switch (type) {
     case CREATE_EVENT:
       return {
@@ -87,6 +86,15 @@ export default function(state = initialState, action) {
         isCreated: false,
         isDeleted: true
       };
+      case ADD_COMMENT_EVENT:
+      return {
+        ...state,
+        event: payload,
+        edit: false,
+        loading: false,
+        isCreated: false,
+        isDeleted: false,
+      }
     default:
       return state;
   }

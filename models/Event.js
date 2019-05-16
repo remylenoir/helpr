@@ -44,8 +44,7 @@ const eventSchema = new Schema(
           default: new Date()
         },
         author: {
-          type: Schema.Types.ObjectId,
-          ref: 'User'
+          type: Object
         }
       }
     ]

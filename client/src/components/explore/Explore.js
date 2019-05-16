@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,6 @@ import { getAllAlerts_ACTION } from '../../actions/alerts';
 import { getAllEvents_ACTION } from '../../actions/events';
 
 // App components
-import Search from '../layout/Search';
 import AlertPreview from '../alerts/AlertPreview';
 import EventPreview from '../events/EventPreview';
 import Subtitle from '../layout/Headings/Subtitle';
@@ -19,13 +18,16 @@ import OurFontAwesome from '../layout/OurFontAwesome';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const Explore = ({ alerts, events, getAllAlerts_ACTION, getAllEvents_ACTION }) => {
+const Explore = ({
+  alerts,
+  events,
+  getAllAlerts_ACTION,
+  getAllEvents_ACTION
+}) => {
   useEffect(() => {
     getAllAlerts_ACTION();
     getAllEvents_ACTION();
   }, []);
-
-  const [searchToggle, setSearchToggle] = useState(false);
 
   return (
     <Container className='inner-view py-3' fluid>
@@ -77,7 +79,12 @@ const Explore = ({ alerts, events, getAllAlerts_ACTION, getAllEvents_ACTION }) =
   );
 };
 
-Explore.propTypes = {};
+Explore.propTypes = {
+  alerts: PropTypes.object,
+  events: PropTypes.object,
+  getAllAlerts_ACTION: PropTypes.func.isRequired,
+  getAllEvents_ACTION: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   alerts: state.alerts,

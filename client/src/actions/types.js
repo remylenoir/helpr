@@ -36,4 +36,5 @@ export const GET_EVENT = 'GET_EVENT';
 export const EDIT_EVENT = 'EDIT_EVENT';
 export const CLEAR_EVENT = 'CLEAR_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
+export const ADD_COMMENT_EVENT = 'ADD_COMMENT_EVENT';
 export const UPLOAD_EVENT_IMG = 'UPLOAD_EVENT_IMG';
