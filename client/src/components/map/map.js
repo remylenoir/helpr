@@ -5,7 +5,7 @@ import Popups from './Popups';
 const TOKEN =
   'pk.eyJ1IjoiYmFndWV0dGVkaW1zdW0iLCJhIjoiY2p1cjU5bWV3MDg4ejRkbjZ5YTF6bzNibSJ9.5TvJkViFSKc4l9p9JX-41w';
 
-const Map = ({ fullScreenControl, navControl }) => {
+const Map = ({ fullScreenControl, navControl, height, width }) => {
   const [mapState, setMapState] = useState({
     viewport: {
       latitude: 52.52,
@@ -13,8 +13,8 @@ const Map = ({ fullScreenControl, navControl }) => {
       zoom: 8,
       bearing: 0,
       pitch: 0,
-      height: 320,
-      width: window.innerWidth
+      height,
+      width
     }
   });
 

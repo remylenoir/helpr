@@ -8,7 +8,7 @@ const AlertWithMap = ({ sectionTitle, btnText, desc }) => {
     <Fragment>
       <div className='alert-with-map'>
         <Row>
-          <Map navControl={false} />
+          <Map navControl={false} height={320} width={window.innerWidth} />
         </Row>
         <h3>{sectionTitle}</h3>
         <p>{desc}</p>
