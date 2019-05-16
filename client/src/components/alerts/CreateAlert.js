@@ -19,10 +19,6 @@ import geolocatedFunc from '../../utils/geolocation';
 const CreateAlert = ({
   auth: { user },
   alerts,
-<<<<<<< HEAD
-=======
-  alert,
->>>>>>> 37808e06f4b30a7280ea91e3ee175391bb7b0dc7
   coords,
   createAlert_ACTION,
   setAlert_ACTION
@@ -137,18 +133,8 @@ const CreateAlert = ({
 
           {/* <Form.Group>
             <Form.Label>Image</Form.Label>
-<<<<<<< HEAD
-            <Form.Control
-              type='file'
-              name='image'
-              value={imageURL}
-              onChange={onChange}
-            />
-          </Form.Group>
-=======
             <input type='file' name='imageURL' onChange={onUpload} />
           </Form.Group> */}
->>>>>>> 37808e06f4b30a7280ea91e3ee175391bb7b0dc7
 
           <Form.Group>
             <Form.Label>Location</Form.Label>
