@@ -15,7 +15,7 @@ const PreviewCard = ({
   return type === 'createdAlerts' ? (
     <Fragment>
       {/* ----- ALERTS ----- */}
-      {createdAlerts.map(alert => (
+      {createdAlerts.reverse().map(alert => (
         <Card key={alert._id} className='mt-1 mb-4 text-left'>
           <Link to={`/alert/${alert._id}`}>
             <Container className='py-2'>
@@ -29,7 +29,7 @@ const PreviewCard = ({
     </Fragment>
   ) : type === 'favAlerts' ? (
     <Fragment>
-      {favAlerts.map(alert => (
+      {favAlerts.reverse().map(alert => (
         <Card key={alert._id} className='mt-1 mb-4 text-left'>
           <Link to={`/alert/${alert._id}`}>
             <Container className='py-2'>
@@ -44,7 +44,7 @@ const PreviewCard = ({
   ) : type === 'createdEvents' ? (
     <Fragment>
       {/* ----- EVENTS ----- */}
-      {createdEvents.map(event => (
+      {createdEvents.reverse().map(event => (
         <Card key={event._id} className='mt-1 mb-4 text-left'>
           <Link to={`/event/${event._id}`}>
             <Card.Img variant='top' src={event.coverImage} />
@@ -61,7 +61,7 @@ const PreviewCard = ({
     </Fragment>
   ) : type === 'joinedEvents' ? (
     <Fragment>
-      {joinedEvents.map(event => (
+      {joinedEvents.reverse().map(event => (
         <Card key={event._id} className='mt-1 mb-4 text-left'>
           <Link to={`/event/${event._id}`}>
             <Card.Img variant='top' src={event.coverImage} />
@@ -78,7 +78,7 @@ const PreviewCard = ({
     </Fragment>
   ) : type === 'favEvents' ? (
     <Fragment>
-      {favEvents.map(event => (
+      {favEvents.reverse().map(event => (
         <Card key={event._id} className='mt-1 mb-4 text-left'>
           <Link to={`/event/${event._id}`}>
             <Card.Img variant='top' src={event.coverImage} />

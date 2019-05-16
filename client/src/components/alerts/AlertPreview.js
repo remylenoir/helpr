@@ -14,7 +14,7 @@ import Container from 'react-bootstrap/Container';
 const AlertPreview = ({ alerts: { alerts, loading } }) => {
   const alertElements =
     alerts &&
-    alerts.map(alert => {
+    alerts.reverse().map(alert => {
       return (
         <Card key={alert._id} className='mt-1 mb-4 text-left'>
           <Link to={`/alert/${alert._id}`}>

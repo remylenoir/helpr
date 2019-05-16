@@ -14,7 +14,7 @@ import Container from 'react-bootstrap/Container';
 const EventPreview = ({ events: { events, loading } }) => {
   const eventElements =
     events &&
-    events.map(event => {
+    events.reverse().map(event => {
       return (
         <Card key={event._id} className='mt-1 mb-4 text-left'>
           <Link to={`/event/${event._id}`}>
