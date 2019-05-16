@@ -22,7 +22,7 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
       >
         <Container>
           <Row className='align-items-center'>
-            <div className='col text-right user-name pr-1'>{user && user.username}</div>
+            <div className='col text-right user-name pr-1'>Profile</div>
           </Row>
         </Container>
       </button>

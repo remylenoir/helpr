@@ -5,13 +5,13 @@ const categorySchema = new Schema(
   {
     title: { type: String, required: true },
     description: String,
-    imageURL: String,
-    events: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Event'
-      }
-    ]
+    imageURL: String
+    // events: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Event'
+    //   }
+    // ]
   },
   {
     timestamps: {
