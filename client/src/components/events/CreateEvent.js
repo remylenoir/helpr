@@ -96,7 +96,7 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
               <Flatpickr
                 className='datepicker form-control'
                 data-enable-time
-                name={date}
+                name='date'
                 value={date}
                 onChange={onChangeDate}
                 options={{
