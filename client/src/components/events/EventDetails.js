@@ -25,7 +25,7 @@ const EventDetails = ({
   match: {
     params: { eventId }
   },
-  events: { event, date, location, loading },
+  events: { event, loading },
   auth,
   getEvent_ACTION
 }) => {

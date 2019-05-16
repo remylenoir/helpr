@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editEvent_ACTION } from '../../actions/events';
@@ -30,7 +31,7 @@ const EventComments = ({ event, user, editEvent_ACTION }) => {
       setCommentData({
         ...commentData,
         text: value,
-        author: user._id
+        author: user
       });
   };
 
@@ -43,9 +44,9 @@ const EventComments = ({ event, user, editEvent_ACTION }) => {
       author: ''
     });
   };
-  return (
-    <div>
-      <h2>Comments</h2>
+
+  const userContent = (
+    <Fragment>
       <CommentCard />
       <form onSubmit={onSubmit}>
         <input
@@ -55,11 +56,30 @@ const EventComments = ({ event, user, editEvent_ACTION }) => {
           onChange={onChange}
         />
       </form>
+    </Fragment>
+  );
+
+  const guestContent = (
+    <Fragment>
+      <p className='m-0'>
+        <Link to='/login'>Log in</Link> to see comments
+      </p>
+    </Fragment>
+  );
+
+  return (
+    <div>
+      <h2>Comments</h2>
+      {user ? userContent : guestContent}
     </div>
   );
 };
 
-EventComments.propTypes = {};
+EventComments.propTypes = {
+  event: PropTypes.object,
+  user: PropTypes.object,
+  editEvent_ACTION: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   event: state.events.event,

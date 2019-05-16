@@ -85,6 +85,8 @@ export const addCommentEvent_ACTION = (eventId, body) => async dispatch => {
   } catch (error) {
     console.error(error);
   }
+}
+
 export const uploadEventImg_ACTION = data => async dispatch => {
   const response = await service.post(`/events/upload`, data);
   console.log(data, response.data);
