@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
@@ -12,6 +12,7 @@ const PreviewCard = ({
 }) => {
   return type === 'createdAlerts' ? (
     <Fragment>
+      {/* ----- ALERTS ----- */}
       {createdAlerts.map(alert => (
         <Card key={alert._id} style={{ width: '15rem' }}>
           <Link to={`/alert/${alert._id}`}>
@@ -19,20 +20,6 @@ const PreviewCard = ({
             <Card.Body>
               <Card.Title>{alert.title}</Card.Title>
               <Card.Text>{alert.description}</Card.Text>
-            </Card.Body>
-          </Link>
-        </Card>
-      ))}
-    </Fragment>
-  ) : type === 'createdEvents' ? (
-    <Fragment>
-      {createdEvents.map(event => (
-        <Card key={event._id} style={{ width: '15rem' }}>
-          <Link to={`/event/${event._id}`}>
-            {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
-            <Card.Body>
-              <Card.Title>{event.title}</Card.Title>
-              <Card.Text>{event.description}</Card.Text>
             </Card.Body>
           </Link>
         </Card>
@@ -52,9 +39,10 @@ const PreviewCard = ({
         </Card>
       ))}
     </Fragment>
-  ) : type === 'favEvents' ? (
+  ) : type === 'createdEvents' ? (
     <Fragment>
-      {favEvents.map(event => (
+      {/* ----- EVENTS ----- */}
+      {createdEvents.map(event => (
         <Card key={event._id} style={{ width: '15rem' }}>
           <Link to={`/event/${event._id}`}>
             {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
@@ -69,6 +57,20 @@ const PreviewCard = ({
   ) : type === 'joinedEvents' ? (
     <Fragment>
       {joinedEvents.map(event => (
+        <Card key={event._id} style={{ width: '15rem' }}>
+          <Link to={`/event/${event._id}`}>
+            {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
+            <Card.Body>
+              <Card.Title>{event.title}</Card.Title>
+              <Card.Text>{event.description}</Card.Text>
+            </Card.Body>
+          </Link>
+        </Card>
+      ))}
+    </Fragment>
+  ) : type === 'favEvents' ? (
+    <Fragment>
+      {favEvents.map(event => (
         <Card key={event._id} style={{ width: '15rem' }}>
           <Link to={`/event/${event._id}`}>
             {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}

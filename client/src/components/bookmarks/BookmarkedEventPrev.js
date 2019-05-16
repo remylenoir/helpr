@@ -19,20 +19,17 @@ const BookmarkedEventPrev = ({ profile: { profile, loading } }) => {
           {profile.favEvents.map(event => (
             <Card key={event._id} style={{ width: '15rem' }}>
               <Link to={`/event/${event._id}`}>
-                {event.coverImage && (
-                  <Card.Img variant='top' src={event.coverImage} />
-                )}
+                {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
                 <Card.Body>
                   <Card.Title>{event.title}</Card.Title>
                   <Card.Text>{event.shortDesc}</Card.Text>
-                  {/* <Link to={`/event/${event._id}`}>More details</Link> */}
                 </Card.Body>
               </Link>
             </Card>
           ))}
         </Fragment>
       ) : (
-        <h3>You have no bookmarked events</h3>
+        <p>You have no bookmarked events</p>
       )}
     </Fragment>
   );

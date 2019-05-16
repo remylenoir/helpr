@@ -12,6 +12,7 @@ import Spinner from '../layout/Spinner';
 import JoinEventBtn from './JoinEventBtn';
 import FollowEventBtn from './FollowEventBtn';
 import EventAttendees from './EventAttendees';
+import Subtitle from '../layout/Headings/Subtitle';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -51,16 +52,19 @@ const EventDetails = ({
           <div className='actions-buttons position-absolute'>
             <FollowEventBtn /> <JoinEventBtn />
           </div>
-          <h2>Description:</h2>
-          <hr />
+
+          <Subtitle title={'Description'} />
           <p>{event && event.fullDesc}</p>
-          <h2>Location:</h2>
-          <hr />
+
+          <Subtitle title={'Location'} />
           <p>
             <span className='text-danger'>Insert map</span>
           </p>
+
           <hr />
+
           <EventAttendees />
+
           {event && auth.isAuthenticated && auth.user._id === event.creator._id && (
             <Card border='warning' className='my-3 no-shadow text-center'>
               <Card.Header>Administrator area</Card.Header>
@@ -89,31 +93,6 @@ const EventDetails = ({
         </Container>
       </Row>
     </Container>
-
-    // <div>
-    //   <FollowEventBtn />
-    //   <JoinEventBtn />
-    //   <h2>{event && event.title}</h2>
-    //   <p>Description: {event && event.fullDesc}</p>
-    //   <p>Date: {date && date}</p>
-    //   <p>
-    //     Location: {location && location[0]}, {location && location[1]}
-    //   </p>
-    //   <p>
-    //     Images: <img src={event && event.coverImage} alt='event pic' />
-    //   </p>
-    //   <br />
-    //   <EventAttendees />
-    //   <br />
-    //   {event && auth.isAuthenticated && auth.user._id === event.creator ? (
-    //     <Link to={`/event/${event._id}/edit`}>Edit event</Link>
-    //   ) : (
-    //     <Fragment />
-    //   )}
-
-    //   <br />
-    //   <Link to='/event/all'>See all events</Link>
-    // </div>
   );
 };
 

@@ -5,10 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 // Redux actions
-import {
-  createAlert_ACTION,
-  uploadAlertImg_ACTION
-} from '../../actions/alerts';
+import { createAlert_ACTION } from '../../actions/alerts';
 import { setAlert_ACTION } from '../../actions/alert';
 
 // Bootstrap components
@@ -25,18 +22,16 @@ const CreateAlert = ({
   alert,
   coords,
   createAlert_ACTION,
-  setAlert_ACTION,
-  uploadAlertImg_ACTION
+  setAlert_ACTION
 }) => {
   const [formData, setFormData] = useState({
     title: '',
     type: 'People in need',
     location: {},
-    description: '',
-    imageURL: ''
+    description: ''
   });
 
-  const { title, type, location, description, imageURL } = formData;
+  const { title, type, location, description } = formData;
 
   useEffect(() => {
     const latitude = coords && coords.latitude;
@@ -53,14 +48,6 @@ const CreateAlert = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coords]);
 
-  // useEffect(() => {
-  //   alert.imageURL &&
-  //     setFormData({
-  //       ...formData,
-  //       imageURL: alerts.imageURL
-  //     });
-  // }, [alerts.imageURL]);
-
   const onChange = event => {
     const { name, value } = event.target;
     setFormData({
@@ -69,19 +56,19 @@ const CreateAlert = ({
     });
   };
 
-  //handle image uplaod
-  const onUpload = e => {
-    const file = e.target.files[0];
-    const data = new FormData();
+  // //handle image uplaod
+  // const onUpload = e => {
+  //   const file = e.target.files[0];
+  //   const data = new FormData();
 
-    data.append('imageURL', file);
-    uploadAlertImg_ACTION(data);
+  //   data.append('imageURL', file);
+  //   uploadAlertImg_ACTION(data);
 
-    setFormData({
-      ...formData,
-      imageURL: alerts.imageURL
-    });
-  };
+  //   setFormData({
+  //     ...formData,
+  //     imageURL: alerts.imageURL
+  //   });
+  // };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -144,10 +131,10 @@ const CreateAlert = ({
             />
           </Form.Group>
 
-          <Form.Group>
+          {/* <Form.Group>
             <Form.Label>Image</Form.Label>
             <input type='file' name='imageURL' onChange={onUpload} />
-          </Form.Group>
+          </Form.Group> */}
 
           <Form.Group>
             <Form.Label>Location</Form.Label>
@@ -184,7 +171,7 @@ const mapStateToProps = state => ({
 const reduxConnect = () =>
   connect(
     mapStateToProps,
-    { createAlert_ACTION, setAlert_ACTION, uploadAlertImg_ACTION }
+    { createAlert_ACTION, setAlert_ACTION }
   );
 
 export default compose(
