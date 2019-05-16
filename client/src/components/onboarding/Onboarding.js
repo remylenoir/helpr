@@ -13,8 +13,8 @@ import Container from 'react-bootstrap/Container';
 
 const Onboarding = () => {
   useEffect(() => {
-    window.scroll(0, 0)
-  }, [])
+    window.scroll(0, 0);
+  }, []);
   const parallaxDataLeft = [
     {
       start: 'self',
@@ -42,7 +42,9 @@ const Onboarding = () => {
               msg={'Helping people just got easier!'}
               button={true}
               btnMsg={'Get involved now!'}
-              url={'https://source.unsplash.com/random'}
+              url={
+                'https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80'
+              }
               btnLink={'/explore'}
             />
           </Row>
