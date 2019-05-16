@@ -1,20 +1,23 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  editCurrentProfile_ACTION,
-  uploadCurrentProfilePicture_ACTION
-} from '../../actions/profile';
+import { Link } from 'react-router-dom';
+
+// Redux actions
+import { editCurrentProfile_ACTION, uploadCurrentProfilePicture_ACTION } from '../../actions/profile';
 import { setAlert_ACTION } from '../../actions/alert';
+
+// App components
 import Spinner from '../layout/Spinner';
-import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
+import OurFontAwesome from '../layout/OurFontAwesome';
+
+// Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import OurFontAwesome from '../layout/OurFontAwesome';
+import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 const EditProfile = ({
   id,
@@ -77,11 +80,7 @@ const EditProfile = ({
       return;
     }
     //Check if user didn't change anything, then do nothing
-    if (
-      username === user.username &&
-      firstName === user.firstName &&
-      lastName === user.lastName
-    ) {
+    if (username === user.username && firstName === user.firstName && lastName === user.lastName) {
       return;
     }
 
@@ -105,19 +104,11 @@ const EditProfile = ({
               </Link>
               <Form onSubmit={onSubmit}>
                 <div className='image-edit'>
-                  <Form.Label
-                    htmlFor='profileImg'
-                    className='profile-img-holder'
-                  >
+                  <Form.Label htmlFor='profileImg' className='profile-img-holder'>
                     <span className='edit-title'>Edit image</span>
                     <Image src={user.profilePicture} className='profile-img' />
                   </Form.Label>
-                  <input
-                    type='file'
-                    id='profileImg'
-                    name='profilePicture'
-                    onChange={onUpload}
-                  />
+                  <input type='file' id='profileImg' name='profilePicture' onChange={onUpload} />
                 </div>
                 <Form.Group>
                   <Form.Label>Username</Form.Label>

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
+
+// Redux action
 import { setAlert_ACTION } from '../../actions/alert';
 import { register_ACTION } from '../../actions/auth';
 
 // Bootstrap components
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 
 const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -49,7 +51,9 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
     <div className='auth-view d-flex align-items-center justify-content-center container'>
       <Row>
         <Container>
-          <h3 className='text-center'>Do you want to be part of&nbsp;a&nbsp;great community?</h3>
+          <h3 className='text-center'>
+            Do you want to be part <br />of&nbsp;a&nbsp;great community?
+          </h3>
           <p className='text-center'>Create your account</p>
           <hr />
 

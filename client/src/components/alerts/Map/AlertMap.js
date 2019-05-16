@@ -8,8 +8,8 @@ const TOKEN =
 const Map = ({ height, width, alert }) => {
   const [mapState, setMapState] = useState({
     viewport: {
-      latitude: alert && alert.coordinates[0],
-      longitude: alert && alert.coordinates[1],
+      latitude: alert.coordinates[0],
+      longitude: alert.coordinates[1],
       zoom: 14,
       bearing: 0,
       pitch: 0,
@@ -26,7 +26,7 @@ const Map = ({ height, width, alert }) => {
         mapStyle='mapbox://styles/baguettedimsum/cjuv99moz0e201fqmhojp2soe'
         onViewportChange={viewport => setMapState({ viewport })}
       >
-        <Popups alert={alert} />
+        <Popups alert={alert && alert} />
       </ReactMapGL>
     </div>
   );
