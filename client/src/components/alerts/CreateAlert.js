@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 // Redux actions
-import { setAlert_ACTION } from '../../actions/alert';
 import { createAlert_ACTION } from '../../actions/alerts';
+import { setAlert_ACTION } from '../../actions/alert';
 
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
@@ -19,6 +19,10 @@ import geolocatedFunc from '../../utils/geolocation';
 const CreateAlert = ({
   auth: { user },
   alerts,
+<<<<<<< HEAD
+=======
+  alert,
+>>>>>>> 37808e06f4b30a7280ea91e3ee175391bb7b0dc7
   coords,
   createAlert_ACTION,
   setAlert_ACTION
@@ -27,11 +31,10 @@ const CreateAlert = ({
     title: '',
     type: '',
     location: {},
-    description: '',
-    imageURL: ''
+    description: ''
   });
 
-  const { title, type, location, description, imageURL } = formData;
+  const { title, type, location, description } = formData;
 
   useEffect(() => {
     const latitude = coords && coords.latitude;
@@ -57,6 +60,20 @@ const CreateAlert = ({
     });
   };
 
+  // //handle image uplaod
+  // const onUpload = e => {
+  //   const file = e.target.files[0];
+  //   const data = new FormData();
+
+  //   data.append('imageURL', file);
+  //   uploadAlertImg_ACTION(data);
+
+  //   setFormData({
+  //     ...formData,
+  //     imageURL: alerts.imageURL
+  //   });
+  // };
+
   const onSubmit = e => {
     e.preventDefault();
 
@@ -64,7 +81,7 @@ const CreateAlert = ({
       setAlert_ACTION('All inputs must be filled');
       return;
     }
-
+    console.log(formData, 'test');
     createAlert_ACTION(formData, user._id);
     setAlert_ACTION('Alert successfully created');
   };
@@ -118,8 +135,9 @@ const CreateAlert = ({
             />
           </Form.Group>
 
-          <Form.Group>
+          {/* <Form.Group>
             <Form.Label>Image</Form.Label>
+<<<<<<< HEAD
             <Form.Control
               type='file'
               name='image'
@@ -127,6 +145,10 @@ const CreateAlert = ({
               onChange={onChange}
             />
           </Form.Group>
+=======
+            <input type='file' name='imageURL' onChange={onUpload} />
+          </Form.Group> */}
+>>>>>>> 37808e06f4b30a7280ea91e3ee175391bb7b0dc7
 
           <Form.Group>
             <Form.Label>Location</Form.Label>

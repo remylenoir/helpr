@@ -4,7 +4,8 @@ import {
   DELETE_ALERT,
   GET_ALL_ALERTS,
   CREATE_ALERT,
-  BOOKMARK_ALERT
+  BOOKMARK_ALERT,
+  UPLOAD_ALERT_IMG
 } from '../actions/types';
 
 const initialState = {
@@ -72,6 +73,13 @@ export default function(state = initialState, action) {
     case BOOKMARK_ALERT:
       return {
         ...state
+      };
+    case UPLOAD_ALERT_IMG:
+      return {
+        ...state,
+        imageURL: payload,
+        edit: false,
+        loading: false
       };
     default:
       return state;

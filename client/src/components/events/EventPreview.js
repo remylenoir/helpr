@@ -20,7 +20,7 @@ const EventPreview = ({ events: { events, loading } }) => {
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Subtitle className='mb-2 text-muted'>
-                {event.creator} - {moment(event.created_at).fromNow()}
+                {event.creator.username} - {moment(event.created_at).fromNow()}
               </Card.Subtitle>
               <Card.Text>{event.shortDesc}</Card.Text>
             </Card.Body>

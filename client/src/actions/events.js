@@ -16,6 +16,7 @@ export const createEvent_ACTION = (body, userId) => async dispatch => {
 
 export const getAllEvents_ACTION = () => async dispatch => {
   const response = await service.get(`/events/all`);
+
   dispatch({
     type: GET_ALL_EVENTS,
     payload: response.data
