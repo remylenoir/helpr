@@ -10,7 +10,7 @@ const eventSchema = new Schema(
       type: Date,
       required: true
     },
-    categories: [String],
+    categories: String,
     street: { type: String, required: true },
     city: { type: String, required: true },
     zipcode: { type: Number, required: true },

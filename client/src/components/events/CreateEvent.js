@@ -18,10 +18,16 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
-const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTION }) => {
+const CreateEvent = ({
+  auth: { user },
+  events,
+  createEvent_ACTION,
+  setAlert_ACTION
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     date: new Date(),
+    cetegories: '',
     shortDesc: '',
     fullDesc: '',
     street: '',
@@ -34,7 +40,17 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
     return <Redirect to='/dashboard' />;
   }
 
-  const { title, date, shortDesc, fullDesc, street, city, zipcode, coverImage } = formData;
+  const {
+    title,
+    date,
+    categories,
+    shortDesc,
+    fullDesc,
+    street,
+    city,
+    zipcode,
+    coverImage
+  } = formData;
 
   const onChange = event => {
     const { name, value } = event.target;
@@ -60,6 +76,7 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
     if (
       title === '' ||
       shortDesc === '' ||
+      categories === '' ||
       fullDesc === '' ||
       street === '' ||
       city === '' ||
@@ -87,16 +104,49 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
           >
             <Form.Group>
               <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control type='text' name='title' value={title} onChange={onChange} />
+              <Form.Control
+                type='text'
+                name='title'
+                value={title}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <Form.Group>
+              <Form.Label>Category</Form.Label>
+              <Form.Control as='select' onChange={onChange} name='categories'>
+                <option value={''} onChange={onChange} />
+                <option value={'Homlessness & Poverty'} onChange={onChange}>
+                  Homlessness and Poverty
+                </option>
+                <option value={'Refugees'} onChange={onChange}>
+                  Refugees
+                </option>
+                <option value={'Migrants'} onChange={onChange}>
+                  Migrants
+                </option>
+                <option value={'Seniors'} onChange={onChange}>
+                  Seniors
+                </option>
+                <option value={'Children and Young Adults'} onChange={onChange}>
+                  Children and Young Adults
+                </option>
+                <option value={'Environment and Animals'} onChange={onChange}>
+                  Environment and Animals
+                </option>
+                <option value={'Political Activism'} onChange={onChange}>
+                  Political Activism
+                </option>
+              </Form.Control>
+            </Form.Group>
+
+            {/* <Form.Group>
               <Form.Label htmlFor='date'>Date</Form.Label>
               <br />
               <Flatpickr
                 className='datepicker form-control'
                 data-enable-time
-                name={date}
+                name='date'
                 value={date}
                 onChange={onChangeDate}
                 options={{
@@ -107,7 +157,7 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
                   }
                 }}
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group>
               <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
@@ -134,24 +184,44 @@ const CreateEvent = ({ auth: { user }, events, createEvent_ACTION, setAlert_ACTI
             <h3>Address</h3>
             <Form.Group>
               <Form.Label htmlFor='street'>Street</Form.Label>
-              <Form.Control type='text' name='street' value={street} onChange={onChange} />
+              <Form.Control
+                type='text'
+                name='street'
+                value={street}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label htmlFor='city'>City</Form.Label>
-                <Form.Control type='text' name='city' value={city} onChange={onChange} />
+                <Form.Control
+                  type='text'
+                  name='city'
+                  value={city}
+                  onChange={onChange}
+                />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
+                <Form.Control
+                  type='number'
+                  name='zipcode'
+                  value={zipcode}
+                  onChange={onChange}
+                />
               </Form.Group>
             </Form.Row>
 
             <Form.Group>
               <Form.Label htmlFor='coverImage'>Image</Form.Label>
-              <Form.Control type='file' name='coverImage' value={coverImage} onChange={onChange} />
+              <Form.Control
+                type='file'
+                name='coverImage'
+                value={coverImage}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <Button variant='primary' type='submit'>

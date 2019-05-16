@@ -35,13 +35,23 @@ const EditEvent = ({
     shortDesc: '',
     fullDesc: '',
     date: '',
+    categories: '',
     street: '',
     city: '',
     zipcode: '',
     coverImage: ''
   });
 
-  const { title, shortDesc, fullDesc, street, city, zipcode, coverImage } = formData;
+  const {
+    title,
+    shortDesc,
+    fullDesc,
+    street,
+    categories,
+    city,
+    zipcode,
+    coverImage
+  } = formData;
 
   useEffect(() => {
     setFormData({
@@ -49,6 +59,7 @@ const EditEvent = ({
       title: loading || !event.title ? '' : event.title,
       fullDesc: loading || !event.fullDesc ? '' : event.fullDesc,
       shortDesc: loading || !event.shortDesc ? '' : event.shortDesc,
+      categories: loading || !event.categories ? '' : event.categories,
       street: loading || !event.street ? '' : event.street,
       city: loading || !event.city ? '' : event.city,
       zipcode: loading || !event.zipcode ? '' : event.zipcode,
@@ -82,6 +93,7 @@ const EditEvent = ({
       title === '' ||
       shortDesc === '' ||
       fullDesc === '' ||
+      categories === '' ||
       date === '' ||
       street === '' ||
       city === '' ||
@@ -125,10 +137,43 @@ const EditEvent = ({
           >
             <Form.Group>
               <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control type='text' name='title' value={title} onChange={onChange} />
+              <Form.Control
+                type='text'
+                name='title'
+                value={title}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <Form.Group>
+              <Form.Label>Category</Form.Label>
+              <Form.Control as='select' onChange={onChange} name='categories'>
+                <option value={''} onChange={onChange} />
+                <option value={'Homlessness & Poverty'} onChange={onChange}>
+                  Homlessness and Poverty
+                </option>
+                <option value={'Refugees'} onChange={onChange}>
+                  Refugees
+                </option>
+                <option value={'Migrants'} onChange={onChange}>
+                  Migrants
+                </option>
+                <option value={'Seniors'} onChange={onChange}>
+                  Seniors
+                </option>
+                <option value={'Children and Young Adults'} onChange={onChange}>
+                  Children and Young Adults
+                </option>
+                <option value={'Environment and Animals'} onChange={onChange}>
+                  Environment and Animals
+                </option>
+                <option value={'Political Activism'} onChange={onChange}>
+                  Political Activism
+                </option>
+              </Form.Control>
+            </Form.Group>
+
+            {/* <Form.Group>
               <Form.Label htmlFor='date'>Date</Form.Label>
               <br />
               <Flatpickr
@@ -145,7 +190,7 @@ const EditEvent = ({
                   }
                 }}
               />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group>
               <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
@@ -172,24 +217,44 @@ const EditEvent = ({
             <h3>Address</h3>
             <Form.Group>
               <Form.Label htmlFor='street'>Street</Form.Label>
-              <Form.Control type='text' name='street' value={street} onChange={onChange} />
+              <Form.Control
+                type='text'
+                name='street'
+                value={street}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label htmlFor='city'>City</Form.Label>
-                <Form.Control type='text' name='city' value={city} onChange={onChange} />
+                <Form.Control
+                  type='text'
+                  name='city'
+                  value={city}
+                  onChange={onChange}
+                />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
+                <Form.Control
+                  type='number'
+                  name='zipcode'
+                  value={zipcode}
+                  onChange={onChange}
+                />
               </Form.Group>
             </Form.Row>
 
             <Form.Group>
               <Form.Label htmlFor='coverImage'>Image</Form.Label>
-              <Form.Control type='text' name='coverImage' value={coverImage} onChange={onChange} />
+              <Form.Control
+                type='text'
+                name='coverImage'
+                value={coverImage}
+                onChange={onChange}
+              />
             </Form.Group>
 
             <ButtonToolbar className='justify-content-around py-3'>

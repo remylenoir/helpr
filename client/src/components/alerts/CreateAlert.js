@@ -49,7 +49,7 @@ const CreateAlert = ({
 
   const onChange = event => {
     const { name, value } = event.target;
-    
+
     setFormData({
       ...formData,
       [name]: value
@@ -73,7 +73,7 @@ const CreateAlert = ({
   const onSubmit = e => {
     e.preventDefault();
 
-    if (title === '' || description === '' || location === '') {
+    if (title === '' || description === '' || type === '') {
       setAlert_ACTION('All inputs must be filled');
       return;
     }
@@ -108,13 +108,16 @@ const CreateAlert = ({
           <Form.Group>
             <Form.Label>Type</Form.Label>
             <Form.Control as='select' onChange={onChange} name='type'>
+              <option value={''} onChange={onChange}>
+                
+              </option>
               <option value={'People in need'} onChange={onChange}>
                 People in need
               </option>
               <option value={'Places'} onChange={onChange}>
                 Places
               </option>
-              <option value={"Other"} onChange={onChange}>
+              <option value={'Other'} onChange={onChange}>
                 Other
               </option>
             </Form.Control>
