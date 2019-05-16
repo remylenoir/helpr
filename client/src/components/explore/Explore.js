@@ -53,6 +53,7 @@ const Explore = ({
         <Container fluid>
           <FadeIn>
             <Subtitle title={'New Alerts'} />
+            <Link to='/alert/all'>See all alerts</Link>
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
@@ -68,6 +69,7 @@ const Explore = ({
         <Container fluid>
           <FadeIn>
             <Subtitle title={'Next Events'} />
+            <Link to='/event/all'>See all events</Link>
             <Row>
               <div className='horizontal-scroll'>
                 <div className='horizontal-scroll-wrapper'>
@@ -75,15 +77,6 @@ const Explore = ({
                 </div>
               </div>
             </Row>
-          </FadeIn>
-        </Container>
-      </Row>
-
-      <Row>
-        <Container fluid>
-          <FadeIn>
-            <Subtitle title={'Categories'} />
-            <Row>TODO</Row>
           </FadeIn>
         </Container>
       </Row>

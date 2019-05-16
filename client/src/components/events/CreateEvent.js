@@ -259,7 +259,7 @@ const CreateEvent = ({
               </Form.Row>
 
               <Button variant='primary' type='submit'>
-                Create the alert
+                Create the event
               </Button>
             </Form>
           </FadeIn>
