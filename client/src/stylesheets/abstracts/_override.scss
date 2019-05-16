@@ -2,7 +2,7 @@
 
 // create variables
 :root {
-  --primary: #b33048;
+  --primary: #e84137;
 
   --spacing: 2.5rem;
 
@@ -19,6 +19,35 @@ body {
 //button overrides
 .btn-primary,
 .bg-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  &:hover {
+    border-color: darken($color: #e84137, $amount: 5%);
+    background-color: darken($color: #e84137, $amount: 5%);
+  }
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem var(--primary);
+}
+.btn-outline-primary {
+  color: var(--primary);
+  border-color: var(--primary);
+  &:hover {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.2rem var(--primary);
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active {
   background-color: var(--primary);
   border-color: var(--primary);
 }
