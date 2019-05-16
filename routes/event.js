@@ -91,6 +91,9 @@ router.get('/all', (req, res) => {
       // Once the active state is updated
       // return the updated events in the response
       Event.find({})
+        .populate('creator', 'username profilePicture')
+        .populate('attendees', 'username profilePicture')
+        .populate('organizer', 'username profilePicture')
         .populate('categories', 'title')
         .then(updatedEvents => {
           res.status(200).json(updatedEvents);
