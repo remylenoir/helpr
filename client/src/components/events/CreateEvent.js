@@ -11,10 +11,7 @@ import 'flatpickr/dist/themes/airbnb.css';
 
 // Redux actions
 import { setAlert_ACTION } from '../../actions/alert';
-import {
-  createEvent_ACTION,
-  uploadEventImg_ACTION
-} from '../../actions/events';
+import { createEvent_ACTION, uploadEventImg_ACTION } from '../../actions/events';
 
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
@@ -87,11 +84,6 @@ const CreateEvent = ({
 
     data.append('coverImage', file);
     uploadEventImg_ACTION(data);
-
-    // setFormData({
-    //   ...formData,
-    //   coverImage: events.coverImage
-    // });
   };
 
   const onSubmit = e => {
@@ -128,18 +120,15 @@ const CreateEvent = ({
               onSubmit={onSubmit}
             >
               <Form.Group>
-                <img src={coverImage} alt='' />
-                <input type='file' name='coverImage' onChange={onUpload} />
+                <Form.Label htmlFor='title'>Title</Form.Label>
+                <Form.Control type='text' name='title' value={title} onChange={onChange} />
               </Form.Group>
 
               <Form.Group>
-                <Form.Label htmlFor='title'>Title</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='title'
-                  value={title}
-                  onChange={onChange}
-                />
+                <Form.Label htmlFor='coverImage'>Image</Form.Label>
+                <br />
+                <img src={coverImage} alt='' />
+                <input type='file' name='coverImage' onChange={onUpload} />
               </Form.Group>
 
               <Form.Group>
@@ -158,10 +147,7 @@ const CreateEvent = ({
                   <option value={'Seniors'} onChange={onChange}>
                     Seniors
                   </option>
-                  <option
-                    value={'Children and Young Adults'}
-                    onChange={onChange}
-                  >
+                  <option value={'Children and Young Adults'} onChange={onChange}>
                     Children and Young Adults
                   </option>
                   <option value={'Environment and Animals'} onChange={onChange}>
@@ -218,43 +204,23 @@ const CreateEvent = ({
               <h3>Address</h3>
               <Form.Group>
                 <Form.Label htmlFor='venue'>Venue</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='venue'
-                  value={venue}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='venue' value={venue} onChange={onChange} />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label htmlFor='street'>Street</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='street'
-                  value={street}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='street' value={street} onChange={onChange} />
               </Form.Group>
 
               <Form.Row>
                 <Form.Group as={Col}>
                   <Form.Label htmlFor='city'>City</Form.Label>
-                  <Form.Control
-                    type='text'
-                    name='city'
-                    value={city}
-                    onChange={onChange}
-                  />
+                  <Form.Control type='text' name='city' value={city} onChange={onChange} />
                 </Form.Group>
 
                 <Form.Group as={Col}>
                   <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                  <Form.Control
-                    type='number'
-                    name='zipcode'
-                    value={zipcode}
-                    onChange={onChange}
-                  />
+                  <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
                 </Form.Group>
               </Form.Row>
 

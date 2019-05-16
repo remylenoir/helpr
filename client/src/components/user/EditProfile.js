@@ -9,7 +9,7 @@ import { setAlert_ACTION } from '../../actions/alert';
 
 // App components
 import Spinner from '../layout/Spinner';
-import OurFontAwesome from '../layout/OurFontAwesome';
+import BackLink from '../layout/BackLink';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -30,8 +30,8 @@ const EditProfile = ({
   uploadCurrentProfilePicture_ACTION
 }) => {
   useEffect(() => {
-    window.scroll(0, 0)
-  }, [])
+    window.scroll(0, 0);
+  }, []);
   // Set the state to handle edit form input values
   const [formData, setFormData] = useState({
     username: '',
@@ -102,9 +102,8 @@ const EditProfile = ({
         <Row>
           <Col>
             <div id='profile'>
-              <Link to='/profile'>
-                <OurFontAwesome icon={'fa-arrow-left'} /> Back to profile
-              </Link>
+              <BackLink url={'/profil'} title={'Back to profile'} />
+
               <Form onSubmit={onSubmit}>
                 <div className='image-edit'>
                   <Form.Label htmlFor='profileImg' className='profile-img-holder'>

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,7 @@ import Spinner from '../layout/Spinner';
 
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 const BookmarkedEventPrev = ({ profile: { profile, loading } }) => {
   return loading && profile === null ? (
@@ -17,13 +19,16 @@ const BookmarkedEventPrev = ({ profile: { profile, loading } }) => {
       {profile.favEvents.length > 0 ? (
         <Fragment>
           {profile.favEvents.map(event => (
-            <Card key={event._id} style={{ width: '15rem' }}>
+            <Card key={event._id} className='mt-1 mb-4 text-left'>
               <Link to={`/event/${event._id}`}>
-                {event.coverImage && <Card.Img variant='top' src={event.coverImage} />}
-                <Card.Body>
-                  <Card.Title>{event.title}</Card.Title>
-                  <Card.Text>{event.shortDesc}</Card.Text>
-                </Card.Body>
+                <Card.Img variant='top' src={event.coverImage} />
+                <Container className='py-2'>
+                  <span className='card-date text-uppercase'>
+                    {moment(event.date).format('MMMM Do, h:mm a')}
+                  </span>
+                  <Card.Subtitle className='mb-2 text-muted'>{event.categories}</Card.Subtitle>
+                  <Card.Title className='mt-2'>{event.title}</Card.Title>
+                </Container>
               </Link>
             </Card>
           ))}

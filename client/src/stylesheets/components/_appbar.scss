@@ -94,6 +94,10 @@
   border-top: 1px solid #ffcaca;
   background: #e8e8e8;
 
+  a:hover {
+    text-decoration: none;
+  }
+
   .app-bar-text {
     color: #212529;
     min-width: 75px;

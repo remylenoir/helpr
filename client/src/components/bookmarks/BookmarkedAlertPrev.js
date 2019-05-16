@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,6 +9,7 @@ import Spinner from '../layout/Spinner';
 
 // Bootstrap components
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 const BookmarkedAlertPrev = ({ profile: { profile, loading } }) => {
   return loading && profile === null ? (
@@ -17,13 +19,13 @@ const BookmarkedAlertPrev = ({ profile: { profile, loading } }) => {
       {profile.favAlerts.length > 0 ? (
         <Fragment>
           {profile.favAlerts.map(alert => (
-            <Card key={alert._id} style={{ width: '15rem' }}>
+            <Card key={alert._id} className='mt-1 mb-2 text-left'>
               <Link to={`/alert/${alert._id}`}>
-                {alert.imageURL && <Card.Img variant='top' src={alert.imageURL} />}
-                <Card.Body>
-                  <Card.Title>{alert.title}</Card.Title>
-                  <Card.Text>{alert.description}</Card.Text>
-                </Card.Body>
+                <Container className='py-2'>
+                  <span className='card-date text-uppercase'>{moment(alert.created_at).fromNow()}</span>
+                  <Card.Subtitle className='text-muted'>{alert.type}</Card.Subtitle>
+                  <Card.Title className='mt-2'>{alert.title}</Card.Title>
+                </Container>
               </Link>
             </Card>
           ))}

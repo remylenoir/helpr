@@ -13,8 +13,8 @@ import Container from 'react-bootstrap/Container';
 
 const Onboarding = () => {
   useEffect(() => {
-    window.scroll(0, 0)
-  }, [])
+    window.scroll(0, 0);
+  }, []);
   const parallaxDataLeft = [
     {
       start: 'self',

@@ -1,28 +1,21 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Spinner from '../layout/Spinner';
-import FadeIn from 'react-fade-in';
-//import bootstrap
-import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
+
+// App components
+import BackLink from '../layout/BackLink';
+
+// Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-//icon fonts
-import OurFontAwesome from '../layout/OurFontAwesome';
+import Spinner from '../layout/Spinner';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
 
 const Profile = ({
-  user: {
-    username,
-    firstName,
-    lastName,
-    profilePicture,
-    createdEvents,
-    joinedEvents,
-    createdAlerts
-  },
+  user: { username, firstName, lastName, profilePicture, createdEvents, joinedEvents, createdAlerts },
   loading,
   user
 }) => {
@@ -36,9 +29,8 @@ const Profile = ({
           <Row>
             <Col>
               <div id='profile'>
-                <Link to='/dashboard'>
-                  <OurFontAwesome icon={'fa-arrow-left'} /> Back to Dashboard
-                </Link>
+                <BackLink url={'/dashboard'} title={'Back to dashboard'} />
+
                 <div className='image-edit'>
                   <div className='profile-img-holder'>
                     <Image className='profile-img' src={profilePicture} />
@@ -69,8 +61,8 @@ const Profile = ({
                   </ul>
                 </div>
                 <div className='text-center'>
-                  <Link to='/profile/edit'>
-                    <Button variant='outline-primary'>Edit profile</Button>
+                  <Link to='/profile/edit' className='btn btn-primary'>
+                    Edit profile
                   </Link>
                 </div>
               </div>
@@ -79,8 +71,6 @@ const Profile = ({
         </FadeIn>
       </Container>
     </Fragment>
-
-    //   <Link to='/profile/edit'>Edit profile</Link>
   );
 };
 
