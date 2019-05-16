@@ -63,7 +63,10 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
             </Button>
             <hr />
             <p className='text-center'>
-              Don't have an account? <Link to='/register'>Sign Up</Link>
+              Don't have an account?{' '}
+              <Link to='/register' className='text-primary'>
+                Sign Up
+              </Link>
             </p>
           </Form>
         </Container>

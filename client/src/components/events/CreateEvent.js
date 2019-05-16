@@ -35,7 +35,7 @@ const CreateEvent = ({
     street: '',
     city: '',
     zipcode: '',
-    coverImage: '',
+    coverImage: ''
   });
 
   if (events && events.isCreated) {
@@ -79,18 +79,12 @@ const CreateEvent = ({
 
     data.append('coverImage', file);
     uploadEventImg_ACTION(data);
-
-    // setFormData({
-    //   ...formData,
-    //   coverImage: events.coverImage
-    // });
-    console.log(events.coverImage);
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    
-    formData.coverImage = events.event.coverImage
+
+    formData.coverImage = events.event.coverImage;
     if (
       title === '' ||
       date === '' ||
@@ -100,12 +94,12 @@ const CreateEvent = ({
       venue === '' ||
       street === '' ||
       city === '' ||
-      zipcode === '' 
+      zipcode === ''
     ) {
       setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
-    console.log(formData)
+    console.log(formData);
     createEvent_ACTION(formData, user._id);
     setAlert_ACTION('Event successfully created', 'success');
   };
@@ -121,13 +115,15 @@ const CreateEvent = ({
             onSubmit={onSubmit}
           >
             <Form.Group>
-              <img src={coverImage} alt='' />
-              <input type='file' name='coverImage' onChange={onUpload} />
+              <Form.Label htmlFor='title'>Title</Form.Label>
+              <Form.Control type='text' name='title' value={title} onChange={onChange} />
             </Form.Group>
 
             <Form.Group>
-              <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control type='text' name='title' value={title} onChange={onChange} />
+              <Form.Label htmlFor='coverImage'>Image</Form.Label>
+              <br />
+              <img src={coverImage} alt='' />
+              <input type='file' name='coverImage' onChange={onUpload} />
             </Form.Group>
 
             <Form.Group>

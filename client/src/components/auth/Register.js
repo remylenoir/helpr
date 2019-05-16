@@ -52,7 +52,8 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
       <Row>
         <Container>
           <h3 className='text-center'>
-            Do you want to be part <br />of&nbsp;a&nbsp;great community?
+            Do you want to be part <br />
+            of&nbsp;a&nbsp;great community?
           </h3>
           <p className='text-center'>Create your account</p>
           <hr />
@@ -77,7 +78,10 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
             </Button>
             <hr />
             <p className='text-center'>
-              Already have an account? <Link to='/login'>Log in</Link>
+              Already have an account?{' '}
+              <Link to='/login' className='text-primary'>
+                Log in
+              </Link>
             </p>
           </Form>
         </Container>

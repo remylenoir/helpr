@@ -14,7 +14,7 @@ const GuestMessage = () => {
       <Row>
         <Container>
           <h3 className='text-center'>
-            <OurFontAwesome icon={'fa-sign-in-alt'} />
+            <OurFontAwesome icon={'fa-lock'} />
             <br />
             You must be logged in <br />
             to use this feature
@@ -26,7 +26,10 @@ const GuestMessage = () => {
 
           <hr />
           <p className='text-center'>
-            Don't have an account? <Link to='/register'>Sign Up</Link>
+            Don't have an account?{' '}
+            <Link to='/register' className='text-primary'>
+              Sign Up
+            </Link>
           </p>
         </Container>
       </Row>

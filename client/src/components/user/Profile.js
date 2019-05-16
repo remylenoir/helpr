@@ -1,27 +1,18 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Spinner from '../layout/Spinner';
-//import bootstrap
-import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
+
+// Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-//icon fonts
+import Spinner from '../layout/Spinner';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
 import OurFontAwesome from '../layout/OurFontAwesome';
 
 const Profile = ({
-  user: {
-    username,
-    firstName,
-    lastName,
-    profilePicture,
-    createdEvents,
-    joinedEvents,
-    createdAlerts
-  },
+  user: { username, firstName, lastName, profilePicture, createdEvents, joinedEvents, createdAlerts },
   loading,
   user
 }) => {
@@ -35,7 +26,7 @@ const Profile = ({
         <Row>
           <Col>
             <div id='profile'>
-              <Link to='/dashboard'>
+              <Link to='/dashboard' className='text-secondary'>
                 <OurFontAwesome icon={'fa-arrow-left'} /> Back to Dashboard
               </Link>
               <div className='image-edit'>
@@ -68,7 +59,9 @@ const Profile = ({
                 </ul>
               </div>
               <div className='text-right'>
-                <Link to='/profile/edit'>Edit profile</Link>
+                <Link to='/profile/edit' class='btn btn-primary'>
+                  Edit profile
+                </Link>
               </div>
             </div>
           </Col>
