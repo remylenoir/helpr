@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { getAlert_ACTION } from '../../actions/alerts';
 
 // App components
+import Map from './Map/AlertMap';
 import Hero from '../layout/Hero';
 import Spinner from '../layout/Spinner';
 import FollowAlerBtn from './FollowAlertBtn';
@@ -59,12 +60,17 @@ const AlertDetails = ({
 
           <div className='mb-4'>
             <Subtitle title={'Where'} />
-            <p>
-              {alert && alert.location.coordinates[0]}, {alert && alert.location.coordinates[1]}
-            </p>
+            <div className='alert-with-map'>
+              <Row>
+                <Map
+                  navControl={true}
+                  height={320}
+                  width={window.innerWidth}
+                  alert={alert && alert.location}
+                />
+              </Row>
+            </div>
           </div>
-
-          <hr />
 
           {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
             <Card border='warning' className='my-3 no-shadow text-center'>
