@@ -4,6 +4,7 @@ import React, { Fragment } from 'react';
 import Hero from '../layout/Hero';
 import Features from './Features';
 import HorizontalScroll from './HorizontalScroll';
+import Footer from '../layout/Footer';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -35,7 +36,11 @@ const Onboarding = () => {
             />
           </Row>
           <Row>
-            <HorizontalScroll headingTitle={'More events'} btnText={'See more'} type={'all'} />
+            <HorizontalScroll
+              headingTitle={'More events'}
+              btnText={'See more'}
+              type={'all'}
+            />
           </Row>
 
           <AlertWithMap

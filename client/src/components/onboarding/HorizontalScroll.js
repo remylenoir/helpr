@@ -59,7 +59,7 @@ const HorizontalScroll = ({
   return (
     <Fragment>
       <div className='horizontal-scroll'>
-        <h3>{headingTitle}</h3>
+        <h5>{headingTitle}</h5>
         <div className='horizontal-scroll-wrapper'>
           {loading && events === null ? <Spinner /> : type && allEventElements}
         </div>

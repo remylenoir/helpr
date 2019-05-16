@@ -10,9 +10,11 @@ const AlertWithMap = ({ sectionTitle, btnText, desc }) => {
         <Row>
           <Map navControl={false} height={320} width={window.innerWidth} />
         </Row>
-        <h3>{sectionTitle}</h3>
-        <p>{desc}</p>
-        <Button>{btnText}</Button>
+        <div className='info'>
+          <h5>{sectionTitle}</h5>
+          <p>{desc}</p>
+          <Button>{btnText}</Button>
+        </div>
       </div>
     </Fragment>
   );

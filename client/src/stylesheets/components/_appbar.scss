@@ -17,6 +17,7 @@
   background-color: var(--primary);
   border-radius: 50%;
   z-index: 2;
+  box-shadow: var(--box-shadow);
 }
 
 .triggerButton + label:before,
@@ -86,4 +87,18 @@
   background-color: slateblue;
   transform: translateX(4.4em) translateY(-4em);
   transition-delay: 0.1s;
+}
+
+.bottom-app-bar {
+  border-top: 1px solid #ffcaca;
+  background: #e8e8e8;
+  .app-bar-text {
+    color: #212529;
+    .icon {
+      font-size: 1.125rem;
+    }
+    span {
+      font-size: 0.875rem;
+    }
+  }
 }

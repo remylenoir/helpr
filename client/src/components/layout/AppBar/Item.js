@@ -8,11 +8,11 @@ const Item = ({ icon, title, url }) => {
   return (
     <Fragment>
       <Link to={url}>
-        <div className='text-white text-center'>
+        <div className='app-bar-text text-center'>
           <div className='icon'>
             <OurFontAwesome icon={icon} />
           </div>
-          <h6 className='m-0'>{title}</h6>
+          <span className='m-0'>{title}</span>
         </div>
       </Link>
     </Fragment>

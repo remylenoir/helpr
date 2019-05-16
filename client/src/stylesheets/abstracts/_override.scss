@@ -5,6 +5,8 @@
   --primary: #b33048;
 
   --spacing: 2.5rem;
+
+  --box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 //fonts
@@ -18,7 +20,4 @@ body {
 .btn-primary {
   background-color: var(--primary);
   border-color: var(--primary);
-}
-
-.btn-secondary {
 }
