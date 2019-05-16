@@ -63,18 +63,18 @@ const AlertDetails = ({
             <Subtitle title={'Where'} />
             <div className='alert-with-map'>
               <Row>
-                {alert && <Map
-                  navControl={true}
-                  height={320}
-                  width={window.innerWidth}
-                  alert={alert && alert.location}
-                />}
+                {alert && (
+                  <Map
+                    navControl={true}
+                    height={320}
+                    width={window.innerWidth}
+                    alert={alert && alert.location}
+                  />
+                )}
               </Row>
             </div>
 
-            <div className='mb-4'>
-            <AlertComments />
-          </div>
+            <div className='mb-4'>{alert && <AlertComments />}</div>
           </div>
 
           {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (

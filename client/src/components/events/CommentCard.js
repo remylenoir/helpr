@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -38,25 +38,23 @@ const CommentCard = ({ event, user, editEvent_ACTION }) => {
     event &&
     event.comments.map(comment => {
       return (
-        <Fragment key={comment._id}>
-          <Card>
-            <Card.Header>
-              <Image variant='top' src={comment.author.profilePicture} className='attendee-profile' />{' '}
-              {comment.author.firstName}
-            </Card.Header>
-            <Card.Body>
-              <blockquote className='blockquote mb-0'>
-                <p>{comment.text}</p>
-                <footer className='blockquote-footer'>{moment(comment.date).fromNow()}</footer>
-              </blockquote>
-              {user && user._id === comment.author._id && (
-                <button value={comment._id} onClick={deleteHandler}>
-                  Delete comment
-                </button>
-              )}
-            </Card.Body>
-          </Card>
-        </Fragment>
+        <Card key={comment._id}>
+          <Card.Header>
+            <Image variant='top' src={comment.author.profilePicture} className='attendee-profile' />{' '}
+            {comment.author.firstName}
+          </Card.Header>
+          <Card.Body>
+            <blockquote className='blockquote mb-0'>
+              <p>{comment.text}</p>
+              <footer className='blockquote-footer'>{moment(comment.date).fromNow()}</footer>
+            </blockquote>
+            {user && user._id === comment.author._id && (
+              <button value={comment._id} onClick={deleteHandler}>
+                Delete comment
+              </button>
+            )}
+          </Card.Body>
+        </Card>
       );
     });
 
