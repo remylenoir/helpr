@@ -26,7 +26,7 @@ const Features = () => {
             <Feature
               icon={'fa-hands-helping'}
               title={'Voluteering events'}
-              desc={'helping each other is good bla bla'}
+              desc={'Know what volunteering events are happening near to you and easily join them'}
             />
           </Plx>
           <div className='col-sm'>
@@ -34,7 +34,7 @@ const Features = () => {
               <Feature
                 icon={'fa-link'}
                 title={'Send alert when for people in need'}
-                desc={'helping each other is good bla bla'}
+                desc={'Whether there is people in need or places to be taken care of, send alert and arise awareness'}
               />
             </Plx>
           </div>
@@ -43,7 +43,7 @@ const Features = () => {
               <Feature
                 icon={'fa-hand-holding-heart'}
                 title={'Create your own event'}
-                desc={'helping each other is good bla bla'}
+                desc={'Create your volunteering events, get together with other people and create a better community!'}
               />
             </Plx>
           </div>

@@ -62,7 +62,7 @@ const Onboarding = () => {
             <AlertWithMap
               sectionTitle={'Help people who are in need'}
               btnText={'See all the alerts'}
-              desc={'tenetur quisquam reiciendis esse quam corporis eum.'}
+              desc={'Interact with the alerts in the map, arise awareness, and take action!'}
               btnLink={'alert/all'}
             />
           </Plx>
