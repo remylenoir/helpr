@@ -63,39 +63,27 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
             <Form onSubmit={onSubmit}>
               <Form.Group controlId='formUsername'>
                 <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='username'
-                  value={username}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='username' value={username} onChange={onChange} />
               </Form.Group>
 
               <Form.Group controlId='formPassword'>
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type='password'
-                  name='password'
-                  value={password}
-                  onChange={onChange}
-                />
+                <Form.Control type='password' name='password' value={password} onChange={onChange} />
               </Form.Group>
 
               <Form.Group controlId='formPassword2'>
                 <Form.Label>Confirm your password</Form.Label>
-                <Form.Control
-                  type='password'
-                  name='password2'
-                  value={password2}
-                  onChange={onChange}
-                />
+                <Form.Control type='password' name='password2' value={password2} onChange={onChange} />
               </Form.Group>
               <Button type='submit' variant='primary btn-block'>
                 Submit
               </Button>
               <hr />
               <p className='text-center'>
-                Already have an account? <Link to='/login'>Log in</Link>
+                Already have an account?{' '}
+                <Link to='/login' className='text-primary'>
+                  Log in
+                </Link>
               </p>
             </Form>
           </FadeIn>

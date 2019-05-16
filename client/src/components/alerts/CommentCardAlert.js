@@ -7,10 +7,8 @@ import { connect } from 'react-redux';
 import { editAlert_ACTION } from '../../actions/alerts';
 
 // Bootstrap components
-import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
 
 const CommentCardAlert = ({ alert, user, editAlert_ACTION }) => {
   const alertData = {

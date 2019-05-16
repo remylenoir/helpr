@@ -11,7 +11,7 @@ import 'flatpickr/dist/themes/airbnb.css';
 
 // Redux actions
 import { setAlert_ACTION } from '../../actions/alert';
-import { editEvent_ACTION, deleteEvent_ACTION } from '../../actions/events';
+import { editEvent_ACTION, deleteEvent_ACTION, uploadEventImg_ACTION } from '../../actions/events';
 
 // App components
 import Spinner from '../layout/Spinner';
@@ -29,6 +29,7 @@ const EditEvent = ({
   editEvent_ACTION,
   deleteEvent_ACTION,
   setAlert_ACTION,
+  uploadEventImg_ACTION,
   history
 }) => {
   const [formData, setFormData] = useState({
@@ -44,17 +45,7 @@ const EditEvent = ({
     coverImage: ''
   });
 
-  const {
-    title,
-    shortDesc,
-    fullDesc,
-    venue,
-    street,
-    categories,
-    city,
-    zipcode,
-    coverImage
-  } = formData;
+  const { title, shortDesc, fullDesc, venue, street, categories, city, zipcode, coverImage } = formData;
 
   useEffect(() => {
     setFormData({
@@ -69,7 +60,7 @@ const EditEvent = ({
       zipcode: loading || !event.zipcode ? '' : event.zipcode,
       coverImage: loading || !event.coverImage ? '' : event.coverImage
     });
-    window.scroll(0, 0)
+    window.scroll(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -89,6 +80,14 @@ const EditEvent = ({
       ...formData,
       date
     });
+  };
+
+  const onUpload = e => {
+    const file = e.target.files[0];
+    const data = new FormData();
+
+    data.append('coverImage', file);
+    uploadEventImg_ACTION(data);
   };
 
   const onSubmit = e => {
@@ -136,7 +135,7 @@ const EditEvent = ({
           <FadeIn>
             <BackLink url={`/event/${event._id}`} title={'Back to the event'} />
 
-            <h1>Edit the alert</h1>
+            <h1>Edit the event</h1>
             <hr />
             <Form
               className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
@@ -144,12 +143,16 @@ const EditEvent = ({
             >
               <Form.Group>
                 <Form.Label htmlFor='title'>Title</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='title'
-                  value={title}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='title' value={title} onChange={onChange} />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor='coverImage'>Image</Form.Label>
+                <br />
+                <div className='w-100 event-image mb-3'>
+                  <img src={coverImage} alt='' />
+                </div>
+                <input type='file' name='coverImage' onChange={onUpload} />
               </Form.Group>
 
               <Form.Group>
@@ -168,10 +171,7 @@ const EditEvent = ({
                   <option value={'Seniors'} onChange={onChange}>
                     Seniors
                   </option>
-                  <option
-                    value={'Children and Young Adults'}
-                    onChange={onChange}
-                  >
+                  <option value={'Children and Young Adults'} onChange={onChange}>
                     Children and Young Adults
                   </option>
                   <option value={'Environment and Animals'} onChange={onChange}>
@@ -228,55 +228,25 @@ const EditEvent = ({
               <h3>Address</h3>
               <Form.Group>
                 <Form.Label htmlFor='venue'>Venue</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='venue'
-                  value={venue}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='venue' value={venue} onChange={onChange} />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label htmlFor='street'>Street</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='street'
-                  value={street}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='street' value={street} onChange={onChange} />
               </Form.Group>
 
               <Form.Row>
                 <Form.Group as={Col}>
                   <Form.Label htmlFor='city'>City</Form.Label>
-                  <Form.Control
-                    type='text'
-                    name='city'
-                    value={city}
-                    onChange={onChange}
-                  />
+                  <Form.Control type='text' name='city' value={city} onChange={onChange} />
                 </Form.Group>
 
                 <Form.Group as={Col}>
                   <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                  <Form.Control
-                    type='number'
-                    name='zipcode'
-                    value={zipcode}
-                    onChange={onChange}
-                  />
+                  <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
                 </Form.Group>
               </Form.Row>
-
-              <Form.Group>
-                <Form.Label htmlFor='coverImage'>Image</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='coverImage'
-                  value={coverImage}
-                  onChange={onChange}
-                />
-              </Form.Group>
 
               <ButtonToolbar className='justify-content-around py-3'>
                 <Button variant='primary' type='submit'>
@@ -289,24 +259,6 @@ const EditEvent = ({
             </Form>
           </FadeIn>
         </Container>
-        {/*         
-        <form onSubmit={onSubmit}>
-          <div>
-            <label>Title</label>
-            <input type='text' name='title' value={title} onChange={onChange} />
-          </div>
-          <div>
-            <label>Description</label>
-            <input type='text' name='description' value={fullDesc} onChange={onChange} />
-          </div>
-          <div>
-            <label>Image</label>
-            <input type='text' name='coverImage' value={coverImage} onChange={onChange} />
-          </div>
-          <input type='submit' value='Confirm Edit' />
-        </form>
-        <Link to={`/event/${event._id}`}>Back to event details</Link>
-        <button onClick={handleDelete}>Delete event</button> */}
       </Fragment>
     </div>
   );
@@ -325,5 +277,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editEvent_ACTION, deleteEvent_ACTION, setAlert_ACTION }
+  { editEvent_ACTION, deleteEvent_ACTION, setAlert_ACTION, uploadEventImg_ACTION }
 )(EditEvent);

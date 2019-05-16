@@ -28,20 +28,18 @@ const EditAlert = ({
   const [formData, setFormData] = useState({
     title: '',
     type: '',
-    description: '',
-    imageURL: ''
+    description: ''
   });
 
-  const { title, type, description, imageURL } = formData;
+  const { title, type, description } = formData;
 
   useEffect(() => {
     setFormData({
       title: loading || !alert.title ? '' : alert.title,
       type: loading || !alert.type ? '' : alert.type,
-      description: loading || !alert.description ? '' : alert.description,
-      imageURL: loading || !alert.imageURL ? '' : alert.imageURL
+      description: loading || !alert.description ? '' : alert.description
     });
-    window.scroll(0, 0)
+    window.scroll(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -95,12 +93,7 @@ const EditAlert = ({
           >
             <Form.Group>
               <Form.Label>Title</Form.Label>
-              <Form.Control
-                type='text'
-                name='title'
-                value={title}
-                onChange={onChange}
-              />
+              <Form.Control type='text' name='title' value={title} onChange={onChange} />
             </Form.Group>
 
             <Form.Group>
@@ -130,16 +123,6 @@ const EditAlert = ({
               />
             </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Image</Form.Label>
-              <Form.Control
-                type='file'
-                name='image'
-                value={imageURL}
-                onChange={onChange}
-              />
-            </Form.Group>
-
             <ButtonToolbar className='justify-content-around py-3'>
               <Button variant='primary' type='submit'>
                 Update
@@ -149,41 +132,6 @@ const EditAlert = ({
               </Button>
             </ButtonToolbar>
           </Form>
-          {/* <br />
-        <Link to={`/alert/${alert._id}`} className='btn btn-secondary'>
-          Back to alert details
-        </Link> */}
-          {/*       
-        <form onSubmit={onSubmit}>
-          <div>
-            <label>Title</label>
-            <input type='text' name='title' value={title} onChange={onChange} />
-          </div>
-          <div>
-            <select name='type'>
-              <option value={type} onChange={onChange}>
-                People in need
-              </option>
-              <option value={type} onChange={onChange}>
-                Places
-              </option>
-              <option value={type} onChange={onChange}>
-                Other
-              </option>
-            </select>
-          </div>
-          <div>
-            <label>Description</label>
-            <input type='text' name='description' value={description} onChange={onChange} />
-          </div>
-          <div>
-            <label>Image</label>
-            <input type='text' name='imageURL' value={imageURL} onChange={onChange} />
-          </div>
-          <input type='submit' value='Confirm Edit' />
-        </form>
-        <Link to={`/alert/${alert._id}`}>Back to alert details</Link>
-        <button onClick={handleDelete}>Delete Alert</button> */}
         </FadeIn>
       </Container>
     </Fragment>

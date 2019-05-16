@@ -7,7 +7,7 @@ import OurFontAwesome from '../layout/OurFontAwesome';
 const BackLink = ({ url, title }) => {
   return (
     <div className='mb-2'>
-      <Link to={url}>
+      <Link to={url} className='text-secondary'>
         <OurFontAwesome icon={'fa-arrow-left'} /> {title}
       </Link>
     </div>

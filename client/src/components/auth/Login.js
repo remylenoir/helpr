@@ -53,29 +53,22 @@ const Login = ({ login_ACTION, isAuthenticated }) => {
             <Form onSubmit={onSubmit}>
               <Form.Group>
                 <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='username'
-                  value={username}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='username' value={username} onChange={onChange} />
               </Form.Group>
 
               <Form.Group>
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type='password'
-                  name='password'
-                  value={password}
-                  onChange={onChange}
-                />
+                <Form.Control type='password' name='password' value={password} onChange={onChange} />
               </Form.Group>
               <Button type='submit' variant='primary btn-block'>
                 Submit
               </Button>
               <hr />
               <p className='text-center'>
-                Don't have an account? <Link to='/register'>Sign Up</Link>
+                Don't have an account?{' '}
+                <Link to='/register' className='text-primary'>
+                  Sign Up
+                </Link>
               </p>
             </Form>
           </FadeIn>

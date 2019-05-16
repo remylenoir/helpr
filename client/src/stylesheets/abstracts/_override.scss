@@ -22,3 +22,7 @@ body {
   background-color: var(--primary);
   border-color: var(--primary);
 }
+
+a.text-primary {
+  color: var(--primary) !important;
+}
