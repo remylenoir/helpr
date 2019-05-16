@@ -39,14 +39,6 @@ const CommentCard = ({ event, user, editEvent_ACTION }) => {
     event.comments.map(comment => {
       return (
         <Fragment key={comment._id}>
-<<<<<<< HEAD
-        {user && user._id === comment.author._id &&
-          <button value={comment._id} onClick={deleteHandler}>
-            Delete comment
-          </button>
-        }
-          <p>{comment.author.firstName}</p>
-=======
           <Card>
             <Card.Header>
               <Image variant='top' src={comment.author.profilePicture} className='attendee-profile' />{' '}
@@ -57,17 +49,13 @@ const CommentCard = ({ event, user, editEvent_ACTION }) => {
                 <p>{comment.text}</p>
                 <footer className='blockquote-footer'>{moment(comment.date).fromNow()}</footer>
               </blockquote>
-              <button value={comment._id} onClick={deleteHandler}>
-                Delete comment
-              </button>
+              {user && user._id === comment.author._id && (
+                <button value={comment._id} onClick={deleteHandler}>
+                  Delete comment
+                </button>
+              )}
             </Card.Body>
           </Card>
-
-          {/* <p>{comment.author.firstName}</p>
->>>>>>> css
-          <p>{comment.date}</p>
-          <img src={comment.author.profilePicture} alt='profile-pic' />
-          <p>{comment.text}</p> */}
         </Fragment>
       );
     });
