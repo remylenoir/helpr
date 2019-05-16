@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
+import Plx from 'react-plx';
 
 // App components
 import Hero from '../layout/Hero';
 import Features from './Features';
 import HorizontalScroll from './HorizontalScroll';
-import Footer from '../layout/Footer';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -12,6 +12,22 @@ import AlertWithMap from './AlertWithMap';
 import Container from 'react-bootstrap/Container';
 
 const Onboarding = () => {
+  const parallaxDataLeft = [
+    {
+      start: 'self',
+      end: 'self',
+      endOffset: '70vh',
+
+      properties: [
+        {
+          startValue: 0,
+          endValue: 1,
+          property: 'opacity'
+        }
+      ]
+    }
+  ];
+
   return (
     <Fragment>
       <Row className='onboarding-container'>
@@ -24,30 +40,38 @@ const Onboarding = () => {
               button={true}
               btnMsg={'Get involved now!'}
               url={'https://source.unsplash.com/random'}
-            />
-          </Row>
-          <Features />
-          {/* if type is all, show all events, if type is 'category name' it would only show the category */}
-          <Row>
-            <HorizontalScroll
-              headingTitle={'Volunteer work near by'}
-              btnText={'See more'}
-              type={'all'}
-            />
-          </Row>
-          <Row>
-            <HorizontalScroll
-              headingTitle={'More events'}
-              btnText={'See more'}
-              type={'all'}
+              btnLink={'/explore'}
             />
           </Row>
 
-          <AlertWithMap
-            sectionTitle={'Help people who are in need'}
-            btnText={'See all the alerts'}
-            desc={'tenetur quisquam reiciendis esse quam corporis eum.'}
-          />
+          <Features />
+          {/* if type is all, show all events, if type is 'category name' it would only show the category */}
+          <Plx parallaxData={parallaxDataLeft}>
+            <Row>
+              <HorizontalScroll
+                headingTitle={'Volunteer work near by'}
+                btnText={'See more'}
+                type={'all'}
+              />
+            </Row>
+          </Plx>
+          <Plx parallaxData={parallaxDataLeft}>
+            <AlertWithMap
+              sectionTitle={'Help people who are in need'}
+              btnText={'See all the alerts'}
+              desc={'tenetur quisquam reiciendis esse quam corporis eum.'}
+              btnLink={'alert/all'}
+            />
+          </Plx>
+          {/* <Plx parallaxData={parallaxDataLeft}>
+            <Row>
+              <HorizontalScroll
+                headingTitle={'More events'}
+                btnText={'See more'}
+                type={'all'}
+              />
+            </Row>
+          </Plx> */}
         </Container>
       </Row>
     </Fragment>

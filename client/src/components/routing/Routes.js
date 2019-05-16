@@ -30,7 +30,7 @@ import Profile from '../user/Profile';
 import EditProfile from '../user/EditProfile';
 
 // Map view
-import MapView from '../ mapview/MapView';
+import MapView from '../mapview/MapView';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -56,16 +56,8 @@ const Routes = () => {
           <PrivateRoute exact path='/profile/edit' component={EditProfile} />
           <PrivateRoute exact path='/create/alert' component={CreateAlert} />
           <PrivateRoute exact path='/create/event' component={CreateEvent} />
-          <PrivateRoute
-            exact
-            path='/alert/:alertId/edit'
-            component={EditAlert}
-          />
-          <PrivateRoute
-            exact
-            path='/event/:eventId/edit'
-            component={EditEvent}
-          />
+          <PrivateRoute exact path='/alert/:alertId/edit' component={EditAlert} />
+          <PrivateRoute exact path='/event/:eventId/edit' component={EditEvent} />
         </Switch>
       </Row>
     </Fragment>

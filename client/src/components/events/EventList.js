@@ -39,7 +39,9 @@ const EventList = ({ getAllEvents_ACTION }) => {
         <Form.Group>
           <Form.Label>Category</Form.Label>
           <Form.Control as='select' onChange={onChange} name='categories'>
-            <option value={'All'} onChange={onChange} />
+            <option value={'All'} onChange={onChange}>
+              All
+            </option>
             <option value={'Homelessness & Poverty'} onChange={onChange}>
               Homelessness and Poverty
             </option>
