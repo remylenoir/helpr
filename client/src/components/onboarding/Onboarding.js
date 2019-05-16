@@ -40,11 +40,11 @@ const Onboarding = () => {
               button={true}
               btnMsg={'Get involved now!'}
               url={'https://source.unsplash.com/random'}
+              btnLink={'/explore'}
             />
           </Row>
 
           <Features />
-
           {/* if type is all, show all events, if type is 'category name' it would only show the category */}
           <Plx parallaxData={parallaxDataLeft}>
             <Row>
@@ -56,6 +56,14 @@ const Onboarding = () => {
             </Row>
           </Plx>
           <Plx parallaxData={parallaxDataLeft}>
+            <AlertWithMap
+              sectionTitle={'Help people who are in need'}
+              btnText={'See all the alerts'}
+              desc={'tenetur quisquam reiciendis esse quam corporis eum.'}
+              btnLink={'alert/all'}
+            />
+          </Plx>
+          {/* <Plx parallaxData={parallaxDataLeft}>
             <Row>
               <HorizontalScroll
                 headingTitle={'More events'}
@@ -63,14 +71,7 @@ const Onboarding = () => {
                 type={'all'}
               />
             </Row>
-          </Plx>
-          <Plx parallaxData={parallaxDataLeft}>
-            <AlertWithMap
-              sectionTitle={'Help people who are in need'}
-              btnText={'See all the alerts'}
-              desc={'tenetur quisquam reiciendis esse quam corporis eum.'}
-            />
-          </Plx>
+          </Plx> */}
         </Container>
       </Row>
     </Fragment>

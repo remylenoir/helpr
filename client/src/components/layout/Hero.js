@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 // Bootstrap components
 import Image from 'react-bootstrap/Image';
@@ -15,7 +16,8 @@ const Hero = ({
   creator,
   button,
   btnMsg,
-  url
+  url,
+  btnLink
 }) => {
   return (
     <Fragment>
@@ -51,7 +53,11 @@ const Hero = ({
           <div className='wrapper'>
             <h1>{title}</h1>
             <p>{msg}</p>
-            {button && <Button variant='primary'>{btnMsg}</Button>}
+            {button && (
+              <Link to={btnLink}>
+                <Button variant='primary'>{btnMsg}</Button>
+              </Link>
+            )}
           </div>
           <div className='overlay'> </div>
           {url && <Image src={url} />}
