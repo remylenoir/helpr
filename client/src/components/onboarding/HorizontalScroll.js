@@ -46,11 +46,7 @@ const HorizontalScroll = ({
       return (
         <Card key={event._id} style={{ width: '15rem' }}>
           <Link to={`/event/${event._id}`}>
-            <Card.Img
-              variant='top'
-              src={event.coverImage}
-              className='myFadeIn'
-            />
+            <Card.Img variant='top' src={event.coverImage} className='myFadeIn' />
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Text>{event.shortDesc}</Card.Text>
@@ -68,7 +64,9 @@ const HorizontalScroll = ({
           {loading && events === null ? <Spinner /> : type && allEventElements}
         </div>
         <Link to='/event/all'>
-          <Button variant='outline-primary'>{btnText}</Button>
+          <Button variant='primary' className='mt-3'>
+            {btnText}
+          </Button>
         </Link>
       </div>
     </Fragment>
