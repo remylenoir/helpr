@@ -79,13 +79,9 @@ const EventDetails = ({
             <p>{event && event.fullDesc}</p>
           </div>
 
-          <div className='mb-4'>
-            <EventComments />
-          </div>
+          <div className='mb-4'>{event && <EventAttendees />}</div>
 
-          <div className='mb-4'>
-            <EventAttendees />
-          </div>
+          <div className='mb-4'>{event && <EventComments />}</div>
 
           {event && auth.isAuthenticated && auth.user._id === event.creator._id && (
             <Card border='warning' className='my-3 no-shadow text-center'>

@@ -5,7 +5,7 @@ import Pin from './Pin';
 const Popups = ({ alert }) => {
   return (
     <div id='my-map'>
-      <Marker latitude={alert.coordinates[0]} longitude={alert.coordinates[1]}>
+      <Marker latitude={alert && alert.coordinates[0]} longitude={alert && alert.coordinates[1]}>
         <Pin size={45} />
       </Marker>
     </div>
