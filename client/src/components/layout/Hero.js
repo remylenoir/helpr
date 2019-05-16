@@ -14,7 +14,8 @@ const Hero = ({ type, title, msg, date, creator, button, btnMsg, url }) => {
             <h1>{title}</h1>
             <h4>{msg}</h4>
             <p>
-              Created by {creator && creator.username} <br /> {moment(date).fromNow()}
+              Created by {creator && creator.username} <br />{' '}
+              {moment(date).fromNow()}
             </p>
             {button && <Button variant='primary'>{btnMsg}</Button>}
           </div>

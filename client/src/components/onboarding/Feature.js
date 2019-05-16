@@ -8,7 +8,7 @@ const Feature = ({ icon, title, desc }) => {
         <div className='img'>
           <OurFontAwesome icon={icon} />
         </div>
-        <h3>{title}</h3>
+        <h6>{title}</h6>
         <p>{desc}</p>
       </div>
     </Fragment>

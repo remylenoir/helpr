@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,800');
+
+// create variables
+:root {
+  --primary: #b33048;
+
+  --spacing: 2.5rem;
+}
+
+//fonts
+html,
+body {
+  font-family: 'Raleway', sans-serif;
+  background: #f2f2f2;
+}
+
+//button overrides
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-secondary {
+}
