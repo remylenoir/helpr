@@ -10,7 +10,7 @@ const User = require('../models/User');
 // @desc    Add an alert
 // @access  Public
 router.post('/add', (req, res) => {
-  const { title, description, location, imageURL, type } = req.body;
+  const { title, description, location, imageURL, type, comments } = req.body;
   const { _id } = req.user;
 
   Alert.create({
@@ -19,7 +19,8 @@ router.post('/add', (req, res) => {
     location,
     type,
     imageURL,
-    creator: _id
+    creator: _id,
+    comments,
   })
     .then(alert => {
       User.findByIdAndUpdate(

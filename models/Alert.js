@@ -5,7 +5,10 @@ const alertSchema = new Schema(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    location: { type: { type: String, default: 'Point' }, coordinates: [Number] },
+    location: {
+      type: { type: String, default: 'Point' },
+      coordinates: [Number]
+    },
     type: {
       type: String,
       enum: ['People in need', 'Places', 'Other'],
@@ -15,7 +18,19 @@ const alertSchema = new Schema(
     creator: {
       type: Schema.Types.ObjectId,
       ref: 'User'
-    }
+    },
+    comments: [
+      {
+        text: String,
+        date: {
+          type: Date,
+          default: new Date()
+        },
+        author: {
+          type: Object
+        }
+      }
+    ]
   },
   {
     timestamps: {

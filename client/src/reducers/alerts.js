@@ -35,6 +35,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         alerts: payload,
+        alert: null,
         location: null,
         edit: false,
         loading: false,
