@@ -12,6 +12,7 @@ import Hero from '../layout/Hero';
 import Spinner from '../layout/Spinner';
 import FollowAlerBtn from './FollowAlertBtn';
 import Subtitle from '../layout/Headings/Subtitle';
+import AlertComments from '../alerts/AlertComments';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -62,14 +63,18 @@ const AlertDetails = ({
             <Subtitle title={'Where'} />
             <div className='alert-with-map'>
               <Row>
-                <Map
+                {alert && <Map
                   navControl={true}
                   height={320}
                   width={window.innerWidth}
                   alert={alert && alert.location}
-                />
+                />}
               </Row>
             </div>
+
+            <div className='mb-4'>
+            <AlertComments />
+          </div>
           </div>
 
           {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
