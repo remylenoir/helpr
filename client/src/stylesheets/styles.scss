@@ -2,6 +2,7 @@
 @import 'abstracts/override';
 @import 'abstracts/utilities';
 @import 'abstracts/variables';
+@import 'abstracts/transitions';
 
 // Components
 @import 'components/auth';
@@ -24,18 +25,3 @@
 @import 'pages/onboarding';
 @import 'pages/protected-routes';
 @import 'pages/editProfile';
-
-.page-enter {
-  opacity: 0;
-}
-.page-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-.page-exit {
-  opacity: 1;
-}
-.page-exit-active {
-  opacity: 0;
-  transition: opacity 500ms ease-in;
-}

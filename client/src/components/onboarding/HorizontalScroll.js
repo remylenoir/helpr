@@ -46,7 +46,11 @@ const HorizontalScroll = ({
       return (
         <Card key={event._id} style={{ width: '15rem' }}>
           <Link to={`/event/${event._id}`}>
-            <Card.Img variant='top' src={event.coverImage} />
+            <Card.Img
+              variant='top'
+              src={event.coverImage}
+              className='myFadeIn'
+            />
             <Card.Body>
               <Card.Title>{event.title}</Card.Title>
               <Card.Text>{event.shortDesc}</Card.Text>

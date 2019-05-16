@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 // Redux actions
 import { getCurrentProfile_ACTION } from '../../actions/profile';
@@ -36,8 +37,10 @@ const Dashboard = ({
       <Container className='inner-view py-3' fluid>
         <Row>
           <Container>
-            <h1>Welcome {profile && profile.username}</h1>
-            <hr />
+            <FadeIn>
+              <h1>Welcome {profile && profile.username}</h1>
+              <hr />
+            </FadeIn>
           </Container>
         </Row>
 
@@ -45,18 +48,20 @@ const Dashboard = ({
         {/* Created Alerts */}
         <Row>
           <Container fluid>
-            <Subtitle title={'Created Alerts'} />
-            <Row>
-              {profile && profile.createdAlerts.length > 0 ? (
-                <div className='horizontal-scroll'>
-                  <div className='horizontal-scroll-wrapper'>
-                    <PreviewCard type='createdAlerts' />
+            <FadeIn>
+              <Subtitle title={'Created Alerts'} />
+              <Row>
+                {profile && profile.createdAlerts.length > 0 ? (
+                  <div className='horizontal-scroll'>
+                    <div className='horizontal-scroll-wrapper'>
+                      <PreviewCard type='createdAlerts' />
+                    </div>
                   </div>
-                </div>
-              ) : (
-                noContentMsg('alerts')
-              )}
-            </Row>
+                ) : (
+                  noContentMsg('alerts')
+                )}
+              </Row>
+            </FadeIn>
           </Container>
         </Row>
 
@@ -64,14 +69,16 @@ const Dashboard = ({
         {profile && profile.favAlerts.length > 0 && (
           <Row className='my-2'>
             <Container fluid>
-              <Subtitle title={'Bookmarked Alerts'} />
-              <Row>
-                <div className='horizontal-scroll'>
-                  <div className='horizontal-scroll-wrapper'>
-                    <PreviewCard type='favAlerts' />
+              <FadeIn>
+                <Subtitle title={'Bookmarked Alerts'} />
+                <Row>
+                  <div className='horizontal-scroll'>
+                    <div className='horizontal-scroll-wrapper'>
+                      <PreviewCard type='favAlerts' />
+                    </div>
                   </div>
-                </div>
-              </Row>
+                </Row>
+              </FadeIn>
             </Container>
           </Row>
         )}
@@ -80,18 +87,20 @@ const Dashboard = ({
         {/* Created Events */}
         <Row className='my-2'>
           <Container fluid>
-            <Subtitle title={'Created Events'} />
-            <Row>
-              {profile && profile.createdEvents.length > 0 ? (
-                <div className='horizontal-scroll'>
-                  <div className='horizontal-scroll-wrapper'>
-                    <PreviewCard type='createdEvents' />
+            <FadeIn>
+              <Subtitle title={'Created Events'} />
+              <Row>
+                {profile && profile.createdEvents.length > 0 ? (
+                  <div className='horizontal-scroll'>
+                    <div className='horizontal-scroll-wrapper'>
+                      <PreviewCard type='createdEvents' />
+                    </div>
                   </div>
-                </div>
-              ) : (
-                noContentMsg('events')
-              )}
-            </Row>
+                ) : (
+                  noContentMsg('events')
+                )}
+              </Row>
+            </FadeIn>
           </Container>
         </Row>
 
@@ -99,14 +108,16 @@ const Dashboard = ({
         {profile && profile.joinedEvents.length > 0 && (
           <Row className='my-2'>
             <Container fluid>
-              <Subtitle title={'Joined Events'} />
-              <Row>
-                <div className='horizontal-scroll'>
-                  <div className='horizontal-scroll-wrapper'>
-                    <PreviewCard type='joinedEvents' />
+              <FadeIn>
+                <Subtitle title={'Joined Events'} />
+                <Row>
+                  <div className='horizontal-scroll'>
+                    <div className='horizontal-scroll-wrapper'>
+                      <PreviewCard type='joinedEvents' />
+                    </div>
                   </div>
-                </div>
-              </Row>
+                </Row>
+              </FadeIn>
             </Container>
           </Row>
         )}
@@ -115,14 +126,16 @@ const Dashboard = ({
         {profile && profile.favEvents.length > 0 && (
           <Row className='my-2'>
             <Container fluid>
-              <Subtitle title={'Bookmarked Events'} />
-              <Row>
-                <div className='horizontal-scroll'>
-                  <div className='horizontal-scroll-wrapper'>
-                    <PreviewCard type='favEvents' />
+              <FadeIn>
+                <Subtitle title={'Bookmarked Events'} />
+                <Row>
+                  <div className='horizontal-scroll'>
+                    <div className='horizontal-scroll-wrapper'>
+                      <PreviewCard type='favEvents' />
+                    </div>
                   </div>
-                </div>
-              </Row>
+                </Row>
+              </FadeIn>
             </Container>
           </Row>
         )}
@@ -137,13 +150,17 @@ const noContentMsg = type => {
   if (type === 'alerts') {
     return (
       <Container>
-        <h4>You have no created {type}</h4>
-        <p>
-          Do you want to see all the {type}? <Link to='/alert/all'>Click here</Link>
-        </p>
-        <p>
-          Do you want to create an {singularType}? <Link to='/create/alert'>Click here</Link>
-        </p>
+        <FadeIn>
+          <h4>You have no created {type}</h4>
+          <p>
+            Do you want to see all the {type}?{' '}
+            <Link to='/alert/all'>Click here</Link>
+          </p>
+          <p>
+            Do you want to create an {singularType}?{' '}
+            <Link to='/create/alert'>Click here</Link>
+          </p>
+        </FadeIn>
       </Container>
     );
   }
@@ -151,13 +168,17 @@ const noContentMsg = type => {
   if (type === 'events') {
     return (
       <Container>
-        <h4>You have no created {type}</h4>
-        <p>
-          Do you want to see all the {type}? <Link to='/event/all'>Click here</Link>
-        </p>
-        <p>
-          Do you want to create an {singularType}? <Link to='/create/event'>Click here</Link>
-        </p>
+        <FadeIn>
+          <h4>You have no created {type}</h4>
+          <p>
+            Do you want to see all the {type}?{' '}
+            <Link to='/event/all'>Click here</Link>
+          </p>
+          <p>
+            Do you want to create an {singularType}?{' '}
+            <Link to='/create/event'>Click here</Link>
+          </p>
+        </FadeIn>
       </Container>
     );
   }

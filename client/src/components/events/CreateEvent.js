@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
+import FadeIn from 'react-fade-in';
 
 // Date Picker
 import Flatpickr from 'react-flatpickr';
@@ -10,7 +11,10 @@ import 'flatpickr/dist/themes/airbnb.css';
 
 // Redux actions
 import { setAlert_ACTION } from '../../actions/alert';
-import { createEvent_ACTION, uploadEventImg_ACTION } from '../../actions/events';
+import {
+  createEvent_ACTION,
+  uploadEventImg_ACTION
+} from '../../actions/events';
 
 // Bootstrap components
 import Col from 'react-bootstrap/Col';
@@ -35,7 +39,7 @@ const CreateEvent = ({
     street: '',
     city: '',
     zipcode: '',
-    coverImage: '',
+    coverImage: ''
   });
 
   if (events && events.isCreated) {
@@ -89,8 +93,8 @@ const CreateEvent = ({
 
   const onSubmit = e => {
     e.preventDefault();
-    
-    formData.coverImage = events.event.coverImage
+
+    formData.coverImage = events.event.coverImage;
     if (
       title === '' ||
       date === '' ||
@@ -100,12 +104,12 @@ const CreateEvent = ({
       venue === '' ||
       street === '' ||
       city === '' ||
-      zipcode === '' 
+      zipcode === ''
     ) {
       setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
-    console.log(formData)
+    console.log(formData);
     createEvent_ACTION(formData, user._id);
     setAlert_ACTION('Event successfully created', 'success');
   };
@@ -114,119 +118,149 @@ const CreateEvent = ({
     <div>
       <Fragment>
         <Container className='py-3 inner-view'>
-          <h1>Create an event</h1>
-          <hr />
-          <Form
-            className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
-            onSubmit={onSubmit}
-          >
-            <Form.Group>
-              <img src={coverImage} alt='' />
-              <input type='file' name='coverImage' onChange={onUpload} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control type='text' name='title' value={title} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Category</Form.Label>
-              <Form.Control as='select' onChange={onChange} name='categories'>
-                <option value={''} onChange={onChange} />
-                <option value={'Homelessness & Poverty'} onChange={onChange}>
-                  Homelessness and Poverty
-                </option>
-                <option value={'Refugees'} onChange={onChange}>
-                  Refugees
-                </option>
-                <option value={'Migrants'} onChange={onChange}>
-                  Migrants
-                </option>
-                <option value={'Seniors'} onChange={onChange}>
-                  Seniors
-                </option>
-                <option value={'Children and Young Adults'} onChange={onChange}>
-                  Children and Young Adults
-                </option>
-                <option value={'Environment and Animals'} onChange={onChange}>
-                  Environment and Animals
-                </option>
-                <option value={'Political Activism'} onChange={onChange}>
-                  Political Activism
-                </option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='date'>Date</Form.Label>
-              <br />
-              <Flatpickr
-                className='datepicker form-control'
-                data-enable-time
-                name='date'
-                value={date}
-                onChange={onChangeDate}
-                options={{
-                  disableMobile: true,
-                  minTime: '09:00',
-                  maxTime: '23:00',
-                  locale: {
-                    firstDayOfWeek: 1
-                  }
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
-              <Form.Control
-                as='textarea'
-                rows='1'
-                name='shortDesc'
-                value={shortDesc}
-                onChange={onChange}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='fullDesc'>Description</Form.Label>
-              <Form.Control
-                as='textarea'
-                rows='3'
-                name='fullDesc'
-                value={fullDesc}
-                onChange={onChange}
-              />
-            </Form.Group>
-
-            <h3>Address</h3>
-            <Form.Group>
-              <Form.Label htmlFor='venue'>Venue</Form.Label>
-              <Form.Control type='text' name='venue' value={venue} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='street'>Street</Form.Label>
-              <Form.Control type='text' name='street' value={street} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Label htmlFor='city'>City</Form.Label>
-                <Form.Control type='text' name='city' value={city} onChange={onChange} />
+          <FadeIn>
+            <h1>Create an event</h1>
+            <hr />
+            <Form
+              className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+              onSubmit={onSubmit}
+            >
+              <Form.Group>
+                <img src={coverImage} alt='' />
+                <input type='file' name='coverImage' onChange={onUpload} />
               </Form.Group>
 
-              <Form.Group as={Col}>
-                <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
+              <Form.Group>
+                <Form.Label htmlFor='title'>Title</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='title'
+                  value={title}
+                  onChange={onChange}
+                />
               </Form.Group>
-            </Form.Row>
 
-            <Button variant='primary' type='submit'>
-              Create the alert
-            </Button>
-          </Form>
+              <Form.Group>
+                <Form.Label>Category</Form.Label>
+                <Form.Control as='select' onChange={onChange} name='categories'>
+                  <option value={''} onChange={onChange} />
+                  <option value={'Homelessness & Poverty'} onChange={onChange}>
+                    Homelessness and Poverty
+                  </option>
+                  <option value={'Refugees'} onChange={onChange}>
+                    Refugees
+                  </option>
+                  <option value={'Migrants'} onChange={onChange}>
+                    Migrants
+                  </option>
+                  <option value={'Seniors'} onChange={onChange}>
+                    Seniors
+                  </option>
+                  <option
+                    value={'Children and Young Adults'}
+                    onChange={onChange}
+                  >
+                    Children and Young Adults
+                  </option>
+                  <option value={'Environment and Animals'} onChange={onChange}>
+                    Environment and Animals
+                  </option>
+                  <option value={'Political Activism'} onChange={onChange}>
+                    Political Activism
+                  </option>
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor='date'>Date</Form.Label>
+                <br />
+                <Flatpickr
+                  className='datepicker form-control'
+                  data-enable-time
+                  name='date'
+                  value={date}
+                  onChange={onChangeDate}
+                  options={{
+                    disableMobile: true,
+                    minTime: '09:00',
+                    maxTime: '23:00',
+                    locale: {
+                      firstDayOfWeek: 1
+                    }
+                  }}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
+                <Form.Control
+                  as='textarea'
+                  rows='1'
+                  name='shortDesc'
+                  value={shortDesc}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor='fullDesc'>Description</Form.Label>
+                <Form.Control
+                  as='textarea'
+                  rows='3'
+                  name='fullDesc'
+                  value={fullDesc}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <h3>Address</h3>
+              <Form.Group>
+                <Form.Label htmlFor='venue'>Venue</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='venue'
+                  value={venue}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor='street'>Street</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='street'
+                  value={street}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label htmlFor='city'>City</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='city'
+                    value={city}
+                    onChange={onChange}
+                  />
+                </Form.Group>
+
+                <Form.Group as={Col}>
+                  <Form.Label htmlFor='zipcode'>Zip</Form.Label>
+                  <Form.Control
+                    type='number'
+                    name='zipcode'
+                    value={zipcode}
+                    onChange={onChange}
+                  />
+                </Form.Group>
+              </Form.Row>
+
+              <Button variant='primary' type='submit'>
+                Create the alert
+              </Button>
+            </Form>
+          </FadeIn>
         </Container>
       </Fragment>
     </div>

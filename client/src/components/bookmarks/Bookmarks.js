@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FadeIn from 'react-fade-in';
 
 // Redux actions
 import { getCurrentProfile_ACTION } from '../../actions/profile';
@@ -23,32 +24,38 @@ const Bookmarks = ({ user, getCurrentProfile_ACTION, profile }) => {
     <Container className='inner-view py-3' fluid>
       <Row>
         <Container>
-          <h1>My bookmarks</h1>
-          <hr />
+          <FadeIn>
+            <h1>My bookmarks</h1>
+            <hr />
+          </FadeIn>
         </Container>
       </Row>
       <Row className='my-2'>
         <Container fluid>
-          <Subtitle title={'Alerts'} />
-          <Row>
-            <div className='horizontal-scroll'>
-              <div className='horizontal-scroll-wrapper'>
-                <BookmarkedAlertPrev />
+          <FadeIn>
+            <Subtitle title={'Alerts'} />
+            <Row>
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  <BookmarkedAlertPrev />
+                </div>
               </div>
-            </div>
-          </Row>
+            </Row>
+          </FadeIn>
         </Container>
       </Row>
       <Row className='my-2'>
         <Container fluid>
-          <Subtitle title={'Events'} />
-          <Row>
-            <div className='horizontal-scroll'>
-              <div className='horizontal-scroll-wrapper'>
-                <BookmarkedEventPrev />
+          <FadeIn>
+            <Subtitle title={'Events'} />
+            <Row>
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  <BookmarkedEventPrev />
+                </div>
               </div>
-            </div>
-          </Row>
+            </Row>
+          </FadeIn>
         </Container>
       </Row>
     </Container>

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 // Redux actions
 import { getAllAlerts_ACTION } from '../../actions/alerts';
@@ -32,47 +33,57 @@ const Explore = ({
   return (
     <Container className='inner-view py-3' fluid>
       <Row>
-        <Link to='/search' className='explore-search'>
-          <OurFontAwesome icon={'fa-search'} />
-        </Link>
+        <FadeIn>
+          <Link to='/search' className='explore-search'>
+            <OurFontAwesome icon={'fa-search'} />
+          </Link>
+        </FadeIn>
       </Row>
       <Row>
         <Container>
-          <h1>Explore Helpr</h1>
-          <hr />
+          <FadeIn>
+            <h1>Explore Helpr</h1>
+            <hr />
+          </FadeIn>
         </Container>
       </Row>
 
       <Row>
         <Container fluid>
-          <Subtitle title={'New Alerts'} />
-          <Row>
-            <div className='horizontal-scroll'>
-              <div className='horizontal-scroll-wrapper'>
-                <AlertPreview />
+          <FadeIn>
+            <Subtitle title={'New Alerts'} />
+            <Row>
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  <AlertPreview />
+                </div>
               </div>
-            </div>
-          </Row>
+            </Row>
+          </FadeIn>
         </Container>
       </Row>
 
       <Row>
         <Container fluid>
-          <Subtitle title={'Next Events'} />
-          <Row>
-            <div className='horizontal-scroll'>
-              <div className='horizontal-scroll-wrapper'>
-                <EventPreview />
+          <FadeIn>
+            <Subtitle title={'Next Events'} />
+            <Row>
+              <div className='horizontal-scroll'>
+                <div className='horizontal-scroll-wrapper'>
+                  <EventPreview />
+                </div>
               </div>
-            </div>
-          </Row>
+            </Row>
+          </FadeIn>
         </Container>
       </Row>
 
       <Row>
         <Container fluid>
-          <Subtitle title={'Categories'} />
-          <Row>TODO</Row>
+          <FadeIn>
+            <Subtitle title={'Categories'} />
+            <Row>TODO</Row>
+          </FadeIn>
         </Container>
       </Row>
     </Container>

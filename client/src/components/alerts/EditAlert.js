@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 // Redux actions
 import { editAlert_ACTION, deleteAlert_ACTION } from '../../actions/alerts';
@@ -82,67 +83,76 @@ const EditAlert = ({
   ) : (
     <Fragment>
       <Container className='py-3 inner-view'>
-        <BackLink url={`/alert/${alert._id}`} title={'Back to the alert'} />
+        <FadeIn>
+          <BackLink url={`/alert/${alert._id}`} title={'Back to the alert'} />
 
-        <h1>Edit the alert</h1>
-        <hr />
-        <Form
-          className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
-          onSubmit={onSubmit}
-        >
-          <Form.Group>
-            <Form.Label>Title</Form.Label>
-            <Form.Control type='text' name='title' value={title} onChange={onChange} />
-          </Form.Group>
+          <h1>Edit the alert</h1>
+          <hr />
+          <Form
+            className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+            onSubmit={onSubmit}
+          >
+            <Form.Group>
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                type='text'
+                name='title'
+                value={title}
+                onChange={onChange}
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Type</Form.Label>
-            <Form.Control as='select' onChange={onChange} name='type'>
-            <option value={''} onChange={onChange}>
-                
-              </option>
-              <option value={'People in need'} onChange={onChange}>
-                People in need
-              </option>
-              <option value={'Places'} onChange={onChange}>
-                Places
-              </option>
-              <option value={"Other"} onChange={onChange}>
-                Other
-              </option>
-            </Form.Control>
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Type</Form.Label>
+              <Form.Control as='select' onChange={onChange} name='type'>
+                <option value={''} onChange={onChange} />
+                <option value={'People in need'} onChange={onChange}>
+                  People in need
+                </option>
+                <option value={'Places'} onChange={onChange}>
+                  Places
+                </option>
+                <option value={'Other'} onChange={onChange}>
+                  Other
+                </option>
+              </Form.Control>
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              as='textarea'
-              rows='3'
-              name='description'
-              value={description}
-              onChange={onChange}
-            />
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as='textarea'
+                rows='3'
+                name='description'
+                value={description}
+                onChange={onChange}
+              />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Image</Form.Label>
-            <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type='file'
+                name='image'
+                value={imageURL}
+                onChange={onChange}
+              />
+            </Form.Group>
 
-          <ButtonToolbar className='justify-content-around py-3'>
-            <Button variant='primary' type='submit'>
-              Update
-            </Button>
-            <Button variant='danger' type='submit' onClick={handleDelete}>
-              Delete
-            </Button>
-          </ButtonToolbar>
-        </Form>
-        {/* <br />
+            <ButtonToolbar className='justify-content-around py-3'>
+              <Button variant='primary' type='submit'>
+                Update
+              </Button>
+              <Button variant='danger' type='submit' onClick={handleDelete}>
+                Delete
+              </Button>
+            </ButtonToolbar>
+          </Form>
+          {/* <br />
         <Link to={`/alert/${alert._id}`} className='btn btn-secondary'>
           Back to alert details
         </Link> */}
-        {/*       
+          {/*       
         <form onSubmit={onSubmit}>
           <div>
             <label>Title</label>
@@ -173,6 +183,7 @@ const EditAlert = ({
         </form>
         <Link to={`/alert/${alert._id}`}>Back to alert details</Link>
         <button onClick={handleDelete}>Delete Alert</button> */}
+        </FadeIn>
       </Container>
     </Fragment>
   );

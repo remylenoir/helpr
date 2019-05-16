@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 // Redux action
 import { setAlert_ACTION } from '../../actions/alert';
@@ -51,35 +52,53 @@ const Register = ({ setAlert_ACTION, register_ACTION, isAuthenticated }) => {
     <div className='auth-view d-flex align-items-center justify-content-center container'>
       <Row>
         <Container>
-          <h3 className='text-center'>
-            Do you want to be part <br />of&nbsp;a&nbsp;great community?
-          </h3>
-          <p className='text-center'>Create your account</p>
-          <hr />
-
-          <Form onSubmit={onSubmit}>
-            <Form.Group controlId='formUsername'>
-              <Form.Label>Username</Form.Label>
-              <Form.Control type='text' name='username' value={username} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Group controlId='formPassword'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control type='password' name='password' value={password} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Group controlId='formPassword2'>
-              <Form.Label>Confirm your password</Form.Label>
-              <Form.Control type='password' name='password2' value={password2} onChange={onChange} />
-            </Form.Group>
-            <Button type='submit' variant='primary btn-block'>
-              Submit
-            </Button>
+          <FadeIn>
+            <h3 className='text-center'>
+              Do you want to be part <br />
+              of&nbsp;a&nbsp;great community?
+            </h3>
+            <p className='text-center'>Create your account</p>
             <hr />
-            <p className='text-center'>
-              Already have an account? <Link to='/login'>Log in</Link>
-            </p>
-          </Form>
+
+            <Form onSubmit={onSubmit}>
+              <Form.Group controlId='formUsername'>
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='username'
+                  value={username}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Group controlId='formPassword'>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type='password'
+                  name='password'
+                  value={password}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Group controlId='formPassword2'>
+                <Form.Label>Confirm your password</Form.Label>
+                <Form.Control
+                  type='password'
+                  name='password2'
+                  value={password2}
+                  onChange={onChange}
+                />
+              </Form.Group>
+              <Button type='submit' variant='primary btn-block'>
+                Submit
+              </Button>
+              <hr />
+              <p className='text-center'>
+                Already have an account? <Link to='/login'>Log in</Link>
+              </p>
+            </Form>
+          </FadeIn>
         </Container>
       </Row>
     </div>
