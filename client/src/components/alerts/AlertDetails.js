@@ -76,14 +76,14 @@ const AlertDetails = ({
             </Card>
           )}
 
-          <div className='text-center'>
+          {/* <div className='text-center'>
             {alert && auth.isAuthenticated && (
               <Link to={`/dashboard`} className='btn btn-secondary'>
                 Back to the dashboard
               </Link>
             )}
           </div>
-          <br />
+          <br /> */}
           {/* <div className='text-center'>
             <Link to='/alert/all' className='btn btn-info'>
               See all alerts

@@ -15,6 +15,7 @@ router.post('/add', (req, res) => {
     date,
     shortDesc,
     fullDesc,
+    venue,
     street,
     city,
     zipcode,
@@ -33,6 +34,7 @@ router.post('/add', (req, res) => {
     date,
     shortDesc,
     fullDesc,
+    venue,
     street,
     city,
     zipcode,
@@ -117,6 +119,7 @@ router.get('/:id', (req, res) => {
     .populate('creator', 'username profilePicture')
     .populate('attendees', 'username profilePicture')
     .populate('organizer', 'username profilePicture')
+    .populate('comments', 'author')
     .then(event => {
       if (currentDate > event.date) {
         Event.findByIdAndUpdate(
@@ -129,6 +132,7 @@ router.get('/:id', (req, res) => {
           .populate('creator', 'username profilePicture')
           .populate('attendees', 'username profilePicture')
           .populate('organizer', 'username profilePicture')
+          .populate('comments', 'author')
           .then(updatedEvent => {
             res.status(200).json(updatedEvent);
           })

@@ -32,6 +32,7 @@ const CreateEvent = ({
     categories: '',
     shortDesc: '',
     fullDesc: '',
+    venue: '',
     street: '',
     city: '',
     zipcode: '',
@@ -42,7 +43,18 @@ const CreateEvent = ({
     return <Redirect to='/dashboard' />;
   }
 
-  const { title, date, categories, shortDesc, fullDesc, street, city, zipcode, coverImage } = formData;
+  const {
+    title,
+    date,
+    categories,
+    shortDesc,
+    fullDesc,
+    venue,
+    street,
+    city,
+    zipcode,
+    coverImage
+  } = formData;
 
   const onChange = event => {
     const { name, value } = event.target;
@@ -85,6 +97,7 @@ const CreateEvent = ({
       shortDesc === '' ||
       categories === '' ||
       fullDesc === '' ||
+      venue === '' ||
       street === '' ||
       city === '' ||
       zipcode === '' ||
@@ -111,6 +124,7 @@ const CreateEvent = ({
               <img src={coverImage} alt='' />
               <input type='file' name='coverImage' onChange={onUpload} />
             </Form.Group>
+
             <Form.Group>
               <Form.Label htmlFor='title'>Title</Form.Label>
               <Form.Control type='text' name='title' value={title} onChange={onChange} />
@@ -188,6 +202,11 @@ const CreateEvent = ({
 
             <h3>Address</h3>
             <Form.Group>
+              <Form.Label htmlFor='venue'>Venue</Form.Label>
+              <Form.Control type='text' name='venue' value={venue} onChange={onChange} />
+            </Form.Group>
+
+            <Form.Group>
               <Form.Label htmlFor='street'>Street</Form.Label>
               <Form.Control type='text' name='street' value={street} onChange={onChange} />
             </Form.Group>
@@ -203,16 +222,6 @@ const CreateEvent = ({
                 <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
               </Form.Group>
             </Form.Row>
-
-            {/* <Form.Group>
-              <Form.Label htmlFor='coverImage'>Image</Form.Label>
-              <Form.Control
-                type='file'
-                name='coverImage'
-                value={coverImage}
-                onChange={onChange}
-              />
-            </Form.Group> */}
 
             <Button variant='primary' type='submit'>
               Create the alert

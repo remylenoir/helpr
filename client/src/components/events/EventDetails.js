@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -40,9 +41,10 @@ const EventDetails = ({
       <Row>
         <Hero
           type={'details'}
+          dateformat={'calendar'}
           msg={event && event.type}
           title={event && event.title}
-          date={event && event.created_at}
+          date={event && event.date}
           creator={event && event.creator}
           url={event && event.coverImage}
         />
@@ -53,13 +55,22 @@ const EventDetails = ({
             <FollowEventBtn /> <JoinEventBtn />
           </div>
 
+          <Subtitle title={'When'} />
+          <div className='location-address'>
+            <h6 className='mb-0'>{event && moment(event.date).format('MMMM Do')}</h6>
+            <p>{event && moment(event.date).format('h:mm a')}</p>
+          </div>
+
+          <Subtitle title={'Where'} />
+          <div className='location-address'>
+            <h6 className='mb-0'>{event && event.venue}</h6>
+            <p>
+              {event && event.street}, {event && event.city}, {event && event.zipcode}
+            </p>
+          </div>
+
           <Subtitle title={'Description'} />
           <p>{event && event.fullDesc}</p>
-
-          <Subtitle title={'Location'} />
-          <p>
-            <span className='text-danger'>Insert map</span>
-          </p>
 
           <hr />
 
@@ -77,13 +88,13 @@ const EventDetails = ({
               </Card.Body>
             </Card>
           )}
-          {event && auth.isAuthenticated && (
+          {/* {event && auth.isAuthenticated && (
             <div className='text-center'>
               <Link to={`/dashboard`} className='btn btn-secondary'>
                 Back to the dashboard
               </Link>
             </div>
-          )}
+          )} */}
           {/* <br />
           <div className='text-center'>
             <Link to='/event/all' className='btn btn-info'>
