@@ -17,13 +17,22 @@ const EventPreview = ({ events: { events, loading } }) => {
       return (
         <Card key={event._id} className='mt-1 mb-4'>
           <Link to={`/event/${event._id}`}>
-            <Card.Body>
+            <Card.Img variant='top' src={event.coverImage} />
+
+            {moment(event.date).format('MMMM Do, h:mm a')}
+            <br />
+            {event.title}
+            <br />
+            {event.shortDesc}
+
+            {/* <Card.Body>
               <Card.Title>{event.title}</Card.Title>
+              <Card.Subtitle>{event.shorDescs}</Card.Subtitle>
               <Card.Subtitle className='mb-2 text-muted'>
                 {event.creator.username} - {moment(event.created_at).fromNow()}
               </Card.Subtitle>
               <Card.Text>{event.shortDesc}</Card.Text>
-            </Card.Body>
+            </Card.Body> */}
           </Link>
         </Card>
       );

@@ -189,7 +189,7 @@ const EditEvent = ({
 
             <Form.Group>
               <Form.Label htmlFor='coverImage'>Image</Form.Label>
-              <Form.Control type='file' name='coverImage' value={coverImage} onChange={onChange} />
+              <Form.Control type='text' name='coverImage' value={coverImage} onChange={onChange} />
             </Form.Group>
 
             <ButtonToolbar className='justify-content-around py-3'>

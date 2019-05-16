@@ -44,7 +44,7 @@ const EventDetails = ({
           title={event && event.title}
           date={event && event.created_at}
           creator={event && event.creator}
-          url={event && event.imageURL}
+          url={event && event.coverImage}
         />
       </Row>
       <Row>

@@ -93,7 +93,7 @@ router.get('/all', (req, res) => {
       Event.find({})
         .populate('creator', 'username profilePicture')
         .populate('attendees', 'username profilePicture')
-        .populate('categories', 'title')
+        // .populate('categories', 'title')
         .then(updatedEvents => {
           res.status(200).json(updatedEvents);
         })
@@ -126,7 +126,7 @@ router.get('/:id', (req, res) => {
           .populate('creator', 'username profilePicture')
           .populate('attendees', 'username profilePicture')
           .populate('organizer', 'username profilePicture')
-          .populate('categories', 'title')
+          // .populate('categories', 'title')
           .then(updatedEvent => {
             res.status(200).json(updatedEvent);
           })
