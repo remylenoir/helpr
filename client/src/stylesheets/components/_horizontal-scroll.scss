@@ -2,6 +2,7 @@
   &-scroll {
     text-align: center;
     max-width: 100%;
+    margin-bottom: var(--spacing);
 
     .card {
       min-width: 260px;
@@ -13,7 +14,7 @@
       flex-wrap: nowrap;
       overflow-x: scroll;
       -webkit-overflow-scrolling: touch;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
 
       &::-webkit-scrollbar {
         display: none;
