@@ -8,8 +8,8 @@ const TOKEN =
 const Map = ({ height, width, alert }) => {
   const [mapState, setMapState] = useState({
     viewport: {
-      latitude: alert.coordinates[0],
-      longitude: alert.coordinates[1],
+      latitude: alert && alert.coordinates[0],
+      longitude: alert && alert.coordinates[1],
       zoom: 14,
       bearing: 0,
       pitch: 0,
