@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 // Auth components
 import Register from '../auth/Register';
 import Login from '../auth/Login';
+import GuestMessage from '../layout/GuestMessage';
 
 // Main components
 import Dashboard from '../dashboard/Dashboard';
@@ -41,13 +42,14 @@ const Routes = () => {
         <Switch>
           <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/guest-message' component={GuestMessage} />
           <Route exact path='/search' component={Search} />
           <Route exact path='/explore' component={Explore} />
+          <Route exact path='/map' component={MapView} />
           <Route exact path='/alert/all' component={AlertList} />
           <Route exact path='/alert/:alertId' component={AlertDetails} />
           <Route exact path='/event/all' component={EventList} />
           <Route exact path='/event/:eventId' component={EventDetails} />
-          <Route exact path='/map' component={MapView} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/bookmarks' component={Bookmarks} />
           <PrivateRoute exact path='/profile' component={Profile} />
