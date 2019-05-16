@@ -28,6 +28,7 @@ export const GET_ALERT = 'GET_ALERT';
 export const EDIT_ALERT = 'EDIT_ALERT';
 export const DELETE_ALERT = 'DELETE_ALERT';
 export const BOOKMARK_ALERT = 'BOOKMARK_ALERT';
+export const UPLOAD_ALERT_IMG = 'UPLOAD_ALERT_IMG';
 // Events
 export const CREATE_EVENT = 'CREATE_EVENT';
 export const GET_ALL_EVENTS = 'GET_ALL_EVENTS';

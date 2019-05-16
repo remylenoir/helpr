@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 // Redux actions
-import { setAlert_ACTION } from '../../actions/alert';
 import { createAlert_ACTION } from '../../actions/alerts';
+import { setAlert_ACTION } from '../../actions/alert';
 
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
@@ -16,16 +16,22 @@ import Container from 'react-bootstrap/Container';
 // App utils
 import geolocatedFunc from '../../utils/geolocation';
 
-const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAlert_ACTION }) => {
+const CreateAlert = ({
+  auth: { user },
+  alerts,
+  alert,
+  coords,
+  createAlert_ACTION,
+  setAlert_ACTION
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     type: 'People in need',
     location: {},
-    description: '',
-    imageURL: ''
+    description: ''
   });
 
-  const { title, type, location, description, imageURL } = formData;
+  const { title, type, location, description } = formData;
 
   useEffect(() => {
     const latitude = coords && coords.latitude;
@@ -44,12 +50,25 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
 
   const onChange = event => {
     const { name, value } = event.target;
-
     setFormData({
       ...formData,
       [name]: value
     });
   };
+
+  // //handle image uplaod
+  // const onUpload = e => {
+  //   const file = e.target.files[0];
+  //   const data = new FormData();
+
+  //   data.append('imageURL', file);
+  //   uploadAlertImg_ACTION(data);
+
+  //   setFormData({
+  //     ...formData,
+  //     imageURL: alerts.imageURL
+  //   });
+  // };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -58,7 +77,7 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
       setAlert_ACTION('All inputs must be filled');
       return;
     }
-
+    console.log(formData, 'test');
     createAlert_ACTION(formData, user._id);
     setAlert_ACTION('Alert successfully created');
   };
@@ -78,7 +97,12 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
         >
           <Form.Group>
             <Form.Label>Title</Form.Label>
-            <Form.Control type='text' name='title' value={title} onChange={onChange} />
+            <Form.Control
+              type='text'
+              name='title'
+              value={title}
+              onChange={onChange}
+            />
           </Form.Group>
 
           <Form.Group>
@@ -107,10 +131,10 @@ const CreateAlert = ({ auth: { user }, alerts, coords, createAlert_ACTION, setAl
             />
           </Form.Group>
 
-          <Form.Group>
+          {/* <Form.Group>
             <Form.Label>Image</Form.Label>
-            <Form.Control type='file' name='image' value={imageURL} onChange={onChange} />
-          </Form.Group>
+            <input type='file' name='imageURL' onChange={onUpload} />
+          </Form.Group> */}
 
           <Form.Group>
             <Form.Label>Location</Form.Label>

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const uploadCloud = require('../config/cloudinary');
 
 // Import the models
 const Alert = require('../models/Alert');
@@ -66,49 +67,17 @@ router.get('/:id', (req, res) => {
     });
 });
 
-// @route   PUT api/alerts/bookmark/:id
-// @desc    Bookmark/unbookmark an alert
-// @access  Public
-// router.put('/bookmark/:id', (req, res) => {
-//   const { _id } = req.user;
-//   const favAlerts = req.params.id;
+// @route   POST api/alerts/upload
+// @desc    Upload alert image
+// @access  Private
 
-//   User.findById({ _id })
-//     .then(user => {
-//       if (!user.favAlerts.includes(favAlerts)) {
-//         User.findOneAndUpdate(
-//           { _id },
-//           {
-//             $push: { favAlerts }
-//           },
-//           { new: true }
-//         )
-//           .then(() => {
-//             res.status(200).json({ message: `Alert ID ${favAlerts} successfully bookmarked` });
-//           })
-//           .catch(err => {
-//             res.json(err);
-//           });
-//       } else {
-//         User.findOneAndUpdate(
-//           { _id },
-//           {
-//             $pull: { favAlerts }
-//           },
-//           { new: true }
-//         )
-//           .then(() => {
-//             res.status(200).json({ message: `Alert ID ${favAlerts} successfully unbookmarked` });
-//           })
-//           .catch(err => {
-//             res.json(err);
-//           });
-//       }
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
+router.post('/upload', uploadCloud.single('imageURL'), (req, res, next) => {
+  if (!req.file) {
+    next(new Error('No file uplaoded!'));
+    return;
+  }
+  res.json(req.file.secure_url);
+});
 
 // @route   PUT api/alerts/add/bookmark/:id
 // @desc    Bookmark an alert
@@ -203,7 +172,11 @@ router.delete('/:id', (req, res) => {
         }
       )
         .then(() => {
-          res.status(200).json({ message: `Alert ID ${alertID} and all users's references deleted` });
+          res
+            .status(200)
+            .json({
+              message: `Alert ID ${alertID} and all users's references deleted`
+            });
         })
         .catch(err => {
           res.json(err);

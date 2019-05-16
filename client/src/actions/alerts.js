@@ -5,7 +5,8 @@ import {
   DELETE_ALERT,
   GET_ALL_ALERTS,
   CREATE_ALERT,
-  BOOKMARK_ALERT
+  BOOKMARK_ALERT,
+  UPLOAD_ALERT_IMG
 } from './types';
 
 export const createAlert_ACTION = (body, userId) => async dispatch => {
@@ -63,11 +64,20 @@ export const deleteAlert_ACTION = alertId => async dispatch => {
 export const bookmarkAlert_ACTION = (alertId, userId) => async dispatch => {
   try {
     await service.put(`/alerts/bookmark/${alertId}`);
-  
+
     dispatch({
       type: BOOKMARK_ALERT
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
+};
+
+export const uploadAlertImg_ACTION = data => async dispatch => {
+  const response = await service.post('/alerts/upload', data);
+  console.log('upload action bro', response.data, data);
+  dispatch({
+    type: UPLOAD_ALERT_IMG,
+    payload: response.data
+  });
 };
