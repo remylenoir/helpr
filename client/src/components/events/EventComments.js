@@ -58,7 +58,7 @@ const EventComments = ({ event, user, editEvent_ACTION, getEvent_ACTION }) => {
       <CommentCard />
 
       <Form
-        className='d-flex w-100 pt-2 justify-content-center flex-column add-edit-form'
+        className='d-flex w-100 pt-1 justify-content-center flex-column add-edit-form'
         onSubmit={onSubmit}
       >
         <Form.Group>

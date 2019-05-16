@@ -6,6 +6,8 @@
 }
 
 .attendees {
+  max-height: 300px;
+  overflow-y: scroll;
   flex-wrap: wrap;
   margin: 0 -10px;
 

@@ -65,7 +65,15 @@ const CommentCardAlert = ({ alert, user, editAlert_ACTION }) => {
       );
     });
 
-  return <div>{commentElement}</div>;
+  return (
+    <div>
+      {alert && commentElement.length > 0 ? (
+        commentElement
+      ) : (
+        <p className='mb-0'>Be the first to comment.</p>
+      )}
+    </div>
+  );
 };
 
 CommentCardAlert.propTypes = {
