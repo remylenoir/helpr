@@ -8,7 +8,6 @@ import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 //icon fonts
 import OurFontAwesome from '../layout/OurFontAwesome';
 
@@ -26,7 +25,6 @@ const Profile = ({
   user
 }) => {
   // Set the state to handle edit form toggle
-  console.log(user);
   return loading && user === null ? (
     <Spinner />
   ) : (

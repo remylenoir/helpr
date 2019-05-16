@@ -15,6 +15,7 @@ const Search = ({ events, alerts, history, getAllEvents_ACTION, getAllAlerts_ACT
   useEffect(() => {
     getAllEvents_ACTION();
     getAllAlerts_ACTION();
+    window.scroll(0, 0)
   }, []);
 
   const allEventsArr =

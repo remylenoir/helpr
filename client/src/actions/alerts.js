@@ -75,7 +75,6 @@ export const bookmarkAlert_ACTION = (alertId, userId) => async dispatch => {
 
 export const uploadAlertImg_ACTION = data => async dispatch => {
   const response = await service.post('/alerts/upload', data);
-  console.log('upload action bro', response.data, data);
   dispatch({
     type: UPLOAD_ALERT_IMG,
     payload: response.data

@@ -14,7 +14,6 @@ import {
 export const createEvent_ACTION = (body, userId) => async dispatch => {
   try {
     const response = await service.post('/events/add', body, userId);
-    console.log(body)
     dispatch({
       type: CREATE_EVENT,
       payload: response.data
@@ -76,8 +75,7 @@ export const addCommentEvent_ACTION = (eventId, body) => async dispatch => {
     const response = await service.put(`/events/${eventId}`, body, {
       new: true
     });
-    console.log('action trigger, reponse: ', response.data)
-    console.log('body: ', body)
+   
 
     dispatch({
       type: ADD_COMMENT_EVENT,
@@ -96,7 +94,6 @@ const transferIMG_ACTION = () => dispatch => {
 
 export const uploadEventImg_ACTION = data => async dispatch => {
   const response = await service.post(`/events/upload`, data);
-  console.log(data, response.data);
   dispatch({
     type: UPLOAD_EVENT_IMG,
     payload: response.data

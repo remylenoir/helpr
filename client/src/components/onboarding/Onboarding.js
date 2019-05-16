@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import Plx from 'react-plx';
 
 // App components
@@ -12,6 +12,9 @@ import AlertWithMap from './AlertWithMap';
 import Container from 'react-bootstrap/Container';
 
 const Onboarding = () => {
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
   const parallaxDataLeft = [
     {
       start: 'self',

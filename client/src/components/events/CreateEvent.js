@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -25,6 +25,10 @@ const CreateEvent = ({
   setAlert_ACTION,
   uploadEventImg_ACTION
 }) => {
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
+
   const [formData, setFormData] = useState({
     title: '',
     date: new Date(),
@@ -84,7 +88,6 @@ const CreateEvent = ({
     //   ...formData,
     //   coverImage: events.coverImage
     // });
-    console.log(events.coverImage);
   };
 
   const onSubmit = e => {
@@ -105,7 +108,6 @@ const CreateEvent = ({
       setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
-    console.log(formData)
     createEvent_ACTION(formData, user._id);
     setAlert_ACTION('Event successfully created', 'success');
   };

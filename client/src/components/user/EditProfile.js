@@ -29,6 +29,9 @@ const EditProfile = ({
   setAlert_ACTION,
   uploadCurrentProfilePicture_ACTION
 }) => {
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
   // Set the state to handle edit form input values
   const [formData, setFormData] = useState({
     username: '',

@@ -23,10 +23,9 @@ const EventList = ({ getAllEvents_ACTION }) => {
   const [category, setCategory] = useState('All');
 
   const onChange = event => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
     setCategory(value);
-    console.log(value);
   };
 
   return (

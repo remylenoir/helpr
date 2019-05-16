@@ -40,6 +40,7 @@ const EditAlert = ({
       description: loading || !alert.description ? '' : alert.description,
       imageURL: loading || !alert.imageURL ? '' : alert.imageURL
     });
+    window.scroll(0, 0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

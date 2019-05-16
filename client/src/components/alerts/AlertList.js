@@ -18,16 +18,16 @@ import Form from 'react-bootstrap/Form';
 const AlertList = ({ getAllAlerts_ACTION }) => {
   useEffect(() => {
     getAllAlerts_ACTION();
+    window.scroll(0, 0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const [type, setType] = useState('All');
 
   const onChange = event => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
     setType(value);
-    console.log(value);
   };
 
   return (

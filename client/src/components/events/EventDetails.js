@@ -33,6 +33,7 @@ const EventDetails = ({
 }) => {
   useEffect(() => {
     getEvent_ACTION(eventId);
+    window.scroll(0, 0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

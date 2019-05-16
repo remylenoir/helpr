@@ -18,6 +18,7 @@ import Container from 'react-bootstrap/Container';
 const Bookmarks = ({ user, getCurrentProfile_ACTION, profile }) => {
   useEffect(() => {
     getCurrentProfile_ACTION(user._id);
+    window.scroll(0, 0)
   }, []);
   return (
     <Container className='inner-view py-3' fluid>

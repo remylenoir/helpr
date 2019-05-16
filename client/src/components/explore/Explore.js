@@ -27,6 +27,7 @@ const Explore = ({
   useEffect(() => {
     getAllAlerts_ACTION();
     getAllEvents_ACTION();
+    window.scroll(0, 0)
   }, []);
 
   return (

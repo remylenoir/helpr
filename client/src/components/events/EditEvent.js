@@ -58,6 +58,7 @@ const EditEvent = ({
       zipcode: loading || !event.zipcode ? '' : event.zipcode,
       coverImage: loading || !event.coverImage ? '' : event.coverImage
     });
+    window.scroll(0, 0)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

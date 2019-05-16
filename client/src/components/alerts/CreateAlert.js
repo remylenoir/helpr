@@ -77,7 +77,6 @@ const CreateAlert = ({
       setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }
-    console.log(formData, 'test');
     createAlert_ACTION(formData, user._id);
     setAlert_ACTION('Alert successfully created', 'success');
   };
