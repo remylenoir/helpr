@@ -1,0 +1,12 @@
+.myFadeIn {
+  animation: myFadeIn 0.35s ease-in 0.1s normal;
+}
+
+@keyframes myFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

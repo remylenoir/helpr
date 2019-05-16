@@ -3,6 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 // Redux actions
 import { getEvent_ACTION } from '../../actions/events';
@@ -33,7 +34,7 @@ const EventDetails = ({
 }) => {
   useEffect(() => {
     getEvent_ACTION(eventId);
-    window.scroll(0, 0)
+    window.scroll(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,96 +47,108 @@ const EventDetails = ({
     <Spinner />
   ) : (
     <Container className='pb-3 inner-view' fluid>
-      <Row>
-        <Hero
-          type={'details'}
-          dateformat={'calendar'}
-          // date={event && event.date}
-          title={event && event.title}
-          category={event && event.categories}
-          creator={event && event.creator}
-          url={event && event.coverImage}
-        />
-      </Row>
+      <FadeIn>
+        <Row>
+          <Hero
+            type={'details'}
+            dateformat={'calendar'}
+            // date={event && event.date}
+            title={event && event.title}
+            category={event && event.categories}
+            creator={event && event.creator}
+            url={event && event.coverImage}
+          />
+        </Row>
+      </FadeIn>
       <Row>
         <Container className='position-relative py-3'>
-          <div className='actions-buttons position-absolute'>
-            <FollowEventBtn /> <JoinEventBtn />
-          </div>
-
-          <div className='mb-4'>
-            <Subtitle title={'When'} />
-            <div className='location-address'>
-              <h6 className='mb-0'>{event && moment(event.date).format('MMMM Do')}</h6>
-              <p>{event && moment(event.date).format('h:mm a')}</p>
+          <FadeIn>
+            <div className='actions-buttons position-absolute'>
+              <FollowEventBtn /> <JoinEventBtn />
             </div>
-          </div>
 
-          <div className='mb-4'>
-            <Subtitle title={'Where'} />
-            <div className='location-address'>
-              <h6 className='mb-0'>{event && event.venue}</h6>
-              <p>
-                {event && event.street}, {event && event.city}, {event && event.zipcode}
-              </p>
+            <div className='mb-4'>
+              <Subtitle title={'When'} />
+              <div className='location-address'>
+                <h6 className='mb-0'>
+                  {event && moment(event.date).format('MMMM Do')}
+                </h6>
+                <p>{event && moment(event.date).format('h:mm a')}</p>
+              </div>
             </div>
-          </div>
 
-          <div className='mb-4'>
-            <Subtitle title={'Description'} />
-            <p>{event && event.fullDesc}</p>
-          </div>
+            <div className='mb-4'>
+              <Subtitle title={'Where'} />
+              <div className='location-address'>
+                <h6 className='mb-0'>{event && event.venue}</h6>
+                <p>
+                  {event && event.street}, {event && event.city},{' '}
+                  {event && event.zipcode}
+                </p>
+              </div>
+            </div>
 
-          <div className='mb-4'>{event && <EventAttendees />}</div>
+            <div className='mb-4'>
+              <Subtitle title={'Description'} />
+              <p>{event && event.fullDesc}</p>
+            </div>
 
-          <div className='mb-4'>
-            <Subtitle title={'Comments'} />
-            <Accordion>
-              <Card>
-                <Accordion.Toggle
-                  className='d-flex justify-content-between align-items-center bg-primary'
-                  id='comment-toggle'
-                  as={Card.Header}
-                  eventKey='0'
-                  onClick={handleClick}
-                >
-                  <div>Show the comments</div>
-                  <div>
-                    <OurFontAwesome icon={'fa-angle-down'} />
-                  </div>
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey='0'>
-                  <Card.Body>{alert && <EventComments />}</Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-          </div>
+            <div className='mb-4'>{event && <EventAttendees />}</div>
 
-          {event && auth.isAuthenticated && auth.user._id === event.creator._id && (
-            <Card border='warning' className='my-3 no-shadow text-center'>
-              <Card.Header>Administrator area</Card.Header>
-              <Card.Body>
-                <Card.Text>
-                  <Link to={`/event/${event._id}/edit`} className='btn btn-warning'>
-                    Edit event
-                  </Link>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          )}
-          {/* {event && auth.isAuthenticated && (
+            <div className='mb-4'>
+              <Subtitle title={'Comments'} />
+              <Accordion>
+                <Card>
+                  <Accordion.Toggle
+                    className='d-flex justify-content-between align-items-center bg-primary'
+                    id='comment-toggle'
+                    as={Card.Header}
+                    eventKey='0'
+                    onClick={handleClick}
+                  >
+                    <div>Show the comments</div>
+                    <div>
+                      <OurFontAwesome icon={'fa-angle-down'} />
+                    </div>
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey='0'>
+                    <Card.Body>{alert && <EventComments />}</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </div>
+
+            {event &&
+              auth.isAuthenticated &&
+              auth.user._id === event.creator._id && (
+                <Card border='warning' className='my-3 no-shadow text-center'>
+                  <Card.Header>Administrator area</Card.Header>
+                  <Card.Body>
+                    <Card.Text>
+                      <Link
+                        to={`/event/${event._id}/edit`}
+                        className='btn btn-warning'
+                      >
+                        Edit event
+                      </Link>
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              )}
+            {/* {event && auth.isAuthenticated && (
             <div className='text-center'>
               <Link to={`/dashboard`} className='btn btn-secondary'>
                 Back to the dashboard
               </Link>
             </div>
           )} */}
-          {/* <br />
+            {/* <br />
           <div className='text-center'>
             <Link to='/event/all' className='btn btn-info'>
               See all events
             </Link>
           </div> */}
+          </FadeIn>
         </Container>
       </Row>
     </Container>

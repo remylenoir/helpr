@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 // Redux actions
 import { getAlert_ACTION } from '../../actions/alerts';
@@ -31,7 +32,7 @@ const AlertDetails = ({
 }) => {
   useEffect(() => {
     getAlert_ACTION(alertId);
-    window.scroll(0, 0)
+    window.scroll(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -44,81 +45,95 @@ const AlertDetails = ({
     <Spinner />
   ) : (
     <Container className='pb-3 inner-view' fluid>
-      <Row>
-        <Hero
-          type={'details'}
-          title={alert && alert.title}
-          category={alert && alert.type}
-          date={alert && alert.created_at}
-          dateformat={'spent'}
-          creator={alert && alert.creator}
-          url={alert && alert.imageURL}
-        />
-      </Row>
+      <FadeIn>
+        <Row>
+          <Hero
+            type={'details'}
+            title={alert && alert.title}
+            category={alert && alert.type}
+            date={alert && alert.created_at}
+            dateformat={'spent'}
+            creator={alert && alert.creator}
+            url={alert && alert.imageURL}
+          />
+        </Row>
+      </FadeIn>
       <Row>
         <Container className='position-relative py-3'>
-          <div className='actions-buttons position-absolute'>
-            <FollowAlerBtn />
-          </div>
-
-          <div className='mb-4'>
-            <Subtitle title={'Description'} />
-            <p>{alert && alert.description}</p>
-          </div>
-
-          <div className='mb-4'>
-            <Subtitle title={'Where'} />
-            <div className='alert-with-map'>
-              <Row>
-                {alert && (
-                  <Map
-                    navControl={true}
-                    height={320}
-                    width={window.innerWidth}
-                    alert={alert && alert.location}
-                  />
-                )}
-              </Row>
+          <FadeIn>
+            <div className='actions-buttons position-absolute'>
+              <FollowAlerBtn />
             </div>
-          </div>
+
+            <div className='mb-4'>
+              <Subtitle title={'Description'} />
+              <p>{alert && alert.description}</p>
+            </div>
+          </FadeIn>
+          <FadeIn>
+            <div className='mb-4'>
+              <Subtitle title={'Where'} />
+              <div className='alert-with-map'>
+                <Row>
+                  {alert && (
+                    <Map
+                      navControl={true}
+                      height={320}
+                      width={window.innerWidth}
+                      alert={alert && alert.location}
+                    />
+                  )}
+                </Row>
+              </div>
+            </div>
+          </FadeIn>
 
           <div className='mb-4'>
-            <Subtitle title={'Comments'} />
-            <Accordion>
-              <Card>
-                <Accordion.Toggle
-                  className='d-flex justify-content-between align-items-center bg-primary'
-                  as={Card.Header}
-                  eventKey='0'
-                  onClick={handleClick}
-                >
-                  <div>Show the comments</div>
-                  <div>
-                    <OurFontAwesome icon={'fa-angle-down'} />
-                  </div>
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey='0'>
-                  <Card.Body>{alert && <AlertComments />}</Card.Body>
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
+            <FadeIn>
+              <Subtitle title={'Comments'} />
+              <Accordion>
+                <Card>
+                  <Accordion.Toggle
+                    className='d-flex justify-content-between align-items-center bg-primary'
+                    as={Card.Header}
+                    eventKey='0'
+                    onClick={handleClick}
+                  >
+                    <div>Show the comments</div>
+                    <div>
+                      <OurFontAwesome icon={'fa-angle-down'} />
+                    </div>
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey='0'>
+                    <Card.Body>{alert && <AlertComments />}</Card.Body>
+                  </Accordion.Collapse>
+                </Card>
+              </Accordion>
+            </FadeIn>
           </div>
 
-          {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
-            <Fragment>
-              <hr />
-              <Card border='warning' className='mt-4 no-shadow text-center'>
-                <Card.Header>Administrator area</Card.Header>
-                <Card.Body>
-                  <Card.Text>
-                    <Link to={`/alert/${alert._id}/edit`} className='btn btn-warning'>
-                      Edit alert
-                    </Link>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Fragment>
-          )}
+          {alert &&
+            auth.isAuthenticated &&
+            auth.user._id === alert.creator._id && (
+              <Fragment>
+                <hr />
+                <FadeIn>
+                  <Card border='warning' className='mt-4 no-shadow text-center'>
+                    <Card.Header>Administrator area</Card.Header>
+                    <Card.Body>
+                      <Card.Text>
+                        <Link
+                          to={`/alert/${alert._id}/edit`}
+                          className='btn btn-warning'
+                        >
+                          Edit alert
+                        </Link>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </FadeIn>
+              </Fragment>
+            )}
 
           {/* <div className='text-center'>
             {alert && auth.isAuthenticated && (

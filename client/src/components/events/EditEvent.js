@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import FadeIn from 'react-fade-in';
 
 // Date Picker
 import moment from 'moment';
@@ -43,7 +44,17 @@ const EditEvent = ({
     coverImage: ''
   });
 
-  const { title, shortDesc, fullDesc, venue, street, categories, city, zipcode, coverImage } = formData;
+  const {
+    title,
+    shortDesc,
+    fullDesc,
+    venue,
+    street,
+    categories,
+    city,
+    zipcode,
+    coverImage
+  } = formData;
 
   useEffect(() => {
     setFormData({
@@ -122,126 +133,161 @@ const EditEvent = ({
     <div>
       <Fragment>
         <Container className='py-3 inner-view'>
-          <BackLink url={`/event/${event._id}`} title={'Back to the event'} />
+          <FadeIn>
+            <BackLink url={`/event/${event._id}`} title={'Back to the event'} />
 
-          <h1>Edit the alert</h1>
-          <hr />
-          <Form
-            className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
-            onSubmit={onSubmit}
-          >
-            <Form.Group>
-              <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control type='text' name='title' value={title} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Category</Form.Label>
-              <Form.Control as='select' onChange={onChange} name='categories'>
-                <option value={''} onChange={onChange} />
-                <option value={'Homelessness & Poverty'} onChange={onChange}>
-                  Homelessness and Poverty
-                </option>
-                <option value={'Refugees'} onChange={onChange}>
-                  Refugees
-                </option>
-                <option value={'Migrants'} onChange={onChange}>
-                  Migrants
-                </option>
-                <option value={'Seniors'} onChange={onChange}>
-                  Seniors
-                </option>
-                <option value={'Children and Young Adults'} onChange={onChange}>
-                  Children and Young Adults
-                </option>
-                <option value={'Environment and Animals'} onChange={onChange}>
-                  Environment and Animals
-                </option>
-                <option value={'Political Activism'} onChange={onChange}>
-                  Political Activism
-                </option>
-              </Form.Control>
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='date'>Date</Form.Label>
-              <br />
-              <Flatpickr
-                className='datepicker form-control'
-                data-enable-time
-                name={date}
-                value={date}
-                onChange={onChangeDate}
-                options={{
-                  disableMobile: true,
-                  minTime: '09:00',
-                  maxTime: '23:00',
-                  locale: {
-                    firstDayOfWeek: 1
-                  }
-                }}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
-              <Form.Control
-                as='textarea'
-                rows='1'
-                name='shortDesc'
-                value={shortDesc}
-                onChange={onChange}
-              />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='fullDesc'>Description</Form.Label>
-              <Form.Control
-                as='textarea'
-                rows='3'
-                name='fullDesc'
-                value={fullDesc}
-                onChange={onChange}
-              />
-            </Form.Group>
-
-            <h3>Address</h3>
-            <Form.Group>
-              <Form.Label htmlFor='venue'>Venue</Form.Label>
-              <Form.Control type='text' name='venue' value={venue} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Group>
-              <Form.Label htmlFor='street'>Street</Form.Label>
-              <Form.Control type='text' name='street' value={street} onChange={onChange} />
-            </Form.Group>
-
-            <Form.Row>
-              <Form.Group as={Col}>
-                <Form.Label htmlFor='city'>City</Form.Label>
-                <Form.Control type='text' name='city' value={city} onChange={onChange} />
+            <h1>Edit the alert</h1>
+            <hr />
+            <Form
+              className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+              onSubmit={onSubmit}
+            >
+              <Form.Group>
+                <Form.Label htmlFor='title'>Title</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='title'
+                  value={title}
+                  onChange={onChange}
+                />
               </Form.Group>
 
-              <Form.Group as={Col}>
-                <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
+              <Form.Group>
+                <Form.Label>Category</Form.Label>
+                <Form.Control as='select' onChange={onChange} name='categories'>
+                  <option value={''} onChange={onChange} />
+                  <option value={'Homelessness & Poverty'} onChange={onChange}>
+                    Homelessness and Poverty
+                  </option>
+                  <option value={'Refugees'} onChange={onChange}>
+                    Refugees
+                  </option>
+                  <option value={'Migrants'} onChange={onChange}>
+                    Migrants
+                  </option>
+                  <option value={'Seniors'} onChange={onChange}>
+                    Seniors
+                  </option>
+                  <option
+                    value={'Children and Young Adults'}
+                    onChange={onChange}
+                  >
+                    Children and Young Adults
+                  </option>
+                  <option value={'Environment and Animals'} onChange={onChange}>
+                    Environment and Animals
+                  </option>
+                  <option value={'Political Activism'} onChange={onChange}>
+                    Political Activism
+                  </option>
+                </Form.Control>
               </Form.Group>
-            </Form.Row>
 
-            <Form.Group>
-              <Form.Label htmlFor='coverImage'>Image</Form.Label>
-              <Form.Control type='text' name='coverImage' value={coverImage} onChange={onChange} />
-            </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor='date'>Date</Form.Label>
+                <br />
+                <Flatpickr
+                  className='datepicker form-control'
+                  data-enable-time
+                  name={date}
+                  value={date}
+                  onChange={onChangeDate}
+                  options={{
+                    disableMobile: true,
+                    minTime: '09:00',
+                    maxTime: '23:00',
+                    locale: {
+                      firstDayOfWeek: 1
+                    }
+                  }}
+                />
+              </Form.Group>
 
-            <ButtonToolbar className='justify-content-around py-3'>
-              <Button variant='primary' type='submit'>
-                Update
-              </Button>
-              <Button variant='danger' type='submit' onClick={handleDelete}>
-                Delete
-              </Button>
-            </ButtonToolbar>
-          </Form>
+              <Form.Group>
+                <Form.Label htmlFor='shortDesc'>Short description</Form.Label>
+                <Form.Control
+                  as='textarea'
+                  rows='1'
+                  name='shortDesc'
+                  value={shortDesc}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor='fullDesc'>Description</Form.Label>
+                <Form.Control
+                  as='textarea'
+                  rows='3'
+                  name='fullDesc'
+                  value={fullDesc}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <h3>Address</h3>
+              <Form.Group>
+                <Form.Label htmlFor='venue'>Venue</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='venue'
+                  value={venue}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Group>
+                <Form.Label htmlFor='street'>Street</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='street'
+                  value={street}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label htmlFor='city'>City</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='city'
+                    value={city}
+                    onChange={onChange}
+                  />
+                </Form.Group>
+
+                <Form.Group as={Col}>
+                  <Form.Label htmlFor='zipcode'>Zip</Form.Label>
+                  <Form.Control
+                    type='number'
+                    name='zipcode'
+                    value={zipcode}
+                    onChange={onChange}
+                  />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Group>
+                <Form.Label htmlFor='coverImage'>Image</Form.Label>
+                <Form.Control
+                  type='text'
+                  name='coverImage'
+                  value={coverImage}
+                  onChange={onChange}
+                />
+              </Form.Group>
+
+              <ButtonToolbar className='justify-content-around py-3'>
+                <Button variant='primary' type='submit'>
+                  Update
+                </Button>
+                <Button variant='danger' type='submit' onClick={handleDelete}>
+                  Delete
+                </Button>
+              </ButtonToolbar>
+            </Form>
+          </FadeIn>
         </Container>
         {/*         
         <form onSubmit={onSubmit}>
