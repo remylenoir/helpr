@@ -13,6 +13,7 @@ import JoinEventBtn from './JoinEventBtn';
 import FollowEventBtn from './FollowEventBtn';
 import EventAttendees from './EventAttendees';
 import Subtitle from '../layout/Headings/Subtitle';
+import EventComments from '../events/EventComments';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -60,9 +61,9 @@ const EventDetails = ({
           <p>
             <span className='text-danger'>Insert map</span>
           </p>
-
+          <br/>
+          <EventComments />
           <hr />
-
           <EventAttendees />
 
           {event && auth.isAuthenticated && auth.user._id === event.creator._id && (

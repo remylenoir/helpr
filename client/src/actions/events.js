@@ -1,5 +1,13 @@
 import service from '../utils/service';
-import { GET_EVENT, EDIT_EVENT, CLEAR_EVENT, DELETE_EVENT, GET_ALL_EVENTS, CREATE_EVENT } from './types';
+import {
+  GET_EVENT,
+  EDIT_EVENT,
+  CLEAR_EVENT,
+  DELETE_EVENT,
+  GET_ALL_EVENTS,
+  CREATE_EVENT,
+  ADD_COMMENT_EVENT
+} from './types';
 
 export const createEvent_ACTION = (body, userId) => async dispatch => {
   try {
@@ -59,4 +67,21 @@ export const deleteEvent_ACTION = eventId => async dispatch => {
       type: DELETE_EVENT
     });
   } catch (error) {}
+};
+
+export const addCommentEvent_ACTION = (eventId, body) => async dispatch => {
+  try {
+    const response = await service.put(`/events/${eventId}`, body, {
+      new: true
+    });
+    console.log('action trigger, reponse: ', response.data)
+    console.log('body: ', body)
+
+    dispatch({
+      type: ADD_COMMENT_EVENT,
+      dispatch: response.data
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
