@@ -5,18 +5,22 @@ import moment from 'moment';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 
-const Hero = ({ type, dateformat, title, msg, date, creator, button, btnMsg, url }) => {
+const Hero = ({ type, dateformat, title, category, msg, date, creator, button, btnMsg, url }) => {
   return (
     <Fragment>
       {type && type === 'details' && (
         <div className={`hero ${type && 'details'}`}>
           <div className='container wrapper text-center'>
             <h1>{title}</h1>
-            <h4>{msg}</h4>
+            <p>{category}</p>
             <p>
-              Created by {creator && creator.username} <br />
-              {dateformat && dateformat === 'calendar' && moment(date).format('MMMM Do, h:mm a')}
-              {dateformat && dateformat !== 'calendar' && moment(date).fromNow()}
+              {creator && (
+                <Fragment>
+                  Created by {creator && creator.username} <br />
+                </Fragment>
+              )}
+              {date && dateformat && dateformat === 'calendar' && moment(date).format('MMMM Do, h:mm a')}
+              {date && dateformat && dateformat === 'spent' && moment(date).fromNow()}
             </p>
             {button && <Button variant='primary'>{btnMsg}</Button>}
           </div>

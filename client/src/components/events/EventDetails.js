@@ -42,9 +42,9 @@ const EventDetails = ({
         <Hero
           type={'details'}
           dateformat={'calendar'}
-          msg={event && event.type}
+          // date={event && event.date}
           title={event && event.title}
-          date={event && event.date}
+          category={event && event.categories}
           creator={event && event.creator}
           url={event && event.coverImage}
         />
@@ -55,26 +55,32 @@ const EventDetails = ({
             <FollowEventBtn /> <JoinEventBtn />
           </div>
 
-          <Subtitle title={'When'} />
-          <div className='location-address'>
-            <h6 className='mb-0'>{event && moment(event.date).format('MMMM Do')}</h6>
-            <p>{event && moment(event.date).format('h:mm a')}</p>
+          <div className='mb-4'>
+            <Subtitle title={'When'} />
+            <div className='location-address'>
+              <h6 className='mb-0'>{event && moment(event.date).format('MMMM Do')}</h6>
+              <p>{event && moment(event.date).format('h:mm a')}</p>
+            </div>
           </div>
 
-          <Subtitle title={'Where'} />
-          <div className='location-address'>
-            <h6 className='mb-0'>{event && event.venue}</h6>
-            <p>
-              {event && event.street}, {event && event.city}, {event && event.zipcode}
-            </p>
+          <div className='mb-4'>
+            <Subtitle title={'Where'} />
+            <div className='location-address'>
+              <h6 className='mb-0'>{event && event.venue}</h6>
+              <p>
+                {event && event.street}, {event && event.city}, {event && event.zipcode}
+              </p>
+            </div>
           </div>
 
-          <Subtitle title={'Description'} />
-          <p>{event && event.fullDesc}</p>
+          <div className='mb-4'>
+            <Subtitle title={'Description'} />
+            <p>{event && event.fullDesc}</p>
+          </div>
 
-          <hr />
-
-          <EventAttendees />
+          <div className='mb-4'>
+            <EventAttendees />
+          </div>
 
           {event && auth.isAuthenticated && auth.user._id === event.creator._id && (
             <Card border='warning' className='my-3 no-shadow text-center'>

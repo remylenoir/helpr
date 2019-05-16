@@ -39,8 +39,9 @@ const AlertDetails = ({
         <Hero
           type={'details'}
           title={alert && alert.title}
-          msg={alert && alert.type}
+          category={alert && alert.type}
           date={alert && alert.created_at}
+          dateformat={'spent'}
           creator={alert && alert.creator}
           url={alert && alert.imageURL}
         />
@@ -51,15 +52,17 @@ const AlertDetails = ({
             <FollowAlerBtn />
           </div>
 
-          <Subtitle title={'Description'} />
-          <p>{alert && alert.description}</p>
+          <div className='mb-4'>
+            <Subtitle title={'Description'} />
+            <p>{alert && alert.description}</p>
+          </div>
 
-          <Subtitle title={'Location'} />
-          <p>
-            <span className='text-danger'>Insert map</span>
-            <br />
-            {alert && alert.location.coordinates[0]}, {alert && alert.location.coordinates[1]}
-          </p>
+          <div className='mb-4'>
+            <Subtitle title={'Where'} />
+            <p>
+              {alert && alert.location.coordinates[0]}, {alert && alert.location.coordinates[1]}
+            </p>
+          </div>
 
           <hr />
 

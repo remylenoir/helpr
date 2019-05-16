@@ -9,7 +9,7 @@ const Subtitle = ({ icon, title }) => {
       <h2 className={'layout__subtitle'}>
         {icon && <OurFontAwesome icon={icon} />} {title}
       </h2>
-      <hr />
+      <hr className='mt-1' />
     </Fragment>
   );
 };

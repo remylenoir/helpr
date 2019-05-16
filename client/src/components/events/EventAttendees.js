@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 // App components
 import AttendeeCard from './AttendeeCard';
+import Subtitle from '../layout/Headings/Subtitle';
 
 const EventAttendees = ({ event, user }) => {
   const userContent = (
@@ -15,7 +16,7 @@ const EventAttendees = ({ event, user }) => {
 
   const guestContent = (
     <Fragment>
-      <p className='m-0'>
+      <p className='m-0 pl-2'>
         <Link to='/login'>Log in</Link> to see the list of attendees
       </p>
     </Fragment>
@@ -24,9 +25,9 @@ const EventAttendees = ({ event, user }) => {
   return (
     <Fragment>
       {event && event.attendees.length === 1 ? (
-        <h3>Attendee ({event && event.attendees.length}) </h3>
+        <Subtitle title={`Attendee (${event && event.attendees.length})`} />
       ) : (
-        <h3>Attendees ({event && event.attendees.length}) </h3>
+        <Subtitle title={`Attendees (${event && event.attendees.length})`} />
       )}
       <div className='attendees d-flex'>{user ? userContent : guestContent}</div>
     </Fragment>
