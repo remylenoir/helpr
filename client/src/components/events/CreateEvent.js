@@ -81,6 +81,7 @@ const CreateEvent = ({
 
     if (
       title === '' ||
+      date === '' ||
       shortDesc === '' ||
       categories === '' ||
       fullDesc === '' ||
@@ -94,7 +95,6 @@ const CreateEvent = ({
     }
     createEvent_ACTION(formData, user._id);
     setAlert_ACTION('Event successfully created');
-    console.log(formData);
   };
 
   return (

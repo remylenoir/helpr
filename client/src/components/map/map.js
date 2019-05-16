@@ -47,9 +47,7 @@ const Map = ({ fullScreenControl, navControl, height, width }) => {
         )}
         {navControl && (
           <div className='nav' style={navStyle}>
-            <NavigationControl
-              onViewportChange={viewport => setMapState({ viewport })}
-            />
+            <NavigationControl onViewportChange={viewport => setMapState({ viewport })} />
           </div>
         )}
       </ReactMapGL>

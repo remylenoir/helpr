@@ -84,12 +84,12 @@ const EventDetails = ({
               </Link>
             </div>
           )}
-          <br />
+          {/* <br />
           <div className='text-center'>
             <Link to='/event/all' className='btn btn-info'>
               See all events
             </Link>
-          </div>
+          </div> */}
         </Container>
       </Row>
     </Container>

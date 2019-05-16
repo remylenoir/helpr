@@ -84,11 +84,11 @@ const AlertDetails = ({
             )}
           </div>
           <br />
-          <div className='text-center'>
+          {/* <div className='text-center'>
             <Link to='/alert/all' className='btn btn-info'>
               See all alerts
             </Link>
-          </div>
+          </div> */}
         </Container>
       </Row>
     </Container>
