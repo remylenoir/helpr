@@ -4,15 +4,13 @@ import Feature from './Feature';
 const Features = () => {
   return (
     <Fragment>
-      <div className='container'>
-        <div className='row'>
-          <div className='col-sm'>
-            <Feature
-              icon={'fa-hands-helping'}
-              title={'Voluteering events'}
-              desc={'helping each other is good bla bla'}
-            />
-          </div>
+      <div className='features-wrapper'>
+        <div className='col-sm'>
+          <Feature
+            icon={'fa-hands-helping'}
+            title={'Voluteering events'}
+            desc={'helping each other is good bla bla'}
+          />
           <div className='col-sm'>
             <Feature
               icon={'fa-link'}

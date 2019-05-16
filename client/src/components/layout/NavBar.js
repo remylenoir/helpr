@@ -9,7 +9,10 @@ import Row from 'react-bootstrap/Row';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 
-const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => {
+const NavBar = ({
+  auth: { isAuthenticated, loading, user },
+  logout_ACTION
+}) => {
   const authLinks = (
     <Fragment>
       <button
@@ -26,7 +29,10 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
           </Row>
         </Container>
       </button>
-      <div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
+      <div
+        className='dropdown-menu dropdown-menu-right'
+        aria-labelledby='dropdownMenuButton'
+      >
         <Link to='/dashboard' className='dropdown-item'>
           Dashboard
         </Link>
@@ -53,7 +59,10 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
       >
         Login / register
       </button>
-      <div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
+      <div
+        className='dropdown-menu dropdown-menu-right'
+        aria-labelledby='dropdownMenuButton'
+      >
         <Link to='/login' className='dropdown-item'>
           Login
         </Link>
@@ -67,14 +76,17 @@ const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => 
 
   return (
     <Navbar collapseOnSelect expand='true' bg='light'>
-      <Link to='/'>Helpr.</Link>
+      <Link to='/'>
+        <div className='brand-logo'>Helpr.</div>
+      </Link>
 
       <div className='dropdown'>{isAuthenticated ? authLinks : guestLinks}</div>
     </Navbar>
   );
 };
 
-const navbarClass = 'btn dropdown-toggle d-flex align-items-center user-dropdown p-0';
+const navbarClass =
+  'btn dropdown-toggle d-flex align-items-center user-dropdown p-0';
 
 NavBar.propTypes = {
   logout_ACTION: PropTypes.func.isRequired,

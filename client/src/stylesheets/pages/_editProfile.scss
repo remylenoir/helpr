@@ -1,8 +1,11 @@
 #profile {
+  padding-top: 1em;
+  .profile-img {
+    max-width: 120px;
+  }
   i {
     cursor: pointer;
   }
-  padding-top: 1em;
   .image-edit {
     position: relative;
     display: flex;
@@ -62,7 +65,4 @@
       }
     }
   }
-}
-.profile-img {
-  max-width: 120px;
 }
