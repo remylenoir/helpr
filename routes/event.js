@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const uploadCloud = require('../config/cloudinary');
 
 // Import the models
 const Event = require('../models/Event');
@@ -14,6 +15,7 @@ router.post('/add', (req, res) => {
     date,
     shortDesc,
     fullDesc,
+    venue,
     street,
     city,
     zipcode,
@@ -32,6 +34,7 @@ router.post('/add', (req, res) => {
     date,
     shortDesc,
     fullDesc,
+    venue,
     street,
     city,
     zipcode,
@@ -93,7 +96,6 @@ router.get('/all', (req, res) => {
       Event.find({})
         .populate('creator', 'username profilePicture')
         .populate('attendees', 'username profilePicture')
-        // .populate('categories', 'title')
         .then(updatedEvents => {
           res.status(200).json(updatedEvents);
         })
@@ -114,6 +116,10 @@ router.get('/:id', (req, res) => {
   const currentDate = new Date();
 
   Event.findById(eventID)
+    .populate('creator', 'username profilePicture')
+    .populate('attendees', 'username profilePicture')
+    .populate('organizer', 'username profilePicture')
+    .populate('comments', 'author')
     .then(event => {
       if (currentDate > event.date) {
         Event.findByIdAndUpdate(
@@ -126,7 +132,7 @@ router.get('/:id', (req, res) => {
           .populate('creator', 'username profilePicture')
           .populate('attendees', 'username profilePicture')
           .populate('organizer', 'username profilePicture')
-          // .populate('categories', 'title')
+          .populate('comments', 'author')
           .then(updatedEvent => {
             res.status(200).json(updatedEvent);
           })
@@ -331,6 +337,18 @@ router.put('/:id', (req, res) => {
     .catch(err => {
       res.json(err);
     });
+});
+
+// @route   POST api/events/upload
+// @desc    Upload event picture
+// @access  Private
+
+router.post('/upload', uploadCloud.single('coverImage'), (req, res, next) => {
+  if (!req.file) {
+    next(new Error('No file uplaoded!'));
+    return;
+  }
+  res.json(req.file.secure_url);
 });
 
 // @route   DELETE api/events/:id

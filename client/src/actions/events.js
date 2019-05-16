@@ -6,7 +6,8 @@ import {
   DELETE_EVENT,
   GET_ALL_EVENTS,
   CREATE_EVENT,
-  ADD_COMMENT_EVENT
+  ADD_COMMENT_EVENT,
+  UPLOAD_EVENT_IMG
 } from './types';
 
 export const createEvent_ACTION = (body, userId) => async dispatch => {
@@ -84,4 +85,11 @@ export const addCommentEvent_ACTION = (eventId, body) => async dispatch => {
   } catch (error) {
     console.error(error);
   }
+export const uploadEventImg_ACTION = data => async dispatch => {
+  const response = await service.post(`/events/upload`, data);
+  console.log(data, response.data);
+  dispatch({
+    type: UPLOAD_EVENT_IMG,
+    payload: response.data
+  });
 };

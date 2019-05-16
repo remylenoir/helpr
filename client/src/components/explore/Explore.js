@@ -43,7 +43,7 @@ const Explore = ({ alerts, events, getAllAlerts_ACTION, getAllEvents_ACTION }) =
 
       <Row>
         <Container fluid>
-          <Subtitle title={'Active Alerts'} />
+          <Subtitle title={'New Alerts'} />
           <Row>
             <div className='horizontal-scroll'>
               <div className='horizontal-scroll-wrapper'>
@@ -56,7 +56,7 @@ const Explore = ({ alerts, events, getAllAlerts_ACTION, getAllEvents_ACTION }) =
 
       <Row>
         <Container fluid>
-          <Subtitle title={'Active Events'} />
+          <Subtitle title={'Next Events'} />
           <Row>
             <div className='horizontal-scroll'>
               <div className='horizontal-scroll-wrapper'>

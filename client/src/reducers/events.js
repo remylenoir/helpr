@@ -4,7 +4,8 @@ import {
   DELETE_EVENT,
   CLEAR_EVENT,
   GET_ALL_EVENTS,
-  CREATE_EVENT, ADD_COMMENT_EVENT
+  CREATE_EVENT, ADD_COMMENT_EVENT,
+  UPLOAD_EVENT_IMG
 } from '../actions/types';
 
 const initialState = {
@@ -29,6 +30,13 @@ export default function(state = initialState, action) {
         loading: false,
         isCreated: true,
         isDeleted: false
+      };
+    case UPLOAD_EVENT_IMG:
+      return {
+        ...state,
+        coverImage: payload,
+        edit: false,
+        loading: false
       };
     case GET_ALL_EVENTS:
       return {

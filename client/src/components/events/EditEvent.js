@@ -36,22 +36,14 @@ const EditEvent = ({
     fullDesc: '',
     date: '',
     categories: '',
+    venue: '',
     street: '',
     city: '',
     zipcode: '',
     coverImage: ''
   });
 
-  const {
-    title,
-    shortDesc,
-    fullDesc,
-    street,
-    categories,
-    city,
-    zipcode,
-    coverImage
-  } = formData;
+  const { title, shortDesc, fullDesc, venue, street, categories, city, zipcode, coverImage } = formData;
 
   useEffect(() => {
     setFormData({
@@ -60,6 +52,7 @@ const EditEvent = ({
       fullDesc: loading || !event.fullDesc ? '' : event.fullDesc,
       shortDesc: loading || !event.shortDesc ? '' : event.shortDesc,
       categories: loading || !event.categories ? '' : event.categories,
+      venue: loading || !event.venue ? '' : event.venue,
       street: loading || !event.street ? '' : event.street,
       city: loading || !event.city ? '' : event.city,
       zipcode: loading || !event.zipcode ? '' : event.zipcode,
@@ -95,6 +88,7 @@ const EditEvent = ({
       fullDesc === '' ||
       categories === '' ||
       date === '' ||
+      venue === '' ||
       street === '' ||
       city === '' ||
       zipcode === '' ||
@@ -137,12 +131,7 @@ const EditEvent = ({
           >
             <Form.Group>
               <Form.Label htmlFor='title'>Title</Form.Label>
-              <Form.Control
-                type='text'
-                name='title'
-                value={title}
-                onChange={onChange}
-              />
+              <Form.Control type='text' name='title' value={title} onChange={onChange} />
             </Form.Group>
 
             <Form.Group>
@@ -217,45 +206,30 @@ const EditEvent = ({
 
             <h3>Address</h3>
             <Form.Group>
+              <Form.Label htmlFor='venue'>Venue</Form.Label>
+              <Form.Control type='text' name='venue' value={venue} onChange={onChange} />
+            </Form.Group>
+
+            <Form.Group>
               <Form.Label htmlFor='street'>Street</Form.Label>
-              <Form.Control
-                type='text'
-                name='street'
-                value={street}
-                onChange={onChange}
-              />
+              <Form.Control type='text' name='street' value={street} onChange={onChange} />
             </Form.Group>
 
             <Form.Row>
               <Form.Group as={Col}>
                 <Form.Label htmlFor='city'>City</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='city'
-                  value={city}
-                  onChange={onChange}
-                />
+                <Form.Control type='text' name='city' value={city} onChange={onChange} />
               </Form.Group>
 
               <Form.Group as={Col}>
                 <Form.Label htmlFor='zipcode'>Zip</Form.Label>
-                <Form.Control
-                  type='number'
-                  name='zipcode'
-                  value={zipcode}
-                  onChange={onChange}
-                />
+                <Form.Control type='number' name='zipcode' value={zipcode} onChange={onChange} />
               </Form.Group>
             </Form.Row>
 
             <Form.Group>
               <Form.Label htmlFor='coverImage'>Image</Form.Label>
-              <Form.Control
-                type='text'
-                name='coverImage'
-                value={coverImage}
-                onChange={onChange}
-              />
+              <Form.Control type='text' name='coverImage' value={coverImage} onChange={onChange} />
             </Form.Group>
 
             <ButtonToolbar className='justify-content-around py-3'>

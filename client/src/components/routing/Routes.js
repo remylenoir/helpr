@@ -10,7 +10,7 @@ import Dashboard from '../dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
 import Search from '../layout/Search';
 import Bookmarks from '../bookmarks/Bookmarks';
-import Explore from '../explore/Explore'
+import Explore from '../explore/Explore';
 
 // Alert components
 import AlertDetails from '../alerts/AlertDetails';
@@ -28,6 +28,9 @@ import CreateEvent from '../events/CreateEvent';
 import Profile from '../user/Profile';
 import EditProfile from '../user/EditProfile';
 
+// Map view
+import MapView from '../ mapview/MapView';
+
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
 
@@ -44,14 +47,23 @@ const Routes = () => {
           <Route exact path='/alert/:alertId' component={AlertDetails} />
           <Route exact path='/event/all' component={EventList} />
           <Route exact path='/event/:eventId' component={EventDetails} />
+          <Route exact path='/map' component={MapView} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <PrivateRoute exact path='/bookmarks' component={Bookmarks} />
           <PrivateRoute exact path='/profile' component={Profile} />
           <PrivateRoute exact path='/profile/edit' component={EditProfile} />
           <PrivateRoute exact path='/create/alert' component={CreateAlert} />
           <PrivateRoute exact path='/create/event' component={CreateEvent} />
-          <PrivateRoute exact path='/alert/:alertId/edit' component={EditAlert} />
-          <PrivateRoute exact path='/event/:eventId/edit' component={EditEvent} />
+          <PrivateRoute
+            exact
+            path='/alert/:alertId/edit'
+            component={EditAlert}
+          />
+          <PrivateRoute
+            exact
+            path='/event/:eventId/edit'
+            component={EditEvent}
+          />
         </Switch>
       </Row>
     </Fragment>

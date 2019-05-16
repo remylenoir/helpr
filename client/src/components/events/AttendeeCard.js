@@ -23,14 +23,16 @@ const AttendeeCard = ({ event, getEvent_ACTION, profile, user }) => {
 
   const attendeeElement =
     event &&
-    event.attendees.map(attendee => (
-      <Card key={attendee._id} className='align-items-center'>
-        <Card.Body>
-          <Image variant='top' src={attendee.profilePicture} className='attendee-profile' />
-          <Card.Subtitle className='my-2 text-muted'>{attendee.username}</Card.Subtitle>
-        </Card.Body>
-      </Card>
-    ));
+    event.attendees.map(attendee => {
+      return (
+        <Card key={attendee._id} className='align-items-center'>
+          <Card.Body>
+            <Image variant='top' src={attendee.profilePicture} className='attendee-profile' />
+            <Card.Subtitle className='my-2 text-muted text-center'>{attendee.username}</Card.Subtitle>
+          </Card.Body>
+        </Card>
+      );
+    });
 
   return <Fragment>{attendeeElement}</Fragment>;
 };

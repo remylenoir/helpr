@@ -11,17 +11,11 @@ const eventSchema = new Schema(
       required: true
     },
     categories: String,
+    venue: { type: String, required: true },
     street: { type: String, required: true },
     city: { type: String, required: true },
     zipcode: { type: Number, required: true },
     coverImage: { type: String, default: '' },
-    // categories: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Category'
-    //     // required: true
-    //   }
-    // ],
     organizer: [
       {
         type: Schema.Types.ObjectId,
