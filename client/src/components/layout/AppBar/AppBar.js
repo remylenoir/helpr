@@ -12,7 +12,7 @@ const AppMenu = () => {
       collapseOnSelect
       fixed='bottom'
       expand='true'
-      className='bottom-app-bar'
+      className='bottom-app-bar justify-content-between'
     >
       <Fragment>
         <Item url={'/'} icon={'fa-home'} title={'Home'} />

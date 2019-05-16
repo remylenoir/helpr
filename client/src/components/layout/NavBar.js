@@ -9,10 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 
-const NavBar = ({
-  auth: { isAuthenticated, loading, user },
-  logout_ACTION
-}) => {
+const NavBar = ({ auth: { isAuthenticated, loading, user }, logout_ACTION }) => {
   const authLinks = (
     <Fragment>
       <button
@@ -29,10 +26,7 @@ const NavBar = ({
           </Row>
         </Container>
       </button>
-      <div
-        className='dropdown-menu dropdown-menu-right'
-        aria-labelledby='dropdownMenuButton'
-      >
+      <div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
         <Link to='/dashboard' className='dropdown-item'>
           Dashboard
         </Link>
@@ -59,10 +53,7 @@ const NavBar = ({
       >
         Login / register
       </button>
-      <div
-        className='dropdown-menu dropdown-menu-right'
-        aria-labelledby='dropdownMenuButton'
-      >
+      <div className='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
         <Link to='/login' className='dropdown-item'>
           Login
         </Link>
@@ -85,8 +76,7 @@ const NavBar = ({
   );
 };
 
-const navbarClass =
-  'btn dropdown-toggle d-flex align-items-center user-dropdown p-0';
+const navbarClass = 'btn dropdown-toggle d-flex align-items-center user-dropdown p-0';
 
 NavBar.propTypes = {
   logout_ACTION: PropTypes.func.isRequired,

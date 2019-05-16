@@ -10,9 +10,10 @@
 
 .triggerButton + label {
   cursor: pointer;
-  position: absolute;
+  position: relative;
   right: 0;
-  left: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   margin: 0 auto;
   background-color: var(--primary);
   border-radius: 50%;
@@ -79,21 +80,24 @@
 
 .triggerButton:checked ~ a .one {
   background-color: purple;
-  transform: translateX(-3.2em) translateY(-4em);
+  transform: translateX(-4em) translateY(-8em);
   transition-delay: 0.2s;
 }
 
 .triggerButton:checked ~ a .two {
   background-color: slateblue;
-  transform: translateX(4.4em) translateY(-4em);
+  transform: translateX(4em) translateY(-8em);
   transition-delay: 0.1s;
 }
 
 .bottom-app-bar {
   border-top: 1px solid #ffcaca;
   background: #e8e8e8;
+
   .app-bar-text {
     color: #212529;
+    min-width: 75px;
+
     .icon {
       font-size: 1.125rem;
     }
