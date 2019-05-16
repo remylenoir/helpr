@@ -1,14 +1,13 @@
 import React, { useState, Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 // Redux actions
 import { editEvent_ACTION } from '../../actions/events';
 
 // App components
 import CommentCard from './CommentCard';
-import Subtitle from '../layout/Headings/Subtitle';
 
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
@@ -59,14 +58,17 @@ const EventComments = ({ event, user, editEvent_ACTION }) => {
       <CommentCard />
 
       <Form
-        className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+        className='d-flex w-100 pt-2 justify-content-center flex-column add-edit-form'
         onSubmit={onSubmit}
       >
         <Form.Group>
-          <Form.Label htmlFor='shortDesc'>Add a comment</Form.Label>
+          <hr />
+          <Form.Label htmlFor='shortDesc' className='mt-2'>
+            Add a comment
+          </Form.Label>
           <Form.Control
             as='textarea'
-            rows='1'
+            rows='2'
             name='comment'
             value={commentData.text}
             onChange={onChange}
@@ -88,12 +90,7 @@ const EventComments = ({ event, user, editEvent_ACTION }) => {
     </Fragment>
   );
 
-  return (
-    <div>
-      <Subtitle title={'Comments'} />
-      {user ? userContent : guestContent}
-    </div>
-  );
+  return <Fragment>{user ? userContent : guestContent}</Fragment>;
 };
 
 EventComments.propTypes = {

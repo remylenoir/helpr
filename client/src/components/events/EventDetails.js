@@ -15,10 +15,12 @@ import FollowEventBtn from './FollowEventBtn';
 import EventAttendees from './EventAttendees';
 import Subtitle from '../layout/Headings/Subtitle';
 import EventComments from '../events/EventComments';
+import OurFontAwesome from '../layout/OurFontAwesome';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
+import Accordion from 'react-bootstrap/Accordion';
 import Container from 'react-bootstrap/Container';
 
 const EventDetails = ({
@@ -81,7 +83,26 @@ const EventDetails = ({
 
           <div className='mb-4'>{event && <EventAttendees />}</div>
 
-          <div className='mb-4'>{event && <EventComments />}</div>
+          <div className='mb-4'>
+            <Subtitle title={'Comments'} />
+            <Accordion>
+              <Card>
+                <Accordion.Toggle
+                  className='d-flex justify-content-between align-items-center bg-primary'
+                  as={Card.Header}
+                  eventKey='0'
+                >
+                  <div>Show the comments</div>
+                  <div>
+                    <OurFontAwesome icon={'fa-angle-down'} />
+                  </div>
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey='0'>
+                  <Card.Body>{alert && <EventComments />}</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
+          </div>
 
           {event && auth.isAuthenticated && auth.user._id === event.creator._id && (
             <Card border='warning' className='my-3 no-shadow text-center'>

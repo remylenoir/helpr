@@ -17,7 +17,8 @@ body {
 }
 
 //button overrides
-.btn-primary {
+.btn-primary,
+.bg-primary {
   background-color: var(--primary);
   border-color: var(--primary);
 }

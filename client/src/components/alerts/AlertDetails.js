@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -13,10 +13,12 @@ import Spinner from '../layout/Spinner';
 import FollowAlerBtn from './FollowAlertBtn';
 import Subtitle from '../layout/Headings/Subtitle';
 import AlertComments from '../alerts/AlertComments';
+import OurFontAwesome from '../layout/OurFontAwesome';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
+import Accordion from 'react-bootstrap/Accordion';
 import Container from 'react-bootstrap/Container';
 
 const AlertDetails = ({
@@ -73,21 +75,43 @@ const AlertDetails = ({
                 )}
               </Row>
             </div>
+          </div>
 
-            <div className='mb-4'>{alert && <AlertComments />}</div>
+          <div className='mb-4'>
+            <Subtitle title={'Comments'} />
+            <Accordion>
+              <Card>
+                <Accordion.Toggle
+                  className='d-flex justify-content-between align-items-center bg-primary'
+                  as={Card.Header}
+                  eventKey='0'
+                >
+                  <div>Show the comments</div>
+                  <div>
+                    <OurFontAwesome icon={'fa-angle-down'} />
+                  </div>
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey='0'>
+                  <Card.Body>{alert && <AlertComments />}</Card.Body>
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
           </div>
 
           {alert && auth.isAuthenticated && auth.user._id === alert.creator._id && (
-            <Card border='warning' className='my-3 no-shadow text-center'>
-              <Card.Header>Administrator area</Card.Header>
-              <Card.Body>
-                <Card.Text>
-                  <Link to={`/alert/${alert._id}/edit`} className='btn btn-warning'>
-                    Edit alert
-                  </Link>
-                </Card.Text>
-              </Card.Body>
-            </Card>
+            <Fragment>
+              <hr />
+              <Card border='warning' className='mt-4 no-shadow text-center'>
+                <Card.Header>Administrator area</Card.Header>
+                <Card.Body>
+                  <Card.Text>
+                    <Link to={`/alert/${alert._id}/edit`} className='btn btn-warning'>
+                      Edit alert
+                    </Link>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Fragment>
           )}
 
           {/* <div className='text-center'>

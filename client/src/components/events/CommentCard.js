@@ -7,10 +7,8 @@ import { connect } from 'react-redux';
 import { editEvent_ACTION } from '../../actions/events';
 
 // Bootstrap components
-import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
-import Container from 'react-bootstrap/Container';
 
 const CommentCard = ({ event, user, editEvent_ACTION }) => {
   const eventData = {
@@ -38,21 +36,33 @@ const CommentCard = ({ event, user, editEvent_ACTION }) => {
     event &&
     event.comments.map(comment => {
       return (
-        <Card key={comment._id}>
-          <Card.Header>
-            <Image variant='top' src={comment.author.profilePicture} className='attendee-profile' />{' '}
-            {comment.author.firstName}
+        <Card key={comment._id} className='comment mb-3'>
+          <Card.Header className='d-flex justify-content-between align-items-center'>
+            <div>
+              <Image
+                variant='top'
+                src={comment.author.profilePicture}
+                className='attendee-profile mr-1'
+              />{' '}
+              {comment.author.username}
+            </div>
+            <div>
+              {user && user._id === comment.author._id && (
+                <button
+                  className='delete-button btn btn-danger'
+                  value={comment._id}
+                  onClick={deleteHandler}
+                >
+                  Delete comment
+                </button>
+              )}
+            </div>
           </Card.Header>
-          <Card.Body>
+          <Card.Body className='py-3'>
             <blockquote className='blockquote mb-0'>
-              <p>{comment.text}</p>
+              <p className='mb-0'>{comment.text}</p>
               <footer className='blockquote-footer'>{moment(comment.date).fromNow()}</footer>
             </blockquote>
-            {user && user._id === comment.author._id && (
-              <button value={comment._id} onClick={deleteHandler}>
-                Delete comment
-              </button>
-            )}
           </Card.Body>
         </Card>
       );

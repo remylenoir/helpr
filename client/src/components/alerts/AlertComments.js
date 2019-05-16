@@ -8,7 +8,6 @@ import { editAlert_ACTION } from '../../actions/alerts';
 
 // App components
 import CommentCardAlert from './CommentCardAlert';
-import Subtitle from '../layout/Headings/Subtitle';
 
 // Bootstrap components
 import Form from 'react-bootstrap/Form';
@@ -54,14 +53,17 @@ const AlertComments = ({ alert, user, editAlert_ACTION }) => {
       <CommentCardAlert />
 
       <Form
-        className='d-flex w-100 pt-3 justify-content-center flex-column add-edit-form'
+        className='d-flex w-100 pt-2 justify-content-center flex-column add-edit-form'
         onSubmit={onSubmit}
       >
         <Form.Group>
-          <Form.Label htmlFor='shortDesc'>Add a comment</Form.Label>
+          <hr />
+          <Form.Label htmlFor='shortDesc' className='mt-2'>
+            Add a comment
+          </Form.Label>
           <Form.Control
             as='textarea'
-            rows='1'
+            rows='2'
             name='comment'
             value={commentData.text}
             onChange={onChange}
@@ -83,12 +85,7 @@ const AlertComments = ({ alert, user, editAlert_ACTION }) => {
     </Fragment>
   );
 
-  return (
-    <div>
-      <Subtitle title={'Comments'} />
-      {user ? userContent : guestContent}
-    </div>
-  );
+  return <Fragment>{user ? userContent : guestContent}</Fragment>;
 };
 
 AlertComments.propTypes = {
