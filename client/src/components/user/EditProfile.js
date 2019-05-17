@@ -101,7 +101,7 @@ const EditProfile = ({
         <Row>
           <Col>
             <div id='profile'>
-              <BackLink url={'/profil'} title={'Back to profile'} />
+              <BackLink url={'/profile'} title={'Back to profile'} />
 
               <Form onSubmit={onSubmit}>
                 <div className='image-edit'>

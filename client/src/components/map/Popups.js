@@ -25,6 +25,7 @@ const Popups = ({ getAllAlerts_ACTION, alerts: { alerts } }) => {
             closeOnClick={false}
             onClose={() => setPopupState(null)}
             sortByDepth={true}
+            offsetTop={-30}
           >
             <div className='popup-inner'>
               <Link to={`/alert/${popupState._id}`}>{popupState.type}</Link>
