@@ -34,6 +34,7 @@ import MapView from '../mapview/MapView';
 
 // Bootstrap components
 import Row from 'react-bootstrap/Row';
+import route404 from '../layout/404';
 
 const Routes = () => {
   return (
@@ -58,6 +59,7 @@ const Routes = () => {
           <PrivateRoute exact path='/create/event' component={CreateEvent} />
           <PrivateRoute exact path='/alert/:alertId/edit' component={EditAlert} />
           <PrivateRoute exact path='/event/:eventId/edit' component={EditEvent} />
+          <Route  component={route404} />
         </Switch>
       </Row>
     </Fragment>
