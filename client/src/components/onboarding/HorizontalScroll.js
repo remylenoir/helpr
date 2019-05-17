@@ -64,7 +64,7 @@ const HorizontalScroll = ({
           {loading && events === null ? <Spinner /> : type && allEventElements}
         </div>
         <Link to='/event/all'>
-          <Button variant='primary' className='mt-3'>
+          <Button variant='primary' className='mt-4'>
             {btnText}
           </Button>
         </Link>
