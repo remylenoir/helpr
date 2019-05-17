@@ -24,30 +24,28 @@ const Hero = ({
     <Fragment>
       {type && type === 'details' && (
         <div className={`hero ${type && 'details'}`}>
-          <FadeIn>
-            <div className='container wrapper text-center'>
-              <h1>{title}</h1>
-              <p>{category}</p>
-              <p>
-                {creator && (
-                  <Fragment>
-                    Created by {creator && creator.username} <br />
-                  </Fragment>
-                )}
-                {date &&
-                  dateformat &&
-                  dateformat === 'calendar' &&
-                  moment(date).format('MMMM Do, h:mm a')}
-                {date &&
-                  dateformat &&
-                  dateformat === 'spent' &&
-                  moment(date).fromNow()}
-              </p>
-              {button && <Button variant='primary'>{btnMsg}</Button>}
-            </div>
-            <div className='overlay'> </div>
-            {url && <Image src={url} />}
-          </FadeIn>
+          <div className='container wrapper text-center'>
+            <h1>{title}</h1>
+            <p>{category}</p>
+            <p>
+              {creator && (
+                <Fragment>
+                  Created by {creator && creator.username} <br />
+                </Fragment>
+              )}
+              {date &&
+                dateformat &&
+                dateformat === 'calendar' &&
+                moment(date).format('MMMM Do, h:mm a')}
+              {date &&
+                dateformat &&
+                dateformat === 'spent' &&
+                moment(date).fromNow()}
+            </p>
+            {button && <Button variant='primary'>{btnMsg}</Button>}
+          </div>
+          <div className='overlay'> </div>
+          {url && <Image src={url} />}
         </div>
       )}
 
