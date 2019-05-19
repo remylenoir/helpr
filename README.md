@@ -30,7 +30,7 @@ MongoDB, Express, React (hooks only), Redux, Node, Rest API, Mapbox GL JS.
 
 ## Minimum Viable Product - 1st iteration
 
-- Mobile first app (desktop version to be finished)
+- Mobile first app (desktop version to be finished soon)
 - Create help alerts with location data
 - Map view with alerts
 - Create and join events 
