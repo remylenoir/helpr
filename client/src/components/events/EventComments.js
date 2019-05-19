@@ -16,11 +16,11 @@ import Button from 'react-bootstrap/Button';
 const EventComments = ({ event, user, editEvent_ACTION, getEvent_ACTION }) => {
   const [commentData, setCommentData] = useState({
     text: '',
-    author: ''
+    author: '',
+    date: '',
   });
 
   const eventData = {
-    date: event && event.date,
     title: event && event.title,
     fullDesc: event && event.fullDesc,
     shortDesc: event && event.shortDesc,
@@ -39,7 +39,8 @@ const EventComments = ({ event, user, editEvent_ACTION, getEvent_ACTION }) => {
       setCommentData({
         ...commentData,
         text: value,
-        author: user
+        author: user,
+        date: new Date(),
       });
   };
 
@@ -49,7 +50,8 @@ const EventComments = ({ event, user, editEvent_ACTION, getEvent_ACTION }) => {
     editEvent_ACTION(event._id, eventData).then(res => getEvent_ACTION(event._id));
     setCommentData({
       text: '',
-      author: ''
+      author: '',
+      date: '',
     });
   };
 

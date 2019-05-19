@@ -22,10 +22,7 @@ const alertSchema = new Schema(
     comments: [
       {
         text: String,
-        date: {
-          type: Date,
-          default: new Date()
-        },
+        date: String,
         author: {
           type: Object
         }

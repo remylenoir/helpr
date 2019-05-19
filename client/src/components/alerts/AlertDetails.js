@@ -90,7 +90,7 @@ const AlertDetails = ({
 
           <div className='mb-4'>
             <FadeIn>
-              <Subtitle title={'Comments'} />
+              <Subtitle title={`Comments (${alert && alert.comments.length})`} />
               <Accordion>
                 <Card>
                   <Accordion.Toggle

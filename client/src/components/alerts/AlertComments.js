@@ -16,7 +16,8 @@ import Button from 'react-bootstrap/Button';
 const AlertComments = ({ alert, user, editAlert_ACTION }) => {
   const [commentData, setCommentData] = useState({
     text: '',
-    author: ''
+    author: '',
+    date: '',
   });
 
   const alertData = {
@@ -24,7 +25,7 @@ const AlertComments = ({ alert, user, editAlert_ACTION }) => {
     title: alert && alert.title,
     description: alert && alert.description,
     imageURL: alert && alert.imageURL,
-    comments: alert && alert.comments
+    comments: alert && alert.comments,
   };
 
   const onChange = e => {
@@ -34,7 +35,8 @@ const AlertComments = ({ alert, user, editAlert_ACTION }) => {
       setCommentData({
         ...commentData,
         text: value,
-        author: user
+        author: user,
+        date: new Date(),
       });
   };
 
@@ -44,7 +46,8 @@ const AlertComments = ({ alert, user, editAlert_ACTION }) => {
     editAlert_ACTION(alert._id, alertData);
     setCommentData({
       text: '',
-      author: ''
+      author: '',
+      date: '',
     });
   };
 

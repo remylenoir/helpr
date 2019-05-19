@@ -96,7 +96,7 @@ const EventDetails = ({
             <div className='mb-4'>{event && <EventAttendees />}</div>
 
             <div className='mb-4'>
-              <Subtitle title={'Comments'} />
+              <Subtitle title={`Comments (${event && event.comments.length})`} />
               <Accordion>
                 <Card>
                   <Accordion.Toggle
