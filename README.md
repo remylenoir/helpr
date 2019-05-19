@@ -58,7 +58,9 @@ We used cross-referenced collections (many-to-many). We realized that it would h
 - [ ] Finish the desktop version
 - [ ] User testing
 - [ ] Social authentication
-- [ ] Admin interface to create categories/NGOs 
+- [ ] Admin interface to create categories/NGOs
+- [ ] Replace the ID with slugs
+- [ ] Store the user session when using "Add to Home Screen" on iOS
 - [ ] Think of the alerts/events/comments moderation model.
 
 ## Sources:
