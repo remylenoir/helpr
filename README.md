@@ -7,10 +7,10 @@ This app was made with [@j-jmnz](https://github.com/j-jmnz) and [@roosterhack](h
 
 ###### What is the app about?
 
-1. Assist expats to volunteer and help the community of Berlin
-2. Inspire people and raise awareness of current social issues.
+- Assist expats to volunteer and help the community of Berlin
+- Inspire people and raise awareness of current social issues.
 
-In a nutshell, we wanted to build a simple app which connects people who want to help and people who need help.
+> In a nutshell, we wanted to build a simple app which connects people who want to help and people who need help.
 
 After the research and the brainstorming to define the MVP, we created a roadmap to define and split the tasks for the project.   
 
@@ -48,6 +48,18 @@ For the project, we decided to use Redux to manage the app's states, we had to l
 We used cross-referenced collections (many-to-many). We realized that it would have been better to reference the User collection with "middleware" collections to simplify the handleling of dynamic references deletion. 
 
 ------
+
+## Next iterations:
+
+- [ ] NGO listing feature
+- [ ] Share alerts/events
+- [ ] Add to calendar
+- [ ] Finish the search functionnality
+- [ ] Finish the desktop version
+- [ ] User testing
+- [ ] Social authentication
+- [ ] Admin interface to create categories/NGOs 
+- [ ] Think of the alerts/events/comments moderation model.
 
 ## Sources:
 
