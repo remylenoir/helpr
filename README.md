@@ -24,7 +24,7 @@ MongoDB, Express, React (hooks only), Redux, Node, Rest API, Mapbox GL JS.
 
 ------
 
-:heart_decoration: [Discover Helpr](https://helpr-app.herokuapp.com/) 
+:heart_decoration: [Discover Helpr](https://helpr-app.herokuapp.com/) - Mobile first, we recommend using it on mobile
 
 ------
 
