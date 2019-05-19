@@ -26,7 +26,7 @@ const AttendeeCard = ({ event, getEvent_ACTION, profile, user }) => {
     event.attendees.map(attendee => {
       return (
         <Card key={event && attendee._id} className='align-items-center'>
-          <Card.Body>
+          <Card.Body className='d-flex flex-column align-items-center'>
             <Image variant='top' src={event && attendee.profilePicture} className='attendee-profile' />
             <Card.Subtitle className='my-2 text-muted text-center'>
               {event && attendee.username}
