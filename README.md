@@ -30,7 +30,7 @@ MongoDB, Express, React (hooks only), Redux, Node, Rest API, Mapbox GL JS.
 
 ## Minimum Viable Product - 1st iteration
 
-- Mobile first app (desktop version to be finished)
+- Mobile first app (desktop version to be finished soon)
 - Create help alerts with location data
 - Map view with alerts
 - Create and join events 
@@ -58,7 +58,9 @@ We used cross-referenced collections (many-to-many). We realized that it would h
 - [ ] Finish the desktop version
 - [ ] User testing
 - [ ] Social authentication
-- [ ] Admin interface to create categories/NGOs 
+- [ ] Admin interface to create categories/NGOs
+- [ ] Replace the ID with slugs
+- [ ] Store the user session when using "Add to Home Screen" on iOS
 - [ ] Think of the alerts/events/comments moderation model.
 
 ## Sources:
