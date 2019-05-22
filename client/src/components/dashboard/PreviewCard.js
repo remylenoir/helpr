@@ -12,7 +12,6 @@ const PreviewCard = ({
   type,
   profile: { createdAlerts, createdEvents, favAlerts, favEvents, joinedEvents }
 }) => {
-  console.log(createdAlerts);
   return type === 'createdAlerts' ? (
     <Fragment>
       {/* ----- ALERTS ----- */}
@@ -20,9 +19,7 @@ const PreviewCard = ({
         <Card key={alert._id} className='mt-1 mb-4 text-left'>
           <Link to={`/alert/${alert._id}`}>
             <Container className='py-2'>
-              <span className='card-date text-uppercase'>
-                {moment(alert.created_at).fromNow()}
-              </span>
+              <span className='card-date text-uppercase'>{moment(alert.created_at).fromNow()}</span>
               <Card.Subtitle className='text-muted'>{alert.type}</Card.Subtitle>
               <Card.Title className='mt-2'>{alert.title}</Card.Title>
             </Container>
@@ -36,9 +33,7 @@ const PreviewCard = ({
         <Card key={alert._id} className='mt-1 mb-4 text-left'>
           <Link to={`/alert/${alert._id}`}>
             <Container className='py-2'>
-              <span className='card-date text-uppercase'>
-                {moment(alert.created_at).fromNow()}
-              </span>
+              <span className='card-date text-uppercase'>{moment(alert.created_at).fromNow()}</span>
               <Card.Subtitle className='text-muted'>{alert.type}</Card.Subtitle>
               <Card.Title className='mt-2'>{alert.title}</Card.Title>
             </Container>
@@ -57,9 +52,7 @@ const PreviewCard = ({
               <span className='card-date text-uppercase'>
                 {moment(event.date).format('MMMM Do, h:mm a')}
               </span>
-              <Card.Subtitle className='mb-2 text-muted'>
-                {event.categories}
-              </Card.Subtitle>
+              <Card.Subtitle className='mb-2 text-muted'>{event.categories}</Card.Subtitle>
               <Card.Title className='mt-2'>{event.title}</Card.Title>
             </Container>
           </Link>
@@ -76,9 +69,7 @@ const PreviewCard = ({
               <span className='card-date text-uppercase'>
                 {moment(event.date).format('MMMM Do, h:mm a')}
               </span>
-              <Card.Subtitle className='mb-2 text-muted'>
-                {event.categories}
-              </Card.Subtitle>
+              <Card.Subtitle className='mb-2 text-muted'>{event.categories}</Card.Subtitle>
               <Card.Title className='mt-2'>{event.title}</Card.Title>
             </Container>
           </Link>
@@ -95,9 +86,7 @@ const PreviewCard = ({
               <span className='card-date text-uppercase'>
                 {moment(event.date).format('MMMM Do, h:mm a')}
               </span>
-              <Card.Subtitle className='mb-2 text-muted'>
-                {event.categories}
-              </Card.Subtitle>
+              <Card.Subtitle className='mb-2 text-muted'>{event.categories}</Card.Subtitle>
               <Card.Title className='mt-2'>{event.title}</Card.Title>
             </Container>
           </Link>
