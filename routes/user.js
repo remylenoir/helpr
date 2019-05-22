@@ -25,12 +25,15 @@ router.get('/:id', (req, res) => {
   const userID = req.params.id;
 
   User.findById(userID)
-    .populate('createdEvents', 'title coverImage shortDesc categories date')
-    .populate('joinedEvents', 'title coverImage shortDesc categories date')
-    .populate('organizedEvents', 'title coverImage shortDesc categories date')
-    .populate('favEvents', 'title coverImage shortDesc date')
-    .populate('createdAlerts', 'title imageURL description type created_at')
-    .populate('favAlerts', 'title imageURL description type created_at')
+    .populate(
+      'createdEvents',
+      'title coverImage shortDesc categories createdAt'
+    )
+    .populate('joinedEvents', 'title coverImage shortDesc categories')
+    .populate('organizedEvents', 'title coverImage shortDesc categories')
+    .populate('favEvents', 'title coverImage shortDesc')
+    .populate('createdAlerts', 'title imageURL description type')
+    .populate('favAlerts', 'title imageURL description type')
     .populate('favNGOs', 'title imageURL')
     .then(user => {
       res.json(user);
@@ -60,13 +63,17 @@ router.put('/:id', (req, res) => {
 // @desc    Upload user profile picture
 // @access  Private
 
-router.post('/upload', uploadCloud.single('profilePicture'), (req, res, next) => {
-  if (!req.file) {
-    next(new Error('No file uplaoded!'));
-    return;
+router.post(
+  '/upload',
+  uploadCloud.single('profilePicture'),
+  (req, res, next) => {
+    if (!req.file) {
+      next(new Error('No file uplaoded!'));
+      return;
+    }
+    res.json(req.file.secure_url);
   }
-  res.json(req.file.secure_url);
-});
+);
 
 // @route   DELETE api/users/:id
 // @desc    Delete the user by ID
