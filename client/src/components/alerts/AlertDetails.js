@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -26,17 +27,16 @@ const AlertDetails = ({
   match: {
     params: { alertId }
   },
-  alerts: { alert, location, loading },
+  alerts: { alert, loading },
   auth,
   getAlert_ACTION
 }) => {
   useEffect(() => {
     getAlert_ACTION(alertId);
     window.scroll(0, 0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleClick = event => {
+  const handleClick = () => {
     document.querySelector('.collapse').classList.toggle('show');
   };
 
@@ -134,20 +134,6 @@ const AlertDetails = ({
                 </FadeIn>
               </Fragment>
             )}
-
-          {/* <div className='text-center'>
-            {alert && auth.isAuthenticated && (
-              <Link to={`/dashboard`} className='btn btn-secondary'>
-                Back to the dashboard
-              </Link>
-            )}
-          </div>
-          <br /> */}
-          {/* <div className='text-center'>
-            <Link to='/alert/all' className='btn btn-info'>
-              See all alerts
-            </Link>
-          </div> */}
         </Container>
       </Row>
     </Container>

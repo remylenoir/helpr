@@ -89,7 +89,7 @@ const CreateEvent = ({
   const onSubmit = e => {
     e.preventDefault();
 
-    formData.coverImage = events.event.coverImage;
+   formData.coverImage = events.event.coverImage;
     if (
       title === '' ||
       date === '' ||
@@ -99,8 +99,8 @@ const CreateEvent = ({
       venue === '' ||
       street === '' ||
       city === '' ||
-      zipcode === ''
-    ) {
+      zipcode === ''     
+      ) {
       setAlert_ACTION('All inputs must be filled', 'danger');
       return;
     }

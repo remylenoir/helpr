@@ -16,7 +16,7 @@ import BookmarkedEventPrev from './BookmarkedEventPrev';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 
-const Bookmarks = ({ user, getCurrentProfile_ACTION, profile }) => {
+const Bookmarks = ({ user, getCurrentProfile_ACTION }) => {
   useEffect(() => {
     getCurrentProfile_ACTION(user._id);
     window.scroll(0, 0)

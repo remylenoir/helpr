@@ -38,7 +38,7 @@ const EventDetails = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleClick = event => {
+  const handleClick = () => {
     document.querySelector('.collapse').classList.toggle('show');
   };
 
@@ -135,19 +135,6 @@ const EventDetails = ({
                   </Card.Body>
                 </Card>
               )}
-            {/* {event && auth.isAuthenticated && (
-            <div className='text-center'>
-              <Link to={`/dashboard`} className='btn btn-secondary'>
-                Back to the dashboard
-              </Link>
-            </div>
-          )} */}
-            {/* <br />
-          <div className='text-center'>
-            <Link to='/event/all' className='btn btn-info'>
-              See all events
-            </Link>
-          </div> */}
           </FadeIn>
         </Container>
       </Row>

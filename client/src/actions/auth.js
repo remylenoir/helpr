@@ -1,9 +1,12 @@
 import service from '../utils/service';
 import { setAlert_ACTION } from './alert';
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types';
-
-// Load user
-export const loadUSER_ACTION = user => dispatch => {};
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT
+} from './types';
 
 //Register user
 export const register_ACTION = ({ username, password }) => async dispatch => {

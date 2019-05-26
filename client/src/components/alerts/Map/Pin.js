@@ -10,7 +10,7 @@ const pinStyle = {
 
 export class Pin extends PureComponent {
   render() {
-    const { size = 20, onClick } = this.props;
+    const { size = 20 } = this.props;
 
     return (
       <svg
@@ -20,7 +20,6 @@ export class Pin extends PureComponent {
           ...pinStyle,
           transform: `translate(${-size / 2}px,${-size}px)`
         }}
-        onClick={onClick}
       >
         <path d={ICON} />
       </svg>

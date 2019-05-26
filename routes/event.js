@@ -214,58 +214,6 @@ router.put('/leave/:id', (req, res) => {
     });
 });
 
-// @route   PUT api/events/bookmark/:id
-// @desc    Bookmark/unbookmark an event
-// @access  Public
-// router.put('/bookmark/:id', (req, res) => {
-//   const { _id } = req.user;
-//   const favEvents = req.params.id;
-
-//   User.findById({ _id })
-//     .then(user => {
-//       if (!user.favEvents.includes(favEvents)) {
-//         User.findOneAndUpdate(
-//           { _id },
-//           {
-//             $push: { favEvents }
-//           },
-//           { new: true }
-//         )
-//           .then(() => {
-//             res
-//               .status(200)
-//               .json({
-//                 message: `Event ID ${favEvents} successfully bookmarked`
-//               });
-//           })
-//           .catch(err => {
-//             res.json(err);
-//           });
-//       } else {
-//         User.findOneAndUpdate(
-//           { _id },
-//           {
-//             $pull: { favEvents }
-//           },
-//           { new: true }
-//         )
-//           .then(() => {
-//             res
-//               .status(200)
-//               .json({
-//                 message: `Event ID ${favEvents} successfully unbookmarked`
-//               });
-//           })
-//           .catch(err => {
-//             res.json(err);
-//           });
-//       }
-//     })
-//     .catch(err => {
-//       res.json(err);
-//     });
-// });
-
 // @route   PUT api/events/add/bookmark/:id
 // @desc    Bookmark an event
 // @access  Public
