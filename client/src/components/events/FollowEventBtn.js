@@ -26,7 +26,7 @@ const FollowEventBtn = ({
   }, [isClicked]);
 
   const handleBookmark = e => {
-    if (isAuthenticated === null) {
+    if (isAuthenticated === false || isAuthenticated === null) {
       setAlert_ACTION('Must be logged in', 'danger');
       return;
     }

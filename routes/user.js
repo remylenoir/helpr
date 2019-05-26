@@ -25,10 +25,10 @@ router.get('/:id', (req, res) => {
   const userID = req.params.id;
 
   User.findById(userID)
-    .populate('createdEvents', 'title coverImage shortDesc categories createdAt')
-    .populate('joinedEvents', 'title coverImage shortDesc categories')
-    .populate('organizedEvents', 'title coverImage shortDesc categories')
-    .populate('favEvents', 'title coverImage shortDesc')
+    .populate('createdEvents')
+    .populate('joinedEvents')
+    .populate('organizedEvents')
+    .populate('favEvents')
     .populate('createdAlerts')
     .populate('favAlerts')
     .populate('favNGOs', 'title imageURL')
