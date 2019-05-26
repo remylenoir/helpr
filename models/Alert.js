@@ -6,7 +6,7 @@ const alertSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: true },
     location: {
-      type: { type: String, default: 'Point' },
+      type: { type: String, default: 'Point', required: true },
       coordinates: [Number]
     },
     type: {
